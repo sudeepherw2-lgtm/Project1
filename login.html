@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Staff & Faculty Gateway | Pegasus English School</title>
+  <meta name="description" content="Sign in to Pegasus English School portal for Principal, Admin, Teachers, and Students.">
+  <link rel="icon" type="image/jpeg" href="logo.jpg">
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/font-awesome.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    html, body {
+      overflow-x: hidden;
+      max-width: 100vw;
+    }
+    :root {
+      --primary: #c59b27;
+      --primary-hover: #a37c18;
+      --navy: #103570;
+      --navy-dark: #0a234d;
+    }
+    body {
+      background: radial-gradient(circle at 10% 20%, #0a234d 0%, #103570 40%, #1b4175 100%);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      padding: 24px;
+      margin: 0;
+    }
+    .login-container {
+      background: #FFFFFF;
+      border-radius: 24px;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.4);
+      width: 100%;
+      max-width: 490px;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    .login-header {
+      background: linear-gradient(135deg, #0a234d 0%, #103570 100%);
+      border-bottom: 3px solid #c59b27;
+      padding: 30px 24px 24px;
+      text-align: center;
+      color: #FFFFFF;
+      position: relative;
+    }
+    .lang-btn {
+      border: 1.5px solid rgba(255, 255, 255, 0.3);
+      background: rgba(255, 255, 255, 0.1);
+      color: white;
+      border-radius: 20px;
+      padding: 3px 12px;
+      font-size: 11px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .lang-btn.active {
+      background: #c59b27;
+      border-color: #c59b27;
+      color: #0a234d;
+      font-weight: 800;
+    }
+    .role-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+      margin-bottom: 22px;
+    }
+    .role-pill {
+      cursor: pointer;
+      border: 1.5px solid #E2E8F0;
+      border-radius: 12px;
+      padding: 12px 10px;
+      font-size: 13px;
+      font-weight: 700;
+      transition: all 0.2s ease;
+      background: #F8FAFC;
+      color: #475569;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .role-pill:hover {
+      border-color: #CBD5E1;
+      background: #F1F5F9;
+    }
+    .role-pill.active {
+      background: #FFFFFF;
+      color: #0F172A;
+      border-color: var(--primary);
+      box-shadow: 0 4px 14px rgba(197, 155, 39, 0.25);
+    }
+    .role-pill.active i {
+      color: var(--primary) !important;
+    }
+    .btn-login {
+      background: linear-gradient(135deg, #c59b27 0%, #a37c18 100%);
+      border: none;
+      color: #0a234d;
+      font-weight: 800;
+      font-size: 14px;
+      padding: 13px;
+      border-radius: 12px;
+      box-shadow: 0 4px 14px rgba(197, 155, 39, 0.35);
+      transition: all 0.2s;
+    }
+    .btn-login:hover {
+      opacity: 0.95;
+      transform: translateY(-1px);
+      box-shadow: 0 6px 18px rgba(197, 155, 39, 0.45);
+      color: #0a234d;
+    }
+    .form-control-custom {
+      border-radius: 12px;
+      border: 1.5px solid #E2E8F0;
+      padding: 11px 14px;
+      font-size: 13px;
+      transition: all 0.2s;
+    }
+    .form-control-custom:focus {
+      border-color: #103570;
+      box-shadow: 0 0 0 3px rgba(16, 53, 112, 0.15);
+      outline: none;
+    }
+  </style>
+</head>
+<body>
+
+<div class="login-container">
+  <div class="login-header">
+    <!-- Language Toggle in Header -->
+    <div class="d-flex justify-content-end mb-2">
+      <div class="d-inline-flex align-items-center bg-white bg-opacity-10 p-1 rounded-pill">
+        <button id="langBtnEn" class="lang-btn active" onclick="switchLanguage('en')">English</button>
+        <button id="langBtnNe" class="lang-btn" onclick="switchLanguage('ne')">नेपाली</button>
+      </div>
+    </div>
+
+    <a href="index.html" class="d-inline-block mb-2" title="Return to School Homepage">
+      <img src="logo.jpg" alt="Pegasus School Logo" width="65" height="65" class="school-brand-logo rounded-circle shadow-sm" style="object-fit: contain; background: white; padding: 2px;" loading="lazy" decoding="async">
+    </a>
+    <h4 class="school-brand-name fw-bold mb-1" style="letter-spacing: -0.5px;">Pegasus English School</h4>
+    <p class="mb-0 text-white-50 small" id="loginHeaderSubtitle">School Management Gateway • Estd. 1999</p>
+  </div>
+
+  <div class="p-4">
+    <label class="form-label small fw-bold text-muted text-uppercase mb-2" id="lblSelectRole" style="letter-spacing: 0.5px;">
+      Select Portal Account:
+    </label>
+    
+    <div class="role-grid">
+      <div class="role-pill active" data-role="principal" onclick="selectRole('principal', this)">
+        <i class="fa fa-user-shield text-danger fs-5"></i>
+        <div>
+          <span class="d-block" style="font-size: 13px;" id="rolePrincipalTitle">Principal</span>
+          <small class="text-muted" style="font-size: 10px;" id="rolePrincipalSub">Class 1–10 Suite</small>
+        </div>
+      </div>
+
+      <div class="role-pill" data-role="admin" onclick="selectRole('admin', this)">
+        <i class="fa fa-shield-alt text-primary fs-5"></i>
+        <div>
+          <span class="d-block" style="font-size: 13px;" id="roleAdminTitle">Admin</span>
+          <small class="text-muted" style="font-size: 10px;" id="roleAdminSub">CMS &amp; Files</small>
+        </div>
+      </div>
+
+      <div class="role-pill" data-role="teacher" onclick="selectRole('teacher', this)">
+        <i class="fa fa-chalkboard-teacher text-success fs-5"></i>
+        <div>
+          <span class="d-block" style="font-size: 13px;" id="roleTeacherTitle">Teacher</span>
+          <small class="text-muted" style="font-size: 10px;" id="roleTeacherSub">CAS &amp; Homework</small>
+        </div>
+      </div>
+
+      <div class="role-pill" data-role="student" onclick="selectRole('student', this)">
+        <i class="fa fa-user-graduate text-info fs-5"></i>
+        <div>
+          <span class="d-block" style="font-size: 13px;" id="roleStudentTitle">Student</span>
+          <small class="text-muted" style="font-size: 10px;" id="roleStudentSub">Parent Portal</small>
+        </div>
+      </div>
+    </div>
+
+    <form onsubmit="handleLogin(event)">
+      <div class="mb-3">
+        <label class="form-label small fw-bold text-muted" id="lblUsername">Username / ID</label>
+        <input type="text" id="usernameInput" class="form-control form-control-custom" placeholder="Username" required value="principal">
+      </div>
+
+      <div class="mb-4">
+        <label class="form-label small fw-bold text-muted" id="lblPassword">Password</label>
+        <input type="password" id="passwordInput" class="form-control form-control-custom" placeholder="••••••••" required value="principal">
+      </div>
+
+      <button type="submit" class="btn btn-login w-100 mb-3" id="btnLogin">
+        <i class="fa fa-sign-in-alt me-2"></i> Enter Portal Dashboard
+      </button>
+    </form>
+
+    <div class="pt-3 border-top text-center">
+      <a href="index.html" class="text-decoration-none text-muted small fw-semibold" id="linkBackHome">
+        <i class="fa fa-arrow-left me-1"></i> Return to School Homepage
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- Core Application Modules -->
+<script src="js/core/env.js"></script>
+<script src="js/core/seeds.js"></script>
+<script src="js/core/store.js"></script>
+<script src="js/core/utils.js"></script>
+<script src="js/core/api.js"></script>
+<script src="js/core/i18n.js"></script>
+<script src="js/components/branding.js"></script>
+<script src="js/components/toast.js"></script>
+<script src="js/services/authService.js"></script>
+<script src="js/core/app.js"></script>
+<script src="js/pages/loginPage.js"></script>
+
+</body>
+</html>

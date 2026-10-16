@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us | Pegasus English School | Nayabasti, Kathmandu</title>
+    <meta name="description" content="Learn about Pegasus English School, established in 1999 in Gokarneshwor-6, Nayabasti, Kathmandu. Discover our progressive pedagogy, leadership, values, and holistic learning environment.">
+    <link rel="icon" type="image/jpeg" href="logo.jpg">
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#f0f5fc',
+                            100: '#e1ecf8',
+                            200: '#c3daf1',
+                            300: '#95bee7',
+                            400: '#609ddb',
+                            500: '#3b80ce',
+                            600: '#2764b4',
+                            700: '#1f4e91',
+                            800: '#1b4175',
+                            900: '#103570', /* Pegasus Official Royal Blue */
+                            950: '#0a234d',
+                        },
+                        gold: {
+                            300: '#fde68a',
+                            400: '#fbbf24',
+                            500: '#c59b27', /* Pegasus Official Seal Gold */
+                            600: '#a37c18',
+                            700: '#856312',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- FontAwesome & Google Fonts -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Cinzel:wght@600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        html, body {
+            overflow-x: hidden;
+            max-width: 100vw;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+        .font-motto {
+            font-family: 'Cinzel', serif;
+        }
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #f1f5f9; }
+        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 9999px; }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 antialiased flex flex-col min-h-screen">
+
+    <!-- Top Announcement & Contact Strip -->
+    <div class="bg-brand-950 text-slate-300 text-xs py-2 px-4 border-b border-brand-900/80">
+        <div class="max-w-7xl mx-auto flex flex-wrap justify-between items-center gap-2">
+            <div class="flex items-center space-x-4">
+                <span class="flex items-center"><i class="fas fa-map-marker-alt text-gold-400 mr-1.5"></i> Gokarneshwor-6, Nayabasti, Kathmandu</span>
+                <a href="tel:014913939" class="hidden sm:flex items-center hover:text-white transition"><i class="fas fa-phone-alt text-gold-400 mr-1.5"></i> 01-4913939</a>
+                <a href="mailto:pegasusengschool@gmail.com" class="hidden md:flex items-center hover:text-white transition"><i class="fas fa-envelope text-gold-400 mr-1.5"></i> pegasusengschool@gmail.com</a>
+            </div>
+            <div class="flex items-center space-x-3 text-[11px]">
+                <a href="student-portal.html" class="bg-gold-500 hover:bg-gold-400 text-brand-950 font-black px-2.5 py-0.5 rounded transition shadow-xs flex items-center">
+                    <i class="fas fa-user-graduate mr-1"></i> Student Portal
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Navigation Bar -->
+    <header class="bg-white/95 backdrop-blur-md sticky top-0 z-30 border-b border-slate-200/90 shadow-xs">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-20">
+            <a href="index.html" class="flex items-center group">
+                <img src="logo.jpg" alt="Pegasus Logo" style="width: 48px; height: 48px; object-fit: contain;" class="w-12 h-12 rounded-xl mr-3 shadow-xs group-hover:scale-105 transition" loading="lazy" decoding="async">
+                <div>
+                    <h1 class="text-xl sm:text-2xl font-black tracking-tight text-brand-900 leading-none">
+                        Pegasus <span class="text-gold-500 font-black">English</span> School
+                    </h1>
+                    <span class="text-[11px] text-slate-500 font-bold tracking-wider uppercase block mt-1">Estd. 1999 • Nayabasti, Kathmandu</span>
+                </div>
+            </a>
+
+            <nav class="hidden xl:flex items-center space-x-7 text-sm font-bold text-slate-600">
+                <a href="index.html" class="hover:text-brand-900 transition">Home</a>
+                <a href="about.html" class="text-brand-900 font-black border-b-2 border-brand-900 pb-0.5">About Us</a>
+                <a href="academics.html" class="hover:text-brand-900 transition">Academics</a>
+                <a href="admissions.html" class="hover:text-brand-900 transition">Admissions</a>
+                <a href="file-manager.html" class="hover:text-brand-900 transition">Downloads</a>
+                <a href="contact.html" class="hover:text-brand-900 transition">Contact Us</a>
+            </nav>
+
+            <div class="hidden sm:flex items-center space-x-3">
+                <a href="admissions.html" class="bg-gold-500 hover:bg-gold-400 text-brand-950 text-xs sm:text-sm font-black px-4 py-2.5 rounded-xl shadow-xs transition flex items-center">
+                    <i class="fas fa-file-signature mr-1.5"></i> Apply Now
+                </a>
+            </div>
+
+            <button onclick="toggleMobileNav()" class="xl:hidden p-2 rounded-xl border border-slate-200 text-slate-600 hover:text-brand-900" aria-label="Toggle Navigation">
+                <i class="fas fa-bars text-lg"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Drawer -->
+        <div id="mobile-nav" class="hidden xl:hidden bg-white border-b border-slate-200 px-4 py-4 space-y-3">
+            <a href="index.html" class="block text-sm font-bold text-slate-700 hover:text-brand-900">Home</a>
+            <a href="about.html" class="block text-sm font-bold text-brand-900">About Us (Estd. 1999)</a>
+            <a href="academics.html" class="block text-sm font-bold text-slate-700 hover:text-brand-900">Academics</a>
+            <a href="admissions.html" class="block text-sm font-bold text-slate-700 hover:text-brand-900">Admissions</a>
+            <a href="file-manager.html" class="block text-sm font-bold text-slate-700 hover:text-brand-900">Downloads</a>
+            <a href="contact.html" class="block text-sm font-bold text-slate-700 hover:text-brand-900">Contact Us</a>
+            <div class="pt-3 border-t border-slate-100 flex flex-col gap-2">
+                <a href="admissions.html" class="bg-gold-500 text-brand-950 text-center text-xs font-black py-2.5 rounded-xl">
+                    <i class="fas fa-file-signature mr-1"></i> Apply for Admission
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Banner -->
+    <section class="bg-brand-950 text-white py-16 border-b border-brand-900 relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="inline-flex items-center gap-2 px-3 py-1 bg-brand-900/80 border border-brand-700 rounded-full text-gold-400 text-xs font-bold uppercase tracking-wider mb-3">
+                <i class="fas fa-award"></i> Established in 1999 AD • 25+ Years of Excellence
+            </div>
+            <h1 class="text-3xl sm:text-5xl font-black tracking-tight text-white mb-4">
+                Inspiring Minds, Building Character
+            </h1>
+            <p class="text-slate-300 text-sm sm:text-base max-w-3xl leading-relaxed">
+                Pegasus English School, situated in Gokarneshwor-6, Nayabasti, Kathmandu, has been providing holistic, student-centric education for over two decades. We nurture intellectual curiosity, moral grounding, and creative expression in every learner.
+            </p>
+        </div>
+    </section>
+
+    <!-- Heritage & Core Values Grid -->
+    <section class="py-14 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-12">
+                <h2 class="text-xs font-black uppercase tracking-wider text-gold-600 mb-1">Our Guiding Philosophy</h2>
+                <h3 class="text-2xl sm:text-3xl font-black text-brand-950 tracking-tight">The Four Pillars of Pegasus Education</h3>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Pillar 1 -->
+                <div class="p-6 rounded-2xl bg-slate-50 border border-slate-200 hover:border-brand-500 hover:shadow-md transition">
+                    <div class="w-12 h-12 rounded-xl bg-brand-100 text-brand-900 flex items-center justify-center text-xl mb-4">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <h4 class="text-base font-bold text-brand-900 mb-2">Academic Rigor</h4>
+                    <p class="text-xs text-slate-600 leading-relaxed">
+                        A structured national curriculum enriched with practical experiential projects, STEM exploration, and disciplined continuous assessments.
+                    </p>
+                </div>
+
+                <!-- Pillar 2 -->
+                <div class="p-6 rounded-2xl bg-slate-50 border border-slate-200 hover:border-brand-500 hover:shadow-md transition">
+                    <div class="w-12 h-12 rounded-xl bg-gold-100 text-gold-700 flex items-center justify-center text-xl mb-4">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <h4 class="text-base font-bold text-brand-900 mb-2">Character & Ethics</h4>
+                    <p class="text-xs text-slate-600 leading-relaxed">
+                        Instilling empathy, honesty, discipline, and communal responsibility through daily assemblies and moral education modules.
+                    </p>
+                </div>
+
+                <!-- Pillar 3 -->
+                <div class="p-6 rounded-2xl bg-slate-50 border border-slate-200 hover:border-brand-500 hover:shadow-md transition">
+                    <div class="w-12 h-12 rounded-xl bg-emerald-100 text-emerald-800 flex items-center justify-center text-xl mb-4">
+                        <i class="fas fa-futbol"></i>
+                    </div>
+                    <h4 class="text-base font-bold text-brand-900 mb-2">Sports & Martial Arts</h4>
+                    <p class="text-xs text-slate-600 leading-relaxed">
+                        Dedicated Taekwondo training with certified Dan masters, alongside football, basketball, and athletic meet championships.
+                    </p>
+                </div>
+
+                <!-- Pillar 4 -->
+                <div class="p-6 rounded-2xl bg-slate-50 border border-slate-200 hover:border-brand-500 hover:shadow-md transition">
+                    <div class="w-12 h-12 rounded-xl bg-indigo-100 text-indigo-800 flex items-center justify-center text-xl mb-4">
+                        <i class="fas fa-laptop-code"></i>
+                    </div>
+                    <h4 class="text-base font-bold text-brand-900 mb-2">Digital Literacy</h4>
+                    <p class="text-xs text-slate-600 leading-relaxed">
+                        Modern computer laboratory providing early exposure to typing, coding fundamentals, robotics concepts, and internet safety.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Campus & Infrastructure Highlights -->
+    <section class="py-14 bg-slate-100 border-t border-slate-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
+                <div>
+                    <span class="text-xs font-black uppercase tracking-wider text-gold-600 block mb-1">Campus Environment</span>
+                    <h3 class="text-2xl sm:text-3xl font-black text-brand-950 tracking-tight mb-4">
+                        A Safe, Vibrant Campus Designed for Active Learning
+                    </h3>
+                    <p class="text-slate-600 text-xs sm:text-sm leading-relaxed mb-6">
+                        Located in the peaceful residential area of Nayabasti, Gokarneshwor-6, our campus features well-ventilated, sunlit classrooms, safe boundary security, hygienic drinking water purification systems, and dedicated recreational areas.
+                    </p>
+
+                    <ul class="space-y-3 text-xs sm:text-sm font-semibold text-slate-700">
+                        <li class="flex items-center"><i class="fas fa-check-circle text-emerald-600 mr-2.5"></i> Comprehensive Library with English & Nepali Literature</li>
+                        <li class="flex items-center"><i class="fas fa-check-circle text-emerald-600 mr-2.5"></i> High-Speed Connected Computer Laboratory</li>
+                        <li class="flex items-center"><i class="fas fa-check-circle text-emerald-600 mr-2.5"></i> Multi-Disciplinary Science Laboratory with Safety Protocols</li>
+                        <li class="flex items-center"><i class="fas fa-check-circle text-emerald-600 mr-2.5"></i> Taekwondo Dojo & Open Ground for Assemblies & Athletics</li>
+                        <li class="flex items-center"><i class="fas fa-check-circle text-emerald-600 mr-2.5"></i> Safe School Bus & Transport Fleet Covering Kathmandu Valley</li>
+                    </ul>
+
+                    <div class="mt-8 flex flex-wrap gap-3">
+                        <a href="admissions.html" class="bg-brand-900 hover:bg-brand-800 text-white font-extrabold text-xs sm:text-sm px-5 py-2.5 rounded-xl shadow-xs transition">
+                            <i class="fas fa-user-plus mr-1.5 text-gold-400"></i> Explore Admissions
+                        </a>
+                        <a href="contact.html" class="bg-white hover:bg-slate-50 text-slate-700 border border-slate-300 font-bold text-xs sm:text-sm px-5 py-2.5 rounded-xl shadow-2xs transition">
+                            <i class="fas fa-map-marker-alt mr-1.5 text-brand-600"></i> Visit Our Campus
+                        </a>
+                    </div>
+                </div>
+
+                <div class="relative rounded-2xl overflow-hidden shadow-lg border border-slate-300">
+                    <img src="e626d275-d2a5-4e82-a6ff-016f6d43c6ad.jpg" alt="Pegasus English School Campus Ground" class="w-full h-80 object-cover object-center" loading="lazy" decoding="async">
+                    <div class="absolute bottom-0 inset-x-0 bg-gradient-to-t from-brand-950/90 via-brand-950/50 to-transparent p-6 text-white">
+                        <h4 class="font-bold text-base text-gold-300">Pegasus Campus Courtyard</h4>
+                        <p class="text-xs text-slate-200">Gokarneshwor-6, Nayabasti, Kathmandu, Nepal</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-brand-950 text-slate-300 py-10 border-t border-brand-900 mt-auto">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-wrap justify-between items-center text-xs gap-4">
+            <div class="flex items-center space-x-3">
+                <a href="index.html" class="inline-block hover:opacity-90 transition">
+                    <img src="logo.jpg" alt="Pegasus Logo" style="width: 36px; height: 36px; object-fit: contain;" class="w-9 h-9 rounded-lg bg-white p-0.5" loading="lazy" decoding="async">
+                </a>
+                <div>
+                    <span class="font-bold text-white block">Pegasus English School</span>
+                    <span class="text-slate-400">Gokarneshwor-6, Nayabasti, Kathmandu • Tel: <a href="tel:014913939" class="hover:text-gold-300">01-4913939</a></span>
+                </div>
+            </div>
+            <div class="flex items-center space-x-4">
+                <a href="index.html" class="hover:text-white">Home</a>
+                <span>•</span>
+                <a href="about.html" class="text-gold-400 font-bold">About Us</a>
+                <span>•</span>
+                <a href="academics.html" class="hover:text-white">Academics</a>
+                <span>•</span>
+                <a href="admissions.html" class="hover:text-white">Admissions</a>
+                <span>•</span>
+                <a href="contact.html" class="hover:text-white">Contact Us</a>
+                <span>•</span>
+                    <!-- Discreet Faculty & Staff Access Down Button -->
+                    <div class="relative inline-block text-left" id="staff-dropup-container">
+                        <button type="button" onclick="toggleStaffDropup(event)" class="inline-flex items-center gap-1.5 text-[11px] font-bold text-slate-300 hover:text-white bg-brand-900/90 hover:bg-brand-900 border border-brand-800 hover:border-gold-500/50 px-3 py-1.5 rounded-xl transition shadow-xs focus:outline-none" id="staff-dropup-btn" aria-haspopup="true" aria-expanded="false" title="Faculty & Staff Internal Portals">
+                            <i class="fas fa-user-shield text-gold-400 text-xs"></i>
+                            <span>Staff Access</span>
+                            <i class="fas fa-chevron-up text-[9px] text-slate-400 transition-transform duration-200" id="staff-dropup-chevron"></i>
+                        </button>
+                        <div id="staff-dropup-menu" class="hidden absolute bottom-full right-0 mb-2 w-64 bg-brand-950 border border-brand-800 rounded-2xl shadow-2xl p-2.5 z-40 text-left transition-all duration-200">
+                            <div class="text-[10px] uppercase font-black tracking-wider text-gold-400 px-3 py-1.5 border-b border-brand-900 mb-1 flex items-center justify-between">
+                                <span>Staff &amp; Governance</span>
+                                <i class="fas fa-lock text-gold-400 text-[10px]"></i>
+                            </div>
+                            <a href="teacher.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-xs font-bold text-slate-200 hover:text-white hover:bg-brand-900 transition">
+                                <i class="fas fa-chalkboard-teacher text-gold-400 w-4 text-center"></i>
+                                <div>
+                                    <div class="leading-tight">Teacher Assessment Panel</div>
+                                    <div class="text-[10px] text-slate-400 font-normal">Marks, grades, rubrics</div>
+                                </div>
+                            </a>
+                            <a href="admin.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-xs font-bold text-slate-200 hover:text-white hover:bg-brand-900 transition">
+                                <i class="fas fa-shield-alt text-sky-400 w-4 text-center"></i>
+                                <div>
+                                    <div class="leading-tight">Central Admin CMS</div>
+                                    <div class="text-[10px] text-slate-400 font-normal">Events, files, notices</div>
+                                </div>
+                            </a>
+                            <a href="principal.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-xs font-bold text-slate-200 hover:text-white hover:bg-brand-900 transition">
+                                <i class="fas fa-crown text-amber-400 w-4 text-center"></i>
+                                <div>
+                                    <div class="leading-tight">Principal Office Suite</div>
+                                    <div class="text-[10px] text-slate-400 font-normal">Academic governance</div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Core Indexed Database & Unified Toast System -->
+    <script src="js/core/pegasus-db.js"></script>
+    <script src="js/components/pegasus-toast.js"></script>
+
+    <script>
+        function toggleMobileNav() {
+            const m = document.getElementById('mobile-nav');
+            if (m) m.classList.toggle('hidden');
+        }
+    </script>
+<script>
+        function toggleStaffDropup(e) {
+            if (e) e.stopPropagation();
+            const menu = document.getElementById('staff-dropup-menu');
+            const chevron = document.getElementById('staff-dropup-chevron');
+            const btn = document.getElementById('staff-dropup-btn');
+            if (!menu) return;
+            const isHidden = menu.classList.contains('hidden');
+            if (isHidden) {
+                menu.classList.remove('hidden');
+                if (chevron) chevron.classList.add('rotate-180');
+                if (btn) btn.setAttribute('aria-expanded', 'true');
+            } else {
+                menu.classList.add('hidden');
+                if (chevron) chevron.classList.remove('rotate-180');
+                if (btn) btn.setAttribute('aria-expanded', 'false');
+            }
+        }
+        document.addEventListener('click', (e) => {
+            const container = document.getElementById('staff-dropup-container');
+            const menu = document.getElementById('staff-dropup-menu');
+            const chevron = document.getElementById('staff-dropup-chevron');
+            const btn = document.getElementById('staff-dropup-btn');
+            if (container && !container.contains(e.target) && menu && !menu.classList.contains('hidden')) {
+                menu.classList.add('hidden');
+                if (chevron) chevron.classList.remove('rotate-180');
+                if (btn) btn.setAttribute('aria-expanded', 'false');
+            }
+        });</script>
+</body>
+</html>

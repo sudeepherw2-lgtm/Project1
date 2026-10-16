@@ -1,0 +1,1031 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Evaluation Tracking Portal | Pegasus English School</title>
+    <meta name="description" content="Student & Parent Academic Evaluation and Report Card Tracking Portal for Pegasus English School.">
+    <link rel="icon" type="image/jpeg" href="logo.jpg">
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#f0f5fc',
+                            100: '#e1ecf8',
+                            200: '#c3daf1',
+                            300: '#95bee7',
+                            400: '#609ddb',
+                            500: '#3b80ce',
+                            600: '#2764b4',
+                            700: '#1f4e91',
+                            800: '#1b4175',
+                            900: '#103570',
+                            950: '#0a234d',
+                        },
+                        gold: {
+                            300: '#fde68a',
+                            400: '#fbbf24',
+                            500: '#c59b27',
+                            600: '#a37c18',
+                            700: '#856312',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- FontAwesome & Google Fonts -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Cinzel:wght@600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        body { font-family: 'Plus Jakarta Sans', 'Inter', sans-serif; }
+        .font-motto { font-family: 'Cinzel', serif; }
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #f1f5f9; }
+        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 9999px; }
+        ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+
+        @media print {
+            body * { visibility: hidden; }
+            #printableReportCard, #printableReportCard * { visibility: visible; }
+            #printableReportCard {
+                position: absolute;
+                left: 0;
+                top: 0;
+                width: 100%;
+                margin: 0;
+                padding: 20px;
+                background: white !important;
+                color: black !important;
+            }
+            .no-print { display: none !important; }
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 antialiased selection:bg-brand-900 selection:text-white flex flex-col min-h-screen">
+
+    <!-- Top Announcement & Quick Contact Strip -->
+    <div class="no-print bg-brand-950 text-slate-300 text-xs py-2 px-4 border-b border-brand-900/80">
+        <div class="max-w-7xl mx-auto flex flex-wrap justify-between items-center gap-3">
+            <div class="flex items-center space-x-4">
+                <span class="flex items-center"><i class="fas fa-map-marker-alt text-gold-400 mr-1.5"></i> Gokarneshwor-6, Nayabasti, Kathmandu, Nepal</span>
+                <a href="tel:014913939" class="hidden sm:flex items-center hover:text-white transition"><i class="fas fa-phone-alt text-gold-400 mr-1.5"></i> 01-4913939</a>
+                <a href="mailto:pegasusengschool@gmail.com" class="hidden md:flex items-center hover:text-white transition"><i class="fas fa-envelope text-gold-400 mr-1.5"></i> pegasusengschool@gmail.com</a>
+            </div>
+            <div class="flex items-center space-x-3">
+                <a href="https://www.facebook.com/profile.php?id=100063491716430" target="_blank" rel="noopener noreferrer" class="hidden lg:flex items-center text-sky-400 hover:text-white transition">
+                    <i class="fab fa-facebook mr-1"></i> @pegasusenglishschool
+                </a>
+                <span class="text-gold-300 font-bold hidden sm:inline">•</span>
+                <span class="bg-gold-500 text-brand-950 font-black px-2.5 py-0.5 rounded text-[11px] shadow-xs flex items-center">
+                    <i class="fas fa-lock mr-1"></i> Student Portal Active
+                </span>
+                
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Navigation Bar -->
+    <header class="no-print bg-white/95 backdrop-blur-md sticky top-0 z-30 border-b border-slate-200/90 shadow-xs">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-20">
+            <a href="index.html" class="flex items-center group">
+                <img src="logo.jpg" alt="Pegasus Emblem" decoding="async" style="width: 48px; height: 48px; object-fit: contain;" class="w-12 h-12 rounded-xl mr-3 shadow-xs group-hover:scale-105 transition-transform duration-200">
+                <div>
+                    <h1 class="text-xl sm:text-2xl font-black tracking-tight text-brand-900 leading-none">
+                        Pegasus <span class="text-gold-500 font-black">English</span> School
+                    </h1>
+                    <span class="text-[11px] text-slate-500 font-bold tracking-wider uppercase block mt-1">Estd. 1999 • Nayabasti, Kathmandu</span>
+                </div>
+            </a>
+
+            <nav class="hidden xl:flex items-center space-x-7 text-sm font-bold text-slate-600">
+                <a href="index.html" class="hover:text-brand-900 transition">Home</a>
+                <a href="index.html#about" class="hover:text-brand-900 transition">About Us</a>
+                <a href="academics.html" class="hover:text-brand-900 transition">Academics & Fees</a>
+                <a href="index.html#eca" class="hover:text-brand-900 transition">ECA Moments</a>
+                <a href="file-manager.html" class="hover:text-brand-900 transition">Downloads</a>
+                <a href="contact.html" class="hover:text-brand-900 transition">Contact Us</a>
+            </nav>
+
+            <div class="hidden sm:flex items-center space-x-3">
+                <span class="bg-brand-50 text-brand-900 text-xs sm:text-sm font-extrabold px-3.5 py-2 rounded-xl border border-brand-200 flex items-center">
+                    <i class="fas fa-graduation-cap text-gold-500 mr-2"></i> CDC Evaluation System
+                </span>
+                <a href="admissions.html" class="bg-gold-500 hover:bg-gold-400 text-brand-950 text-xs sm:text-sm font-black px-4 py-2.5 rounded-xl shadow-xs transition flex items-center">
+                    <i class="fas fa-file-signature mr-1.5"></i> Admissions &amp; Inquiries
+                </a>
+            </div>
+
+            <button onclick="toggleMobileNav()" class="xl:hidden p-2 rounded-xl border border-slate-200 text-slate-600 hover:text-brand-900" aria-label="Toggle Navigation">
+                <i class="fas fa-bars text-lg"></i>
+            </button>
+        </div>
+
+        <div id="mobile-nav" class="hidden xl:hidden bg-white border-b border-slate-200 px-4 py-4 space-y-3">
+            <a href="index.html" class="block text-sm font-bold text-slate-700 hover:text-brand-900">Home</a>
+            <a href="academics.html" class="block text-sm font-bold text-slate-700 hover:text-brand-900">Academics & Fee Schedule</a>
+            <a href="student-portal.html" class="block text-sm font-bold text-brand-900">Student Evaluation Portal</a>
+            <a href="file-manager.html" class="block text-sm font-bold text-slate-700 hover:text-brand-900">Downloads</a>
+            <a href="contact.html" class="block text-sm font-bold text-slate-700 hover:text-brand-900">Contact Us</a>
+            </div>
+    </header>
+
+    <!-- Page Hero Banner -->
+    <section class="no-print bg-gradient-to-b from-brand-950 via-brand-900 to-brand-950 text-white py-12 px-4 sm:px-6 relative overflow-hidden">
+        <div class="max-w-7xl mx-auto relative z-10 text-center">
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-gold-500/20 border border-gold-400/30 text-gold-300 text-xs font-bold uppercase tracking-wider mb-3">
+                <i class="fas fa-award"></i> Nepal CDC Standard Terminal Marksheets
+            </div>
+            <h1 class="text-3xl sm:text-4xl md:text-5xl font-black tracking-tight text-white mb-2">
+                Student Evaluation & Progress Portal
+            </h1>
+            <p class="font-motto text-slate-300 italic text-sm sm:text-base max-w-2xl mx-auto">
+                "To teach is to touch a life forever!"
+            </p>
+            <p class="text-slate-300 text-xs sm:text-sm max-w-xl mx-auto mt-2">
+                Parents and students can securely inspect term-wise letter grades, GPA, attendance percentages, and primary formative rubrics.
+            </p>
+        </div>
+    </section>
+
+    <!-- Main Portal Body -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 flex-grow">
+
+        <!-- Search & Filter Card -->
+        <div class="no-print bg-white rounded-2xl border border-slate-200/90 shadow-sm p-6 mb-8">
+            <div class="flex flex-wrap items-center justify-between gap-4 mb-5 pb-4 border-b border-slate-100">
+                <div>
+                    <h2 class="text-lg font-black text-brand-950 flex items-center">
+                        <i class="fas fa-search text-gold-500 mr-2"></i> Student Report Card Lookup
+                    </h2>
+                    <p class="text-xs text-slate-500">Select terminal term, class, and roll number or student registration ID.</p>
+                </div>
+                <!-- Principal Synced Status -->
+                <div class="flex items-center gap-2 text-xs font-medium">
+                    <span class="inline-flex items-center gap-1.5 bg-emerald-50 text-emerald-700 border border-emerald-200 px-3 py-1 rounded-full font-bold">
+                        <i class="fas fa-check-circle text-emerald-500"></i> Principal Roster Synced
+                    </span>
+                </div>
+            </div>
+
+            <form id="lookupForm" onsubmit="handleSearch(event)" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 items-end">
+                <!-- Academic Term -->
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">Evaluation Term</label>
+                    <select id="termSelect" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-sm font-semibold focus:ring-2 focus:ring-brand-500 focus:outline-none bg-slate-50/50">
+                        <option value="First Terminal Examination 2081">First Terminal Examination 2081</option>
+                        <option value="Second Terminal Examination 2081">Second Terminal Examination 2081</option>
+                        <option value="Annual / Final Evaluation 2080">Annual / Final Evaluation 2080</option>
+                    </select>
+                </div>
+
+                <!-- Class -->
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">Class / Standard</label>
+                    <select id="classSelect" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-sm font-semibold focus:ring-2 focus:ring-brand-500 focus:outline-none bg-slate-50/50">
+                        <option value="Class 1">Class I (Primary)</option>
+                        <option value="Class 2">Class II (Primary)</option>
+                        <option value="Class 3" selected>Class III (Primary)</option>
+                        <option value="Class 4">Class IV (Primary)</option>
+                        <option value="Class 5">Class V (Primary)</option>
+                        <option value="Class 6">Class VI (Lower Secondary)</option>
+                        <option value="Class 7">Class VII (Lower Secondary)</option>
+                        <option value="Class 8">Class VIII (BLE)</option>
+                        <option value="Class 9">Class IX (Secondary)</option>
+                        <option value="Class 10">Class X (SEE)</option>
+                    </select>
+                </div>
+
+                <!-- Student Roll or ID -->
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">Roll No. or Student Name/ID</label>
+                    <div class="relative">
+                        <input type="text" id="studentQuery" placeholder="e.g. 01 or Student Name" required class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-sm font-semibold focus:ring-2 focus:ring-brand-500 focus:outline-none bg-slate-50/50">
+                        <div class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none text-slate-400 text-xs">
+                            <i class="fas fa-id-card"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Action Button -->
+                <div>
+                    <button type="submit" class="w-full bg-brand-900 hover:bg-brand-800 text-white font-black text-sm py-2.5 px-4 rounded-xl transition shadow-sm flex items-center justify-center">
+                        <i class="fas fa-file-invoice text-gold-400 mr-2"></i> View Report Card
+                    </button>
+                </div>
+            </form>
+
+            <!-- Quick Demo Search Pills -->
+            <div class="mt-4 pt-3.5 border-t border-slate-100 flex flex-wrap items-center gap-2 text-xs">
+                <span class="text-slate-500 font-bold flex items-center gap-1.5">
+                    <i class="fas fa-bolt text-gold-500"></i> Quick Demos:
+                </span>
+                <button type="button" onclick="quickSearch('Class 4', '1')" class="px-2.5 py-1 rounded-lg bg-slate-100 hover:bg-brand-50 hover:text-brand-900 text-slate-700 font-semibold border border-slate-200 transition">
+                    Class IV - Roll 1 (Aarav)
+                </button>
+                <button type="button" onclick="quickSearch('Class 3', '1')" class="px-2.5 py-1 rounded-lg bg-slate-100 hover:bg-brand-50 hover:text-brand-900 text-slate-700 font-semibold border border-slate-200 transition">
+                    Class III - Roll 1 (Rohan)
+                </button>
+                <button type="button" onclick="quickSearch('Class 10', '1')" class="px-2.5 py-1 rounded-lg bg-slate-100 hover:bg-brand-50 hover:text-brand-900 text-slate-700 font-semibold border border-slate-200 transition">
+                    Class X - Roll 1 (Ayush)
+                </button>
+                <button type="button" onclick="quickSearch('Class 4', '2')" class="px-2.5 py-1 rounded-lg bg-slate-100 hover:bg-brand-50 hover:text-brand-900 text-slate-700 font-semibold border border-slate-200 transition">
+                    Class IV - Roll 2 (Bipana)
+                </button>
+            </div>
+        </div>
+
+        <!-- Initial Search State / Prompt -->
+        <div id="initialSearchPrompt" class="bg-white rounded-2xl border border-slate-200/90 shadow-sm p-10 sm:p-14 text-center mb-8">
+            <div class="w-16 h-16 rounded-2xl bg-brand-50 border border-brand-200 text-brand-900 mx-auto flex items-center justify-center text-2xl mb-4 shadow-xs">
+                <i class="fas fa-graduation-cap"></i>
+            </div>
+            <h3 class="text-xl font-black text-brand-950 mb-2">Pegasus Student & Parent Grade Portal</h3>
+            <p class="text-xs sm:text-sm text-slate-500 max-w-lg mx-auto leading-relaxed">
+                Enter your Roll Number or Student Name along with your Class above to view and download your official terminal progress card and continuous assessment standing.
+            </p>
+            <div class="mt-6 flex flex-wrap items-center justify-center gap-3 text-xs text-slate-400 font-semibold">
+                <span class="inline-flex items-center gap-1"><i class="fas fa-shield-alt text-emerald-500"></i> CDC Nepal Standard</span>
+                <span>•</span>
+                <span class="inline-flex items-center gap-1"><i class="fas fa-star text-gold-500"></i> Formative Rubrics (I–V)</span>
+                <span>•</span>
+                <span class="inline-flex items-center gap-1"><i class="fas fa-check-double text-blue-500"></i> 100-Mark Terminal Evaluation (VI–X)</span>
+            </div>
+        </div>
+
+        <!-- Student Not Found State -->
+        <div id="studentNotFoundCard" class="hidden bg-white rounded-2xl border border-slate-200/90 shadow-sm p-10 sm:p-14 text-center mb-8">
+            <div class="w-16 h-16 rounded-2xl bg-amber-50 border border-amber-200 text-amber-600 mx-auto flex items-center justify-center text-2xl mb-4 shadow-xs">
+                <i class="fas fa-search-minus"></i>
+            </div>
+            <h3 class="text-xl font-black text-slate-800 mb-2">No Student Record Found</h3>
+            <p id="notFoundMsg" class="text-xs sm:text-sm text-slate-500 max-w-lg mx-auto leading-relaxed mb-4">
+                We could not find an enrolled student matching your search criteria.
+            </p>
+            <div class="bg-slate-50 rounded-xl p-4 max-w-md mx-auto border border-slate-200 text-xs text-slate-600 space-y-1">
+                <p><strong>Official Enrollment Notice:</strong> Student rosters are officially managed and provisioned via the Principal Portal.</p>
+                <p class="text-[11px] text-slate-400">If your name or roll number is not showing, please verify the class selection or contact the school office.</p>
+            </div>
+        </div>
+
+        <!-- Student Report Card Container (Printable) -->
+        <div id="printableReportCard" class="hidden bg-white rounded-2xl border border-slate-200/90 shadow-sm p-6 sm:p-10 relative">
+
+            <!-- Official Report Card Header -->
+            <div class="border-b-2 border-brand-900 pb-6 mb-6">
+                <div class="flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left">
+                    <div class="flex items-center space-x-4">
+                        <img src="logo.jpg" alt="Pegasus Logo" loading="lazy" decoding="async" style="width: 72px; height: 72px; object-fit: contain;" class="w-18 h-18 rounded-xl shadow-xs">
+                        <div>
+                            <span class="text-xs uppercase tracking-widest text-gold-600 font-extrabold">Government of Nepal Approved • CDC Curriculum</span>
+                            <h2 class="text-2xl sm:text-3xl font-black text-brand-950 leading-tight">Pegasus English School</h2>
+                            <p class="font-motto text-xs text-slate-600 italic">"To teach is to touch a life forever!"</p>
+                            <p class="text-xs text-slate-500">Gokarneshwor-6, Nayabasti, Kathmandu, Nepal | Tel: <a href="tel:014913939" class="text-brand-900 font-bold hover:underline">01-4913939</a></p>
+                        </div>
+                    </div>
+                    <!-- Right Badge -->
+                    <div class="text-center sm:text-right shrink-0">
+                        <span class="inline-block bg-brand-900 text-gold-300 font-black text-xs px-3 py-1.5 rounded-lg uppercase tracking-wider mb-1">
+                            Official Progress Card
+                        </span>
+                        <p id="dispTermName" class="text-xs font-bold text-slate-700">First Terminal Examination 2081</p>
+                        <p class="text-[11px] text-slate-400">Academic Year: 2081/82 B.S.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Student Demographics Info Grid -->
+            <div class="bg-slate-50 rounded-xl p-4 sm:p-5 border border-slate-200/80 mb-6 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 text-xs">
+                <div>
+                    <span class="text-slate-400 font-bold block uppercase tracking-wider text-[10px]">Student Name</span>
+                    <strong id="dispStudentName" class="text-brand-950 text-sm">---</strong>
+                </div>
+                <div>
+                    <span class="text-slate-400 font-bold block uppercase tracking-wider text-[10px]">Student ID</span>
+                    <strong id="dispStudentId" class="text-slate-800 text-sm font-mono">---</strong>
+                </div>
+                <div>
+                    <span class="text-slate-400 font-bold block uppercase tracking-wider text-[10px]">Class & Section</span>
+                    <strong id="dispClassSec" class="text-slate-800 text-sm">---</strong>
+                </div>
+                <div>
+                    <span class="text-slate-400 font-bold block uppercase tracking-wider text-[10px]">Roll Number</span>
+                    <strong id="dispRoll" class="text-slate-800 text-sm">---</strong>
+                </div>
+                <div>
+                    <span class="text-slate-400 font-bold block uppercase tracking-wider text-[10px]">Attendance</span>
+                    <strong id="dispAttendance" class="text-emerald-700 text-sm">---</strong>
+                </div>
+                <div>
+                    <span class="text-slate-400 font-bold block uppercase tracking-wider text-[10px]">Result Status</span>
+                    <span id="dispStatusBadge" class="inline-block px-2 py-0.5 rounded bg-emerald-100 text-emerald-800 font-black text-xs">
+                        ---
+                    </span>
+                </div>
+            </div>
+
+            <!-- Dynamic Evaluation Body (Switches between Primary 4-Parameter Rubrics & Secondary Marks) -->
+            <div id="evaluationContent">
+                <!-- Injected via JavaScript -->
+            </div>
+
+            <!-- Remarks & Signatures Section -->
+            <div class="mt-8 pt-6 border-t border-slate-200">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10 text-xs">
+                    <!-- Class Teacher Remarks -->
+                    <div class="p-4 rounded-xl bg-slate-50 border border-slate-200">
+                        <span class="font-extrabold uppercase tracking-wider text-slate-500 block mb-1">
+                            <i class="fas fa-comment-dots text-brand-600 mr-1"></i> Class Teacher's Appraisal & Guidance
+                        </span>
+                        <p id="dispTeacherRemarks" class="text-slate-700 italic leading-relaxed">
+                            ---
+                        </p>
+                    </div>
+
+                    <!-- Grading Scale Summary Legend -->
+                    <div class="p-4 rounded-xl bg-slate-50 border border-slate-200">
+                        <span class="font-extrabold uppercase tracking-wider text-slate-500 block mb-1">
+                            <i class="fas fa-info-circle text-gold-600 mr-1"></i> CDC Nepal Grading Scale Standard
+                        </span>
+                        <div class="grid grid-cols-4 gap-1 text-[11px] text-slate-600">
+                            <div><strong class="text-slate-900">A+</strong>: 90-100% (4.0)</div>
+                            <div><strong class="text-slate-900">A</strong>: 80-89% (3.6)</div>
+                            <div><strong class="text-slate-900">B+</strong>: 70-79% (3.2)</div>
+                            <div><strong class="text-slate-900">B</strong>: 60-69% (2.8)</div>
+                            <div><strong class="text-slate-900">C+</strong>: 50-59% (2.4)</div>
+                            <div><strong class="text-slate-900">C</strong>: 40-49% (2.0)</div>
+                            <div><strong class="text-slate-900">D</strong>: 35-39% (1.6)</div>
+                            <div><strong class="text-rose-600">NG</strong>: Below 35%</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Signature Lines (Official Print Ready) -->
+                <div class="grid grid-cols-3 gap-6 text-center pt-8 border-t border-dashed border-slate-300">
+                    <div>
+                        <div class="h-10 border-b border-slate-400 w-3/4 mx-auto mb-1"></div>
+                        <span class="text-xs font-bold text-slate-700 uppercase tracking-wider block">Class Teacher</span>
+                        <span class="text-[10px] text-slate-400">Pegasus English School</span>
+                    </div>
+                    <div>
+                        <div class="h-10 border-b border-slate-400 w-3/4 mx-auto mb-1 flex items-end justify-center">
+                            <span class="text-[11px] font-mono text-slate-400 font-bold">[ School Seal ]</span>
+                        </div>
+                        <span class="text-xs font-bold text-slate-700 uppercase tracking-wider block">Examination Controller</span>
+                        <span class="text-[10px] text-slate-400">Official Seal</span>
+                    </div>
+                    <div>
+                        <div class="h-10 border-b border-slate-400 w-3/4 mx-auto mb-1"></div>
+                        <span class="text-xs font-bold text-slate-700 uppercase tracking-wider block">Principal</span>
+                        <span class="text-[10px] text-slate-400">Pegasus English School</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Print & Export Action Bar (Hidden when printing) -->
+            <div class="no-print mt-8 pt-6 border-t border-slate-100 flex flex-wrap items-center justify-between gap-4">
+                <div class="text-xs text-slate-500">
+                    <i class="fas fa-shield-alt text-emerald-600 mr-1"></i> Verified by Pegasus Academic Council (Kathmandu, Nepal).
+                </div>
+                <div class="flex items-center space-x-3">
+                    <button onclick="window.print()" class="bg-brand-900 hover:bg-brand-800 text-white font-bold text-xs py-2.5 px-4 rounded-xl shadow-xs transition flex items-center">
+                        <i class="fas fa-print mr-2 text-gold-400"></i> Print Official Report Card
+                    </button>
+                    <a href="contact.html" class="bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-xs py-2.5 px-4 rounded-xl transition flex items-center">
+                        <i class="fas fa-question-circle mr-1.5"></i> Inquire with Administration
+                    </a>
+                </div>
+            </div>
+
+        </div>
+
+    </main>
+
+    <!-- Unified Footer -->
+    <footer class="no-print bg-brand-950 text-slate-300 border-t border-brand-900 mt-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+            <div class="flex flex-wrap justify-between items-center gap-4 text-xs">
+                <div class="flex items-center space-x-3">
+                    <a href="index.html" class="inline-block hover:opacity-90 transition">
+                        <img src="logo.jpg" alt="Logo" style="width: 36px; height: 36px; object-fit: contain;" class="w-9 h-9 rounded-lg" loading="lazy" decoding="async">
+                    </a>
+                    <div>
+                        <strong class="text-white block">Pegasus English School</strong>
+                        <span class="text-slate-400">Gokarneshwor-6, Nayabasti, Kathmandu • Tel: <a href="tel:014913939" class="hover:text-gold-300 transition">01-4913939</a></span>
+                    </div>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <a href="index.html" class="hover:text-gold-300">Home</a>
+                    <a href="academics.html" class="hover:text-gold-300">Academics</a>
+                    <a href="file-manager.html" class="hover:text-gold-300">Resources</a>
+                    <a href="contact.html" class="hover:text-gold-300">Contact Us</a>
+                    <span>•</span>
+                    <!-- Discreet Faculty & Staff Access Down Button -->
+                    <div class="relative inline-block text-left" id="staff-dropup-container">
+                        <button type="button" onclick="toggleStaffDropup(event)" class="inline-flex items-center gap-1.5 text-[11px] font-bold text-slate-300 hover:text-white bg-brand-900/90 hover:bg-brand-900 border border-brand-800 hover:border-gold-500/50 px-3 py-1.5 rounded-xl transition shadow-xs focus:outline-none" id="staff-dropup-btn" aria-haspopup="true" aria-expanded="false" title="Faculty & Staff Internal Portals">
+                            <i class="fas fa-user-shield text-gold-400 text-xs"></i>
+                            <span>Staff Access</span>
+                            <i class="fas fa-chevron-up text-[9px] text-slate-400 transition-transform duration-200" id="staff-dropup-chevron"></i>
+                        </button>
+                        <div id="staff-dropup-menu" class="hidden absolute bottom-full right-0 mb-2 w-64 bg-brand-950 border border-brand-800 rounded-2xl shadow-2xl p-2.5 z-40 text-left transition-all duration-200">
+                            <div class="text-[10px] uppercase font-black tracking-wider text-gold-400 px-3 py-1.5 border-b border-brand-900 mb-1 flex items-center justify-between">
+                                <span>Staff &amp; Governance</span>
+                                <i class="fas fa-lock text-gold-400 text-[10px]"></i>
+                            </div>
+                            <a href="teacher.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-xs font-bold text-slate-200 hover:text-white hover:bg-brand-900 transition">
+                                <i class="fas fa-chalkboard-teacher text-gold-400 w-4 text-center"></i>
+                                <div>
+                                    <div class="leading-tight">Teacher Assessment Panel</div>
+                                    <div class="text-[10px] text-slate-400 font-normal">Marks, grades, rubrics</div>
+                                </div>
+                            </a>
+                            <a href="admin.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-xs font-bold text-slate-200 hover:text-white hover:bg-brand-900 transition">
+                                <i class="fas fa-shield-alt text-sky-400 w-4 text-center"></i>
+                                <div>
+                                    <div class="leading-tight">Central Admin CMS</div>
+                                    <div class="text-[10px] text-slate-400 font-normal">Events, files, notices</div>
+                                </div>
+                            </a>
+                            <a href="principal.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-xs font-bold text-slate-200 hover:text-white hover:bg-brand-900 transition">
+                                <i class="fas fa-crown text-amber-400 w-4 text-center"></i>
+                                <div>
+                                    <div class="leading-tight">Principal Office Suite</div>
+                                    <div class="text-[10px] text-slate-400 font-normal">Academic governance</div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Core Indexed Database & Unified Toast System -->
+    <script src="js/core/pegasus-db.js"></script>
+    <script src="js/components/pegasus-toast.js"></script>
+
+    <!-- Interactive Data Store & Evaluation Render Logic -->
+    <script>
+        function toggleMobileNav() {
+            const nav = document.getElementById('mobile-nav');
+            if (nav) nav.classList.toggle('hidden');
+        }
+
+        const DEFAULT_STUDENTS_STARTER = [
+            { id: 'PES-10401', roll: 1, name: 'Aarav Sharma', classId: 'IV', section: 'A', gender: 'Male', parentPhone: '9841110001' },
+            { id: 'PES-10402', roll: 2, name: 'Bipana Rai', classId: 'IV', section: 'A', gender: 'Female', parentPhone: '9841110002' },
+            { id: 'PES-10403', roll: 3, name: 'Dipesh Shrestha', classId: 'IV', section: 'A', gender: 'Male', parentPhone: '9841110003' },
+            { id: 'PES-10301', roll: 1, name: 'Rohan KC', classId: 'III', section: 'A', gender: 'Male', parentPhone: '9841110004' },
+            { id: 'PES-10302', roll: 2, name: 'Ananya Thapa', classId: 'III', section: 'A', gender: 'Female', parentPhone: '9841110005' },
+            { id: 'PES-10501', roll: 1, name: 'Sneha Adhikari', classId: 'V', section: 'A', gender: 'Female', parentPhone: '9841110006' },
+            { id: 'PES-10801', roll: 1, name: 'Nabin Basnet', classId: 'VIII', section: 'A', gender: 'Male', parentPhone: '9841110007' },
+            { id: 'PES-11001', roll: 1, name: 'Ayush Karki', classId: 'X', section: 'A', gender: 'Male', parentPhone: '9841110008' },
+            { id: 'PES-11002', roll: 2, name: 'Pooja Tamang', classId: 'X', section: 'A', gender: 'Female', parentPhone: '9841110009' }
+        ];
+
+        const DEFAULT_RESULTS_STARTER = [
+            {
+                id: 'RES-10401',
+                studentId: 'PES-10401',
+                roll: 1,
+                name: 'Aarav Sharma',
+                classId: 'IV',
+                section: 'A',
+                term: 'First Terminal Examination 2081',
+                attendance: '94 / 96 (97.9%)',
+                remarks: 'Exemplary academic understanding and outstanding consistency in homework presentation and class discussions.',
+                subjects: [
+                    { name: 'English Language', th: 46, pr: 48, total: 94, grade: 'A+', gp: 4.0 },
+                    { name: 'Nepali (नेपाली)', th: 42, pr: 45, total: 87, grade: 'A', gp: 3.6 },
+                    { name: 'Mathematics', th: 49, pr: 48, total: 97, grade: 'A+', gp: 4.0 },
+                    { name: 'Our Surroundings (Science & Social)', th: 45, pr: 47, total: 92, grade: 'A+', gp: 4.0 },
+                    { name: 'Moral & Creative Arts', th: 47, pr: 48, total: 95, grade: 'A+', gp: 4.0 },
+                    { name: 'Computer Science', th: 48, pr: 48, total: 96, grade: 'A+', gp: 4.0 }
+                ],
+                grandTotal: 561,
+                maxTotal: 600,
+                percentage: 93.5,
+                gpa: 3.93,
+                grade: 'A+',
+                status: 'PASSED',
+                rubric: { clarity: 4, participation: 4, neatness: 4, regularity: 4 }
+            },
+            {
+                id: 'RES-10402',
+                studentId: 'PES-10402',
+                roll: 2,
+                name: 'Bipana Rai',
+                classId: 'IV',
+                section: 'A',
+                term: 'First Terminal Examination 2081',
+                attendance: '92 / 96 (95.8%)',
+                remarks: 'Very attentive, diligent in coursework, and shows high proficiency in languages and arts.',
+                subjects: [
+                    { name: 'English Language', th: 44, pr: 46, total: 90, grade: 'A+', gp: 4.0 },
+                    { name: 'Nepali (नेपाली)', th: 45, pr: 46, total: 91, grade: 'A+', gp: 4.0 },
+                    { name: 'Mathematics', th: 41, pr: 43, total: 84, grade: 'A', gp: 3.6 },
+                    { name: 'Our Surroundings (Science & Social)', th: 43, pr: 44, total: 87, grade: 'A', gp: 3.6 },
+                    { name: 'Moral & Creative Arts', th: 46, pr: 47, total: 93, grade: 'A+', gp: 4.0 },
+                    { name: 'Computer Science', th: 44, pr: 45, total: 89, grade: 'A', gp: 3.6 }
+                ],
+                grandTotal: 534,
+                maxTotal: 600,
+                percentage: 89.0,
+                gpa: 3.80,
+                grade: 'A',
+                status: 'PASSED',
+                rubric: { clarity: 4, participation: 4, neatness: 4, regularity: 4 }
+            },
+            {
+                id: 'RES-10301',
+                studentId: 'PES-10301',
+                roll: 1,
+                name: 'Rohan KC',
+                classId: 'III',
+                section: 'A',
+                term: 'First Terminal Examination 2081',
+                attendance: '95 / 96 (99.0%)',
+                remarks: 'Brilliant problem solver and inquisitive learner with exemplary handwriting and conduct.',
+                subjects: [
+                    { name: 'English Language', th: 47, pr: 48, total: 95, grade: 'A+', gp: 4.0 },
+                    { name: 'Nepali (नेपाली)', th: 44, pr: 46, total: 90, grade: 'A+', gp: 4.0 },
+                    { name: 'Mathematics', th: 50, pr: 49, total: 99, grade: 'A+', gp: 4.0 },
+                    { name: 'Our Surroundings (Science & Social)', th: 46, pr: 47, total: 93, grade: 'A+', gp: 4.0 },
+                    { name: 'Moral & Creative Arts', th: 48, pr: 49, total: 97, grade: 'A+', gp: 4.0 }
+                ],
+                grandTotal: 474,
+                maxTotal: 500,
+                percentage: 94.8,
+                gpa: 4.00,
+                grade: 'A+',
+                status: 'PASSED',
+                rubric: { clarity: 4, participation: 4, neatness: 4, regularity: 4 }
+            },
+            {
+                id: 'RES-11001',
+                studentId: 'PES-11001',
+                roll: 1,
+                name: 'Ayush Karki',
+                classId: 'X',
+                section: 'A',
+                term: 'First Terminal Examination 2081',
+                attendance: '94 / 96 (97.9%)',
+                remarks: 'Distinguished analytical aptitude in STEM disciplines; exceptionally disciplined in exam preparation.',
+                subjects: [
+                    { name: 'Compulsory English', th: 68, pr: 24, total: 92, grade: 'A+', gp: 4.0 },
+                    { name: 'Compulsory Nepali (नेपाली)', th: 62, pr: 23, total: 85, grade: 'A', gp: 3.6 },
+                    { name: 'Compulsory Mathematics', th: 74, pr: 25, total: 99, grade: 'A+', gp: 4.0 },
+                    { name: 'Science & Technology', th: 70, pr: 24, total: 94, grade: 'A+', gp: 4.0 },
+                    { name: 'Social Studies & Values', th: 65, pr: 24, total: 89, grade: 'A', gp: 3.6 },
+                    { name: 'Optional I: Computer Science', th: 72, pr: 25, total: 97, grade: 'A+', gp: 4.0 }
+                ],
+                grandTotal: 556,
+                maxTotal: 600,
+                percentage: 92.7,
+                gpa: 3.87,
+                grade: 'A+',
+                status: 'PASSED'
+            }
+        ];
+
+        function normalizeClass(c) {
+            if (!c) return 'IV';
+            const str = String(c).trim().toUpperCase().replace(/CLASS\s*/i, '').replace(/GRADE\s*/i, '');
+            const romanMap = {
+                '1': 'I', '2': 'II', '3': 'III', '4': 'IV', '5': 'V',
+                '6': 'VI', '7': 'VII', '8': 'VIII', '9': 'IX', '10': 'X',
+                'I': 'I', 'II': 'II', 'III': 'III', 'IV': 'IV', 'V': 'V',
+                'VI': 'VI', 'VII': 'VII', 'VIII': 'VIII', 'IX': 'IX', 'X': 'X'
+            };
+            return romanMap[str] || str;
+        }
+
+        function classesMatch(c1, c2) {
+            const n1 = normalizeClass(c1);
+            const n2 = normalizeClass(c2);
+            return n1 === n2;
+        }
+
+        function getStudentResults() {
+            try {
+                const raw = localStorage.getItem('pegasus_student_results');
+                if (raw) {
+                    const parsed = JSON.parse(raw);
+                    if (Array.isArray(parsed) && parsed.length > 0) return parsed;
+                }
+            } catch(e) {}
+
+            try {
+                localStorage.setItem('pegasus_student_results', JSON.stringify(DEFAULT_RESULTS_STARTER));
+                if (window.PegasusDB) {
+                    PegasusDB.set('pegasus_student_results', DEFAULT_RESULTS_STARTER);
+                }
+            } catch(e) {}
+            return [...DEFAULT_RESULTS_STARTER];
+        }
+
+        function getEnrolledStudents() {
+            if (window.PegasusDB) {
+                const list = PegasusDB.getStudents();
+                if (Array.isArray(list) && list.length > 0) return list;
+            }
+            try {
+                const raw = localStorage.getItem('pegasus_students_data');
+                if (raw) {
+                    const parsed = JSON.parse(raw);
+                    if (Array.isArray(parsed) && parsed.length > 0) return parsed;
+                }
+            } catch(e) {}
+
+            try {
+                localStorage.setItem('pegasus_students_data', JSON.stringify(DEFAULT_STUDENTS_STARTER));
+                if (window.PegasusDB) {
+                    PegasusDB.saveStudents(DEFAULT_STUDENTS_STARTER);
+                }
+            } catch(e) {}
+            return [...DEFAULT_STUDENTS_STARTER];
+        }
+
+        function getLetterGrade(pct) {
+            const p = parseFloat(pct);
+            if (p >= 90) return { grade: 'A+', gp: 4.0, text: 'Outstanding', cls: 'bg-emerald-100 text-emerald-800' };
+            if (p >= 80) return { grade: 'A', gp: 3.6, text: 'Excellent', cls: 'bg-emerald-100 text-emerald-800' };
+            if (p >= 70) return { grade: 'B+', gp: 3.2, text: 'Very Good', cls: 'bg-blue-100 text-blue-800' };
+            if (p >= 60) return { grade: 'B', gp: 2.8, text: 'Good', cls: 'bg-blue-100 text-blue-800' };
+            if (p >= 50) return { grade: 'C+', gp: 2.4, text: 'Satisfactory', cls: 'bg-amber-100 text-amber-800' };
+            if (p >= 40) return { grade: 'C', gp: 2.0, text: 'Acceptable', cls: 'bg-amber-100 text-amber-800' };
+            if (p >= 35) return { grade: 'D', gp: 1.6, text: 'Basic', cls: 'bg-rose-100 text-rose-800' };
+            return { grade: 'NG', gp: 0.0, text: 'Non-Graded', cls: 'bg-rose-100 text-rose-800' };
+        }
+
+        function renderStars(rating) {
+            let stars = '';
+            for (let i = 1; i <= 4; i++) {
+                if (i <= rating) {
+                    stars += '<i class="fas fa-star text-gold-500 mr-1 text-sm"></i>';
+                } else {
+                    stars += '<i class="far fa-star text-slate-300 mr-1 text-sm"></i>';
+                }
+            }
+            return stars;
+        }
+
+        function escapeHTML(str) {
+            if (!str) return '';
+            return String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+        }
+
+        function quickSearch(cls, roll) {
+            const classSelect = document.getElementById('classSelect');
+            const studentQuery = document.getElementById('studentQuery');
+            if (classSelect) classSelect.value = cls;
+            if (studentQuery) studentQuery.value = roll;
+            const form = document.getElementById('lookupForm');
+            if (form) {
+                form.dispatchEvent(new Event('submit', { cancelable: true }));
+            }
+        }
+
+        function renderStudentData(item, term) {
+            const normCls = normalizeClass(item.classId || item.class || 'IV');
+            const isPrimary = ['I', 'II', 'III', 'IV', 'V'].includes(normCls);
+            const rollStr = String(item.roll || '').padStart(2, '0');
+            const classLabel = `Class ${normCls} (Sec ${item.section || 'A'})`;
+
+            document.getElementById('dispTermName').innerText = term || item.term || 'First Terminal Examination 2081';
+            document.getElementById('dispStudentName').innerText = item.name;
+            document.getElementById('dispStudentId').innerText = item.studentId || (item.id ? (String(item.id).startsWith('PES-') ? item.id : `PES-${item.id}`) : `PES-STU-${rollStr}`);
+            document.getElementById('dispClassSec').innerText = classLabel;
+            document.getElementById('dispRoll').innerText = rollStr;
+            document.getElementById('dispAttendance').innerText = item.attendance || '94 / 96 (97.9%)';
+
+            const remarks = item.remarks || item.teacherRemarks || item.hwNote ||
+                (isPrimary ?
+                    'Demonstrates sincere dedication in academic activities and continuous assessment participation. Keep up the consistent effort!' :
+                    'Consistent academic focus and analytical diligence throughout the terminal examination period.');
+            document.getElementById('dispTeacherRemarks').innerText = remarks;
+
+            // Extract or build dynamic subjects
+            let subjects = [];
+            if (Array.isArray(item.subjects) && item.subjects.length > 0) {
+                subjects = item.subjects.map(s => {
+                    const total = Number(s.total !== undefined ? s.total : (Number(s.th || 0) + Number(s.pr || 0)));
+                    const lg = getLetterGrade(total);
+                    return {
+                        name: s.name,
+                        th: s.th !== undefined ? Number(s.th) : (isPrimary ? Math.round(total * 0.5) : Math.round(total * 0.75)),
+                        pr: s.pr !== undefined ? Number(s.pr) : (total - (isPrimary ? Math.round(total * 0.5) : Math.round(total * 0.75))),
+                        total: total,
+                        grade: s.grade || lg.grade,
+                        gp: s.gp !== undefined ? Number(s.gp) : lg.gp
+                    };
+                });
+            } else if (isPrimary) {
+                subjects = [
+                    { name: 'English Language', th: 46, pr: 48, total: 94, grade: 'A+', gp: 4.0 },
+                    { name: 'Nepali (नेपाली)', th: 42, pr: 45, total: 87, grade: 'A', gp: 3.6 },
+                    { name: 'Mathematics', th: 49, pr: 48, total: 97, grade: 'A+', gp: 4.0 },
+                    { name: 'Our Surroundings (Science & Social)', th: 44, pr: 46, total: 90, grade: 'A+', gp: 4.0 },
+                    { name: 'Moral & Creative Arts', th: 47, pr: 48, total: 95, grade: 'A+', gp: 4.0 }
+                ];
+            } else {
+                subjects = [
+                    { name: 'Compulsory English', th: 68, pr: 24, total: 92, grade: 'A+', gp: 4.0 },
+                    { name: 'Compulsory Nepali (नेपाली)', th: 62, pr: 23, total: 85, grade: 'A', gp: 3.6 },
+                    { name: 'Compulsory Mathematics', th: 74, pr: 25, total: 99, grade: 'A+', gp: 4.0 },
+                    { name: 'Science & Technology', th: 70, pr: 24, total: 94, grade: 'A+', gp: 4.0 },
+                    { name: 'Social Studies & Values', th: 65, pr: 24, total: 89, grade: 'A', gp: 3.6 },
+                    { name: 'Optional I: Computer Science', th: 72, pr: 25, total: 97, grade: 'A+', gp: 4.0 }
+                ];
+            }
+
+            const grandTotal = subjects.reduce((sum, s) => sum + s.total, 0);
+            const maxTotal = subjects.length * 100;
+            const percentage = maxTotal > 0 ? ((grandTotal / maxTotal) * 100).toFixed(1) : '0.0';
+            const avgGp = (subjects.reduce((sum, s) => sum + s.gp, 0) / subjects.length).toFixed(2);
+            const overallLg = getLetterGrade(parseFloat(percentage));
+
+            document.getElementById('dispStatusBadge').innerHTML = `
+                <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-black ${overallLg.cls}">
+                    <i class="fas fa-check-circle"></i> PASSED • GPA: ${avgGp} (${overallLg.grade})
+                </span>
+            `;
+
+            const container = document.getElementById('evaluationContent');
+            let contentHtml = '';
+
+            // If Primary, show Formative 4-Parameter Rubrics & ECA
+            if (isPrimary) {
+                const rub = item.rubric || { participation: 4, neatness: 4, clarity: 4, regularity: 4 };
+                const rubricItems = [
+                    { category: 'Academic Knowledge & Understanding', rating: rub.clarity || 4, desc: 'Demonstrates clear grasp of core concepts and applies problem-solving techniques effectively.' },
+                    { category: 'Classroom Participation & Curiosity', rating: rub.participation || 4, desc: 'Actively contributes to lessons, asks insightful questions, and engages with enthusiasm.' },
+                    { category: 'Handwriting, Presentation & Neatness', rating: rub.neatness || 4, desc: 'Maintains tidy exercise books, organized assignment presentation, and methodical work.' },
+                    { category: 'Homework Regularity & Discipline', rating: rub.regularity || 4, desc: 'Submits daily homework copies on schedule and upholds exemplary classroom manners.' }
+                ];
+
+                contentHtml += `
+                    <div class="mb-6">
+                        <div class="flex items-center justify-between mb-3">
+                            <h3 class="text-sm font-black text-brand-950 uppercase tracking-wider flex items-center">
+                                <i class="fas fa-shapes text-gold-500 mr-2"></i> CDC Primary 4-Parameter Formative Rubrics
+                            </h3>
+                            <span class="text-[11px] text-slate-500 font-semibold">Scale: 1 (Beginning) to 4 (Exemplary)</span>
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                            ${rubricItems.map(r => `
+                                <div class="p-3.5 rounded-xl border border-slate-200 bg-slate-50/50 flex flex-col justify-between">
+                                    <div>
+                                        <div class="flex items-center justify-between mb-1">
+                                            <strong class="text-xs text-brand-900 font-bold">${r.category}</strong>
+                                            <div>${renderStars(r.rating)}</div>
+                                        </div>
+                                        <p class="text-xs text-slate-600">${r.desc}</p>
+                                    </div>
+                                </div>
+                            `).join('')}
+                        </div>
+                    </div>
+                `;
+
+                const eca = item.eca || { sports: 4, music: 4, art: 4, teamwork: 4 };
+                const ecaItems = [
+                    { activity: 'Physical Training & Martial Arts', stars: eca.sports || 4 },
+                    { activity: 'Music, Rhythm & Dance', stars: eca.music || 4 },
+                    { activity: 'Visual Arts & Creative Drawing', stars: eca.art || 4 },
+                    { activity: 'Team Collaboration & Values', stars: eca.teamwork || 4 }
+                ];
+
+                contentHtml += `
+                    <div class="mb-6">
+                        <h3 class="text-sm font-black text-brand-950 uppercase tracking-wider mb-3 flex items-center">
+                            <i class="fas fa-palette text-gold-500 mr-2"></i> Primary Extra-Curricular (ECA) Compartment
+                        </h3>
+                        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+                            ${ecaItems.map(e => `
+                                <div class="p-3 rounded-xl border border-slate-200 bg-white text-center">
+                                    <span class="text-slate-500 text-[11px] block truncate font-medium">${e.activity}</span>
+                                    <span class="text-amber-500 font-black text-sm mt-1 block">${'★'.repeat(e.stars)}${'☆'.repeat(4 - e.stars)}</span>
+                                </div>
+                            `).join('')}
+                        </div>
+                    </div>
+                `;
+            }
+
+            // Subject Table (Dynamic for both Primary and Secondary)
+            const thHeader = isPrimary ? 'Theory (50)' : 'Theory (75)';
+            const prHeader = isPrimary ? 'Internal (50)' : 'Practical (25)';
+
+            contentHtml += `
+                <div>
+                    <div class="flex flex-wrap items-center justify-between mb-3 gap-2">
+                        <h3 class="text-sm font-black text-brand-950 uppercase tracking-wider flex items-center">
+                            <i class="fas fa-book-open text-gold-500 mr-2"></i> Official Terminal Subject Marks &amp; Letter Grades
+                        </h3>
+                        <div class="flex items-center gap-2">
+                            <span class="text-xs font-black text-brand-950 bg-gold-400/20 border border-gold-500/30 px-3 py-1 rounded-lg">
+                                Terminal GPA: ${avgGp} / 4.00
+                            </span>
+                            <span class="text-xs font-black px-2.5 py-1 rounded-lg ${overallLg.cls}">
+                                Overall: ${overallLg.grade} (${percentage}%)
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="overflow-x-auto rounded-xl border border-slate-200">
+                        <table class="w-full text-left border-collapse text-xs">
+                            <thead>
+                                <tr class="bg-brand-950 text-white font-bold">
+                                    <th class="py-2.5 px-3">Subject Title</th>
+                                    <th class="py-2.5 px-3 text-center">${thHeader}</th>
+                                    <th class="py-2.5 px-3 text-center">${prHeader}</th>
+                                    <th class="py-2.5 px-3 text-center">Total (100)</th>
+                                    <th class="py-2.5 px-3 text-center">Letter Grade</th>
+                                    <th class="py-2.5 px-3 text-center">Grade Point</th>
+                                    <th class="py-2.5 px-3 text-center">Remarks</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-slate-200 bg-white">
+                                ${subjects.map(sub => {
+                                    const lg = getLetterGrade(sub.total);
+                                    return `
+                                        <tr class="hover:bg-slate-50">
+                                            <td class="py-2.5 px-3 font-bold text-slate-800">${escapeHTML(sub.name)}</td>
+                                            <td class="py-2.5 px-3 text-center font-medium text-slate-600">${sub.th}</td>
+                                            <td class="py-2.5 px-3 text-center font-medium text-slate-600">${sub.pr}</td>
+                                            <td class="py-2.5 px-3 text-center font-extrabold text-brand-900">${sub.total}</td>
+                                            <td class="py-2.5 px-3 text-center">
+                                                <span class="px-2 py-0.5 rounded font-black text-xs ${lg.cls}">${lg.grade}</span>
+                                            </td>
+                                            <td class="py-2.5 px-3 text-center font-bold text-slate-700">${lg.gp.toFixed(1)}</td>
+                                            <td class="py-2.5 px-3 text-center text-[11px] font-semibold text-slate-500">${lg.text}</td>
+                                        </tr>
+                                    `;
+                                }).join('')}
+                                <!-- Summary Tally Row -->
+                                <tr class="bg-slate-100/90 font-black border-t-2 border-brand-900">
+                                    <td class="py-3 px-3 uppercase text-brand-950">Grand Total &amp; Standing</td>
+                                    <td colspan="2" class="py-3 px-3 text-center font-mono text-slate-700">Percentage: ${percentage}%</td>
+                                    <td class="py-3 px-3 text-center font-mono text-brand-950">${grandTotal} / ${maxTotal}</td>
+                                    <td class="py-3 px-3 text-center"><span class="px-2 py-0.5 rounded ${overallLg.cls}">${overallLg.grade}</span></td>
+                                    <td class="py-3 px-3 text-center text-brand-950 font-black">${avgGp}</td>
+                                    <td class="py-3 px-3 text-center text-emerald-700 uppercase font-black tracking-wider">PASSED</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            `;
+
+            container.innerHTML = contentHtml;
+
+            // Display printable report card
+            const prompt = document.getElementById('initialSearchPrompt');
+            const notFound = document.getElementById('studentNotFoundCard');
+            const card = document.getElementById('printableReportCard');
+            if (prompt) prompt.classList.add('hidden');
+            if (notFound) notFound.classList.add('hidden');
+            if (card) card.classList.remove('hidden');
+        }
+
+        function handleSearch(e) {
+            e.preventDefault();
+            const rawQuery = document.getElementById('studentQuery').value.trim();
+            const term = document.getElementById('termSelect').value;
+            const cls = document.getElementById('classSelect').value;
+
+            if (!rawQuery) return;
+
+            const queryLower = rawQuery.toLowerCase();
+            const queryDigits = rawQuery.replace(/\D/g, '');
+            const normSelectedClass = normalizeClass(cls);
+
+            let matched = null;
+
+            // 1. Search in pegasus_student_results first (Contains official terminal marksheets)
+            const results = getStudentResults();
+
+            // Match by exact ID or PES-ID
+            matched = results.find(r => {
+                const rId = String(r.id || '').toLowerCase();
+                const sId = String(r.studentId || '').toLowerCase();
+                return rId === queryLower || sId === queryLower || ('pes-' + rId) === queryLower;
+            });
+
+            // Match by class and roll
+            if (!matched && queryDigits) {
+                matched = results.find(r => {
+                    const rClass = normalizeClass(r.classId || r.class);
+                    const sameRoll = String(r.roll) === queryDigits || Number(r.roll) === Number(queryDigits);
+                    return rClass === normSelectedClass && sameRoll;
+                });
+            }
+
+            // Match by name in selected class
+            if (!matched) {
+                matched = results.find(r => {
+                    const rClass = normalizeClass(r.classId || r.class);
+                    return rClass === normSelectedClass && r.name && r.name.toLowerCase().includes(queryLower);
+                });
+            }
+
+            // Match by roll across any class
+            if (!matched && queryDigits) {
+                matched = results.find(r => String(r.roll) === queryDigits || Number(r.roll) === Number(queryDigits));
+            }
+
+            // Match by name across any class
+            if (!matched) {
+                matched = results.find(r => r.name && r.name.toLowerCase().includes(queryLower));
+            }
+
+            // 2. Fallback to enrolled students (pegasus_students_data)
+            if (!matched) {
+                const students = getEnrolledStudents();
+
+                if (queryDigits) {
+                    matched = students.find(s => {
+                        const sClass = normalizeClass(s.classId || s.class);
+                        const sameRoll = String(s.roll) === queryDigits || Number(s.roll) === Number(queryDigits);
+                        return sClass === normSelectedClass && sameRoll;
+                    });
+                }
+                if (!matched) {
+                    matched = students.find(s => {
+                        const sId = String(s.id || '').toLowerCase();
+                        return sId === queryLower || ('pes-' + sId) === queryLower;
+                    });
+                }
+                if (!matched) {
+                    matched = students.find(s => {
+                        const sClass = normalizeClass(s.classId || s.class);
+                        return sClass === normSelectedClass && s.name && s.name.toLowerCase().includes(queryLower);
+                    });
+                }
+                if (!matched && queryDigits) {
+                    matched = students.find(s => String(s.roll) === queryDigits || Number(s.roll) === Number(queryDigits));
+                }
+                if (!matched) {
+                    matched = students.find(s => s.name && s.name.toLowerCase().includes(queryLower));
+                }
+            }
+
+            if (matched) {
+                renderStudentData(matched, term);
+                if (window.PegasusToast) {
+                    PegasusToast.success('Evaluation Retrieved', `Official report card for ${matched.name} loaded.`);
+                }
+            } else {
+                document.getElementById('initialSearchPrompt').classList.add('hidden');
+                document.getElementById('printableReportCard').classList.add('hidden');
+                const notFoundCard = document.getElementById('studentNotFoundCard');
+                notFoundCard.classList.remove('hidden');
+                document.getElementById('notFoundMsg').innerHTML = `
+                    No enrolled student record was found matching <strong>"${escapeHTML(rawQuery)}"</strong> in <strong>Class ${escapeHTML(normSelectedClass)}</strong>.<br>
+                    Please verify the roll number or class selected. Official student rosters are provisioned and synchronized via the Principal Portal.
+                `;
+                if (window.PegasusToast) {
+                    PegasusToast.error('Record Not Found', `No student matching "${rawQuery}" in Class ${normSelectedClass}.`);
+                }
+            }
+        }
+    </script>
+<script>
+        function toggleStaffDropup(e) {
+            if (e) e.stopPropagation();
+            const menu = document.getElementById('staff-dropup-menu');
+            const chevron = document.getElementById('staff-dropup-chevron');
+            const btn = document.getElementById('staff-dropup-btn');
+            if (!menu) return;
+            const isHidden = menu.classList.contains('hidden');
+            if (isHidden) {
+                menu.classList.remove('hidden');
+                if (chevron) chevron.classList.add('rotate-180');
+                if (btn) btn.setAttribute('aria-expanded', 'true');
+            } else {
+                menu.classList.add('hidden');
+                if (chevron) chevron.classList.remove('rotate-180');
+                if (btn) btn.setAttribute('aria-expanded', 'false');
+            }
+        }
+        document.addEventListener('click', (e) => {
+            const container = document.getElementById('staff-dropup-container');
+            const menu = document.getElementById('staff-dropup-menu');
+            const chevron = document.getElementById('staff-dropup-chevron');
+            const btn = document.getElementById('staff-dropup-btn');
+            if (container && !container.contains(e.target) && menu && !menu.classList.contains('hidden')) {
+                menu.classList.add('hidden');
+                if (chevron) chevron.classList.remove('rotate-180');
+                if (btn) btn.setAttribute('aria-expanded', 'false');
+            }
+        });</script>
+</body>
+</html>

@@ -1,0 +1,2103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pegasus English School - Central Admin Portal</title>
+    <meta name="description" content="Central Administrator CMS and Management System for Pegasus English School. Manage events feed, ECA gallery, routines, and backups.">
+    <link rel="icon" href="logo.jpg" type="image/jpeg">
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Outfit:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#f0f5ff',
+                            100: '#e0ebff',
+                            200: '#c7d9fe',
+                            600: '#2d4c94',
+                            700: '#233d7b',
+                            800: '#1c3166',
+                            900: '#122046',
+                            950: '#0a1128',
+                        },
+                        gold: {
+                            300: '#fbd68a',
+                            400: '#f3be5d',
+                            500: '#e5a93c',
+                            600: '#c98e27',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        heading: ['Outfit', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .active-tab-btn {
+            background-color: #122046 !important;
+            color: #ffffff !important;
+            border-color: #122046 !important;
+            box-shadow: 0 4px 12px rgba(18, 32, 70, 0.15);
+        }
+        .thumbnail-card:hover .remove-photo-btn {
+            opacity: 1;
+        }
+    </style>
+</head>
+<body class="bg-slate-100 text-slate-800 min-h-screen flex flex-col font-sans">
+
+    <!-- Top Admin Header Bar -->
+    <header class="bg-brand-950 text-white border-b border-brand-900 sticky top-0 z-40 shadow-lg">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3.5 flex flex-wrap items-center justify-between gap-4">
+            
+            <!-- School Brand Identity -->
+            <div class="flex items-center space-x-3.5">
+                <a href="index.html" class="flex items-center space-x-3 group">
+                    <img src="logo.jpg" alt="Pegasus Logo" decoding="async" class="w-11 h-11 rounded-xl bg-white p-0.5 object-contain shadow-md border border-white/20 group-hover:scale-105 transition-transform">
+                    <div>
+                        <div class="flex items-center gap-2">
+                            <span class="text-base font-black text-white font-heading tracking-tight">Pegasus English School</span>
+                            <span class="bg-gold-500/20 text-gold-400 border border-gold-500/40 text-[10px] font-black uppercase px-2 py-0.5 rounded-full">Admin CMS</span>
+                        </div>
+                        <p class="text-xs text-slate-400">Content Management Portal (Events • ECA Moments • Exam Routines)</p>
+                    </div>
+                </a>
+            </div>
+
+            <!-- Header Quick Actions -->
+            <div class="flex items-center space-x-2 sm:space-x-3">
+                <a href="index.html" target="_blank" class="bg-white/10 hover:bg-white hover:text-brand-950 text-white text-xs font-bold px-3 py-2 rounded-xl transition flex items-center gap-1.5 shadow-xs border border-white/10">
+                    <i class="fas fa-external-link-alt text-gold-400"></i>
+                    <span class="hidden sm:inline">View Public Website</span>
+                </a>
+                <a href="file-manager.html" target="_blank" class="bg-white/10 hover:bg-white hover:text-brand-950 text-white text-xs font-bold px-3 py-2 rounded-xl transition flex items-center gap-1.5 shadow-xs border border-white/10">
+                    <i class="fas fa-folder-open text-sky-400"></i>
+                    <span class="hidden sm:inline">File Directory</span>
+                </a>
+                <a href="principal.html" target="_blank" class="bg-gold-500/20 hover:bg-gold-500 hover:text-brand-950 text-gold-300 border border-gold-500/40 text-xs font-bold px-3 py-2 rounded-xl transition flex items-center gap-1.5 shadow-xs">
+                    <i class="fas fa-user-shield text-gold-400"></i>
+                    <span class="hidden sm:inline">Principal Office</span>
+                </a>
+                <a href="teacher.html" target="_blank" class="bg-white/10 hover:bg-white hover:text-brand-950 text-white text-xs font-bold px-3 py-2 rounded-xl transition flex items-center gap-1.5 shadow-xs border border-white/10">
+                    <i class="fas fa-chalkboard-teacher text-emerald-400"></i>
+                    <span class="hidden sm:inline">Teacher Panel</span>
+                </a>
+                <button onclick="handleLogout()" class="bg-rose-500/20 hover:bg-rose-600 text-rose-300 hover:text-white border border-rose-500/30 text-xs font-bold px-3 py-2 rounded-xl transition flex items-center gap-1.5 shadow-xs" title="Lock Admin Portal">
+                    <i class="fas fa-lock"></i>
+                    <span class="hidden md:inline">Lock</span>
+                </button>
+            </div>
+
+        </div>
+    </header>
+
+    <!-- Authentication Gate Screen (Shown if locked) -->
+    <div id="auth-gate-modal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-md z-50 flex items-center justify-center p-4 hidden">
+        <div class="bg-white rounded-3xl max-w-md w-full p-8 shadow-2xl border border-slate-200 text-center space-y-6 animate-scale-up">
+            <div class="w-16 h-16 rounded-2xl bg-brand-50 text-brand-900 border border-brand-200 flex items-center justify-center mx-auto text-2xl shadow-sm">
+                <i class="fas fa-user-shield text-brand-900"></i>
+            </div>
+            
+            <div class="space-y-1.5">
+                <h3 class="text-2xl font-black text-slate-900 font-heading">Pegasus Admin Portal Login</h3>
+                <p class="text-xs text-slate-500">Sign in with your Administrator ID and Password to unlock the CMS workspace.</p>
+            </div>
+
+            <div id="admin-auth-error" class="hidden bg-rose-50 border border-rose-200 text-rose-700 text-xs font-bold px-3.5 py-2.5 rounded-xl flex items-center gap-2 text-left">
+                <i class="fas fa-exclamation-circle text-rose-500 shrink-0"></i>
+                <span id="admin-auth-error-text">Invalid Administrator ID or Password.</span>
+            </div>
+
+            <form onsubmit="handleAuthSubmit(event)" class="space-y-4 text-left">
+                <div>
+                    <label for="admin-id-input" class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">Administrator ID / Username</label>
+                    <div class="relative">
+                        <span class="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-sm"><i class="fas fa-user"></i></span>
+                        <input type="text" id="admin-id-input" value="admin" placeholder="admin" class="w-full bg-slate-50 border border-slate-300 rounded-xl pl-10 pr-4 py-3 text-sm font-bold text-slate-900 focus:bg-white focus:outline-none focus:ring-2 focus:ring-brand-900 focus:border-brand-900" required>
+                    </div>
+                </div>
+
+                <div>
+                    <label for="admin-pw-input" class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">Administrator Password</label>
+                    <div class="relative">
+                        <span class="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-sm"><i class="fas fa-lock"></i></span>
+                        <input type="password" id="admin-pw-input" placeholder="••••••••" class="w-full bg-slate-50 border border-slate-300 rounded-xl pl-10 pr-10 py-3 text-sm font-bold text-slate-900 focus:bg-white focus:outline-none focus:ring-2 focus:ring-brand-900 focus:border-brand-900" autofocus required>
+                        <button type="button" onclick="toggleAdminPasswordVisibility()" class="absolute right-3.5 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 text-sm">
+                            <i id="admin-pw-eye" class="far fa-eye"></i>
+                        </button>
+                    </div>
+                    <div class="bg-amber-50/80 border border-amber-200/80 rounded-xl p-2.5 mt-2 flex items-center justify-between text-[11px] text-amber-900">
+                        <span class="font-medium"><i class="fas fa-key text-amber-600 mr-1"></i> Default Staff Access:</span>
+                        <span class="font-mono font-bold bg-white px-2 py-0.5 rounded border border-amber-200">ID: admin | PW: admin</span>
+                    </div>
+                </div>
+
+                <div class="flex items-center justify-between text-xs text-slate-600 pt-1">
+                    <label class="flex items-center gap-2 cursor-pointer select-none">
+                        <input type="checkbox" id="remember-auth-checkbox" checked class="w-4 h-4 rounded text-brand-900 focus:ring-brand-900 border-slate-300">
+                        <span>Keep me signed in</span>
+                    </label>
+                </div>
+
+                <button type="submit" class="w-full bg-brand-900 hover:bg-brand-800 text-white font-black text-sm py-3 px-4 rounded-xl shadow-md transition flex items-center justify-center gap-2">
+                    <i class="fas fa-sign-in-alt text-gold-400"></i>
+                    <span>Unlock Admin Workspace</span>
+                </button>
+            </form>
+
+            <div class="pt-2 border-t border-slate-100 flex items-center justify-between text-xs">
+                <a href="index.html" class="text-slate-500 hover:text-brand-900 font-bold flex items-center gap-1.5">
+                    <i class="fas fa-arrow-left text-[10px]"></i>
+                    <span>Return to Homepage</span>
+                </a>
+                <a href="teacher.html" class="text-indigo-600 hover:text-indigo-800 font-bold flex items-center gap-1.5">
+                    <i class="fas fa-chalkboard-teacher text-[10px]"></i>
+                    <span>Teacher Panel</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Admin Workspace Container -->
+    <main class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
+        
+        <!-- Live Metrics Bar -->
+        <section class="grid grid-cols-2 md:grid-cols-4 gap-4">
+            
+            <div class="bg-white rounded-2xl p-4 sm:p-5 border border-slate-200/90 shadow-sm flex items-center justify-between">
+                <div>
+                    <span class="text-xs font-bold uppercase tracking-wider text-slate-400 block">Campus Events</span>
+                    <span id="metric-events-count" class="text-2xl sm:text-3xl font-black text-slate-900 font-heading">0</span>
+                    <span class="text-[11px] text-sky-600 font-bold block mt-0.5">Live Facebook Feed</span>
+                </div>
+                <div class="w-12 h-12 rounded-2xl bg-sky-50 text-sky-600 flex items-center justify-center text-xl shadow-xs">
+                    <i class="fas fa-bullhorn"></i>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-2xl p-4 sm:p-5 border border-slate-200/90 shadow-sm flex items-center justify-between">
+                <div>
+                    <span class="text-xs font-bold uppercase tracking-wider text-slate-400 block">ECA Moments</span>
+                    <span id="metric-eca-count" class="text-2xl sm:text-3xl font-black text-slate-900 font-heading">0</span>
+                    <span class="text-[11px] text-amber-600 font-bold block mt-0.5">Achievements Gallery</span>
+                </div>
+                <div class="w-12 h-12 rounded-2xl bg-amber-50 text-amber-600 flex items-center justify-center text-xl shadow-xs">
+                    <i class="fas fa-camera"></i>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-2xl p-4 sm:p-5 border border-slate-200/90 shadow-sm flex items-center justify-between">
+                <div>
+                    <span class="text-xs font-bold uppercase tracking-wider text-slate-400 block">Exam Routines</span>
+                    <span id="metric-routines-count" class="text-2xl sm:text-3xl font-black text-slate-900 font-heading">0</span>
+                    <span class="text-[11px] text-emerald-600 font-bold block mt-0.5">Terminal Timetables</span>
+                </div>
+                <div class="w-12 h-12 rounded-2xl bg-emerald-50 text-emerald-600 flex items-center justify-center text-xl shadow-xs">
+                    <i class="fas fa-calendar-alt"></i>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-2xl p-4 sm:p-5 border border-slate-200/90 shadow-sm flex items-center justify-between">
+                <div>
+                    <span class="text-xs font-bold uppercase tracking-wider text-slate-400 block">Public Portal</span>
+                    <span class="text-base sm:text-lg font-black text-emerald-700 font-heading flex items-center gap-1.5">
+                        <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
+                        Synchronized
+                    </span>
+                    <span class="text-[11px] text-slate-400 block mt-0.5">localStorage System</span>
+                </div>
+                <div class="w-12 h-12 rounded-2xl bg-brand-50 text-brand-700 flex items-center justify-center text-xl shadow-xs">
+                    <i class="fas fa-sync-alt"></i>
+                </div>
+            </div>
+
+        </section>
+
+        <!-- Navigation Tabs Bar -->
+        <nav class="flex flex-wrap items-center gap-2 p-1.5 bg-white rounded-2xl border border-slate-200 shadow-sm">
+            <button onclick="switchAdminTab('tab-events')" id="btn-tab-events" class="active-tab-btn flex-1 min-w-[140px] flex items-center justify-center gap-2 py-3 px-4 rounded-xl font-bold text-xs sm:text-sm border transition">
+                <i class="fas fa-bullhorn text-gold-400"></i>
+                <span>1. Campus Events Feed</span>
+            </button>
+            <button onclick="switchAdminTab('tab-eca')" id="btn-tab-eca" class="flex-1 min-w-[140px] flex items-center justify-center gap-2 py-3 px-4 rounded-xl font-bold text-xs sm:text-sm border border-transparent text-slate-600 hover:text-slate-900 hover:bg-slate-50 transition">
+                <i class="fas fa-camera text-amber-500"></i>
+                <span>2. ECA Photo Moments</span>
+            </button>
+            <button onclick="switchAdminTab('tab-routines')" id="btn-tab-routines" class="flex-1 min-w-[140px] flex items-center justify-center gap-2 py-3 px-4 rounded-xl font-bold text-xs sm:text-sm border border-transparent text-slate-600 hover:text-slate-900 hover:bg-slate-50 transition">
+                <i class="fas fa-calendar-alt text-emerald-500"></i>
+                <span>3. Exam Routines & Docs</span>
+            </button>
+            <button onclick="switchAdminTab('tab-backup')" id="btn-tab-backup" class="flex-1 min-w-[140px] flex items-center justify-center gap-2 py-3 px-4 rounded-xl font-bold text-xs sm:text-sm border border-transparent text-slate-600 hover:text-slate-900 hover:bg-slate-50 transition">
+                <i class="fas fa-database text-brand-600"></i>
+                <span>4. Backup & Data Sync</span>
+            </button>
+        </nav>
+
+        <!-- ======================================================== -->
+        <!-- TAB 1: CAMPUS EVENTS & FACEBOOK-STYLE FEED MANAGER       -->
+        <!-- ======================================================== -->
+        <section id="tab-events" class="space-y-8">
+            
+            <!-- Composer & Form Card -->
+            <div class="bg-white rounded-3xl border border-slate-200/90 shadow-sm overflow-hidden">
+                <div class="bg-brand-950 text-white px-6 py-4 flex flex-wrap items-center justify-between gap-3">
+                    <div class="flex items-center space-x-3">
+                        <div class="w-9 h-9 rounded-xl bg-brand-800 text-gold-400 flex items-center justify-center text-base font-bold">
+                            <i class="fas fa-pencil-alt"></i>
+                        </div>
+                        <div>
+                            <h3 id="events-form-title" class="text-base font-black font-heading leading-tight">Create New Campus Announcement / Event</h3>
+                            <p class="text-xs text-slate-300">Publish high-resolution photo stories and notices to the public Facebook-style feed.</p>
+                        </div>
+                    </div>
+                    <button type="button" id="events-cancel-edit-btn" onclick="resetEventForm()" class="hidden bg-rose-500 hover:bg-rose-600 text-white text-xs font-bold py-1.5 px-3.5 rounded-xl transition flex items-center gap-1.5 shadow-xs">
+                        <i class="fas fa-times"></i> Cancel Edit Mode
+                    </button>
+                </div>
+
+                <form id="event-admin-form" onsubmit="handleSaveEvent(event)" class="p-6 sm:p-8 space-y-6">
+                    <input type="hidden" id="event-edit-id" value="">
+
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-5">
+                        <!-- Category Selector -->
+                        <div>
+                            <label for="event-category-input" class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">Category *</label>
+                            <select id="event-category-input" required class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3.5 py-2.5 text-xs sm:text-sm font-semibold text-slate-800 focus:bg-white focus:outline-none focus:ring-2 focus:ring-brand-900">
+                                <option value="Martial Arts">Martial Arts (Taekwondo)</option>
+                                <option value="Sports & Athletics">Sports & Athletics</option>
+                                <option value="Academic Notice">Academic Notice & Circular</option>
+                                <option value="STEM & Science">STEM & Science Expo</option>
+                                <option value="Cultural Event">Cultural Event & Arts</option>
+                                <option value="Campus Circular">General Campus Announcement</option>
+                            </select>
+                        </div>
+
+                        <!-- Author Input -->
+                        <div>
+                            <label for="event-author-input" class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">Author Entity</label>
+                            <input type="text" id="event-author-input" value="Pegasus English School" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3.5 py-2.5 text-xs sm:text-sm font-semibold text-slate-800 focus:bg-white focus:outline-none focus:ring-2 focus:ring-brand-900" required>
+                        </div>
+
+                        <!-- Date Display -->
+                        <div>
+                            <label for="event-date-input" class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">Date Display String</label>
+                            <div class="flex gap-2">
+                                <input type="text" id="event-date-input" placeholder="e.g. Today at 2:30 PM" class="flex-1 bg-slate-50 border border-slate-200 rounded-xl px-3.5 py-2.5 text-xs sm:text-sm font-semibold text-slate-800 focus:bg-white focus:outline-none focus:ring-2 focus:ring-brand-900" required>
+                                <button type="button" onclick="setEventCurrentDate()" class="bg-slate-200 hover:bg-slate-300 text-slate-700 text-xs font-bold px-3 py-2 rounded-xl transition" title="Insert formatted current time">Now</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Post Content Textarea -->
+                    <div>
+                        <label for="event-content-input" class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">Announcement Content / Story (Line breaks preserved) *</label>
+                        <textarea id="event-content-input" rows="4" placeholder="Write full announcement details, student achievers, instructions, congratulations..." class="w-full bg-slate-50 border border-slate-200 rounded-xl p-4 text-xs sm:text-sm font-normal text-slate-800 focus:bg-white focus:outline-none focus:ring-2 focus:ring-brand-900" required></textarea>
+                    </div>
+
+                    <!-- Multi-Photo Attachment System with Auto-Slideshow Notice -->
+                    <div class="bg-slate-50 border border-slate-200 rounded-2xl p-5 space-y-4">
+                        <div class="flex flex-wrap items-center justify-between gap-2">
+                            <div class="flex items-center space-x-2">
+                                <i class="fas fa-images text-amber-600"></i>
+                                <span class="text-xs font-black uppercase tracking-wider text-slate-800">Add Multiple Photos (Animated Auto-Slideshow)</span>
+                                <span id="event-photos-counter" class="text-[11px] font-bold text-slate-500 bg-white px-2.5 py-0.5 rounded-full border border-slate-200">0 photos</span>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <button type="button" onclick="insertSampleEventPhotos()" class="text-xs font-bold text-brand-900 hover:text-brand-800 bg-white hover:bg-brand-50 px-2.5 py-1 rounded-lg border border-slate-200 transition flex items-center gap-1 shadow-2xs">
+                                    <i class="fas fa-magic text-amber-500"></i> Add Sample Photos
+                                </button>
+                                <button type="button" id="event-clear-photos-btn" onclick="clearEventPhotosQueue()" class="hidden text-xs font-bold text-rose-600 hover:text-rose-700 flex items-center gap-1">
+                                    <i class="fas fa-trash-alt"></i> Clear All Photos
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Auto-slideshow feature highlight banner -->
+                        <div class="bg-amber-50/70 border border-amber-200/80 rounded-xl px-3.5 py-2.5 text-xs text-amber-900 flex items-start gap-2.5">
+                            <i class="fas fa-info-circle text-amber-600 mt-0.5 shrink-0 text-sm"></i>
+                            <div>
+                                <span class="font-bold">Automatic Slideshow on Public Website:</span>
+                                <span> When you attach 2 or more photos, they will automatically slide smoothly every 3.5 seconds when visitors view the campus feed. Visitors can also pause on hover, swipe on mobile, or click any slide for full-screen view.</span>
+                            </div>
+                        </div>
+
+                        <!-- Upload Options -->
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <!-- Local Device Picker (Batch / Many Photos) -->
+                            <div class="space-y-1.5">
+                                <label class="block text-xs font-bold text-slate-700">Option A: Select Many Photos from Computer / Phone</label>
+                                <label class="w-full cursor-pointer bg-white hover:bg-brand-50 border-2 border-dashed border-slate-300 hover:border-brand-500 rounded-xl px-4 py-3 text-center flex flex-col items-center justify-center transition group">
+                                    <i class="fas fa-cloud-upload-alt text-brand-900 text-xl group-hover:scale-110 transition-transform"></i>
+                                    <span class="text-xs font-bold text-slate-700 mt-1">Click to select multiple photos (5, 10+ photos supported)</span>
+                                    <span class="text-[10px] text-slate-400">JPEG, PNG, WEBP (auto-converted to web format)</span>
+                                    <input type="file" id="event-file-picker" multiple accept="image/*" class="hidden" onchange="handleEventFilesUpload(event)">
+                                </label>
+                            </div>
+
+                            <!-- Direct URL Input -->
+                            <div class="space-y-1.5">
+                                <label class="block text-xs font-bold text-slate-700">Option B: Add High-Res Images by Web URL(s)</label>
+                                <div class="flex gap-2">
+                                    <input type="url" id="event-url-picker" placeholder="https://images.unsplash.com/... (paste 1 or multiple URLs)" class="flex-1 bg-white border border-slate-200 rounded-xl px-3.5 py-2 text-xs font-normal text-slate-800 focus:outline-none focus:ring-2 focus:ring-brand-900">
+                                    <button type="button" onclick="handleAddEventPhotoUrl()" class="bg-brand-900 hover:bg-brand-800 text-white text-xs font-bold px-4 py-2 rounded-xl transition shrink-0 flex items-center gap-1.5">
+                                        <i class="fas fa-plus"></i> Add URL
+                                    </button>
+                                </div>
+                                <p class="text-[10px] text-slate-400">Paste image link (Unsplash, Wikimedia, direct link) and click Add URL.</p>
+                            </div>
+                        </div>
+
+                        <!-- Live Photo Thumbnails Strip -->
+                        <div id="event-thumbnails-grid" class="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-6 gap-3 pt-2">
+                            <!-- Populated dynamically -->
+                        </div>
+                    </div>
+
+                    <!-- Submit Button Strip -->
+                    <div class="flex flex-wrap items-center justify-end gap-3 pt-2 border-t border-slate-100">
+                        <button type="button" onclick="resetEventForm()" class="bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-xs sm:text-sm py-2.5 px-5 rounded-xl transition">
+                            Clear Form
+                        </button>
+                        <button type="submit" id="event-submit-btn" class="bg-brand-900 hover:bg-brand-800 text-white font-black text-xs sm:text-sm py-2.5 px-6 rounded-xl shadow-md transition flex items-center gap-2">
+                            <i class="fas fa-paper-plane text-gold-400"></i>
+                            <span id="event-submit-label">Publish Event to Public Feed</span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Published Events List & Management -->
+            <div class="bg-white rounded-3xl border border-slate-200/90 shadow-sm p-6 sm:p-8 space-y-6">
+                <div class="flex flex-wrap items-center justify-between gap-4 pb-4 border-b border-slate-200">
+                    <div>
+                        <h3 class="text-xl font-black text-slate-900 font-heading">Currently Published Campus Events (<span id="events-total-badge">0</span>)</h3>
+                        <p class="text-xs text-slate-500">Edit content or photos, remove old announcements, or moderate community comments.</p>
+                    </div>
+
+                    <!-- Category Filter -->
+                    <div class="flex items-center gap-2">
+                        <span class="text-xs font-bold text-slate-500">Filter:</span>
+                        <select id="events-list-filter" onchange="renderAdminEventsList()" class="bg-slate-50 border border-slate-200 rounded-xl px-3 py-1.5 text-xs font-bold text-slate-700 focus:outline-none focus:ring-2 focus:ring-brand-900">
+                            <option value="All">All Categories</option>
+                            <option value="Martial Arts">Martial Arts</option>
+                            <option value="Sports & Athletics">Sports & Athletics</option>
+                            <option value="Academic Notice">Academic Notice</option>
+                            <option value="STEM & Science">STEM & Science</option>
+                            <option value="Cultural Event">Cultural Event</option>
+                            <option value="Campus Circular">Campus Circular</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Event Stream Container -->
+                <div id="admin-events-stream" class="space-y-4">
+                    <!-- Dynamic rendering -->
+                </div>
+            </div>
+
+        </section>
+
+        <!-- ======================================================== -->
+        <!-- TAB 2: ECA PHOTO MOMENTS & GALLERY MANAGER               -->
+        <!-- ======================================================== -->
+        <section id="tab-eca" class="space-y-8 hidden">
+            
+            <!-- ECA Add / Edit Card -->
+            <div class="bg-white rounded-3xl border border-slate-200/90 shadow-sm overflow-hidden">
+                <div class="bg-brand-950 text-white px-6 py-4 flex flex-wrap items-center justify-between gap-3">
+                    <div class="flex items-center space-x-3">
+                        <div class="w-9 h-9 rounded-xl bg-amber-500 text-brand-950 flex items-center justify-center text-base font-bold">
+                            <i class="fas fa-camera"></i>
+                        </div>
+                        <div>
+                            <h3 id="eca-form-title" class="text-base font-black font-heading leading-tight">Publish New ECA Gallery Moment</h3>
+                            <p class="text-xs text-slate-300">Feature competition victories, belt promotions, arts exhibitions, and cultural recitals.</p>
+                        </div>
+                    </div>
+                    <button type="button" id="eca-cancel-edit-btn" onclick="resetEcaForm()" class="hidden bg-rose-500 hover:bg-rose-600 text-white text-xs font-bold py-1.5 px-3.5 rounded-xl transition flex items-center gap-1.5 shadow-xs">
+                        <i class="fas fa-times"></i> Cancel Edit Mode
+                    </button>
+                </div>
+
+                <form id="eca-admin-form" onsubmit="handleSaveEcaMoment(event)" class="p-6 sm:p-8 space-y-6">
+                    <input type="hidden" id="eca-edit-id" value="">
+
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-5">
+                        <!-- ECA Title -->
+                        <div class="sm:col-span-2">
+                            <label for="eca-title-input" class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">Moment Title *</label>
+                            <input type="text" id="eca-title-input" placeholder="e.g. Annual Taekwondo Championship & Belt Promotion" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3.5 py-2.5 text-xs sm:text-sm font-semibold text-slate-800 focus:bg-white focus:outline-none focus:ring-2 focus:ring-brand-900" required>
+                        </div>
+
+                        <!-- Category Dropdown -->
+                        <div>
+                            <label for="eca-category-input" class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">Gallery Category *</label>
+                            <select id="eca-category-input" onchange="handleEcaCategoryChange()" required class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3.5 py-2.5 text-xs sm:text-sm font-semibold text-slate-800 focus:bg-white focus:outline-none focus:ring-2 focus:ring-brand-900">
+                                <option value="sports">Athletics & Sports</option>
+                                <option value="martial-arts">Taekwondo & Martial Arts</option>
+                                <option value="art">Art & Clay Modeling</option>
+                                <option value="music">Dance & Music Recital</option>
+                                <option value="debate">Debate & Public Speaking</option>
+                                <option value="stem">STEM & Science Expo</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-5">
+                        <!-- Category Badge Label -->
+                        <div>
+                            <label for="eca-badge-input" class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">Badge Label</label>
+                            <input type="text" id="eca-badge-input" value="Athletics & Sports" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3.5 py-2.5 text-xs sm:text-sm font-semibold text-slate-800 focus:bg-white focus:outline-none focus:ring-2 focus:ring-brand-900" required>
+                        </div>
+
+                        <!-- Wing / Class Range -->
+                        <div>
+                            <label for="eca-wing-input" class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">Wing / Class Range</label>
+                            <input type="text" id="eca-wing-input" placeholder="e.g. Classes I to X or Primary Wing" value="Classes I to X" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3.5 py-2.5 text-xs sm:text-sm font-semibold text-slate-800 focus:bg-white focus:outline-none focus:ring-2 focus:ring-brand-900" required>
+                        </div>
+
+                        <!-- Date & Location -->
+                        <div>
+                            <label for="eca-date-input" class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">Date & Venue</label>
+                            <input type="text" id="eca-date-input" placeholder="e.g. Oct 2026 • Campus Grounds" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3.5 py-2.5 text-xs sm:text-sm font-semibold text-slate-800 focus:bg-white focus:outline-none focus:ring-2 focus:ring-brand-900" required>
+                        </div>
+                    </div>
+
+                    <!-- Photos Attachment Section (Single & Multiple with Auto-Slideshow) -->
+                    <div class="bg-slate-50 border border-slate-200 rounded-2xl p-5 space-y-4">
+                        <div class="flex flex-wrap items-center justify-between gap-2 pb-2 border-b border-slate-200">
+                            <div>
+                                <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider">ECA Moment Photos & Slideshow Gallery *</label>
+                                <p class="text-[11px] text-slate-500">Attach 1 or multiple photos. If 2 or more photos are attached, an animated auto-slideshow will display in the ECA gallery.</p>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <span id="eca-photos-counter" class="text-[11px] font-bold text-slate-500 bg-white px-2.5 py-0.5 rounded-full border border-slate-200">
+                                    0 photos
+                                </span>
+                                <button type="button" id="eca-clear-photos-btn" onclick="clearEcaPhotosQueue()" class="hidden text-xs font-bold text-rose-600 hover:text-rose-700 flex items-center gap-1">
+                                    <i class="fas fa-trash-alt"></i> Clear All Photos
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Auto-slideshow feature highlight banner -->
+                        <div class="bg-amber-50/70 border border-amber-200/80 rounded-xl px-3.5 py-2.5 text-xs text-amber-900 flex items-start gap-2.5">
+                            <i class="fas fa-play-circle text-amber-600 mt-0.5 shrink-0 text-sm"></i>
+                            <div>
+                                <span class="font-bold">ECA Multi-Photo Slideshow:</span>
+                                <span> When you add multiple photos (e.g., tournament rounds, medal podium, sparring action), visitors on the homepage will see a smooth auto-sliding carousel (3.5s interval) with pause on hover, manual arrows, and lightbox integration.</span>
+                            </div>
+                        </div>
+
+                        <!-- Upload Options -->
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <!-- Local Device Picker (Batch / Many Photos) -->
+                            <div class="space-y-1.5">
+                                <label class="block text-xs font-bold text-slate-700">Option A: Select Many Photos from Computer / Phone</label>
+                                <label class="w-full cursor-pointer bg-white hover:bg-brand-50 border-2 border-dashed border-slate-300 hover:border-brand-500 rounded-xl px-4 py-3 text-center flex flex-col items-center justify-center transition group">
+                                    <i class="fas fa-images text-brand-900 text-xl group-hover:scale-110 transition-transform"></i>
+                                    <span class="text-xs font-bold text-slate-700 mt-1">Click to select multiple ECA photos (batch upload)</span>
+                                    <span class="text-[10px] text-slate-400">JPEG, PNG, WEBP</span>
+                                    <input type="file" id="eca-file-picker" multiple accept="image/*" class="hidden" onchange="handleEcaFilesUpload(event)">
+                                </label>
+                            </div>
+
+                            <!-- Direct URL Input -->
+                            <div class="space-y-1.5">
+                                <label class="block text-xs font-bold text-slate-700">Option B: Add Image by Web URL(s)</label>
+                                <div class="flex gap-2">
+                                    <input type="url" id="eca-url-input" placeholder="https://images.unsplash.com/... (paste URL)" class="flex-1 bg-white border border-slate-200 rounded-xl px-3.5 py-2 text-xs font-normal text-slate-800 focus:outline-none focus:ring-2 focus:ring-brand-900">
+                                    <button type="button" onclick="handleAddEcaPhotoUrl()" class="bg-brand-900 hover:bg-brand-800 text-white text-xs font-bold px-4 py-2 rounded-xl transition shrink-0 flex items-center gap-1.5">
+                                        <i class="fas fa-plus"></i> Add URL
+                                    </button>
+                                </div>
+                                <p class="text-[10px] text-slate-400">Paste direct image URL and click Add URL.</p>
+                            </div>
+                        </div>
+
+                        <!-- Live Photo Thumbnails Strip -->
+                        <div id="eca-thumbnails-grid" class="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-6 gap-3 pt-2">
+                            <!-- Populated dynamically -->
+                        </div>
+                    </div>
+
+                    <!-- Story / Caption -->
+                    <div>
+                        <label for="eca-caption-input" class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">Detailed Story / Reflection *</label>
+                        <textarea id="eca-caption-input" rows="3" placeholder="Describe the achievement, house scores, medal tallies, or student performances in full detail..." class="w-full bg-slate-50 border border-slate-200 rounded-xl p-4 text-xs sm:text-sm font-normal text-slate-800 focus:bg-white focus:outline-none focus:ring-2 focus:ring-brand-900" required></textarea>
+                    </div>
+
+                    <!-- Tags -->
+                    <div>
+                        <label for="eca-tags-input" class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">Hashtags (Comma separated)</label>
+                        <input type="text" id="eca-tags-input" placeholder="#Athletics, #Taekwondo, #Champions" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3.5 py-2.5 text-xs sm:text-sm font-semibold text-slate-800 focus:bg-white focus:outline-none focus:ring-2 focus:ring-brand-900">
+                    </div>
+
+                    <!-- Submit Button Strip -->
+                    <div class="flex flex-wrap items-center justify-end gap-3 pt-2 border-t border-slate-100">
+                        <button type="button" onclick="resetEcaForm()" class="bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-xs sm:text-sm py-2.5 px-5 rounded-xl transition">
+                            Clear Form
+                        </button>
+                        <button type="submit" id="eca-submit-btn" class="bg-brand-900 hover:bg-brand-800 text-white font-black text-xs sm:text-sm py-2.5 px-6 rounded-xl shadow-md transition flex items-center gap-2">
+                            <i class="fas fa-camera text-gold-400"></i>
+                            <span id="eca-submit-label">Publish ECA Moment</span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Published ECA Moments List -->
+            <div class="bg-white rounded-3xl border border-slate-200/90 shadow-sm p-6 sm:p-8 space-y-6">
+                <div class="flex flex-wrap items-center justify-between gap-4 pb-4 border-b border-slate-200">
+                    <div>
+                        <h3 class="text-xl font-black text-slate-900 font-heading">Currently Published ECA Moments (<span id="eca-total-badge">0</span>)</h3>
+                        <p class="text-xs text-slate-500">Live cards displayed on the public Beyond The Classroom gallery section.</p>
+                    </div>
+                    <a href="index.html#eca" target="_blank" class="text-xs font-bold text-brand-900 hover:text-brand-700 flex items-center gap-1.5">
+                        <span>View on Website</span>
+                        <i class="fas fa-external-link-alt text-[10px]"></i>
+                    </a>
+                </div>
+
+                <!-- ECA Moments Grid Container -->
+                <div id="admin-eca-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- Dynamic rendering -->
+                </div>
+            </div>
+
+        </section>
+
+        <!-- ======================================================== -->
+        <!-- TAB 3: EXAM ROUTINES & DOCUMENTS MANAGER                 -->
+        <!-- ======================================================== -->
+        <section id="tab-routines" class="space-y-8 hidden">
+            
+            <!-- Routine Add / Edit Card -->
+            <div class="bg-white rounded-3xl border border-slate-200/90 shadow-sm overflow-hidden">
+                <div class="bg-brand-950 text-white px-6 py-4 flex flex-wrap items-center justify-between gap-3">
+                    <div class="flex items-center space-x-3">
+                        <div class="w-9 h-9 rounded-xl bg-emerald-600 text-white flex items-center justify-center text-base font-bold">
+                            <i class="fas fa-calendar-check"></i>
+                        </div>
+                        <div>
+                            <h3 id="routine-form-title" class="text-base font-black font-heading leading-tight">Publish Official Examination Routine / Timetable</h3>
+                            <p class="text-xs text-slate-300">Upload terminal timetables, mock schedules, and room allocation documents.</p>
+                        </div>
+                    </div>
+                    <button type="button" id="routine-cancel-edit-btn" onclick="resetRoutineForm()" class="hidden bg-rose-500 hover:bg-rose-600 text-white text-xs font-bold py-1.5 px-3.5 rounded-xl transition flex items-center gap-1.5 shadow-xs">
+                        <i class="fas fa-times"></i> Cancel Edit Mode
+                    </button>
+                </div>
+
+                <form id="routine-admin-form" onsubmit="handleSaveRoutine(event)" class="p-6 sm:p-8 space-y-6">
+                    <input type="hidden" id="routine-edit-id" value="">
+
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-5">
+                        <!-- Routine Title -->
+                        <div class="sm:col-span-2">
+                            <label for="routine-title-input" class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">Exam Routine Title *</label>
+                            <input type="text" id="routine-title-input" placeholder="e.g. First Terminal Examination Schedule & Room Allocation (All Classes)" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3.5 py-2.5 text-xs sm:text-sm font-semibold text-slate-800 focus:bg-white focus:outline-none focus:ring-2 focus:ring-brand-900" required>
+                        </div>
+
+                        <!-- Examination Term -->
+                        <div>
+                            <label for="routine-term-input" class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">Exam Term *</label>
+                            <select id="routine-term-input" required class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3.5 py-2.5 text-xs sm:text-sm font-semibold text-slate-800 focus:bg-white focus:outline-none focus:ring-2 focus:ring-brand-900">
+                                <option value="First Term">First Terminal Evaluation</option>
+                                <option value="Second Term">Second Terminal Evaluation</option>
+                                <option value="SEE Pre-Board">SEE Pre-Board Mock Exam</option>
+                                <option value="Annual Final">Annual Final Examination</option>
+                                <option value="Unit Test">Monthly Unit Assessment</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                        <!-- Class Wing -->
+                        <div>
+                            <label for="routine-wing-input" class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">Applicable Grades / Wing *</label>
+                            <select id="routine-wing-input" required class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3.5 py-2.5 text-xs sm:text-sm font-semibold text-slate-800 focus:bg-white focus:outline-none focus:ring-2 focus:ring-brand-900">
+                                <option value="All Classes (I–X)">All Classes (Grade I to X)</option>
+                                <option value="Primary Wing (I–V)">Primary Wing (Grade I to V)</option>
+                                <option value="Secondary Wing (VI–X)">Secondary Wing (Grade VI to X)</option>
+                                <option value="SEE Batch (Class X)">SEE Batch Only (Class X)</option>
+                            </select>
+                        </div>
+
+                        <!-- Date String -->
+                        <div>
+                            <label for="routine-date-input" class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">Published Date / Academic Term</label>
+                            <input type="text" id="routine-date-input" placeholder="e.g. 2081/03/10 (Ashwin 2081)" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3.5 py-2.5 text-xs sm:text-sm font-semibold text-slate-800 focus:bg-white focus:outline-none focus:ring-2 focus:ring-brand-900" required>
+                        </div>
+                    </div>
+
+                    <!-- Attachment Upload / Link -->
+                    <div class="bg-slate-50 border border-slate-200 rounded-2xl p-5 space-y-4">
+                        <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider">Routine Document / Schedule File *</label>
+                        
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <!-- Local Upload -->
+                            <div class="space-y-1.5">
+                                <label class="block text-xs font-bold text-slate-600">Option A: Upload File (PDF, DOCX, XLSX, Image):</label>
+                                <input type="file" id="routine-file-picker" accept=".pdf,.docx,.xlsx,.xls,.png,.jpg,.jpeg" class="w-full text-xs text-slate-500 file:mr-4 file:py-2 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-bold file:bg-emerald-700 file:text-white hover:file:bg-emerald-800 cursor-pointer" onchange="handleRoutineFileUpload(event)">
+                                <p id="routine-file-info" class="text-[11px] text-emerald-700 font-bold hidden"></p>
+                            </div>
+
+                            <!-- Direct Document URL -->
+                            <div class="space-y-1.5">
+                                <label class="block text-xs font-bold text-slate-600">Option B: Document URL or Google Drive Link:</label>
+                                <input type="text" id="routine-url-input" placeholder="https://... or file path" class="w-full bg-white border border-slate-200 rounded-xl px-3.5 py-2 text-xs font-normal text-slate-800 focus:outline-none focus:ring-2 focus:ring-brand-900" oninput="handleRoutineUrlInput()">
+                                <input type="text" id="routine-filename-input" placeholder="Display File Name (e.g. First_Term_Routine.pdf)" class="w-full bg-white border border-slate-200 rounded-xl px-3.5 py-1.5 text-xs font-normal text-slate-800 mt-1 focus:outline-none focus:ring-2 focus:ring-brand-900">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Special Guidelines / Instructions -->
+                    <div>
+                        <label for="routine-instructions-input" class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">Examination Instructions & Venue Rules</label>
+                        <textarea id="routine-instructions-input" rows="2" placeholder="e.g. Reporting time is 8:45 AM. School ID and admit card compulsory. Electronic gadgets strictly prohibited." class="w-full bg-slate-50 border border-slate-200 rounded-xl p-4 text-xs sm:text-sm font-normal text-slate-800 focus:bg-white focus:outline-none focus:ring-2 focus:ring-brand-900"></textarea>
+                    </div>
+
+                    <!-- Submit Button Strip -->
+                    <div class="flex flex-wrap items-center justify-end gap-3 pt-2 border-t border-slate-100">
+                        <button type="button" onclick="resetRoutineForm()" class="bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-xs sm:text-sm py-2.5 px-5 rounded-xl transition">
+                            Clear Form
+                        </button>
+                        <button type="submit" id="routine-submit-btn" class="bg-brand-900 hover:bg-brand-800 text-white font-black text-xs sm:text-sm py-2.5 px-6 rounded-xl shadow-md transition flex items-center gap-2">
+                            <i class="fas fa-calendar-check text-gold-400"></i>
+                            <span id="routine-submit-label">Publish Exam Routine</span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Published Routines List -->
+            <div class="bg-white rounded-3xl border border-slate-200/90 shadow-sm p-6 sm:p-8 space-y-6">
+                <div class="flex flex-wrap items-center justify-between gap-4 pb-4 border-b border-slate-200">
+                    <div>
+                        <h3 class="text-xl font-black text-slate-900 font-heading">Published Examination Routines (<span id="routines-total-badge">0</span>)</h3>
+                        <p class="text-xs text-slate-500">Active timetables accessible by parents and students on the website and local repository.</p>
+                    </div>
+                    <a href="file-manager.html" target="_blank" class="text-xs font-bold text-brand-900 hover:text-brand-700 flex items-center gap-1.5">
+                        <span>Open in File Directory</span>
+                        <i class="fas fa-external-link-alt text-[10px]"></i>
+                    </a>
+                </div>
+
+                <!-- Routines Table / List Container -->
+                <div id="admin-routines-container" class="space-y-3">
+                    <!-- Dynamic rendering -->
+                </div>
+            </div>
+
+        </section>
+
+        <!-- ======================================================== -->
+        <!-- TAB 4: BACKUP & DATA SYNCHRONIZATION                     -->
+        <!-- ======================================================== -->
+        <section id="tab-backup" class="space-y-8 hidden">
+            
+            <div class="bg-white rounded-3xl border border-slate-200/90 shadow-sm p-6 sm:p-8 space-y-6">
+                <div class="max-w-2xl space-y-2">
+                    <h3 class="text-xl font-black text-slate-900 font-heading">Data Preservation, Backup & Restore</h3>
+                    <p class="text-xs sm:text-sm text-slate-500 leading-relaxed">
+                        Export your full database of Events, ECA photo moments, and Exam routines as a portable JSON file. You can download backups to your local drive or restore content on any school computer.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 pt-4">
+                    <!-- Export Box -->
+                    <div class="bg-slate-50 rounded-2xl p-6 border border-slate-200 space-y-4">
+                        <div class="w-12 h-12 rounded-2xl bg-brand-50 text-brand-900 flex items-center justify-center text-xl font-bold">
+                            <i class="fas fa-file-export"></i>
+                        </div>
+                        <h4 class="font-black text-base text-slate-900">Download Full School Data Backup</h4>
+                        <p class="text-xs text-slate-500 leading-relaxed">Generates a timestamped JSON file containing all events, ECA moments, and exam timetables.</p>
+                        <button onclick="handleExportDataBackup()" class="bg-brand-900 hover:bg-brand-800 text-white font-bold text-xs py-2.5 px-4 rounded-xl transition flex items-center gap-2 shadow-xs">
+                            <i class="fas fa-download text-gold-400"></i>
+                            <span>Export All Data (.json)</span>
+                        </button>
+                    </div>
+
+                    <!-- Import Box -->
+                    <div class="bg-slate-50 rounded-2xl p-6 border border-slate-200 space-y-4">
+                        <div class="w-12 h-12 rounded-2xl bg-emerald-50 text-emerald-700 flex items-center justify-center text-xl font-bold">
+                            <i class="fas fa-file-import"></i>
+                        </div>
+                        <h4 class="font-black text-base text-slate-900">Restore Data from JSON Backup</h4>
+                        <p class="text-xs text-slate-500 leading-relaxed">Upload a previously exported backup file to restore or synchronize content onto this workstation.</p>
+                        <label class="cursor-pointer inline-flex items-center gap-2 bg-emerald-700 hover:bg-emerald-800 text-white font-bold text-xs py-2.5 px-4 rounded-xl transition shadow-xs">
+                            <i class="fas fa-upload text-gold-400"></i>
+                            <span>Select Backup File</span>
+                            <input type="file" id="backup-file-input" accept=".json" class="hidden" onchange="handleImportDataBackup(event)">
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Danger Zone: Reset -->
+                <div class="pt-6 border-t border-slate-200 flex flex-wrap items-center justify-between gap-4">
+                    <div>
+                        <h5 class="text-sm font-bold text-slate-800">Clear School Content Cache</h5>
+                        <p class="text-xs text-slate-500">Need to reset ECA moments or exam routines back to a clean state?</p>
+                    </div>
+                    <button onclick="handleResetAllContent()" class="bg-rose-50 hover:bg-rose-100 text-rose-700 border border-rose-200 font-bold text-xs py-2 px-4 rounded-xl transition flex items-center gap-1.5">
+                        <i class="fas fa-exclamation-triangle text-rose-500"></i>
+                        <span>Reset All to Fresh State</span>
+                    </button>
+                </div>
+            </div>
+
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-white border-t border-slate-200 text-slate-500 text-xs py-6 mt-auto">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-wrap items-center justify-between gap-4">
+            <p>© 2026 Pegasus English School • Nayabasti, Gokarneshwor-6, Kathmandu • Administrative System</p>
+            <div class="flex items-center space-x-4">
+                <a href="index.html" class="hover:text-brand-900 font-bold">Public Site</a>
+                <span>•</span>
+                <a href="file-manager.html" class="hover:text-brand-900 font-bold">File Directory</a>
+                <span>•</span>
+                <a href="teacher.html" class="hover:text-brand-900 font-bold">Teacher Panel</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Toast Notification Element -->
+    <div id="admin-toast" class="fixed bottom-6 right-6 z-50 bg-brand-950 text-white text-xs font-bold px-4 py-3 rounded-2xl shadow-2xl border border-gold-500/40 flex items-center space-x-2.5 transition-all duration-300 opacity-0 translate-y-4 pointer-events-none">
+        <i id="admin-toast-icon" class="fas fa-check-circle text-gold-400 text-sm"></i>
+        <span id="admin-toast-msg">Operation completed successfully.</span>
+    </div>
+
+    <!-- Core Indexed Database & Unified Toast System -->
+    <script src="js/core/pegasus-db.js"></script>
+    <script src="js/components/pegasus-toast.js"></script>
+
+    <!-- Admin Logic JavaScript -->
+    <script>
+        // Default initial campus events with multi-photo slideshow support
+        const DEFAULT_EVENT_POSTS = [
+            {
+                id: 101,
+                author: "Pegasus English School",
+                verified: true,
+                category: "Martial Arts",
+                date: "Yesterday at 2:30 PM",
+                timestamp: Date.now() - 86400000,
+                content: "🥋 Congratulations to all our primary and secondary scholars who successfully cleared their National Taekwondo Belt Promotion Examinations today! Under the rigorous testing of our Chief Master, students demonstrated poise, forms accuracy, and sparring discipline.\n\nWell done, champions! Keep the Pegasus spirit flying high.",
+                images: [
+                    "https://images.unsplash.com/photo-1555597673-b21d5c935865?auto=format&fit=crop&w=1200&q=80",
+                    "https://images.unsplash.com/photo-1517649763962-0c623266ddc0?auto=format&fit=crop&w=1200&q=80"
+                ]
+            },
+            {
+                id: 102,
+                author: "Pegasus English School",
+                verified: true,
+                category: "Academic Notice",
+                date: "Oct 14 at 10:00 AM",
+                timestamp: Date.now() - 172800000,
+                content: "📋 Official Circular: First Terminal Evaluation Timetables Dispatched\n\nRespected Parents & Guardians,\nThe First Terminal Assessment schedules for Class I to X have been published. Formative continuous assessment rubrics apply for Primary grades (I–V), and formal 100-mark CDC framework routines for Secondary grades (VI–X).\n\nPlease check homework diaries or download the digital syllabus copy directly from our Local Resource Center.",
+                images: [
+                    "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?auto=format&fit=crop&w=1200&q=80"
+                ]
+            },
+            {
+                id: 103,
+                author: "Pegasus English School",
+                verified: true,
+                category: "Sports & Athletics",
+                date: "Oct 10 at 4:15 PM",
+                timestamp: Date.now() - 345600000,
+                content: "🏆 Annual Inter-House Athletics & 100m Sprint Championship Highlights!\n\nImmense vigor and house loyalty on display today across the campus sprint track and relay lines. Blue House and Green House are tied at the top of the house trophy board. Thank you to all our physical education coaches and student referees!",
+                images: [
+                    "https://images.unsplash.com/photo-1461896836934-ffe607ba8211?auto=format&fit=crop&w=1200&q=80",
+                    "https://images.unsplash.com/photo-1517649763962-0c623266ddc0?auto=format&fit=crop&w=1200&q=80",
+                    "https://images.unsplash.com/photo-1526676037777-05a232554f77?auto=format&fit=crop&w=1200&q=80",
+                    "https://images.unsplash.com/photo-1574629810360-7efbbe195018?auto=format&fit=crop&w=1200&q=80"
+                ]
+            }
+        ];
+
+        // State variables
+        let eventsFeed = [];
+        let ecaMoments = [];
+        let examRoutines = [];
+        let attachedEventPhotos = [];
+        let attachedEcaPhotos = [];
+        let currentEcaUploadedPhoto = '';
+        let currentRoutineAttachedFile = null;
+
+        // ==========================================
+        // AUTHENTICATION & SECURITY GATE (ID & PW)
+        // ==========================================
+        function checkAuthentication() {
+            const currentUser = (window.Triyog && window.Triyog.Store) ? window.Triyog.Store.getCurrentUser() : null;
+            const hasAdminSession = currentUser && (currentUser.role === 'admin' || currentUser.username === 'admin');
+            const isAuth = sessionStorage.getItem('pegasus_admin_auth') === 'true' || 
+                           localStorage.getItem('pegasus_admin_remember') === 'true' ||
+                           hasAdminSession;
+            const modal = document.getElementById('auth-gate-modal');
+            if (!isAuth) {
+                if (modal) modal.classList.remove('hidden');
+                document.body.style.overflow = 'hidden';
+            } else {
+                if (modal) modal.classList.add('hidden');
+                document.body.style.overflow = '';
+            }
+        }
+
+        async function handleAuthSubmit(e) {
+            e.preventDefault();
+            const idInput = document.getElementById('admin-id-input');
+            const pwInput = document.getElementById('admin-pw-input');
+            const rememberCheck = document.getElementById('remember-auth-checkbox');
+            const errEl = document.getElementById('admin-auth-error');
+            const errText = document.getElementById('admin-auth-error-text');
+
+            const username = idInput ? idInput.value.trim() : 'admin';
+            const password = pwInput ? pwInput.value.trim() : '';
+
+            if (!username || !password) return;
+
+            // Attempt backend authentication
+            try {
+                const response = await fetch('/api/auth/login', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ username, password, role: 'admin' })
+                });
+                if (response.ok) {
+                    const data = await response.json();
+                    sessionStorage.setItem('pegasus_admin_auth', 'true');
+                    if (data.token) sessionStorage.setItem('triyog_auth_token', data.token);
+                    if (rememberCheck && rememberCheck.checked) {
+                        localStorage.setItem('pegasus_admin_remember', 'true');
+                    }
+                    const modal = document.getElementById('auth-gate-modal');
+                    if (modal) modal.classList.add('hidden');
+                    if (errEl) errEl.classList.add('hidden');
+                    document.body.style.overflow = '';
+                    showToast('Welcome to Pegasus Central Administration Portal', 'success');
+                    return;
+                }
+            } catch (netErr) {
+                // Offline fallback mode for file:// or server offline
+            }
+
+            // Fallback for offline disk preview or mock mode: check default admin credentials
+            const isValidFallback = (username.toLowerCase() === 'admin' && (password === 'admin' || password === '1999'));
+            if (isValidFallback) {
+                sessionStorage.setItem('pegasus_admin_auth', 'true');
+                if (rememberCheck && rememberCheck.checked) {
+                    localStorage.setItem('pegasus_admin_remember', 'true');
+                }
+                const modal = document.getElementById('auth-gate-modal');
+                if (modal) modal.classList.add('hidden');
+                if (errEl) errEl.classList.add('hidden');
+                document.body.style.overflow = '';
+                showToast('Welcome to Pegasus Central Administration Portal', 'success');
+                return;
+            }
+
+            // Check against local session store if available
+            const currentUser = (window.Triyog && window.Triyog.Store) ? window.Triyog.Store.getCurrentUser() : null;
+            if (currentUser && (currentUser.role === 'admin' || currentUser.username === 'admin')) {
+                sessionStorage.setItem('pegasus_admin_auth', 'true');
+                const modal = document.getElementById('auth-gate-modal');
+                if (modal) modal.classList.add('hidden');
+                if (errEl) errEl.classList.add('hidden');
+                document.body.style.overflow = '';
+                showToast('Welcome to Pegasus Central Administration Portal', 'success');
+                return;
+            }
+
+            if (errEl) {
+                errEl.classList.remove('hidden');
+                errText.textContent = 'Invalid Administrator ID or Password. Default access is ID: admin, Password: admin';
+            }
+            showToast('Authentication failed. Check credentials.', 'error');
+            if (pwInput) {
+                pwInput.value = '';
+                pwInput.focus();
+            }
+        }
+
+        function handleLogout() {
+            if (confirm('Lock Admin Portal session?')) {
+                sessionStorage.removeItem('pegasus_admin_auth');
+                localStorage.removeItem('pegasus_admin_remember');
+                checkAuthentication();
+                showToast('Admin Portal session locked.', 'info');
+            }
+        }
+
+        function toggleAdminPasswordVisibility() {
+            const input = document.getElementById('admin-pw-input');
+            const icon = document.getElementById('admin-pw-eye');
+            if (input && icon) {
+                if (input.type === 'password') {
+                    input.type = 'text';
+                    icon.className = 'far fa-eye-slash';
+                } else {
+                    input.type = 'password';
+                    icon.className = 'far fa-eye';
+                }
+            }
+        }
+
+        // ==========================================
+        // TAB SWITCHING
+        // ==========================================
+        function switchAdminTab(tabId) {
+            const tabs = ['tab-events', 'tab-eca', 'tab-routines', 'tab-backup'];
+            tabs.forEach(t => {
+                const pane = document.getElementById(t);
+                const btn = document.getElementById(`btn-${t}`);
+                if (t === tabId) {
+                    if (pane) pane.classList.remove('hidden');
+                    if (btn) {
+                        btn.className = 'active-tab-btn flex-1 min-w-[140px] flex items-center justify-center gap-2 py-3 px-4 rounded-xl font-bold text-xs sm:text-sm border transition';
+                    }
+                } else {
+                    if (pane) pane.classList.add('hidden');
+                    if (btn) {
+                        btn.className = 'flex-1 min-w-[140px] flex items-center justify-center gap-2 py-3 px-4 rounded-xl font-bold text-xs sm:text-sm border border-transparent text-slate-600 hover:text-slate-900 hover:bg-slate-50 transition';
+                    }
+                }
+            });
+            window.location.hash = tabId.replace('tab-', '');
+        }
+
+        // ==========================================
+        // DATA LOAD & REFRESH
+        // ==========================================
+        function loadAllData() {
+            // 1. Events Feed
+            try {
+                const savedEvents = localStorage.getItem('pegasus_events_feed');
+                if (savedEvents) {
+                    const parsed = JSON.parse(savedEvents);
+                    if (Array.isArray(parsed) && parsed.length > 0) {
+                        eventsFeed = parsed;
+                    } else {
+                        eventsFeed = [...DEFAULT_EVENT_POSTS];
+                    }
+                } else {
+                    eventsFeed = [...DEFAULT_EVENT_POSTS];
+                    saveEventsFeed();
+                }
+            } catch(e) {
+                eventsFeed = [...DEFAULT_EVENT_POSTS];
+            }
+
+            // 2. ECA Moments (Clean initial state as requested)
+            try {
+                const savedEca = localStorage.getItem('pegasus_eca_moments');
+                if (savedEca) {
+                    ecaMoments = JSON.parse(savedEca);
+                } else {
+                    ecaMoments = [];
+                }
+            } catch(e) {
+                ecaMoments = [];
+            }
+
+            // 3. Exam Routines (Clean initial state as requested)
+            try {
+                const savedRoutines = localStorage.getItem('pegasus_exam_routines');
+                if (savedRoutines) {
+                    examRoutines = JSON.parse(savedRoutines);
+                } else {
+                    examRoutines = [];
+                }
+            } catch(e) {
+                examRoutines = [];
+            }
+
+            updateMetrics();
+            renderAdminEventsList();
+            renderAdminEcaGrid();
+            renderAdminRoutinesList();
+        }
+
+        function updateMetrics() {
+            const evEl = document.getElementById('metric-events-count');
+            const ecaEl = document.getElementById('metric-eca-count');
+            const routEl = document.getElementById('metric-routines-count');
+
+            if (evEl) evEl.textContent = eventsFeed.length;
+            if (ecaEl) ecaEl.textContent = ecaMoments.length;
+            if (routEl) routEl.textContent = examRoutines.length;
+
+            const evBadge = document.getElementById('events-total-badge');
+            const ecaBadge = document.getElementById('eca-total-badge');
+            const routBadge = document.getElementById('routines-total-badge');
+
+            if (evBadge) evBadge.textContent = eventsFeed.length;
+            if (ecaBadge) ecaBadge.textContent = ecaMoments.length;
+            if (routBadge) routBadge.textContent = examRoutines.length;
+        }
+
+        // ==========================================
+        // TAB 1: CAMPUS EVENTS FEED LOGIC
+        // ==========================================
+        function setEventCurrentDate() {
+            const now = new Date();
+            const dateStr = now.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+            const timeStr = now.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit', hour12: true });
+            document.getElementById('event-date-input').value = `Today at ${timeStr} (${dateStr})`;
+        }
+
+        function handleEventFilesUpload(e) {
+            const files = Array.from(e.target.files || []);
+            if (!files.length) return;
+
+            let loaded = 0;
+            files.forEach(file => {
+                const reader = new FileReader();
+                reader.onload = function(evt) {
+                    attachedEventPhotos.push(evt.target.result);
+                    loaded++;
+                    if (loaded === files.length) {
+                        renderEventThumbnails();
+                        e.target.value = '';
+                    }
+                };
+                reader.readAsDataURL(file);
+            });
+        }
+
+        function handleAddEventPhotoUrl() {
+            const urlInput = document.getElementById('event-url-picker');
+            const raw = urlInput.value.trim();
+            if (!raw) return;
+
+            // Support comma, space, or newline-separated URLs for fast multi-photo additions
+            const urls = raw.split(/[\n,\s]+/)
+                .map(u => u.trim())
+                .filter(u => u.startsWith('http://') || u.startsWith('https://') || u.startsWith('data:image/'));
+
+            if (urls.length > 0) {
+                attachedEventPhotos.push(...urls);
+                urlInput.value = '';
+                renderEventThumbnails();
+                showToast(`Added ${urls.length} photo(s) to attachment list!`, 'success');
+            } else {
+                alert('Please enter valid image URL(s) starting with http:// or https://');
+            }
+        }
+
+        function insertSampleEventPhotos() {
+            const samples = [
+                "https://images.unsplash.com/photo-1577896851231-70ef18881754?auto=format&fit=crop&w=1200&q=80",
+                "https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=1200&q=80",
+                "https://images.unsplash.com/photo-1427504494785-3a9ca7044f45?auto=format&fit=crop&w=1200&q=80"
+            ];
+            attachedEventPhotos.push(...samples);
+            renderEventThumbnails();
+            showToast('3 High-Res sample photos added! Auto-slideshow ready.', 'success');
+        }
+
+        function moveEventPhoto(idx, delta) {
+            const newIdx = idx + delta;
+            if (newIdx < 0 || newIdx >= attachedEventPhotos.length) return;
+            const temp = attachedEventPhotos[idx];
+            attachedEventPhotos[idx] = attachedEventPhotos[newIdx];
+            attachedEventPhotos[newIdx] = temp;
+            renderEventThumbnails();
+        }
+
+        function removeEventPhoto(idx) {
+            if (idx >= 0 && idx < attachedEventPhotos.length) {
+                attachedEventPhotos.splice(idx, 1);
+                renderEventThumbnails();
+            }
+        }
+
+        function clearEventPhotosQueue() {
+            attachedEventPhotos = [];
+            renderEventThumbnails();
+        }
+
+        function renderEventThumbnails() {
+            const grid = document.getElementById('event-thumbnails-grid');
+            const counter = document.getElementById('event-photos-counter');
+            const clearBtn = document.getElementById('event-clear-photos-btn');
+
+            if (counter) {
+                if (attachedEventPhotos.length === 0) {
+                    counter.textContent = '0 photos';
+                    counter.className = 'text-[11px] font-bold text-slate-500 bg-white px-2.5 py-0.5 rounded-full border border-slate-200';
+                } else if (attachedEventPhotos.length === 1) {
+                    counter.textContent = '1 photo attached (Single Display)';
+                    counter.className = 'text-[11px] font-bold text-sky-700 bg-sky-50 px-2.5 py-0.5 rounded-full border border-sky-200';
+                } else {
+                    counter.textContent = `${attachedEventPhotos.length} photos attached (Auto-Slideshow Active)`;
+                    counter.className = 'text-[11px] font-bold text-amber-800 bg-amber-100 px-2.5 py-0.5 rounded-full border border-amber-300';
+                }
+            }
+
+            if (clearBtn) {
+                if (attachedEventPhotos.length > 0) clearBtn.classList.remove('hidden');
+                else clearBtn.classList.add('hidden');
+            }
+
+            if (!grid) return;
+
+            if (attachedEventPhotos.length === 0) {
+                grid.innerHTML = '';
+                return;
+            }
+
+            grid.innerHTML = attachedEventPhotos.map((src, i) => `
+                <div class="relative aspect-square rounded-xl overflow-hidden border-2 ${i === 0 ? 'border-amber-400 ring-2 ring-amber-300/40' : 'border-slate-300'} bg-slate-900 shadow-xs thumbnail-card group">
+                    <img src="${src}" alt="Thumb ${i + 1}" loading="lazy" decoding="async" class="w-full h-full object-cover">
+                    
+                    <!-- Delete Button -->
+                    <button type="button" onclick="removeEventPhoto(${i})" class="remove-photo-btn absolute top-1.5 right-1.5 w-6 h-6 rounded-full bg-slate-950/80 hover:bg-rose-600 text-white flex items-center justify-center text-xs transition shadow-md" title="Remove photo">
+                        <i class="fas fa-times"></i>
+                    </button>
+                    
+                    <!-- Reorder Buttons -->
+                    <div class="absolute top-1.5 left-1.5 flex gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
+                        ${i > 0 ? `
+                            <button type="button" onclick="moveEventPhoto(${i}, -1)" class="w-5 h-5 rounded-md bg-slate-950/80 hover:bg-brand-900 text-white flex items-center justify-center text-[10px] transition" title="Move Left">
+                                <i class="fas fa-chevron-left"></i>
+                            </button>
+                        ` : ''}
+                        ${i < attachedEventPhotos.length - 1 ? `
+                            <button type="button" onclick="moveEventPhoto(${i}, 1)" class="w-5 h-5 rounded-md bg-slate-950/80 hover:bg-brand-900 text-white flex items-center justify-center text-[10px] transition" title="Move Right">
+                                <i class="fas fa-chevron-right"></i>
+                            </button>
+                        ` : ''}
+                    </div>
+
+                    <!-- Slide Number & Cover Tag -->
+                    <span class="absolute bottom-1.5 left-1.5 bg-black/80 backdrop-blur-xs text-white text-[10px] font-bold px-1.5 py-0.5 rounded-md flex items-center gap-1">
+                        ${i === 0 ? '<i class="fas fa-star text-amber-400 text-[9px]"></i> Cover' : `#${i + 1}`}
+                    </span>
+                </div>
+            `).join('');
+        }
+
+        function handleSaveEvent(e) {
+            e.preventDefault();
+            const editId = document.getElementById('event-edit-id').value;
+            const category = document.getElementById('event-category-input').value;
+            const author = document.getElementById('event-author-input').value.trim() || 'Pegasus English School';
+            const dateStr = document.getElementById('event-date-input').value.trim() || 'Today';
+            const content = document.getElementById('event-content-input').value.trim();
+
+            if (!content) {
+                alert('Please enter announcement content.');
+                return;
+            }
+
+            if (editId) {
+                // UPDATE existing event
+                const item = eventsFeed.find(x => String(x.id) === String(editId));
+                if (item) {
+                    item.category = category;
+                    item.author = author;
+                    item.date = dateStr;
+                    item.content = content;
+                    item.images = [...attachedEventPhotos];
+                    item.image = attachedEventPhotos.length > 0 ? attachedEventPhotos[0] : null;
+                    showToast('Campus Event updated successfully!', 'success');
+                } else {
+                    showToast('Error: Event not found for updating.', 'error');
+                }
+            } else {
+                // CREATE new event
+                const newEvent = {
+                    id: Date.now(),
+                    author: author,
+                    verified: true,
+                    category: category,
+                    date: dateStr,
+                    timestamp: Date.now(),
+                    content: content,
+                    images: [...attachedEventPhotos],
+                    image: attachedEventPhotos.length > 0 ? attachedEventPhotos[0] : null,
+                    likes: 0,
+                    liked: false,
+                    comments: []
+                };
+                eventsFeed.unshift(newEvent);
+                showToast('New Campus Event published to public feed!', 'success');
+            }
+
+            saveEventsFeed();
+            resetEventForm();
+            renderAdminEventsList();
+            updateMetrics();
+        }
+
+        function saveEventsFeed() {
+            try {
+                localStorage.setItem('pegasus_events_feed', JSON.stringify(eventsFeed));
+            } catch(e) {
+                console.error('Error saving events feed:', e);
+            }
+        }
+
+        function editEventPost(id) {
+            switchTab('tab-events');
+            const post = eventsFeed.find(x => String(x.id) === String(id));
+            if (!post) {
+                showToast('Could not find event announcement to edit.', 'error');
+                return;
+            }
+
+            document.getElementById('event-edit-id').value = post.id;
+            document.getElementById('event-category-input').value = post.category || 'Martial Arts';
+            document.getElementById('event-author-input').value = post.author || 'Pegasus English School';
+            document.getElementById('event-date-input').value = post.date || 'Today';
+            document.getElementById('event-content-input').value = post.content || '';
+
+            attachedEventPhotos = Array.isArray(post.images) && post.images.length > 0 
+                ? [...post.images] 
+                : (post.image ? [post.image] : []);
+            renderEventThumbnails();
+
+            document.getElementById('events-form-title').textContent = `Editing Campus Event #${post.id}`;
+            document.getElementById('event-submit-label').textContent = 'Save Changes to Event';
+            document.getElementById('events-cancel-edit-btn').classList.remove('hidden');
+
+            const formCard = document.getElementById('event-admin-form');
+            if (formCard) {
+                formCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }
+            setTimeout(() => {
+                const contentInput = document.getElementById('event-content-input');
+                if (contentInput) contentInput.focus();
+            }, 300);
+        }
+
+        function deleteEventPost(id) {
+            if (confirm('Are you sure you want to delete this event announcement from the live feed?')) {
+                eventsFeed = eventsFeed.filter(x => String(x.id) !== String(id));
+                saveEventsFeed();
+                renderAdminEventsList();
+                updateMetrics();
+                showToast('Event removed from campus feed.', 'info');
+            }
+        }
+
+        function resetEventForm() {
+            document.getElementById('event-edit-id').value = '';
+            document.getElementById('event-content-input').value = '';
+            document.getElementById('event-category-input').value = 'Martial Arts';
+            document.getElementById('event-author-input').value = 'Pegasus English School';
+            setEventCurrentDate();
+            attachedEventPhotos = [];
+            renderEventThumbnails();
+
+            document.getElementById('events-form-title').textContent = 'Create New Campus Announcement / Event';
+            document.getElementById('event-submit-label').textContent = 'Publish Event to Public Feed';
+            document.getElementById('events-cancel-edit-btn').classList.add('hidden');
+        }
+
+        function renderAdminEventsList() {
+            const container = document.getElementById('admin-events-stream');
+            if (!container) return;
+
+            const filter = document.getElementById('events-list-filter') ? document.getElementById('events-list-filter').value : 'All';
+            const filtered = filter === 'All' ? eventsFeed : eventsFeed.filter(x => x.category === filter);
+
+            if (filtered.length === 0) {
+                container.innerHTML = `
+                    <div class="py-12 text-center bg-slate-50 border border-dashed border-slate-200 rounded-2xl p-6 space-y-2">
+                        <i class="fas fa-bullhorn text-3xl text-slate-300"></i>
+                        <h4 class="font-bold text-slate-700 text-sm">No Events in this Category</h4>
+                        <p class="text-xs text-slate-400">Compose and publish an announcement using the form above.</p>
+                    </div>
+                `;
+                return;
+            }
+
+            container.innerHTML = filtered.map(post => {
+                const photos = Array.isArray(post.images) ? post.images : (post.image ? [post.image] : []);
+                return `
+                    <div class="bg-slate-50 hover:bg-white rounded-2xl border border-slate-200 p-5 space-y-4 transition shadow-2xs">
+                        <div class="flex flex-wrap items-start justify-between gap-3">
+                            <div class="space-y-1">
+                                <div class="flex items-center gap-2 flex-wrap">
+                                    <span class="bg-brand-900 text-white text-[11px] font-extrabold px-2.5 py-0.5 rounded-full">${escapeHTML(post.category)}</span>
+                                    <h4 class="font-extrabold text-sm text-slate-900">${escapeHTML(post.author)}</h4>
+                                    <span class="text-xs text-slate-400">• ${escapeHTML(post.date)}</span>
+                                </div>
+                                <p class="text-xs text-slate-700 line-clamp-2 leading-relaxed mt-1">${escapeHTML(post.content)}</p>
+                            </div>
+                            
+                            <!-- Action Buttons -->
+                            <div class="flex items-center space-x-2 shrink-0">
+                                <button type="button" onclick="editEventPost('${post.id}')" class="bg-brand-50 hover:bg-brand-100 text-brand-900 text-xs font-bold px-3 py-1.5 rounded-xl transition flex items-center gap-1 border border-brand-200">
+                                    <i class="fas fa-edit"></i> Edit
+                                </button>
+                                <button type="button" onclick="deleteEventPost('${post.id}')" class="bg-rose-50 hover:bg-rose-100 text-rose-600 text-xs font-bold px-3 py-1.5 rounded-xl transition flex items-center gap-1 border border-rose-200">
+                                    <i class="fas fa-trash-alt"></i> Delete
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Photos Preview Row -->
+                        ${photos.length > 0 ? `
+                            <div class="flex items-center gap-2 overflow-x-auto pb-1 pt-1">
+                                ${photos.map((src, idx) => `
+                                    <div class="w-16 h-16 rounded-xl overflow-hidden bg-slate-900 shrink-0 border border-slate-200 shadow-2xs">
+                                        <img src="${src}" alt="Attachment" loading="lazy" decoding="async" class="w-full h-full object-cover">
+                                    </div>
+                                `).join('')}
+                                <span class="text-[11px] text-slate-500 font-bold pl-2">${photos.length} photo${photos.length > 1 ? 's' : ''}</span>
+                                ${photos.length > 1 ? `
+                                    <span class="inline-flex items-center gap-1 bg-amber-100 text-amber-900 text-[10px] font-black px-2.5 py-0.5 rounded-full border border-amber-300 ml-1 shadow-2xs">
+                                        <i class="fas fa-play-circle text-amber-600"></i> Auto-Slideshow Active (3.5s)
+                                    </span>
+                                ` : ''}
+                            </div>
+                        ` : '<p class="text-[11px] text-slate-400 italic">No photos attached</p>'}
+
+                        <!-- Meta Info -->
+                        <div class="flex items-center justify-between text-[11px] text-slate-500 pt-2 border-t border-slate-200/80">
+                            <span class="flex items-center gap-1.5 text-emerald-700 font-semibold">
+                                <i class="fas fa-check-circle text-emerald-500"></i> Active Public Notice
+                            </span>
+                            <span class="text-slate-400">Post ID: #${post.id}</span>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        // ==========================================
+        // TAB 2: ECA PHOTO MOMENTS LOGIC
+        // ==========================================
+        function handleEcaCategoryChange() {
+            const cat = document.getElementById('eca-category-input').value;
+            const badgeInput = document.getElementById('eca-badge-input');
+            const labels = {
+                'sports': 'Athletics & Sports',
+                'martial-arts': 'Taekwondo & Martial Arts',
+                'art': 'Visual Art & Craft',
+                'music': 'Cultural Dance & Music',
+                'debate': 'Debate & Public Speaking',
+                'stem': 'STEM & Science Expo'
+            };
+            if (badgeInput && labels[cat]) {
+                badgeInput.value = labels[cat];
+            }
+        }
+
+        function handleEcaFilesUpload(e) {
+            const files = Array.from(e.target.files || []);
+            if (!files.length) return;
+
+            let loaded = 0;
+            files.forEach(file => {
+                const reader = new FileReader();
+                reader.onload = function(evt) {
+                    attachedEcaPhotos.push(evt.target.result);
+                    loaded++;
+                    if (loaded === files.length) {
+                        renderEcaThumbnails();
+                        e.target.value = '';
+                        showToast(`Uploaded ${files.length} photo(s) to ECA gallery!`, 'success');
+                    }
+                };
+                reader.readAsDataURL(file);
+            });
+        }
+
+        function handleAddEcaPhotoUrl() {
+            const urlInput = document.getElementById('eca-url-input');
+            if (!urlInput) return;
+            const raw = urlInput.value.trim();
+            if (!raw) return;
+
+            const urls = raw.split(/[\s,]+/)
+                .map(u => u.trim())
+                .filter(u => u.startsWith('http://') || u.startsWith('https://') || u.startsWith('data:image/'));
+
+            if (urls.length > 0) {
+                attachedEcaPhotos.push(...urls);
+                urlInput.value = '';
+                renderEcaThumbnails();
+                showToast(`Added ${urls.length} photo(s) to ECA gallery!`, 'success');
+            } else {
+                alert('Please enter valid image URL(s) starting with http:// or https://');
+            }
+        }
+
+        function removeEcaPhoto(idx) {
+            if (idx >= 0 && idx < attachedEcaPhotos.length) {
+                attachedEcaPhotos.splice(idx, 1);
+                renderEcaThumbnails();
+            }
+        }
+
+        function moveEcaPhoto(idx, delta) {
+            const newIdx = idx + delta;
+            if (newIdx < 0 || newIdx >= attachedEcaPhotos.length) return;
+            const temp = attachedEcaPhotos[idx];
+            attachedEcaPhotos[idx] = attachedEcaPhotos[newIdx];
+            attachedEcaPhotos[newIdx] = temp;
+            renderEcaThumbnails();
+        }
+
+        function clearEcaPhotosQueue() {
+            attachedEcaPhotos = [];
+            renderEcaThumbnails();
+        }
+
+        function renderEcaThumbnails() {
+            const grid = document.getElementById('eca-thumbnails-grid');
+            const counter = document.getElementById('eca-photos-counter');
+            const clearBtn = document.getElementById('eca-clear-photos-btn');
+
+            if (counter) {
+                if (attachedEcaPhotos.length === 0) {
+                    counter.textContent = '0 photos';
+                    counter.className = 'text-[11px] font-bold text-slate-500 bg-white px-2.5 py-0.5 rounded-full border border-slate-200';
+                } else if (attachedEcaPhotos.length === 1) {
+                    counter.textContent = '1 photo attached (Single Display)';
+                    counter.className = 'text-[11px] font-bold text-sky-700 bg-sky-50 px-2.5 py-0.5 rounded-full border border-sky-200';
+                } else {
+                    counter.textContent = `${attachedEcaPhotos.length} photos attached (Auto-Slideshow Active)`;
+                    counter.className = 'text-[11px] font-bold text-amber-800 bg-amber-100 px-2.5 py-0.5 rounded-full border border-amber-300';
+                }
+            }
+
+            if (clearBtn) {
+                if (attachedEcaPhotos.length > 0) clearBtn.classList.remove('hidden');
+                else clearBtn.classList.add('hidden');
+            }
+
+            if (!grid) return;
+
+            if (attachedEcaPhotos.length === 0) {
+                grid.innerHTML = '';
+                return;
+            }
+
+            grid.innerHTML = attachedEcaPhotos.map((src, i) => `
+                <div class="relative aspect-square rounded-xl overflow-hidden border-2 ${i === 0 ? 'border-amber-400 ring-2 ring-amber-300/40' : 'border-slate-300'} bg-slate-900 shadow-xs thumbnail-card group">
+                    <img src="${src}" alt="Thumb ${i + 1}" loading="lazy" decoding="async" class="w-full h-full object-cover">
+                    
+                    <!-- Delete Button -->
+                    <button type="button" onclick="removeEcaPhoto(${i})" class="remove-photo-btn absolute top-1.5 right-1.5 w-6 h-6 rounded-full bg-slate-950/80 hover:bg-rose-600 text-white flex items-center justify-center text-xs transition shadow-md" title="Remove photo">
+                        <i class="fas fa-times"></i>
+                    </button>
+                    
+                    <!-- Reorder Buttons -->
+                    <div class="absolute top-1.5 left-1.5 flex gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
+                        ${i > 0 ? `
+                            <button type="button" onclick="moveEcaPhoto(${i}, -1)" class="w-5 h-5 rounded-md bg-slate-950/80 hover:bg-brand-900 text-white flex items-center justify-center text-[10px] transition" title="Move Left">
+                                <i class="fas fa-chevron-left"></i>
+                            </button>
+                        ` : ''}
+                        ${i < attachedEcaPhotos.length - 1 ? `
+                            <button type="button" onclick="moveEcaPhoto(${i}, 1)" class="w-5 h-5 rounded-md bg-slate-950/80 hover:bg-brand-900 text-white flex items-center justify-center text-[10px] transition" title="Move Right">
+                                <i class="fas fa-chevron-right"></i>
+                            </button>
+                        ` : ''}
+                    </div>
+
+                    <!-- Slide Number & Cover Tag -->
+                    <span class="absolute bottom-1.5 left-1.5 bg-black/80 backdrop-blur-xs text-white text-[10px] font-bold px-1.5 py-0.5 rounded-md flex items-center gap-1">
+                        ${i === 0 ? '<i class="fas fa-star text-amber-400 text-[9px]"></i> Cover' : `#${i + 1}`}
+                    </span>
+                </div>
+            `).join('');
+        }
+
+        function handleSaveEcaMoment(e) {
+            e.preventDefault();
+            const editId = document.getElementById('eca-edit-id').value;
+            const title = document.getElementById('eca-title-input').value.trim();
+            const category = document.getElementById('eca-category-input').value;
+            const badgeLabel = document.getElementById('eca-badge-input').value.trim() || 'ECA Moment';
+            const wing = document.getElementById('eca-wing-input').value.trim() || 'Classes I to X';
+            const dateStr = document.getElementById('eca-date-input').value.trim() || 'Recent Term';
+            const caption = document.getElementById('eca-caption-input').value.trim();
+            const rawTags = document.getElementById('eca-tags-input').value.trim();
+
+            if (attachedEcaPhotos.length === 0) {
+                alert('Please attach at least one photo or image URL for this ECA moment.');
+                return;
+            }
+
+            const tagsArray = rawTags ? rawTags.split(',').map(t => t.trim().startsWith('#') ? t.trim() : '#' + t.trim()).filter(Boolean) : ['#PegasusECA'];
+
+            const badgeStyles = {
+                'sports': 'bg-emerald-600/90 text-white',
+                'martial-arts': 'bg-amber-600/90 text-white',
+                'art': 'bg-pink-600/90 text-white',
+                'music': 'bg-brand-700/90 text-white',
+                'debate': 'bg-sky-600/90 text-white',
+                'stem': 'bg-brand-900/90 text-white'
+            };
+
+            if (editId) {
+                // UPDATE
+                const idNum = parseInt(editId);
+                const item = ecaMoments.find(x => x.id === idNum);
+                if (item) {
+                    item.title = title;
+                    item.category = category;
+                    item.categoryLabel = badgeLabel;
+                    item.badgeClass = badgeStyles[category] || 'bg-brand-900/90 text-white';
+                    item.wing = wing;
+                    item.date = dateStr;
+                    item.image = attachedEcaPhotos[0];
+                    item.images = [...attachedEcaPhotos];
+                    item.caption = caption;
+                    item.tags = tagsArray;
+                    showToast('ECA Moment updated successfully!', 'success');
+                }
+            } else {
+                // CREATE
+                const newMoment = {
+                    id: Date.now(),
+                    title: title,
+                    category: category,
+                    categoryLabel: badgeLabel,
+                    badgeClass: badgeStyles[category] || 'bg-brand-900/90 text-white',
+                    date: dateStr,
+                    wing: wing,
+                    image: attachedEcaPhotos[0],
+                    images: [...attachedEcaPhotos],
+                    caption: caption,
+                    tags: tagsArray,
+                    likes: 0,
+                    liked: false
+                };
+                ecaMoments.unshift(newMoment);
+                showToast('New ECA Moment published to website gallery!', 'success');
+            }
+
+            saveEcaMoments();
+            resetEcaForm();
+            renderAdminEcaGrid();
+            updateMetrics();
+        }
+
+        function saveEcaMoments() {
+            try {
+                localStorage.setItem('pegasus_eca_moments', JSON.stringify(ecaMoments));
+            } catch(e) {
+                console.error('Error saving ECA moments:', e);
+            }
+        }
+
+        function editEcaMoment(id) {
+            const item = ecaMoments.find(x => x.id === id);
+            if (!item) return;
+
+            document.getElementById('eca-edit-id').value = item.id;
+            document.getElementById('eca-title-input').value = item.title || '';
+            document.getElementById('eca-category-input').value = item.category || 'sports';
+            document.getElementById('eca-badge-input').value = item.categoryLabel || '';
+            document.getElementById('eca-wing-input').value = item.wing || 'Classes I to X';
+            document.getElementById('eca-date-input').value = item.date || '';
+            document.getElementById('eca-caption-input').value = item.caption || '';
+            document.getElementById('eca-tags-input').value = (item.tags || []).join(', ');
+
+            attachedEcaPhotos = Array.isArray(item.images) && item.images.length > 0 
+                ? [...item.images] 
+                : (item.image ? [item.image] : []);
+            renderEcaThumbnails();
+
+            document.getElementById('eca-form-title').textContent = `Editing ECA Moment #${item.id}`;
+            document.getElementById('eca-submit-label').textContent = 'Save Changes to ECA Moment';
+            document.getElementById('eca-cancel-edit-btn').classList.remove('hidden');
+
+            document.getElementById('tab-eca').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function deleteEcaMoment(id) {
+            if (confirm('Are you sure you want to delete this ECA Moment from the public gallery?')) {
+                ecaMoments = ecaMoments.filter(x => x.id !== id);
+                saveEcaMoments();
+                renderAdminEcaGrid();
+                updateMetrics();
+                showToast('ECA Moment removed from gallery.', 'info');
+            }
+        }
+
+        function resetEcaForm() {
+            document.getElementById('eca-edit-id').value = '';
+            document.getElementById('eca-title-input').value = '';
+            document.getElementById('eca-category-input').value = 'sports';
+            handleEcaCategoryChange();
+            document.getElementById('eca-wing-input').value = 'Classes I to X';
+            document.getElementById('eca-date-input').value = '';
+            document.getElementById('eca-caption-input').value = '';
+            document.getElementById('eca-tags-input').value = '';
+            document.getElementById('eca-url-input').value = '';
+            const filePicker = document.getElementById('eca-file-picker');
+            if (filePicker) filePicker.value = '';
+
+            attachedEcaPhotos = [];
+            renderEcaThumbnails();
+
+            document.getElementById('eca-form-title').textContent = 'Publish New ECA Gallery Moment';
+            document.getElementById('eca-submit-label').textContent = 'Publish ECA Moment';
+            document.getElementById('eca-cancel-edit-btn').classList.add('hidden');
+        }
+
+        function renderAdminEcaGrid() {
+            const grid = document.getElementById('admin-eca-grid');
+            if (!grid) return;
+
+            if (ecaMoments.length === 0) {
+                grid.innerHTML = `
+                    <div class="col-span-full py-12 text-center bg-slate-50 border border-dashed border-slate-200 rounded-2xl p-6 space-y-2">
+                        <i class="fas fa-camera text-3xl text-slate-300"></i>
+                        <h4 class="font-bold text-slate-700 text-sm">No ECA Photo Moments Published</h4>
+                        <p class="text-xs text-slate-400">Publish athletic, arts, and martial arts moments above to feature them on the website gallery.</p>
+                    </div>
+                `;
+                return;
+            }
+
+            grid.innerHTML = ecaMoments.map(item => {
+                const photos = Array.isArray(item.images) && item.images.length > 0 ? item.images : (item.image ? [item.image] : []);
+                return `
+                    <div class="bg-slate-50 rounded-2xl border border-slate-200 overflow-hidden shadow-2xs hover:shadow-md transition flex flex-col justify-between">
+                        <div>
+                            <div class="relative aspect-[16/10] bg-slate-900 overflow-hidden">
+                                <img src="${escapeHTML(photos[0] || '')}" alt="${escapeHTML(item.title)}" loading="lazy" decoding="async" class="w-full h-full object-cover">
+                                <div class="absolute top-2.5 left-2.5">
+                                    <span class="bg-brand-900/90 text-white text-[10px] font-extrabold px-2.5 py-0.5 rounded-full shadow-xs">
+                                        ${escapeHTML(item.categoryLabel || item.category)}
+                                    </span>
+                                </div>
+                                ${photos.length > 1 ? `
+                                    <div class="absolute top-2.5 right-2.5">
+                                        <span class="bg-slate-950/80 backdrop-blur-md text-amber-300 text-[10px] font-bold px-2 py-0.5 rounded-full border border-amber-400/30 flex items-center gap-1 shadow-sm">
+                                            <i class="fas fa-play-circle text-amber-400"></i> ${photos.length} Photos Slideshow
+                                        </span>
+                                    </div>
+                                ` : ''}
+                            </div>
+
+                            <!-- Thumbnails Strip if multiple -->
+                            ${photos.length > 1 ? `
+                                <div class="flex items-center gap-1.5 p-2 bg-slate-100/80 overflow-x-auto border-b border-slate-200">
+                                    ${photos.map((src, i) => `
+                                        <div class="w-10 h-10 rounded-lg overflow-hidden border border-slate-300 bg-slate-900 shrink-0">
+                                            <img src="${src}" alt="Slide ${i + 1}" loading="lazy" decoding="async" class="w-full h-full object-cover">
+                                        </div>
+                                    `).join('')}
+                                    <span class="text-[10px] font-bold text-slate-500 pl-1 shrink-0">${photos.length} slides</span>
+                                </div>
+                            ` : ''}
+
+                            <div class="p-4 space-y-2">
+                                <div class="flex items-center justify-between text-[11px] text-slate-400 font-semibold">
+                                    <span>${escapeHTML(item.date || 'Recent')}</span>
+                                    <span class="bg-brand-50 text-brand-900 px-2 py-0.5 rounded-md font-bold">${escapeHTML(item.wing || 'All Classes')}</span>
+                                </div>
+                                <h4 class="font-extrabold text-sm text-slate-900 line-clamp-2 leading-snug">${escapeHTML(item.title)}</h4>
+                                <p class="text-xs text-slate-600 line-clamp-3 leading-relaxed">${escapeHTML(item.caption || '')}</p>
+                            </div>
+                        </div>
+
+                        <div class="p-4 pt-2 border-t border-slate-200 flex items-center justify-between">
+                            <span class="text-xs text-slate-400 font-medium">Moment ID: #${item.id}</span>
+                            <div class="flex items-center space-x-1.5">
+                                <button type="button" onclick="editEcaMoment(${item.id})" class="bg-brand-50 hover:bg-brand-100 text-brand-900 text-xs font-bold px-2.5 py-1.5 rounded-lg transition border border-brand-200">
+                                    <i class="fas fa-edit"></i> Edit
+                                </button>
+                                <button type="button" onclick="deleteEcaMoment(${item.id})" class="bg-rose-50 hover:bg-rose-100 text-rose-600 text-xs font-bold px-2.5 py-1.5 rounded-lg transition border border-rose-200">
+                                    <i class="fas fa-trash-alt"></i> Delete
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        // ==========================================
+        // TAB 3: EXAM ROUTINES & DOCUMENTS LOGIC
+        // ==========================================
+        function handleRoutineFileUpload(e) {
+            const file = e.target.files && e.target.files[0];
+            const info = document.getElementById('routine-file-info');
+            if (!file) return;
+
+            const reader = new FileReader();
+            reader.onload = function(evt) {
+                currentRoutineAttachedFile = {
+                    dataUrl: evt.target.result,
+                    name: file.name,
+                    size: formatFileSize(file.size)
+                };
+                if (info) {
+                    info.textContent = `Attached: ${file.name} (${currentRoutineAttachedFile.size})`;
+                    info.classList.remove('hidden');
+                }
+                document.getElementById('routine-filename-input').value = file.name;
+            };
+            reader.readAsDataURL(file);
+        }
+
+        function handleRoutineUrlInput() {
+            const url = document.getElementById('routine-url-input').value.trim();
+            const fileNameInput = document.getElementById('routine-filename-input');
+            if (url && !fileNameInput.value) {
+                const parts = url.split('/');
+                const last = parts[parts.length - 1] || 'Routine_Document.pdf';
+                fileNameInput.value = last.includes('.') ? last : `${last}.pdf`;
+            }
+        }
+
+        function handleSaveRoutine(e) {
+            e.preventDefault();
+            const editId = document.getElementById('routine-edit-id').value;
+            const title = document.getElementById('routine-title-input').value.trim();
+            const term = document.getElementById('routine-term-input').value;
+            const wing = document.getElementById('routine-wing-input').value;
+            const dateStr = document.getElementById('routine-date-input').value.trim() || 'Published Routine';
+            const instructions = document.getElementById('routine-instructions-input').value.trim();
+            const directUrl = document.getElementById('routine-url-input').value.trim();
+            const directFileName = document.getElementById('routine-filename-input').value.trim() || 'Routine.pdf';
+
+            let fileUrl = '';
+            let fileName = directFileName;
+            let fileSize = 'Document';
+
+            if (currentRoutineAttachedFile && currentRoutineAttachedFile.dataUrl) {
+                fileUrl = currentRoutineAttachedFile.dataUrl;
+                fileName = currentRoutineAttachedFile.name;
+                fileSize = currentRoutineAttachedFile.size;
+            } else if (directUrl) {
+                fileUrl = directUrl;
+                fileSize = 'Web Link';
+            }
+
+            if (!fileUrl) {
+                alert('Please upload a document or provide a link for this examination routine.');
+                return;
+            }
+
+            if (editId) {
+                // UPDATE
+                const idNum = parseInt(editId);
+                const item = examRoutines.find(x => x.id === idNum);
+                if (item) {
+                    item.title = title;
+                    item.examTerm = term;
+                    item.classWing = wing;
+                    item.date = dateStr;
+                    item.instructions = instructions;
+                    item.fileUrl = fileUrl;
+                    item.fileName = fileName;
+                    item.fileSize = fileSize;
+                    showToast('Examination Routine updated successfully!', 'success');
+                }
+            } else {
+                // CREATE
+                const newRoutine = {
+                    id: Date.now(),
+                    title: title,
+                    examTerm: term,
+                    classWing: wing,
+                    date: dateStr,
+                    instructions: instructions,
+                    fileUrl: fileUrl,
+                    fileName: fileName,
+                    fileSize: fileSize,
+                    downloads: 0
+                };
+                examRoutines.unshift(newRoutine);
+                showToast('Official Exam Routine published to portal!', 'success');
+            }
+
+            saveExamRoutines();
+            resetRoutineForm();
+            renderAdminRoutinesList();
+            updateMetrics();
+        }
+
+        function saveExamRoutines() {
+            try {
+                localStorage.setItem('pegasus_exam_routines', JSON.stringify(examRoutines));
+            } catch(e) {
+                console.error('Error saving exam routines:', e);
+            }
+        }
+
+        function editRoutine(id) {
+            const item = examRoutines.find(x => x.id === id);
+            if (!item) return;
+
+            document.getElementById('routine-edit-id').value = item.id;
+            document.getElementById('routine-title-input').value = item.title || '';
+            document.getElementById('routine-term-input').value = item.examTerm || 'First Term';
+            document.getElementById('routine-wing-input').value = item.classWing || 'All Classes (I–X)';
+            document.getElementById('routine-date-input').value = item.date || '';
+            document.getElementById('routine-instructions-input').value = item.instructions || '';
+            document.getElementById('routine-filename-input').value = item.fileName || '';
+            
+            if (item.fileUrl && !item.fileUrl.startsWith('data:')) {
+                document.getElementById('routine-url-input').value = item.fileUrl;
+            } else if (item.fileUrl) {
+                currentRoutineAttachedFile = {
+                    dataUrl: item.fileUrl,
+                    name: item.fileName,
+                    size: item.fileSize || 'Document'
+                };
+                const info = document.getElementById('routine-file-info');
+                if (info) {
+                    info.textContent = `Attached: ${item.fileName}`;
+                    info.classList.remove('hidden');
+                }
+            }
+
+            document.getElementById('routine-form-title').textContent = `Editing Routine #${item.id}`;
+            document.getElementById('routine-submit-label').textContent = 'Save Changes to Routine';
+            document.getElementById('routine-cancel-edit-btn').classList.remove('hidden');
+
+            document.getElementById('tab-routines').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function deleteRoutine(id) {
+            if (confirm('Are you sure you want to delete this Examination Routine?')) {
+                examRoutines = examRoutines.filter(x => x.id !== id);
+                saveExamRoutines();
+                renderAdminRoutinesList();
+                updateMetrics();
+                showToast('Exam Routine deleted.', 'info');
+            }
+        }
+
+        function resetRoutineForm() {
+            document.getElementById('routine-edit-id').value = '';
+            document.getElementById('routine-title-input').value = '';
+            document.getElementById('routine-term-input').value = 'First Term';
+            document.getElementById('routine-wing-input').value = 'All Classes (I–X)';
+            document.getElementById('routine-date-input').value = '';
+            document.getElementById('routine-instructions-input').value = '';
+            document.getElementById('routine-url-input').value = '';
+            document.getElementById('routine-filename-input').value = '';
+            const filePicker = document.getElementById('routine-file-picker');
+            if (filePicker) filePicker.value = '';
+            const info = document.getElementById('routine-file-info');
+            if (info) info.classList.add('hidden');
+
+            currentRoutineAttachedFile = null;
+
+            document.getElementById('routine-form-title').textContent = 'Publish Official Examination Routine / Timetable';
+            document.getElementById('routine-submit-label').textContent = 'Publish Exam Routine';
+            document.getElementById('routine-cancel-edit-btn').classList.add('hidden');
+        }
+
+        function renderAdminRoutinesList() {
+            const container = document.getElementById('admin-routines-container');
+            if (!container) return;
+
+            if (examRoutines.length === 0) {
+                container.innerHTML = `
+                    <div class="py-12 text-center bg-slate-50 border border-dashed border-slate-200 rounded-2xl p-6 space-y-2">
+                        <i class="fas fa-calendar-alt text-3xl text-slate-300"></i>
+                        <h4 class="font-bold text-slate-700 text-sm">No Examination Routines Published</h4>
+                        <p class="text-xs text-slate-400">Publish terminal assessment timetables using the form above to make them accessible to students.</p>
+                    </div>
+                `;
+                return;
+            }
+
+            container.innerHTML = examRoutines.map(r => `
+                <div class="bg-slate-50 hover:bg-white rounded-2xl border border-slate-200 p-5 transition shadow-2xs flex flex-col md:flex-row md:items-center justify-between gap-4">
+                    <div class="space-y-1.5 flex-1">
+                        <div class="flex items-center gap-2 flex-wrap">
+                            <span class="bg-emerald-100 text-emerald-800 border border-emerald-300 text-[10px] font-extrabold px-2.5 py-0.5 rounded-full">${escapeHTML(r.examTerm)}</span>
+                            <span class="bg-brand-50 text-brand-900 border border-brand-200 text-[10px] font-bold px-2 py-0.5 rounded-md">${escapeHTML(r.classWing)}</span>
+                            <span class="text-xs text-slate-400">• Published: ${escapeHTML(r.date)}</span>
+                        </div>
+                        <h4 class="font-extrabold text-sm sm:text-base text-slate-900">${escapeHTML(r.title)}</h4>
+                        ${r.instructions ? `<p class="text-xs text-slate-500 italic">"${escapeHTML(r.instructions)}"</p>` : ''}
+                        <div class="flex items-center gap-2 text-xs text-slate-500 pt-1">
+                            <i class="fas fa-file-pdf text-rose-500"></i>
+                            <span class="font-bold text-slate-700">${escapeHTML(r.fileName || 'Routine.pdf')}</span>
+                            <span class="text-slate-400">(${escapeHTML(r.fileSize || 'Doc')})</span>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center space-x-2 shrink-0 pt-2 md:pt-0 border-t md:border-t-0 border-slate-200">
+                        <a href="${escapeHTML(r.fileUrl)}" target="_blank" download="${escapeHTML(r.fileName || 'Routine.pdf')}" class="bg-emerald-50 hover:bg-emerald-100 text-emerald-800 text-xs font-bold px-3 py-2 rounded-xl transition flex items-center gap-1.5 border border-emerald-200 shadow-2xs">
+                            <i class="fas fa-download"></i> View File
+                        </a>
+                        <button type="button" onclick="editRoutine(${r.id})" class="bg-brand-50 hover:bg-brand-100 text-brand-900 text-xs font-bold px-3 py-2 rounded-xl transition flex items-center gap-1 border border-brand-200">
+                            <i class="fas fa-edit"></i> Edit
+                        </button>
+                        <button type="button" onclick="deleteRoutine(${r.id})" class="bg-rose-50 hover:bg-rose-100 text-rose-600 text-xs font-bold px-3 py-2 rounded-xl transition flex items-center gap-1 border border-rose-200">
+                            <i class="fas fa-trash-alt"></i> Delete
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // ==========================================
+        // TAB 4: BACKUP & RESTORE
+        // ==========================================
+        function handleExportDataBackup() {
+            const data = {
+                school: "Pegasus English School",
+                exportedAt: new Date().toISOString(),
+                eventsFeed: eventsFeed,
+                ecaMoments: ecaMoments,
+                examRoutines: examRoutines
+            };
+
+            const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `Pegasus_School_Data_Backup_${new Date().toISOString().slice(0, 10)}.json`;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+            showToast('School data backup exported successfully!', 'success');
+        }
+
+        function handleImportDataBackup(e) {
+            const file = e.target.files && e.target.files[0];
+            if (!file) return;
+
+            const reader = new FileReader();
+            reader.onload = function(evt) {
+                try {
+                    const parsed = JSON.parse(evt.target.result);
+                    if (parsed.eventsFeed && Array.isArray(parsed.eventsFeed)) {
+                        eventsFeed = parsed.eventsFeed;
+                        saveEventsFeed();
+                    }
+                    if (parsed.ecaMoments && Array.isArray(parsed.ecaMoments)) {
+                        ecaMoments = parsed.ecaMoments;
+                        saveEcaMoments();
+                    }
+                    if (parsed.examRoutines && Array.isArray(parsed.examRoutines)) {
+                        examRoutines = parsed.examRoutines;
+                        saveExamRoutines();
+                    }
+                    loadAllData();
+                    showToast('School backup data restored successfully!', 'success');
+                } catch(err) {
+                    alert('Invalid JSON backup file. Please verify file integrity.');
+                }
+            };
+            reader.readAsText(file);
+            e.target.value = '';
+        }
+
+        function handleResetAllContent() {
+            if (confirm('CAUTION: Reset ECA moments and Exam routines to clean initial state?')) {
+                ecaMoments = [];
+                examRoutines = [];
+                localStorage.removeItem('pegasus_eca_moments');
+                localStorage.removeItem('pegasus_exam_routines');
+                loadAllData();
+                showToast('Content successfully reset to clean state.', 'info');
+            }
+        }
+
+        // ==========================================
+        // UTILITIES
+        // ==========================================
+        function escapeHTML(str) {
+            if (!str) return '';
+            return String(str)
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;')
+                .replace(/"/g, '&quot;')
+                .replace(/'/g, '&#039;');
+        }
+
+        function formatFileSize(bytes) {
+            if (!bytes || bytes === 0) return '0 KB';
+            const k = 1024;
+            const sizes = ['Bytes', 'KB', 'MB', 'GB'];
+            const i = Math.floor(Math.log(bytes) / Math.log(k));
+            return parseFloat((bytes / Math.pow(k, i)).toFixed(1)) + ' ' + sizes[i];
+        }
+
+        function showToast(msg, type = 'success') {
+            if (window.PegasusToast && typeof window.PegasusToast[type] === 'function') {
+                window.PegasusToast[type](msg);
+                return;
+            }
+            const toast = document.getElementById('admin-toast');
+            const toastMsg = document.getElementById('admin-toast-msg');
+            const toastIcon = document.getElementById('admin-toast-icon');
+
+            if (!toast) return;
+
+            toastMsg.textContent = msg;
+            if (type === 'error') {
+                toastIcon.className = 'fas fa-exclamation-circle text-rose-400 text-sm';
+            } else if (type === 'info') {
+                toastIcon.className = 'fas fa-info-circle text-sky-400 text-sm';
+            } else {
+                toastIcon.className = 'fas fa-check-circle text-gold-400 text-sm';
+            }
+
+            toast.classList.remove('opacity-0', 'translate-y-4', 'pointer-events-none');
+            toast.classList.add('opacity-100', 'translate-y-0');
+
+            setTimeout(() => {
+                toast.classList.remove('opacity-100', 'translate-y-0');
+                toast.classList.add('opacity-0', 'translate-y-4', 'pointer-events-none');
+            }, 3000);
+        }
+
+        // Initialize on load
+        window.addEventListener('DOMContentLoaded', () => {
+            checkAuthentication();
+            loadAllData();
+            setEventCurrentDate();
+
+            // Hash tab handling
+            const fullHash = window.location.hash.replace('#', '');
+            const tabName = fullHash.split('?')[0];
+            if (tabName === 'eca') switchAdminTab('tab-eca');
+            else if (tabName === 'routines') switchAdminTab('tab-routines');
+            else if (tabName === 'backup') switchAdminTab('tab-backup');
+            else switchAdminTab('tab-events');
+
+            // Check if edit parameter was passed
+            const urlParams = new URLSearchParams(window.location.search);
+            let editId = urlParams.get('edit');
+            if (!editId && fullHash.includes('edit=')) {
+                editId = fullHash.split('edit=')[1]?.split('&')[0];
+            }
+            if (editId) {
+                setTimeout(() => {
+                    editEventPost(editId);
+                }, 200);
+            }
+        });
+    </script>
+</body>
+</html>

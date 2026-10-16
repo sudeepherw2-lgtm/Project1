@@ -1,0 +1,2814 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Faculty &amp; Teacher Portal | Pegasus English School</title>
+    <meta name="description" content="Faculty &amp; Teacher Evaluation, Homework, and Marks Entry Portal for Pegasus English School.">
+    <link rel="icon" type="image/jpeg" href="logo.jpg">
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        pegasus: {
+                            50: '#eef2ff',
+                            100: '#e0e7ff',
+                            500: '#6366f1',
+                            600: '#4f46e5',
+                            700: '#4338ca',
+                            800: '#3730a3',
+                            900: '#312e81',
+                            950: '#1e1b4b',
+                        },
+                        gold: {
+                            400: '#fbbf24',
+                            500: '#f59e0b',
+                            600: '#d97706',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- FontAwesome & Google Fonts -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', 'Inter', sans-serif;
+            background-color: #f8fafc;
+        }
+        .star-btn {
+            transition: transform 0.15s cubic-bezier(0.4, 0, 0.2, 1), color 0.15s ease;
+        }
+        .star-btn:hover {
+            transform: scale(1.25);
+        }
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f5f9;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 9999px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.97); }
+            to { opacity: 1; transform: scale(1); }
+        }
+        .animate-fadeIn {
+            animation: fadeIn 0.2s ease-out forwards;
+        }
+        @media print {
+            body * {
+                visibility: hidden;
+            }
+            #student-portal-modal, #student-portal-modal * {
+                visibility: visible;
+            }
+            #student-portal-modal {
+                position: absolute;
+                left: 0;
+                top: 0;
+                width: 100%;
+                background: white;
+            }
+            .no-print {
+                display: none !important;
+            }
+        }
+    
+    </style>
+</head>
+<body class="flex h-screen overflow-hidden text-slate-800 bg-slate-50">
+
+    <!-- Mobile Sidebar Overlay -->
+    <div id="sidebar-overlay" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-20 hidden lg:hidden" onclick="toggleMobileSidebar()"></div>
+
+    <!-- Sidebar -->
+    <aside id="sidebar" class="fixed lg:static inset-y-0 left-0 w-64 bg-pegasus-950 text-white flex flex-col transition-transform duration-300 transform -translate-x-full lg:translate-x-0 z-30 shadow-2xl border-r border-indigo-900/60">
+        
+        <!-- School Brand Header in Sidebar -->
+        <div class="flex items-center justify-between h-20 px-5 border-b border-indigo-900/80 bg-pegasus-950/80">
+            <a href="index.html" class="flex items-center group">
+                <img src="logo.jpg" alt="Pegasus Logo" decoding="async" class="w-11 h-11 object-contain rounded-xl mr-3 bg-white p-0.5 shadow-md shadow-indigo-950 group-hover:scale-105 transition">
+                <div>
+                    <h1 class="text-base font-extrabold tracking-tight leading-none text-white flex items-center gap-1.5">
+                        Pegasus <span class="text-amber-400 text-xs px-1.5 py-0.5 rounded bg-amber-400/10 border border-amber-400/20 font-bold">EDU</span>
+                    </h1>
+                    <span class="text-[11px] text-indigo-300 font-medium">English School Portal</span>
+                </div>
+            </a>
+            <button class="lg:hidden text-indigo-300 hover:text-white p-1 rounded-lg" onclick="toggleMobileSidebar()">
+                <i class="fas fa-times text-lg"></i>
+            </button>
+        </div>
+
+        <!-- Global Class Quick Info inside Sidebar -->
+        <div class="px-4 py-3.5 bg-indigo-900/30 border-b border-indigo-900/60">
+            <div class="flex items-center justify-between mb-1.5">
+                <label class="text-[10px] uppercase tracking-wider text-indigo-300 font-bold">Active Class Context</label>
+                <a href="index.html" class="text-[10px] text-amber-300 hover:text-amber-200 font-semibold flex items-center">
+                    <i class="fas fa-home mr-1"></i> Main Site
+                </a>
+            </div>
+            <div class="flex items-center justify-between bg-pegasus-950/90 px-3 py-2 rounded-xl border border-indigo-800/80">
+                <span id="sidebar-class-badge" class="text-xs font-bold text-white flex items-center">
+                    <i class="fas fa-chalkboard-teacher text-amber-400 mr-1.5"></i>Class III (Primary)
+                </span>
+                <span id="sidebar-tier-badge" class="text-[10px] px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 font-semibold">Rubric + ECA</span>
+            </div>
+
+            <!-- Teacher Assigned Classes Quick Switcher -->
+            <div id="sidebar-classes-container" class="mt-2 pt-2 border-t border-indigo-900/60">
+                <div class="flex items-center justify-between text-[10px] font-bold text-indigo-300 mb-1.5 uppercase tracking-wider">
+                    <span>Your Classes</span>
+                    <span id="sidebar-classes-count" class="text-[9px] bg-indigo-800 text-amber-300 px-1.5 py-0.5 rounded font-black">1 Class</span>
+                </div>
+                <div id="sidebar-classes-pills" class="flex flex-wrap gap-1">
+                    <!-- Populated dynamically with teacher's assigned classes -->
+                </div>
+            </div>
+
+            <!-- Teacher Assigned Subjects Quick Switcher -->
+            <div id="sidebar-subjects-container" class="mt-2 pt-2 border-t border-indigo-900/60">
+                <div class="flex items-center justify-between text-[10px] font-bold text-indigo-300 mb-1.5 uppercase tracking-wider">
+                    <span>Your Subjects</span>
+                    <span id="sidebar-subjects-count" class="text-[9px] bg-indigo-800 text-emerald-300 px-1.5 py-0.5 rounded font-black">1 Subject</span>
+                </div>
+                <div id="sidebar-subjects-pills" class="flex flex-wrap gap-1">
+                    <!-- Populated dynamically with teacher's assigned subjects -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Navigation Buttons -->
+        <nav class="flex-1 px-3 py-4 space-y-1 overflow-y-auto">
+            <button class="nav-btn w-full flex items-center px-3.5 py-2.5 bg-indigo-600 text-white rounded-xl text-left transition-all duration-200 shadow-sm" data-target="view-dashboard">
+                <i class="fas fa-chart-pie w-6 text-center mr-2.5 text-indigo-200"></i>
+                <span class="font-semibold text-xs tracking-wide">Overview Dashboard</span>
+            </button>
+            <button class="nav-btn w-full flex items-center px-3.5 py-2.5 hover:bg-indigo-900/60 text-indigo-100 rounded-xl text-left transition-all duration-200" data-target="view-homework">
+                <i class="fas fa-book-open w-6 text-center mr-2.5 text-indigo-300"></i>
+                <span class="font-semibold text-xs tracking-wide">Homework & Defaulters</span>
+            </button>
+            <button class="nav-btn w-full flex items-center px-3.5 py-2.5 hover:bg-indigo-900/60 text-indigo-100 rounded-xl text-left transition-all duration-200" data-target="view-grading">
+                <i class="fas fa-award w-6 text-center mr-2.5 text-indigo-300"></i>
+                <span class="font-semibold text-xs tracking-wide">Academic Grading</span>
+            </button>
+            <button class="nav-btn w-full flex items-center justify-between px-3.5 py-2.5 hover:bg-indigo-900/60 text-indigo-100 rounded-xl text-left transition-all duration-200" data-target="view-eca">
+                <div class="flex items-center">
+                    <i class="fas fa-palette w-6 text-center mr-2.5 text-amber-400"></i>
+                    <span class="font-semibold text-xs tracking-wide">ECA Compartment</span>
+                </div>
+                <span class="text-[10px] bg-amber-500/20 text-amber-300 border border-amber-400/30 px-2 py-0.5 rounded-full font-bold">I-V</span>
+            </button>
+            <button class="nav-btn w-full flex items-center px-3.5 py-2.5 hover:bg-indigo-900/60 text-indigo-100 rounded-xl text-left transition-all duration-200" data-target="view-students">
+                <i class="fas fa-users-cog w-6 text-center mr-2.5 text-indigo-300"></i>
+                <span class="font-semibold text-xs tracking-wide">Student Roster</span>
+            </button>
+            <button class="nav-btn w-full flex items-center px-3.5 py-2.5 hover:bg-indigo-900/60 text-indigo-100 rounded-xl text-left transition-all duration-200" data-target="view-calendar">
+                <i class="fas fa-calendar-alt w-6 text-center mr-2.5 text-sky-400"></i>
+                <span class="font-semibold text-xs tracking-wide">Academic Calendar</span>
+            </button>
+
+            <!-- External Portals -->
+            <div class="pt-2 border-t border-indigo-900/40 mt-2 space-y-1">
+                <a href="admin.html" class="w-full flex items-center justify-between px-3.5 py-2 text-indigo-200 hover:text-white hover:bg-indigo-900/50 rounded-xl text-left transition text-xs font-semibold">
+                    <div class="flex items-center">
+                        <i class="fas fa-user-shield w-6 text-center mr-2 text-gold-400"></i>
+                        <span>Central Admin Portal</span>
+                    </div>
+                    <span class="text-[10px] bg-sky-400/20 text-sky-300 border border-sky-400/30 px-1.5 py-0.5 rounded font-bold">CMS</span>
+                </a>
+                <a href="student-portal.html" class="w-full flex items-center px-3.5 py-2 text-indigo-200 hover:text-white hover:bg-indigo-900/50 rounded-xl text-left transition text-xs font-semibold">
+                    <i class="fas fa-user-graduate w-6 text-center mr-2 text-amber-400"></i>
+                    <span>Student Report Portal</span>
+                </a>
+                <a href="file-manager.html" class="w-full flex items-center px-3.5 py-2 text-indigo-200 hover:text-white hover:bg-indigo-900/50 rounded-xl text-left transition text-xs font-semibold">
+                    <i class="fas fa-folder-open w-6 text-center mr-2 text-sky-400"></i>
+                    <span>Local File Manager</span>
+                </a>
+            </div>
+        </nav>
+
+        <!-- Quick Data Action Tools in Sidebar -->
+        <div class="px-4 py-3 bg-pegasus-950 border-t border-indigo-900/80 space-y-2">
+            <div class="flex items-center justify-between text-[11px] text-indigo-300 font-medium">
+                <span>Roster Sync:</span>
+                <span class="text-emerald-400 font-semibold flex items-center"><i class="fas fa-shield-alt mr-1 text-[10px]"></i> Principal Synced</span>
+            </div>
+            <div class="flex gap-1.5">
+                <button onclick="clearAllData()" title="Clear temporary local grading cache" class="w-full bg-indigo-900/60 hover:bg-rose-900/80 text-[10px] text-indigo-200 hover:text-rose-200 py-1.5 px-2 rounded-lg transition text-center font-semibold flex items-center justify-center gap-1.5">
+                    <i class="fas fa-sync-alt"></i> Reset Faculty Cache
+                </button>
+            </div>
+        </div>
+
+        <!-- Teacher User Bar in Sidebar -->
+        <div class="p-3.5 border-t border-indigo-900/80 bg-pegasus-950/90">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center min-w-0">
+                    <div id="sidebar-teacher-avatar" class="w-9 h-9 rounded-xl bg-indigo-700 text-white font-black flex items-center justify-center mr-2.5 border border-indigo-500/50 shadow-sm shrink-0">
+                        R
+                    </div>
+                    <div class="truncate">
+                        <p id="sidebar-teacher-name" class="text-xs font-bold text-white truncate">Ram Bahadur Shrestha</p>
+                        <p id="sidebar-teacher-role" class="text-[10px] text-indigo-300 truncate">Class Teacher • Class IV</p>
+                    </div>
+                </div>
+                <button onclick="showTeacherLoginModal()" title="Switch Teacher Account" class="text-xs bg-indigo-900 hover:bg-indigo-700 text-amber-300 p-2 rounded-xl transition shadow-sm shrink-0 ml-1">
+                    <i class="fas fa-user-circle"></i>
+                </button>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main class="flex-1 flex flex-col h-full relative overflow-y-auto bg-slate-50">
+        
+        <!-- Top Sticky Header with Global Class & Subject Controls -->
+        <header class="bg-white/95 backdrop-blur-md border-b border-slate-200/80 px-4 sm:px-8 py-3.5 sticky top-0 z-10 flex flex-wrap items-center justify-between gap-3 shadow-xs">
+            <div class="flex items-center space-x-3">
+                <button class="lg:hidden text-slate-600 hover:text-indigo-600 p-2 rounded-xl border border-slate-200" onclick="toggleMobileSidebar()">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <div>
+                    <div class="flex items-center gap-2">
+                        <h2 id="page-title" class="text-lg sm:text-xl font-extrabold text-slate-900 tracking-tight">Overview Dashboard</h2>
+                        <span class="text-[11px] font-bold px-2 py-0.5 rounded bg-indigo-50 text-indigo-700 border border-indigo-200 hidden md:inline">Pegasus English School</span>
+                    </div>
+                    <p id="page-subtitle" class="text-xs text-slate-500 hidden sm:block">Manage daily homework status, primary formative rubrics, and continuous ECA evaluations</p>
+                </div>
+            </div>
+
+            <!-- Active Teacher Assigned Classroom Scope -->
+            <div class="flex flex-wrap items-center gap-2">
+                
+                <!-- Class & Subject Controls -->
+                <div id="active-teacher-scope-pill" class="flex items-center bg-indigo-50 border border-indigo-200 rounded-xl px-2.5 py-1.5 shadow-2xs gap-1.5">
+                    <span class="text-xs font-bold text-indigo-950 flex items-center gap-1">
+                        <i class="fas fa-chalkboard-teacher text-indigo-600"></i>
+                        <span class="text-slate-500 font-bold hidden sm:inline">Teaching:</span>
+                    </span>
+                    <select id="header-class-switcher" onchange="switchTeacherAssignedClass(this.value)" class="bg-white border border-indigo-300 text-brand-900 font-black text-xs rounded-lg px-2 py-1 outline-none focus:ring-2 focus:ring-indigo-500 cursor-pointer shadow-2xs" title="Switch active class">
+                        <option value="IV">Class IV</option>
+                    </select>
+                    <span class="text-indigo-300">•</span>
+                    <select id="header-subject-switcher" onchange="switchTeacherAssignedSubject(this.value)" class="bg-white border border-indigo-300 text-indigo-700 font-black text-xs rounded-lg px-2 py-1 outline-none focus:ring-2 focus:ring-indigo-500 cursor-pointer shadow-2xs" title="Switch active subject">
+                        <option value="English">English</option>
+                    </select>
+                    <span id="active-teacher-subject-label" class="hidden">English</span>
+                </div>
+
+                <!-- Class Teacher Badge -->
+                <div id="active-teacher-ct-badge" class="flex items-center bg-amber-50 border border-amber-300 rounded-xl px-2.5 py-1.5 shadow-2xs">
+                    <span class="text-xs font-black text-amber-900 flex items-center gap-1.5">
+                        <i class="fas fa-crown text-amber-500"></i>
+                        <span id="active-teacher-ct-label">Class Teacher (Grade IV)</span>
+                    </span>
+                </div>
+
+                <!-- Academic Calendar Direct Shortcut -->
+                <button type="button" onclick="switchTab('view-calendar')" class="bg-sky-50 hover:bg-sky-100 text-sky-800 border border-sky-200 text-xs font-bold px-3 py-1.5 rounded-xl transition flex items-center gap-1.5 shadow-2xs" title="Open School Academic Calendar">
+                    <i class="fas fa-calendar-alt text-sky-600"></i>
+                    <span>Calendar</span>
+                </button>
+
+                <!-- Switch Teacher / Account Button -->
+                <button type="button" onclick="showTeacherLoginModal()" class="bg-white hover:bg-slate-100 text-slate-700 text-xs font-bold px-3 py-1.5 rounded-xl border border-slate-200 transition flex items-center gap-1.5 shadow-2xs" title="Switch to another faculty teacher ID">
+                    <i class="fas fa-exchange-alt text-indigo-600"></i>
+                    <span class="hidden sm:inline">Switch Teacher</span>
+                </button>
+
+                <!-- Student Portal Card Preview -->
+                <button onclick="openCurrentFirstStudentPreview()" class="bg-indigo-50 hover:bg-indigo-100 text-indigo-700 border border-indigo-200 text-xs sm:text-sm font-bold px-3 py-1.5 rounded-xl transition flex items-center shadow-xs">
+                    <i class="fas fa-id-card-alt mr-1.5 text-indigo-600"></i>
+                    <span>Student Card</span>
+                </button>
+
+                <a href="https://www.facebook.com/profile.php?id=100063491716430" target="_blank" rel="noopener noreferrer" class="bg-sky-50 hover:bg-sky-100 text-sky-700 border border-sky-200 text-xs sm:text-sm font-bold px-3 py-2 rounded-xl transition flex items-center shadow-xs" title="Pegasus Facebook Page">
+                    <i class="fab fa-facebook mr-1.5 text-sky-600"></i>
+                    <span class="hidden sm:inline">ECA</span> Facebook
+                </a>
+
+                <a href="index.html" class="bg-slate-800 hover:bg-slate-900 text-white text-xs sm:text-sm font-bold px-3 py-2 rounded-xl transition flex items-center shadow-xs">
+                    <i class="fas fa-globe mr-1.5 text-amber-400"></i>
+                    <span class="hidden sm:inline">School</span> Website
+                </a>
+            </div>
+        </header>
+
+        <!-- Dynamic Views Container -->
+        <div class="p-4 sm:p-7 space-y-6 flex-1 max-w-7xl w-full mx-auto">
+
+            <!-- ========================================== -->
+            <!-- 1. DASHBOARD VIEW                          -->
+            <!-- ========================================== -->
+            <div id="view-dashboard" class="view-section space-y-6">
+                
+                <!-- Top KPI Cards -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                    <div class="bg-white p-5 rounded-2xl shadow-xs border border-slate-200/80 flex items-center justify-between">
+                        <div>
+                            <p class="text-xs font-bold uppercase tracking-wider text-slate-400">Class Strength</p>
+                            <p id="dash-class-count" class="text-2xl font-black text-slate-900 mt-1">0 Students</p>
+                            <p id="dash-total-school" class="text-xs text-slate-500 mt-1">Total school roster: 0</p>
+                        </div>
+                        <div class="w-12 h-12 bg-indigo-50 text-indigo-600 rounded-2xl flex items-center justify-center text-xl shadow-xs">
+                            <i class="fas fa-user-graduate"></i>
+                        </div>
+                    </div>
+
+                    <div class="bg-white p-5 rounded-2xl shadow-xs border border-slate-200/80 flex items-center justify-between">
+                        <div>
+                            <p class="text-xs font-bold uppercase tracking-wider text-slate-400">Homework Done</p>
+                            <p id="dash-hw-done" class="text-2xl font-black text-emerald-600 mt-1">0 / 0</p>
+                            <p class="text-xs text-slate-500 mt-1">Today's completion rate</p>
+                        </div>
+                        <div class="w-12 h-12 bg-emerald-50 text-emerald-600 rounded-2xl flex items-center justify-center text-xl shadow-xs">
+                            <i class="fas fa-check-double"></i>
+                        </div>
+                    </div>
+
+                    <div class="bg-white p-5 rounded-2xl shadow-xs border border-slate-200/80 flex items-center justify-between">
+                        <div>
+                            <p class="text-xs font-bold uppercase tracking-wider text-slate-400">Did Not Do HW</p>
+                            <p id="dash-hw-defaulters" class="text-2xl font-black text-rose-600 mt-1">0 Students</p>
+                            <button onclick="switchTab('view-homework'); filterHomeworkTable('not-done');" class="text-xs text-rose-600 hover:underline font-bold mt-1 flex items-center">
+                                View defaulters <i class="fas fa-arrow-right ml-1 text-[10px]"></i>
+                            </button>
+                        </div>
+                        <div class="w-12 h-12 bg-rose-50 text-rose-600 rounded-2xl flex items-center justify-center text-xl shadow-xs">
+                            <i class="fas fa-exclamation-triangle"></i>
+                        </div>
+                    </div>
+
+                    <div class="bg-white p-5 rounded-2xl shadow-xs border border-slate-200/80 flex items-center justify-between">
+                        <div>
+                            <p class="text-xs font-bold uppercase tracking-wider text-slate-400">Evaluation Mode</p>
+                            <p id="dash-eval-mode" class="text-lg font-black text-amber-600 mt-1">Formative Rubric</p>
+                            <p id="dash-eval-sub" class="text-xs text-slate-500 mt-1">Includes ECA Compartment</p>
+                        </div>
+                        <div class="w-12 h-12 bg-amber-50 text-amber-600 rounded-2xl flex items-center justify-center text-xl shadow-xs">
+                            <i class="fas fa-star-half-alt"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quick Class Summary & Active Homework -->
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                    <!-- Left 2 cols: Class Roster Quick Snapshot -->
+                    <div class="lg:col-span-2 bg-white rounded-2xl shadow-xs border border-slate-200/80 overflow-hidden flex flex-col">
+                        <div class="px-6 py-4 border-b border-slate-100 flex flex-wrap items-center justify-between gap-2 bg-slate-50/50">
+                            <div>
+                                <h3 class="font-bold text-slate-800 text-sm sm:text-base">Student Status Summary — <span class="active-class-label text-indigo-600 font-extrabold">Class III</span></h3>
+                                <p class="text-xs text-slate-500">Click any student to inspect their individual student report card</p>
+                            </div>
+                            <button onclick="switchTab('view-students')" class="text-xs font-bold text-indigo-600 hover:text-indigo-800 bg-indigo-50 hover:bg-indigo-100 px-3 py-1.5 rounded-xl border border-indigo-200 transition">
+                                <i class="fas fa-user-plus mr-1"></i> Manage Roster
+                            </button>
+                        </div>
+                        <div class="overflow-x-auto flex-1">
+                            <table class="w-full text-left border-collapse">
+                                <thead>
+                                    <tr class="bg-slate-50 text-slate-500 text-xs uppercase border-b border-slate-200">
+                                        <th class="py-3 px-4 font-bold">Roll</th>
+                                        <th class="py-3 px-4 font-bold">Student Name</th>
+                                        <th class="py-3 px-4 font-bold">Today's HW</th>
+                                        <th class="py-3 px-4 font-bold">Academic Standing</th>
+                                        <th class="py-3 px-4 font-bold text-right">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="dash-student-tbody" class="divide-y divide-slate-100 text-sm">
+                                    <!-- Populated by JS -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- Right col: Active Homework & Pegasus Highlights -->
+                    <div class="space-y-6">
+                        <div class="bg-white rounded-2xl shadow-xs border border-slate-200/80 p-5">
+                            <div class="flex items-center justify-between mb-4">
+                                <h3 class="font-bold text-slate-800 text-sm sm:text-base flex items-center">
+                                    <i class="fas fa-bullhorn text-indigo-600 mr-2"></i>Assigned Homework
+                                </h3>
+                                <button onclick="switchTab('view-homework')" class="text-xs text-indigo-600 font-bold hover:underline">+ Assign</button>
+                            </div>
+                            <div id="dash-assignments-list" class="space-y-3">
+                                <!-- Populated by JS -->
+                            </div>
+                        </div>
+
+                        <div class="bg-gradient-to-br from-indigo-950 via-pegasus-900 to-indigo-900 text-white rounded-2xl p-5 shadow-md relative overflow-hidden">
+                            <div class="absolute -right-6 -bottom-6 w-24 h-24 bg-amber-400/10 rounded-full blur-xl pointer-events-none"></div>
+                            <div class="flex items-center justify-between mb-2">
+                                <span class="text-[10px] uppercase tracking-wider bg-amber-400/20 text-amber-300 border border-amber-400/30 px-2.5 py-0.5 rounded-full font-bold">Pegasus Holistic Model</span>
+                                <i class="fas fa-feather-alt text-amber-400 text-lg"></i>
+                            </div>
+                            <h4 class="font-extrabold text-base mb-1">Continuous & ECA Grading</h4>
+                            <p class="text-xs text-indigo-200 leading-relaxed mb-4">
+                                Primary wing students (Grades I–V) receive comprehensive formative rubrics plus a distinct evaluation compartment for Sports, Music, Arts, and Teamwork.
+                            </p>
+                            <div class="flex gap-2">
+                                <button onclick="switchTab('view-grading')" class="flex-1 bg-white/10 hover:bg-white/20 text-white text-xs font-bold py-2 px-3 rounded-xl transition text-center border border-white/10">
+                                    Formative Rubric
+                                </button>
+                                <button onclick="switchTab('view-eca')" class="flex-1 bg-amber-400 hover:bg-amber-300 text-slate-950 text-xs font-black py-2 px-3 rounded-xl transition text-center shadow-sm">
+                                    ECA Compartment
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ========================================== -->
+            <!-- 2. HOMEWORK & DEFAULTERS VIEW              -->
+            <!-- ========================================== -->
+            <div id="view-homework" class="view-section hidden space-y-6">
+                
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                    
+                    <!-- Left 2 Columns: Student Homework Status Checker -->
+                    <div class="lg:col-span-2 space-y-4">
+                        
+                        <!-- Live Status Summary Bar -->
+                        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+                            <button onclick="filterHomeworkTable('all')" id="hw-filter-all" class="hw-filter-btn bg-indigo-600 text-white p-3.5 rounded-2xl border border-indigo-600 text-left transition shadow-xs">
+                                <p class="text-xs opacity-80 font-bold">All Roster</p>
+                                <p id="hw-count-all" class="text-xl font-black mt-0.5">0</p>
+                            </button>
+                            <button onclick="filterHomeworkTable('Complete')" id="hw-filter-Complete" class="hw-filter-btn bg-white hover:bg-emerald-50 text-slate-800 p-3.5 rounded-2xl border border-slate-200 text-left transition">
+                                <p class="text-xs text-emerald-600 font-bold">Complete (Done)</p>
+                                <p id="hw-count-complete" class="text-xl font-black mt-0.5">0</p>
+                            </button>
+                            <button onclick="filterHomeworkTable('not-done')" id="hw-filter-not-done" class="hw-filter-btn bg-white hover:bg-rose-50 text-slate-800 p-3.5 rounded-2xl border border-slate-200 text-left transition">
+                                <p class="text-xs text-rose-600 font-bold">Did Not Do / Late</p>
+                                <p id="hw-count-notdone" class="text-xl font-black mt-0.5">0</p>
+                            </button>
+                            <button onclick="filterHomeworkTable('Absent')" id="hw-filter-Absent" class="hw-filter-btn bg-white hover:bg-amber-50 text-slate-800 p-3.5 rounded-2xl border border-slate-200 text-left transition">
+                                <p class="text-xs text-amber-600 font-bold">Absent</p>
+                                <p id="hw-count-absent" class="text-xl font-black mt-0.5">0</p>
+                            </button>
+                        </div>
+
+                        <!-- Student Homework Table Card -->
+                        <div class="bg-white rounded-2xl shadow-xs border border-slate-200/80 overflow-hidden">
+                            <div class="p-5 border-b border-slate-100 flex flex-wrap items-center justify-between gap-3 bg-slate-50/50">
+                                <div>
+                                    <h3 class="font-bold text-slate-800 text-sm sm:text-base">
+                                        Daily Homework Check — <span class="active-class-label text-indigo-600 font-extrabold">Class III</span>
+                                        (<span class="active-subject-label text-slate-600 font-bold">Mathematics</span>)
+                                    </h3>
+                                    <p class="text-xs text-slate-500">Update status, write individual remarks, and notify defaulter parents in one click</p>
+                                </div>
+                                <div class="flex items-center gap-2">
+                                    <button onclick="openDefaulterNoticeModal()" class="bg-rose-50 hover:bg-rose-100 text-rose-700 border border-rose-200 text-xs font-bold px-3.5 py-2 rounded-xl transition flex items-center shadow-xs">
+                                        <i class="fas fa-bell mr-1.5 text-rose-600"></i> Inform Defaulters
+                                    </button>
+                                    <button onclick="saveHomeworkChanges()" class="bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-bold px-4 py-2 rounded-xl transition flex items-center shadow-xs">
+                                        <i class="fas fa-save mr-1.5"></i> Save Status
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div class="overflow-x-auto">
+                                <table class="w-full text-left border-collapse">
+                                    <thead>
+                                        <tr class="bg-slate-50 text-slate-500 text-xs uppercase border-b border-slate-200">
+                                            <th class="py-3.5 px-4 font-bold w-16">Roll</th>
+                                            <th class="py-3.5 px-4 font-bold">Student Name</th>
+                                            <th class="py-3.5 px-4 font-bold w-48">Homework Status</th>
+                                            <th class="py-3.5 px-4 font-bold">Side Note / Teacher Remark</th>
+                                            <th class="py-3.5 px-4 font-bold text-right">Card</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="hw-student-tbody" class="divide-y divide-slate-100 text-sm">
+                                        <!-- Populated by JS -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right Column: Assign New Homework & Active List -->
+                    <div class="space-y-6">
+                        <div class="bg-white rounded-2xl shadow-xs border border-slate-200/80 p-6">
+                            <h3 class="font-bold text-slate-800 text-base mb-1 flex items-center">
+                                <i class="fas fa-plus-circle text-indigo-600 mr-2"></i>Assign New Homework
+                            </h3>
+                            <p class="text-xs text-slate-500 mb-4">Post homework for <span class="active-class-label font-bold text-slate-700">Class III</span></p>
+                            
+                                <div class="grid grid-cols-2 gap-3">
+                                    <div>
+                                        <label class="block text-xs font-bold text-slate-600 mb-1">Target Class</label>
+                                        <select id="hw-form-class" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-xs sm:text-sm font-bold text-slate-800 focus:bg-white focus:ring-2 focus:ring-indigo-500 outline-none">
+                                            <!-- Dynamically populated with teacher's assigned classes -->
+                                            <option value="IV">Class IV</option>
+                                        </select>
+                                    </div>
+                                    <div>
+                                        <label class="block text-xs font-bold text-slate-600 mb-1">Subject</label>
+                                        <select id="hw-form-subject" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-xs sm:text-sm font-bold text-slate-800 focus:bg-white focus:ring-2 focus:ring-indigo-500 outline-none cursor-pointer">
+                                            <!-- Dynamically populated with teacher's assigned subjects -->
+                                            <option value="English">English</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-bold text-slate-600 mb-1">Assignment Title</label>
+                                    <input type="text" id="hw-form-title" placeholder="e.g. Chapter 4 Exercise 4.2" required class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3.5 py-2 text-sm focus:bg-white focus:ring-2 focus:ring-indigo-500 outline-none">
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-bold text-slate-600 mb-1">Due Date</label>
+                                    <input type="date" id="hw-form-due" required class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3.5 py-2 text-sm focus:bg-white focus:ring-2 focus:ring-indigo-500 outline-none">
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-bold text-slate-600 mb-1">Instructions for Students</label>
+                                    <textarea id="hw-form-desc" rows="3" placeholder="Solve Q1 to Q8 neatly in classwork copy..." required class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3.5 py-2 text-sm focus:bg-white focus:ring-2 focus:ring-indigo-500 outline-none"></textarea>
+                                </div>
+                                <button type="submit" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2.5 rounded-xl text-sm shadow-xs transition">
+                                    Publish Homework to Class
+                                </button>
+                            </form>
+                        </div>
+
+                        <div class="bg-white rounded-2xl shadow-xs border border-slate-200/80 p-6">
+                            <h4 class="font-bold text-slate-800 text-sm mb-3">Published Class Assignments</h4>
+                            <div id="hw-published-list" class="space-y-3 max-h-80 overflow-y-auto pr-1">
+                                <!-- Populated by JS -->
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- ========================================== -->
+            <!-- 3. ACADEMIC GRADING VIEW (I-V vs VI-X)     -->
+            <!-- ========================================== -->
+            <div id="view-grading" class="view-section hidden space-y-6">
+                
+                <!-- Mode Banner -->
+                <div id="grading-mode-banner" class="bg-gradient-to-r from-pegasus-950 via-indigo-900 to-indigo-950 text-white rounded-2xl p-5 flex flex-wrap items-center justify-between gap-4 shadow-sm border border-indigo-800/80">
+                    <div class="flex items-center space-x-3.5">
+                        <div class="w-12 h-12 rounded-xl bg-white/10 flex items-center justify-center text-xl text-amber-300">
+                            <i class="fas fa-clipboard-check"></i>
+                        </div>
+                        <div>
+                            <div class="flex items-center gap-2">
+                                <h3 id="grading-banner-title" class="font-extrabold text-base">Class I–V Multi-Basis Formative Grading</h3>
+                                <span id="grading-banner-pill" class="text-[11px] bg-emerald-400/20 text-emerald-200 border border-emerald-400/30 px-2.5 py-0.5 rounded-full font-bold">Continuous Assessment</span>
+                            </div>
+                            <p id="grading-banner-desc" class="text-xs text-indigo-200 mt-0.5">
+                                Evaluate young learners across 4 core developmental parameters (1–5 stars each) instead of high-pressure exam scores.
+                            </p>
+                        </div>
+                    </div>
+                    <button onclick="saveAcademicGrading()" class="bg-amber-400 hover:bg-amber-300 text-slate-950 font-black text-xs sm:text-sm px-5 py-2.5 rounded-xl transition shadow-xs flex items-center">
+                        <i class="fas fa-check-circle mr-2"></i> Save Class Grades
+                    </button>
+                </div>
+
+                <!-- Primary Grading Table (Classes I - V) -->
+                <div id="primary-grading-container" class="bg-white rounded-2xl shadow-xs border border-slate-200/80 overflow-hidden">
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left border-collapse">
+                            <thead>
+                                <tr class="bg-slate-50 text-slate-600 text-xs uppercase border-b border-slate-200">
+                                    <th class="py-3.5 px-4 font-bold">Student</th>
+                                    <th class="py-3.5 px-4 font-bold text-center">Participation</th>
+                                    <th class="py-3.5 px-4 font-bold text-center">Neatness & Writing</th>
+                                    <th class="py-3.5 px-4 font-bold text-center">Concept Clarity</th>
+                                    <th class="py-3.5 px-4 font-bold text-center">HW Regularity</th>
+                                    <th class="py-3.5 px-4 font-bold text-center">Overall Grade</th>
+                                </tr>
+                            </thead>
+                            <tbody id="primary-grading-tbody" class="divide-y divide-slate-100 text-sm">
+                                <!-- Populated by JS -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Secondary Grading Table (Classes VI - X) -->
+                <div id="secondary-grading-container" class="hidden bg-white rounded-2xl shadow-xs border border-slate-200/80 overflow-hidden">
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left border-collapse">
+                            <thead>
+                                <tr class="bg-slate-50 text-slate-600 text-xs uppercase border-b border-slate-200">
+                                    <th class="py-3.5 px-4 font-bold">Roll & Name</th>
+                                    <th class="py-3.5 px-4 font-bold text-center w-36">Unit Test (20)</th>
+                                    <th class="py-3.5 px-4 font-bold text-center w-36">Practical/Project (20)</th>
+                                    <th class="py-3.5 px-4 font-bold text-center w-36">Term Exam (60)</th>
+                                    <th class="py-3.5 px-4 font-bold text-center w-32">Total (100)</th>
+                                    <th class="py-3.5 px-4 font-bold text-center w-28">Letter Grade</th>
+                                </tr>
+                            </thead>
+                            <tbody id="secondary-grading-tbody" class="divide-y divide-slate-100 text-sm">
+                                <!-- Populated by JS -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- ========================================== -->
+            <!-- 4. ECA COMPARTMENT VIEW (Grades I to V)    -->
+            <!-- ========================================== -->
+            <div id="view-eca" class="view-section hidden space-y-6">
+                
+                <!-- Secondary Class Notice (If user is currently on Class VI-X) -->
+                <div id="eca-secondary-warning" class="hidden bg-amber-50 border border-amber-200 rounded-2xl p-6 flex flex-wrap items-center justify-between gap-4">
+                    <div class="flex items-start space-x-3.5">
+                        <div class="w-10 h-10 rounded-xl bg-amber-100 text-amber-600 flex items-center justify-center text-lg mt-0.5">
+                            <i class="fas fa-info-circle"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-amber-900 text-base">Dedicated Class I to V ECA Compartment</h4>
+                            <p class="text-xs text-amber-700 mt-1">
+                                You currently have <span class="active-class-label font-bold">Class VI</span> selected. The specialized Extra-Curricular Activities star-rubric compartment is dedicated to Primary Classes (Grades I to V).
+                            </p>
+                        </div>
+                    </div>
+                    <button onclick="handleClassChange('III')" class="bg-amber-600 hover:bg-amber-700 text-white text-xs font-bold px-4 py-2.5 rounded-xl transition shadow-xs">
+                        Switch to Class III (Primary)
+                    </button>
+                </div>
+
+                <!-- ECA Compartment Main Box -->
+                <div id="eca-compartment-box" class="space-y-4">
+                    <div class="bg-gradient-to-r from-amber-500/10 via-indigo-500/10 to-pink-500/10 border border-indigo-200/80 rounded-2xl p-5 flex flex-wrap items-center justify-between gap-4">
+                        <div class="flex items-center space-x-3.5">
+                            <div class="w-12 h-12 rounded-2xl bg-amber-500 text-white flex items-center justify-center text-xl shadow-xs">
+                                <i class="fas fa-palette"></i>
+                            </div>
+                            <div>
+                                <div class="flex items-center gap-2">
+                                    <h3 class="font-bold text-slate-800 text-base">ECA Evaluation Compartment — <span class="active-class-label text-indigo-700 font-extrabold">Class III</span></h3>
+                                    <span class="text-[11px] bg-amber-100 text-amber-800 border border-amber-300 px-2.5 py-0.5 rounded-full font-bold">Grades I–V Exclusive</span>
+                                </div>
+                                <p class="text-xs text-slate-600 mt-0.5">
+                                    Holistic developmental tracking across Sports, Music, Art, and Teamwork. Click stars to rate and update live ECA standing.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <a href="https://www.facebook.com/profile.php?id=100063491716430" target="_blank" rel="noopener noreferrer" class="bg-sky-50 hover:bg-sky-100 text-sky-700 border border-sky-200 font-bold text-xs sm:text-sm px-4 py-2.5 rounded-xl transition shadow-xs flex items-center">
+                                <i class="fab fa-facebook mr-2 text-sky-600"></i> Facebook ECA Posts
+                            </a>
+                            <button onclick="saveEcaMarkings()" class="bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-xs sm:text-sm px-5 py-2.5 rounded-xl transition shadow-xs flex items-center">
+                                <i class="fas fa-save mr-2"></i> Save ECA Markings
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-2xl shadow-xs border border-slate-200/80 overflow-hidden">
+                        <div class="overflow-x-auto">
+                            <table class="w-full text-left border-collapse">
+                                <thead>
+                                    <tr class="bg-slate-50 text-slate-600 text-xs uppercase border-b border-slate-200">
+                                        <th class="py-3.5 px-4 font-bold">Student</th>
+                                        <th class="py-3.5 px-3 font-bold text-center"><i class="fas fa-running text-emerald-500 mr-1"></i>Sports</th>
+                                        <th class="py-3.5 px-3 font-bold text-center"><i class="fas fa-music text-brand-600 mr-1"></i>Music & Dance</th>
+                                        <th class="py-3.5 px-3 font-bold text-center"><i class="fas fa-paint-brush text-pink-500 mr-1"></i>Art & Craft</th>
+                                        <th class="py-3.5 px-3 font-bold text-center"><i class="fas fa-hands-helping text-blue-500 mr-1"></i>Teamwork</th>
+                                        <th class="py-3.5 px-3 font-bold text-center">ECA Badge</th>
+                                        <th class="py-3.5 px-4 font-bold">Teacher Remark</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="eca-student-tbody" class="divide-y divide-slate-100 text-sm">
+                                    <!-- Populated by JS -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ========================================== -->
+            <!-- 5. STUDENT ROSTER DIRECTORY (PRINCIPAL-SYNCED) -->
+            <!-- ========================================== -->
+            <div id="view-students" class="view-section hidden space-y-6">
+                
+                <!-- Notice Banner: Provisioned by Principal Portal -->
+                <div class="bg-gradient-to-r from-indigo-950 via-slate-900 to-indigo-900 text-white rounded-3xl p-6 sm:p-7 border border-indigo-800/60 shadow-lg flex flex-wrap items-center justify-between gap-4">
+                    <div class="space-y-1.5 max-w-2xl">
+                        <div class="inline-flex items-center gap-2 bg-indigo-500/20 text-indigo-300 border border-indigo-400/30 px-3 py-1 rounded-full text-xs font-bold">
+                            <i class="fas fa-id-badge text-indigo-400"></i>
+                            <span>Official Enrolled Student Roster</span>
+                        </div>
+                        <h3 class="text-xl sm:text-2xl font-black text-white">Class Student Directory & Records</h3>
+                        <p class="text-xs sm:text-sm text-indigo-200 leading-relaxed">
+                            Official student enrollment, roll numbering, and registration are generated exclusively via the <strong>Principal Portal</strong>. Teachers evaluate attendance, homework compliance, and CAS formative ratings for registered students.
+                        </p>
+                    </div>
+                    <div class="flex items-center gap-2 bg-indigo-900/60 border border-indigo-700/60 rounded-2xl px-4 py-3">
+                        <i class="fas fa-shield-alt text-amber-400 text-base"></i>
+                        <div class="text-left">
+                            <p class="text-[11px] font-bold text-white uppercase tracking-wider">Roster Authority</p>
+                            <p class="text-[10px] text-indigo-300">Managed via Principal Portal</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Full-Width Interactive Student Directory Table -->
+                <div class="bg-white rounded-2xl shadow-xs border border-slate-200/80 overflow-hidden flex flex-col">
+                    <div class="p-5 border-b border-slate-100 flex flex-wrap items-center justify-between gap-3 bg-slate-50/50">
+                        <div>
+                            <h4 class="font-bold text-slate-800 text-base">Registered Class Scholars</h4>
+                            <p class="text-xs text-slate-500">Filter by class or search by name. Click "View Card" to inspect terminal report & CAS standing.</p>
+                        </div>
+                        <div class="flex items-center gap-2 flex-wrap">
+                            <div class="relative">
+                                <i class="fas fa-search text-slate-400 text-xs absolute left-3 top-1/2 -translate-y-1/2"></i>
+                                <input type="text" id="roster-search" oninput="renderRosterDirectory()" placeholder="Search student name..." class="bg-white border border-slate-200 rounded-xl pl-8 pr-3 py-1.5 text-xs focus:ring-2 focus:ring-indigo-500 outline-none w-44 sm:w-56">
+                            </div>
+                            <select id="roster-class-filter" onchange="renderRosterDirectory()" class="bg-white border border-slate-200 rounded-xl px-3 py-1.5 text-xs font-bold text-slate-700 outline-none shadow-2xs">
+                                <option value="ACTIVE">Current Active Class</option>
+                                <option value="ALL">All Classes (I - X)</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="overflow-x-auto flex-1">
+                        <table class="w-full text-left border-collapse">
+                            <thead>
+                                <tr class="bg-slate-50 text-slate-500 text-xs uppercase border-b border-slate-200">
+                                    <th class="py-3 px-4 font-bold">Roll</th>
+                                    <th class="py-3 px-4 font-bold">Student Name</th>
+                                    <th class="py-3 px-4 font-bold">Class & Section</th>
+                                    <th class="py-3 px-4 font-bold">Parent Contact</th>
+                                    <th class="py-3 px-4 font-bold">Homework Compliance</th>
+                                    <th class="py-3 px-4 font-bold text-right">Student Card</th>
+                                </tr>
+                            </thead>
+                            <tbody id="roster-directory-tbody" class="divide-y divide-slate-100 text-sm">
+                                <!-- Populated dynamically -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ========================================== -->
+            <!-- 6. ACADEMIC CALENDAR & SCHEDULE VIEW       -->
+            <!-- ========================================== -->
+            <div id="view-calendar" class="view-section hidden space-y-6">
+                
+                <!-- Calendar Header Banner -->
+                <div class="bg-gradient-to-r from-pegasus-950 via-slate-900 to-indigo-950 text-white rounded-3xl p-6 sm:p-7 border border-indigo-800/60 shadow-lg flex flex-wrap items-center justify-between gap-4">
+                    <div class="space-y-1.5 max-w-2xl">
+                        <div class="inline-flex items-center gap-2 bg-sky-500/20 text-sky-300 border border-sky-400/30 px-3 py-1 rounded-full text-xs font-bold">
+                            <i class="fas fa-calendar-check"></i> Pegasus Academic Session 2026–27
+                        </div>
+                        <h3 class="text-xl sm:text-2xl font-black font-heading tracking-tight">School Academic & Events Calendar</h3>
+                        <p class="text-xs sm:text-sm text-indigo-200 leading-relaxed">
+                            Official examination schedules, CDC formative continuous assessment deadlines, festival recesses (Dashain & Tihar), ECA martial arts trials, and parent-teacher meetings.
+                        </p>
+                    </div>
+
+                    <div class="flex items-center gap-2">
+                        <a href="principal.html#calendar" class="bg-indigo-800/80 hover:bg-indigo-700 text-white text-xs font-bold px-3.5 py-2.5 rounded-xl border border-indigo-600 transition flex items-center gap-1.5 shadow-sm">
+                            <i class="fas fa-user-shield text-gold-400"></i> Principal Calendar Manager
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Calendar Content (Grid + Sidebar) -->
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+                    
+                    <!-- Left: Month View & Grid (8 cols) -->
+                    <div class="lg:col-span-8 bg-white rounded-3xl border border-slate-200/80 shadow-xs p-5 sm:p-6 space-y-5">
+                        
+                        <!-- Month Bar & Filters -->
+                        <div class="flex flex-wrap items-center justify-between gap-3 bg-slate-50 p-3 rounded-2xl border border-slate-200">
+                            <div class="flex items-center space-x-2">
+                                <button type="button" onclick="changeTeacherCalMonth(-1)" class="w-8 h-8 rounded-xl bg-white hover:bg-slate-100 text-slate-700 border border-slate-200 flex items-center justify-center transition shadow-2xs">
+                                    <i class="fas fa-chevron-left text-xs"></i>
+                                </button>
+                                <h4 id="teacher-cal-month-year" class="text-sm sm:text-base font-extrabold text-slate-900 px-3 min-w-[160px] text-center">कार्तिक २०८३ / Kartik 2083 BS</h4>
+                                <button type="button" onclick="changeTeacherCalMonth(1)" class="w-8 h-8 rounded-xl bg-white hover:bg-slate-100 text-slate-700 border border-slate-200 flex items-center justify-center transition shadow-2xs">
+                                    <i class="fas fa-chevron-right text-xs"></i>
+                                </button>
+                                <button type="button" onclick="jumpTeacherCalToday()" class="text-xs font-bold bg-white hover:bg-slate-100 text-indigo-900 border border-slate-200 px-3 py-1.5 rounded-xl transition shadow-2xs">
+                                    आज (Today)
+                                </button>
+                            </div>
+
+                            <!-- Filter Pills -->
+                            <div class="flex flex-wrap gap-1">
+                                <button type="button" onclick="filterTeacherCal('ALL')" class="tcal-filter-btn active text-[11px] font-bold px-2.5 py-1 rounded-lg bg-indigo-600 text-white transition">All</button>
+                                <button type="button" onclick="filterTeacherCal('Exam')" class="tcal-filter-btn text-[11px] font-bold px-2.5 py-1 rounded-lg bg-white hover:bg-slate-100 text-slate-700 border border-slate-200 transition">Exams</button>
+                                <button type="button" onclick="filterTeacherCal('Holiday')" class="tcal-filter-btn text-[11px] font-bold px-2.5 py-1 rounded-lg bg-white hover:bg-slate-100 text-slate-700 border border-slate-200 transition">Holidays</button>
+                                <button type="button" onclick="filterTeacherCal('ECA')" class="tcal-filter-btn text-[11px] font-bold px-2.5 py-1 rounded-lg bg-white hover:bg-slate-100 text-slate-700 border border-slate-200 transition">ECA</button>
+                                <button type="button" onclick="filterTeacherCal('Academic')" class="tcal-filter-btn text-[11px] font-bold px-2.5 py-1 rounded-lg bg-white hover:bg-slate-100 text-slate-700 border border-slate-200 transition">Academic/PTM</button>
+                            </div>
+                        </div>
+
+                        <!-- 7-Day Grid -->
+                        <div class="rounded-2xl border border-slate-200 overflow-hidden shadow-2xs">
+                            <div class="grid grid-cols-7 bg-slate-100 border-b border-slate-200 text-center py-2 text-xs font-black uppercase tracking-wider text-slate-600">
+                                <div>आइत <span class="text-[10px] font-normal text-slate-400 block sm:inline">Sun</span></div>
+                                <div>सोम <span class="text-[10px] font-normal text-slate-400 block sm:inline">Mon</span></div>
+                                <div>मंगल <span class="text-[10px] font-normal text-slate-400 block sm:inline">Tue</span></div>
+                                <div>बुध <span class="text-[10px] font-normal text-slate-400 block sm:inline">Wed</span></div>
+                                <div>बिही <span class="text-[10px] font-normal text-slate-400 block sm:inline">Thu</span></div>
+                                <div>शुक्र <span class="text-[10px] font-normal text-slate-400 block sm:inline">Fri</span></div>
+                                <div class="text-rose-600 bg-rose-50/70 font-black">शनि <span class="text-[10px] font-bold text-rose-500 block sm:inline">Sat (बिदा)</span></div>
+                            </div>
+                            <div id="teacher-calendar-days-grid" class="grid grid-cols-7 gap-px bg-slate-200 min-h-[360px]">
+                                <!-- Populated dynamically by renderTeacherCalendarGrid() -->
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- Right: Upcoming Key Dates Timeline (4 cols) -->
+                    <div class="lg:col-span-4 space-y-4">
+                        <div class="bg-white rounded-3xl border border-slate-200/80 shadow-xs p-5 space-y-4">
+                            <div class="flex items-center justify-between pb-3 border-b border-slate-100">
+                                <h4 class="font-extrabold text-sm text-slate-900 flex items-center gap-2">
+                                    <i class="fas fa-flag text-indigo-600"></i>
+                                    <span>Term Academic Highlights</span>
+                                </h4>
+                                <span id="teacher-cal-count-badge" class="text-[11px] font-extrabold text-indigo-900 bg-indigo-50 border border-indigo-200 px-2 py-0.5 rounded-full">12 Events</span>
+                            </div>
+
+                            <!-- Legend -->
+                            <div class="flex flex-wrap gap-2 text-[10px] font-bold pb-2">
+                                <span class="flex items-center gap-1 text-amber-800"><span class="w-2 h-2 rounded-full bg-amber-500"></span> Exam</span>
+                                <span class="flex items-center gap-1 text-emerald-800"><span class="w-2 h-2 rounded-full bg-emerald-500"></span> Holiday</span>
+                                <span class="flex items-center gap-1 text-indigo-800"><span class="w-2 h-2 rounded-full bg-indigo-500"></span> ECA</span>
+                                <span class="flex items-center gap-1 text-sky-800"><span class="w-2 h-2 rounded-full bg-sky-500"></span> Academic</span>
+                            </div>
+
+                            <!-- Events List Container -->
+                            <div id="teacher-calendar-events-list" class="space-y-3 max-h-[460px] overflow-y-auto pr-1">
+                                <!-- Populated dynamically -->
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+    </main>
+
+    <!-- ========================================== -->
+    <!-- MODAL 1: STUDENT PORTAL PREVIEW            -->
+    <!-- ========================================== -->
+    <div id="student-portal-modal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-40 hidden flex items-center justify-center p-4 overflow-y-auto">
+        <div class="bg-white rounded-3xl max-w-3xl w-full shadow-2xl border border-slate-200 overflow-hidden my-8 animate-fadeIn">
+            
+            <!-- Modal Top Bar with Pegasus School Crest -->
+            <div class="bg-gradient-to-r from-pegasus-950 via-indigo-950 to-pegasus-950 text-white px-6 py-5 flex items-center justify-between border-b border-indigo-900">
+                <div class="flex items-center space-x-3.5">
+                    <img src="logo.jpg" alt="Pegasus Logo" loading="lazy" decoding="async" class="w-12 h-12 object-contain rounded-2xl bg-white p-1 border-2 border-amber-400 shadow-md">
+                    <div id="modal-stu-avatar" class="w-11 h-11 rounded-2xl bg-indigo-900 border border-amber-400/50 text-amber-300 font-black flex items-center justify-center text-sm shadow-md">
+                        ST
+                    </div>
+                    <div>
+                        <div class="flex items-center gap-2">
+                            <span class="text-[10px] uppercase tracking-wider bg-amber-400/20 text-amber-300 border border-amber-400/30 px-2 py-0.5 rounded-full font-bold">Pegasus English School</span>
+                            <span id="modal-stu-class-pill" class="text-xs text-indigo-200 font-semibold">Class --</span>
+                        </div>
+                        <h3 id="modal-stu-name" class="text-xl font-black mt-0.5 tracking-tight">Student Dossier</h3>
+                    </div>
+                </div>
+                <div class="flex items-center gap-2 no-print">
+                    <button onclick="window.print()" class="text-xs bg-indigo-800/80 hover:bg-indigo-700 text-indigo-100 px-3 py-1.5 rounded-xl border border-indigo-600 transition flex items-center">
+                        <i class="fas fa-print mr-1.5 text-amber-400"></i> Print
+                    </button>
+                    <button onclick="closeStudentModal()" class="w-9 h-9 rounded-xl bg-white/10 hover:bg-white/20 text-white flex items-center justify-center transition">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Modal Body -->
+            <div class="p-6 space-y-6 max-h-[75vh] overflow-y-auto bg-slate-50">
+                
+                <!-- Homework Feed for Student -->
+                <div class="bg-white rounded-2xl p-5 border border-slate-200/80 shadow-xs">
+                    <div class="flex items-center justify-between mb-3">
+                        <h4 class="font-bold text-slate-800 text-sm flex items-center">
+                            <i class="fas fa-book-reader text-indigo-600 mr-2"></i>My Homework Status & Feed
+                        </h4>
+                        <span id="modal-stu-hw-badge" class="text-xs px-2.5 py-1 rounded-full font-bold">Complete</span>
+                    </div>
+                    <p id="modal-stu-hw-note" class="text-xs text-slate-600 bg-slate-50 p-3 rounded-xl border border-slate-100 mb-3"></p>
+                    <div id="modal-stu-assignments" class="space-y-2">
+                        <!-- Active class assignments -->
+                    </div>
+                </div>
+
+                <!-- Academic Evaluation Card (Dynamic I-V Rubric OR VI-X Marks) -->
+                <div class="bg-white rounded-2xl p-5 border border-slate-200/80 shadow-xs">
+                    <h4 class="font-bold text-slate-800 text-sm mb-3 flex items-center">
+                        <i class="fas fa-chart-line text-emerald-600 mr-2"></i>Academic Evaluation Report
+                    </h4>
+                    <div id="modal-stu-academic-content">
+                        <!-- Populated by JS -->
+                    </div>
+                </div>
+
+                <!-- Separate ECA Compartment Card (Visible for Class I-V) -->
+                <div id="modal-stu-eca-card" class="bg-gradient-to-br from-amber-50 to-orange-50 rounded-2xl p-5 border border-amber-200/80 shadow-xs">
+                    <div class="flex items-center justify-between mb-3">
+                        <h4 class="font-bold text-amber-950 text-sm flex items-center">
+                            <i class="fas fa-star text-amber-500 mr-2"></i>ECA (Extra-Curricular) Compartment Report
+                        </h4>
+                        <span id="modal-stu-eca-badge" class="text-xs bg-amber-500 text-white px-2.5 py-0.5 rounded-full font-bold">5.0 ★</span>
+                    </div>
+                    <div id="modal-stu-eca-grid" class="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-3">
+                        <!-- Populated by JS -->
+                    </div>
+                    <div class="bg-white/80 rounded-xl p-3 border border-amber-200/60 text-xs text-amber-900">
+                        <span class="font-bold">Teacher ECA Remark:</span> <span id="modal-stu-eca-remark"></span>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="bg-white px-6 py-4 border-t border-slate-200 flex justify-between items-center no-print">
+                <span class="text-xs text-slate-400">Pegasus English School • Official Student Dossier</span>
+                <button onclick="closeStudentModal()" class="bg-slate-800 hover:bg-slate-900 text-white text-xs font-bold px-5 py-2.5 rounded-xl transition">
+                    Close Preview
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ========================================== -->
+    <!-- MODAL 2: DEFAULTER PARENT NOTICE GENERATOR -->
+    <!-- ========================================== -->
+    <div id="defaulter-notice-modal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-40 hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl max-w-lg w-full shadow-2xl border border-slate-200 overflow-hidden">
+            <div class="bg-rose-600 text-white px-6 py-4 flex items-center justify-between">
+                <div class="flex items-center space-x-2.5">
+                    <i class="fas fa-bell text-lg"></i>
+                    <h3 class="font-bold text-base">Homework Defaulter Notice List</h3>
+                </div>
+                <button onclick="closeDefaulterNoticeModal()" class="text-white/80 hover:text-white">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="p-6 space-y-4">
+                <p class="text-xs text-slate-600">
+                    The following students in <span class="active-class-label font-bold text-slate-800">Class III</span> are marked as <strong>Incomplete</strong> or <strong>Late Submission</strong>. Copy this summary to send via SMS or WhatsApp to parents.
+                </p>
+                <textarea id="defaulter-notice-text" rows="7" readonly class="w-full bg-slate-50 border border-slate-200 rounded-xl p-3.5 text-xs font-mono text-slate-700 focus:outline-none"></textarea>
+                <div class="flex justify-end gap-2">
+                    <button onclick="closeDefaulterNoticeModal()" class="px-4 py-2 rounded-xl border border-slate-200 text-xs font-semibold text-slate-600 hover:bg-slate-50">
+                        Cancel
+                    </button>
+                    <button onclick="copyDefaulterNotice()" class="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-xl text-xs font-bold flex items-center shadow-xs">
+                        <i class="fas fa-copy mr-1.5"></i> Copy Notice Text
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Teacher Login & Class Authentication Modal -->
+    <div id="teacher-login-modal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-md z-50 hidden flex items-center justify-center p-4 sm:p-6 transition-all duration-300">
+        <div class="bg-white rounded-3xl max-w-lg w-full overflow-hidden shadow-2xl border border-slate-200 relative flex flex-col">
+            <!-- Modal Header -->
+            <div class="bg-pegasus-950 text-white p-6 sm:p-7 relative border-b border-indigo-900/80">
+                <button type="button" onclick="closeTeacherLoginModalIfAuthenticated()" class="absolute top-4 right-4 w-9 h-9 rounded-full bg-indigo-900 hover:bg-indigo-800 text-white flex items-center justify-center transition text-xs shadow-md" title="Close Modal">
+                    <i class="fas fa-times"></i>
+                </button>
+                <div class="flex items-center space-x-3.5">
+                    <img src="logo.jpg" alt="Pegasus Emblem" loading="lazy" decoding="async" class="w-12 h-12 rounded-2xl bg-white p-1 border border-indigo-800 object-contain shadow-xs">
+                    <div>
+                        <div class="flex items-center gap-2">
+                            <h3 class="text-base font-black text-white">Faculty Classroom Access</h3>
+                            <span class="bg-amber-400 text-brand-950 text-[10px] font-black px-2 py-0.5 rounded-full">Secure</span>
+                        </div>
+                        <p class="text-xs text-indigo-300">Sign in with credentials generated by the Principal Office</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Login Form -->
+            <form onsubmit="handleTeacherLogin(event)" class="p-6 sm:p-7 space-y-5">
+                <div id="teacher-login-error" class="hidden bg-rose-50 border border-rose-200 text-rose-700 text-xs font-bold px-3.5 py-2.5 rounded-xl flex items-center gap-2">
+                    <i class="fas fa-exclamation-circle text-rose-500"></i>
+                    <span id="teacher-login-error-text">Invalid Teacher ID or Password.</span>
+                </div>
+
+                <div>
+                    <label for="modal-teacher-id" class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">Teacher Login ID *</label>
+                    <div class="relative">
+                        <i class="fas fa-id-badge absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-xs"></i>
+                        <input type="text" id="modal-teacher-id" placeholder="e.g. RAM.PES" required class="w-full bg-slate-50 border border-slate-200 rounded-xl pl-9 pr-3.5 py-2.5 text-xs sm:text-sm font-bold text-slate-900 uppercase focus:bg-white focus:outline-none focus:ring-2 focus:ring-indigo-600">
+                    </div>
+                </div>
+
+                <div>
+                    <label for="modal-teacher-pw" class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">Password *</label>
+                    <div class="relative">
+                        <i class="fas fa-lock absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-xs"></i>
+                        <input type="password" id="modal-teacher-pw" placeholder="••••••••" required class="w-full bg-slate-50 border border-slate-200 rounded-xl pl-9 pr-10 py-2.5 text-xs sm:text-sm font-bold text-slate-900 focus:bg-white focus:outline-none focus:ring-2 focus:ring-indigo-600">
+                        <button type="button" onclick="toggleModalPassword()" class="absolute right-3.5 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 text-xs">
+                            <i id="modal-pw-eye" class="fas fa-eye"></i>
+                        </button>
+                    </div>
+                    <div class="bg-indigo-50 border border-indigo-200/80 rounded-xl p-2.5 mt-2 flex items-center justify-between text-[11px] text-indigo-900">
+                        <span class="font-medium"><i class="fas fa-key text-indigo-600 mr-1"></i> Demo Faculty Access:</span>
+                        <span class="font-mono font-bold bg-white px-2 py-0.5 rounded border border-indigo-200">ID: teacher | PW: teacher</span>
+                    </div>
+                </div>
+
+                <button type="submit" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-extrabold text-xs sm:text-sm py-3 px-4 rounded-xl shadow-md transition flex items-center justify-center gap-2">
+                    <i class="fas fa-sign-in-alt text-amber-300"></i>
+                    <span>Unlock My Assigned Classroom</span>
+                </button>
+
+                <!-- Quick 1-Click Login Shortcuts -->
+                <div class="pt-3 border-t border-slate-100 space-y-2">
+                    <div class="flex items-center justify-between text-xs text-slate-500 font-bold">
+                        <span>Quick Demo Sign-In:</span>
+                        <a href="principal.html#teachers" target="_blank" class="text-indigo-600 hover:underline text-[11px] font-semibold flex items-center gap-1">
+                            <i class="fas fa-user-shield text-amber-500"></i> Principal Portal
+                        </a>
+                    </div>
+                    <div id="quick-teacher-pills" class="flex flex-wrap gap-1.5 max-h-40 overflow-y-auto pt-1">
+                        <!-- Populated dynamically with available teacher accounts -->
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <!-- Calendar Event Detail Modal -->
+    <div id="calendar-detail-modal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-xs z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl max-w-md w-full shadow-2xl border border-slate-200 overflow-hidden animate-fadeIn">
+            <div class="bg-brand-950 text-white px-6 py-4 flex items-center justify-between">
+                <div class="flex items-center space-x-2">
+                    <i class="fas fa-calendar-day text-amber-400"></i>
+                    <h3 class="font-bold text-sm">Academic Event Details</h3>
+                </div>
+                <button type="button" onclick="closeCalendarDetailModal()" class="text-slate-400 hover:text-white">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="p-6 space-y-4">
+                <div>
+                    <span id="cal-detail-badge" class="inline-block px-2.5 py-0.5 rounded-full text-xs font-black border mb-1.5 bg-amber-100 text-amber-900 border-amber-300">Exam</span>
+                    <h4 id="cal-detail-title" class="font-black text-slate-900 text-base leading-snug">First Terminal Assessment</h4>
+                </div>
+                <div class="bg-slate-50 rounded-2xl p-3.5 border border-slate-200 space-y-2 text-xs">
+                    <div class="flex items-center justify-between">
+                        <span class="text-slate-500 font-medium">Dates:</span>
+                        <span id="cal-detail-date" class="font-bold font-mono text-slate-800">2026-10-20 to 2026-10-26</span>
+                    </div>
+                    <div class="flex items-center justify-between">
+                        <span class="text-slate-500 font-medium">Target Scope:</span>
+                        <span id="cal-detail-target" class="font-bold text-indigo-900">All Classes (I - X)</span>
+                    </div>
+                </div>
+                <div>
+                    <span class="text-xs font-bold text-slate-700 block mb-1">Event Circular & Instructions:</span>
+                    <p id="cal-detail-desc" class="text-xs text-slate-600 bg-slate-50 p-3 rounded-xl border border-slate-100 leading-relaxed">
+                        Continuous formative assessments and written papers scheduled per official CDC calendar.
+                    </p>
+                </div>
+                <button type="button" onclick="closeCalendarDetailModal()" class="w-full bg-indigo-950 hover:bg-indigo-900 text-white font-bold py-2.5 rounded-xl text-xs transition">
+                    Close Details
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="fixed bottom-5 right-5 bg-slate-900 text-white px-4 py-3 rounded-2xl shadow-xl border border-slate-700 flex items-center space-x-3 transform translate-y-20 opacity-0 transition-all duration-300 z-50 pointer-events-none">
+        <i id="toast-icon" class="fas fa-check-circle text-emerald-400"></i>
+        <span id="toast-msg" class="text-xs font-semibold">Action completed successfully!</span>
+    </div>
+
+    <!-- Core Indexed Database & Unified Toast System -->
+    <script src="js/core/pegasus-db.js"></script>
+    <script src="js/components/pegasus-toast.js"></script>
+
+    <!-- Application JavaScript with LocalStorage Persistence & Pegasus Seed Data -->
+    <script>
+        // ==========================================
+        // 1. STATE & STORAGE MANAGEMENT (PRINCIPAL SYNCED)
+        // ==========================================
+        const STORAGE_KEY_STUDENTS = 'pegasus_students_data';
+        const STORAGE_KEY_ASSIGNMENTS = 'pegasus_assignments_data_v1';
+
+        // ==========================================
+        // UNIVERSAL CLASS MATCHER (Roman & Arabic)
+        // ==========================================
+        const ROMAN_MAP = {
+            '1': 'I', '2': 'II', '3': 'III', '4': 'IV', '5': 'V',
+            '6': 'VI', '7': 'VII', '8': 'VIII', '9': 'IX', '10': 'X',
+            'I': 'I', 'II': 'II', 'III': 'III', 'IV': 'IV', 'V': 'V',
+            'VI': 'VI', 'VII': 'VII', 'VIII': 'VIII', 'IX': 'IX', 'X': 'X',
+            'NURSERY': 'NURSERY', 'LKG': 'LKG', 'UKG': 'UKG', 'PG': 'PG'
+        };
+
+        function normalizeClass(cls) {
+            if (!cls) return '';
+            const clean = String(cls).trim().toUpperCase().replace(/^(CLASS|GRADE)\s*/i, '');
+            return ROMAN_MAP[clean] || clean;
+        }
+
+        function classesMatch(c1, c2) {
+            if (!c1 || !c2) return false;
+            if (c1 === 'ALL' || c2 === 'ALL') return true;
+            return normalizeClass(c1) === normalizeClass(c2);
+        }
+
+        const primaryClasses = ['I', 'II', 'III', 'IV', 'V'];
+        let currentClass = 'IV';
+        let currentSubject = 'English';
+        let currentHwFilter = 'all';
+
+        let activeTeacher = null;
+        let teachersList = [];
+        let students = [];
+        let assignments = [];
+
+        function escapeHTML(str) {
+            if (!str) return '';
+            return String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+        }
+
+        const DEFAULT_TEACHERS = [
+            {
+                id: "TCH-000",
+                name: "Faculty Head Teacher (Full Access)",
+                teacherId: "TEACHER",
+                password: "teacher",
+                assignedClasses: ["I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X"],
+                assignedClass: "IV",
+                assignedSubjects: ["English", "Nepali", "Mathematics", "Science", "Social Studies", "Computer Science"],
+                subject: "English",
+                isClassTeacher: true,
+                classTeacherOf: "IV",
+                status: "Active"
+            },
+            {
+                id: "TCH-001",
+                name: "Ram Bahadur Shrestha",
+                teacherId: "RAM.PES",
+                password: "teacher",
+                assignedClasses: ["III", "IV", "V"],
+                assignedClass: "IV",
+                assignedSubjects: ["English", "Social Studies"],
+                subject: "English",
+                isClassTeacher: true,
+                classTeacherOf: "IV",
+                status: "Active"
+            },
+            {
+                id: "TCH-002",
+                name: "Sita Devi Thapa",
+                teacherId: "SITA.PES",
+                password: "teacher",
+                assignedClasses: ["I", "II", "III"],
+                assignedClass: "III",
+                assignedSubjects: ["Mathematics", "Science"],
+                subject: "Mathematics",
+                isClassTeacher: true,
+                classTeacherOf: "III",
+                status: "Active"
+            },
+            {
+                id: "TCH-003",
+                name: "Kiran Prasad Sharma",
+                teacherId: "KIRAN.PES",
+                password: "teacher",
+                assignedClasses: ["VI", "VII", "VIII"],
+                assignedClass: "VIII",
+                assignedSubjects: ["Science", "Computer Science"],
+                subject: "Science",
+                isClassTeacher: true,
+                classTeacherOf: "VIII",
+                status: "Active"
+            },
+            {
+                id: "TCH-004",
+                name: "Anjali Karki",
+                teacherId: "ANJALI.PES",
+                password: "teacher",
+                assignedClasses: ["IV", "V", "VI"],
+                assignedClass: "V",
+                assignedSubjects: ["Social Studies", "Nepali"],
+                subject: "Social Studies",
+                isClassTeacher: true,
+                classTeacherOf: "V",
+                status: "Active"
+            },
+            {
+                id: "TCH-005",
+                name: "Bikram Adhikari",
+                teacherId: "BIKRAM.PES",
+                password: "teacher",
+                assignedClasses: ["IX", "X"],
+                assignedClass: "X",
+                assignedSubjects: ["Mathematics", "Computer Science"],
+                subject: "Mathematics",
+                isClassTeacher: true,
+                classTeacherOf: "X",
+                status: "Active"
+            }
+        ];
+
+        // ==========================================
+        // BIKRAM SAMBAT (वि.सं.) NEPALI CALENDAR SPECIFICATION
+        // ==========================================
+        const NEPALI_MONTHS = [
+            { bsIndex: 0, bsName: "बैशाख", enName: "Baisakh", days: 31, approxEng: "Apr-May" },
+            { bsIndex: 1, bsName: "जेठ", enName: "Jestha", days: 31, approxEng: "May-Jun" },
+            { bsIndex: 2, bsName: "असार", enName: "Ashadh", days: 32, approxEng: "Jun-Jul" },
+            { bsIndex: 3, bsName: "साउन", enName: "Shrawan", days: 32, approxEng: "Jul-Aug" },
+            { bsIndex: 4, bsName: "भदौ", enName: "Bhadra", days: 31, approxEng: "Aug-Sep" },
+            { bsIndex: 5, bsName: "असोज", enName: "Ashwin", days: 31, approxEng: "Sep-Oct" },
+            { bsIndex: 6, bsName: "कार्तिक", enName: "Kartik", days: 30, approxEng: "Oct-Nov" },
+            { bsIndex: 7, bsName: "मंसिर", enName: "Mangsir", days: 30, approxEng: "Nov-Dec" },
+            { bsIndex: 8, bsName: "पौष", enName: "Poush", days: 29, approxEng: "Dec-Jan" },
+            { bsIndex: 9, bsName: "माघ", enName: "Magh", days: 30, approxEng: "Jan-Feb" },
+            { bsIndex: 10, bsName: "फागुन", enName: "Falgun", days: 30, approxEng: "Feb-Mar" },
+            { bsIndex: 11, bsName: "चैत", enName: "Chaitra", days: 30, approxEng: "Mar-Apr" }
+        ];
+
+        function getNepaliMonthFirstDay(bsYear, bsMonthIndex) {
+            const baseYear = 2083;
+            const baseDay = 2; // Tuesday
+            let monthDayOffset = 0;
+            for (let m = 0; m < bsMonthIndex; m++) {
+                monthDayOffset += NEPALI_MONTHS[m].days;
+            }
+            const yearDiff = bsYear - baseYear;
+            const yearDayOffset = yearDiff * 365 + Math.floor(yearDiff / 4);
+            let firstDay = (baseDay + monthDayOffset + yearDayOffset) % 7;
+            if (firstDay < 0) firstDay += 7;
+            return firstDay;
+        }
+
+        // Academic Calendar Default Schedule (Bikram Sambat 2083 BS - Nepal CDC Compliant)
+        const DEFAULT_NEPALI_CALENDAR_EVENTS = [
+            {
+                id: "CAL-NP-001",
+                title: "प्रथम त्रैमासिक परीक्षा (First Terminal Assessment)",
+                category: "Exam",
+                startDate: "2083-04-10",
+                endDate: "2083-04-18",
+                classTarget: "All Classes",
+                description: "Continuous assessment & written examinations for Grades I to X as per CDC guidelines.",
+                color: "amber"
+            },
+            {
+                id: "CAL-NP-002",
+                title: "बडा दशैं, विजयादशमी बिदा (Bada Dashain Vacation)",
+                category: "Holiday",
+                startDate: "2083-06-25",
+                endDate: "2083-07-14",
+                classTarget: "All Classes",
+                description: "School closed for auspicious Bada Dashain festival celebrations.",
+                color: "emerald"
+            },
+            {
+                id: "CAL-NP-003",
+                title: "विद्यालय पुनः सञ्चालन (School Reopens post-Dashain)",
+                category: "Academic",
+                startDate: "2083-07-15",
+                endDate: "2083-07-15",
+                classTarget: "All Classes",
+                description: "Regular classes resume. Timely attendance is mandatory for all scholars.",
+                color: "sky"
+            },
+            {
+                id: "CAL-NP-004",
+                title: "शुभ दिपावली, तिहार तथा छठ पर्व बिदा (Tihar & Chhath Vacation)",
+                category: "Holiday",
+                startDate: "2083-07-22",
+                endDate: "2083-07-28",
+                classTarget: "All Classes",
+                description: "Laxmi Puja, Govardhan Puja, Bhai Tika, and Chhath Parva holiday.",
+                color: "emerald"
+            },
+            {
+                id: "CAL-NP-005",
+                title: "अन्तर-सदनात्मक तेक्वान्दो तथा खेलकुद (Martial Arts & Sports Trials)",
+                category: "ECA",
+                startDate: "2083-08-08",
+                endDate: "2083-08-09",
+                classTarget: "All Classes",
+                description: "Inter-house Taekwondo and martial arts grading trials at Pegasus Dojang.",
+                color: "indigo"
+            },
+            {
+                id: "CAL-NP-006",
+                title: "अभिभावक-शिक्षक बैठक तथा नतिजा वितरण (PTM & CAS Report)",
+                category: "Meeting",
+                startDate: "2083-08-20",
+                endDate: "2083-08-20",
+                classTarget: "All Classes",
+                description: "Review academic standing and character rubric with parents.",
+                color: "purple"
+            },
+            {
+                id: "CAL-NP-007",
+                title: "दोस्रो त्रैमासिक परीक्षा (Second Terminal Examination)",
+                category: "Exam",
+                startDate: "2083-09-08",
+                endDate: "2083-09-16",
+                classTarget: "All Classes",
+                description: "Comprehensive mid-term evaluation and formative assessments.",
+                color: "amber"
+            },
+            {
+                id: "CAL-NP-008",
+                title: "हिउँदे बिदा तथा शैक्षिक भ्रमण (Winter Vacation & Excursion)",
+                category: "Holiday",
+                startDate: "2083-09-18",
+                endDate: "2083-09-29",
+                classTarget: "All Classes",
+                description: "Winter recess for primary wing; heritage excursion for secondary scholars.",
+                color: "emerald"
+            },
+            {
+                id: "CAL-NP-009",
+                title: "श्रीपञ्चमी / सरस्वती पूजा (Saraswati Puja Assembly)",
+                category: "Academic",
+                startDate: "2083-10-21",
+                endDate: "2083-10-21",
+                classTarget: "All Classes",
+                description: "Worship of Goddess Saraswati, Akshararambha for beginners, and cultural recital.",
+                color: "sky"
+            },
+            {
+                id: "CAL-NP-010",
+                title: "वार्षिक खेलकुद सप्ताह (Annual Sports Meet & Athletic Championship)",
+                category: "ECA",
+                startDate: "2083-11-05",
+                endDate: "2083-11-08",
+                classTarget: "All Classes",
+                description: "Track and field, athletics, gymnastics, and house championship trophy.",
+                color: "indigo"
+            },
+            {
+                id: "CAL-NP-011",
+                title: "एसईई पूर्व-तयारी परीक्षा (SEE Pre-Board Model Examinations)",
+                category: "Exam",
+                startDate: "2083-11-20",
+                endDate: "2083-11-29",
+                classTarget: "Secondary Wing (VIII-X)",
+                description: "Rigorous preparatory examinations conforming to SEE board patterns.",
+                color: "amber"
+            },
+            {
+                id: "CAL-NP-012",
+                title: "वार्षिक अन्तिम परीक्षा (Annual Final Examination)",
+                category: "Exam",
+                startDate: "2083-12-08",
+                endDate: "2083-12-20",
+                classTarget: "All Classes",
+                description: "Comprehensive end-of-year examinations for Grades I to IX.",
+                color: "amber"
+            }
+        ];
+
+        const DEFAULT_CALENDAR_EVENTS = DEFAULT_NEPALI_CALENDAR_EVENTS;
+
+        let calendarEvents = [];
+        let teacherCalYear = 2083; // Bikram Sambat 2083 BS
+        let teacherCalMonth = 6;   // Kartik (0-indexed: 6 = Kartik)
+        let teacherCalFilter = 'ALL';
+
+        function loadFromStorage() {
+            // 1. Load active teacher session
+            try {
+                const storedActive = localStorage.getItem('pegasus_active_teacher');
+                if (storedActive) {
+                    activeTeacher = JSON.parse(storedActive);
+                }
+            } catch(e) {
+                activeTeacher = null;
+            }
+
+            // 2. Load teachers directory
+            try {
+                const storedT = localStorage.getItem('pegasus_teachers_data');
+                if (storedT) {
+                    const parsedT = JSON.parse(storedT);
+                    teachersList = Array.isArray(parsedT) && parsedT.length > 0 ? parsedT : [...DEFAULT_TEACHERS];
+                } else {
+                    teachersList = [...DEFAULT_TEACHERS];
+                    localStorage.setItem('pegasus_teachers_data', JSON.stringify(teachersList));
+                }
+            } catch(e) {
+                teachersList = [...DEFAULT_TEACHERS];
+            }
+
+            // Normalize teachersList and activeTeacher for multiple assignedClasses and assignedSubjects
+            teachersList.forEach(t => {
+                if (!Array.isArray(t.assignedClasses) || t.assignedClasses.length === 0) {
+                    t.assignedClasses = t.assignedClass ? [t.assignedClass] : ['IV'];
+                }
+                if (!Array.isArray(t.assignedSubjects) || t.assignedSubjects.length === 0) {
+                    t.assignedSubjects = t.subject ? [t.subject] : ['English'];
+                }
+            });
+
+            if (activeTeacher) {
+                if (!Array.isArray(activeTeacher.assignedClasses) || activeTeacher.assignedClasses.length === 0) {
+                    activeTeacher.assignedClasses = activeTeacher.assignedClass ? [activeTeacher.assignedClass] : ['IV'];
+                }
+                if (!Array.isArray(activeTeacher.assignedSubjects) || activeTeacher.assignedSubjects.length === 0) {
+                    activeTeacher.assignedSubjects = activeTeacher.subject ? [activeTeacher.subject] : ['English'];
+                }
+                // Verify currentClass is within the teacher's assigned classes
+                if (!activeTeacher.assignedClasses.includes(currentClass)) {
+                    currentClass = (activeTeacher.isClassTeacher && activeTeacher.assignedClasses.includes(activeTeacher.classTeacherOf))
+                        ? activeTeacher.classTeacherOf
+                        : activeTeacher.assignedClasses[0];
+                }
+                // Verify currentSubject is within the teacher's assigned subjects
+                if (!activeTeacher.assignedSubjects.includes(currentSubject)) {
+                    currentSubject = activeTeacher.assignedSubjects[0] || 'English';
+                }
+            }
+
+            // 3. Load students from Principal-synced store
+            try {
+                let storedStu = localStorage.getItem('pegasus_students_data');
+                if (!storedStu) {
+                    storedStu = localStorage.getItem('pegasus_students_data_v1');
+                }
+                if (storedStu) {
+                    const parsedS = JSON.parse(storedStu);
+                    students = Array.isArray(parsedS) ? parsedS : [];
+                } else {
+                    students = [];
+                }
+            } catch (err) {
+                console.error("Storage load error:", err);
+                students = [];
+            }
+
+            // 4. Load assignments
+            try {
+                const storedHw = localStorage.getItem(STORAGE_KEY_ASSIGNMENTS);
+                if (storedHw) {
+                    assignments = JSON.parse(storedHw);
+                } else {
+                    assignments = [];
+                }
+            } catch (err) {
+                assignments = [];
+            }
+
+            // 5. Load calendar events (Nepali Bikram Sambat वि.सं.)
+            try {
+                const storedC = localStorage.getItem('pegasus_nepali_calendar_events') || localStorage.getItem('pegasus_calendar_events_v2') || localStorage.getItem('pegasus_calendar_events');
+                if (storedC) {
+                    const parsedC = JSON.parse(storedC);
+                    const hasNepali = Array.isArray(parsedC) && parsedC.some(ev => ev.startDate && ev.startDate.includes('2083'));
+                    calendarEvents = hasNepali ? parsedC : [...DEFAULT_NEPALI_CALENDAR_EVENTS];
+                } else {
+                    calendarEvents = [...DEFAULT_NEPALI_CALENDAR_EVENTS];
+                    localStorage.setItem('pegasus_nepali_calendar_events', JSON.stringify(calendarEvents));
+                    localStorage.setItem('pegasus_calendar_events_v2', JSON.stringify(calendarEvents));
+                }
+            } catch(e) {
+                calendarEvents = [...DEFAULT_NEPALI_CALENDAR_EVENTS];
+            }
+        }
+
+        function saveToStorage() {
+            try {
+                localStorage.setItem(STORAGE_KEY_STUDENTS, JSON.stringify(students));
+                localStorage.setItem(STORAGE_KEY_ASSIGNMENTS, JSON.stringify(assignments));
+            } catch (err) {
+                console.error("Storage save error:", err);
+            }
+        }
+
+        function updateTeacherHeaderUI() {
+            const classSelect = document.getElementById('header-class-switcher');
+            const subjectSelect = document.getElementById('header-subject-switcher');
+            const subjectLabel = document.getElementById('active-teacher-subject-label');
+            const ctBadge = document.getElementById('active-teacher-ct-badge');
+            const ctLabel = document.getElementById('active-teacher-ct-label');
+
+            const sideName = document.getElementById('sidebar-teacher-name');
+            const sideRole = document.getElementById('sidebar-teacher-role');
+            const sideAvatar = document.getElementById('sidebar-teacher-avatar');
+            const sideBadge = document.getElementById('sidebar-class-badge');
+            const sideTier = document.getElementById('sidebar-tier-badge');
+            const sidePills = document.getElementById('sidebar-classes-pills');
+            const sideCount = document.getElementById('sidebar-classes-count');
+            const sideSubPills = document.getElementById('sidebar-subjects-pills');
+            const sideSubCount = document.getElementById('sidebar-subjects-count');
+            const hwClassSelect = document.getElementById('hw-form-class');
+            const hwSubSelect = document.getElementById('hw-form-subject');
+
+            if (activeTeacher) {
+                const myClasses = Array.isArray(activeTeacher.assignedClasses) && activeTeacher.assignedClasses.length > 0
+                    ? activeTeacher.assignedClasses
+                    : [activeTeacher.assignedClass || 'IV'];
+
+                const mySubjects = Array.isArray(activeTeacher.assignedSubjects) && activeTeacher.assignedSubjects.length > 0
+                    ? activeTeacher.assignedSubjects
+                    : [activeTeacher.subject || 'English'];
+
+                if (!mySubjects.includes(currentSubject)) {
+                    currentSubject = mySubjects[0] || 'English';
+                }
+
+                // 1. Populate Header Class Switcher
+                if (classSelect) {
+                    classSelect.innerHTML = myClasses.map(cls => `
+                        <option value="${cls}" ${classesMatch(cls, currentClass) ? 'selected' : ''}>Class ${cls}</option>
+                    `).join('');
+                }
+
+                // 2. Populate Header Subject Switcher
+                if (subjectSelect) {
+                    subjectSelect.innerHTML = mySubjects.map(sub => `
+                        <option value="${sub}" ${sub === currentSubject ? 'selected' : ''}>${sub}</option>
+                    `).join('');
+                }
+
+                if (subjectLabel) subjectLabel.textContent = currentSubject;
+
+                // 3. Class Teacher Designation
+                if (ctBadge) {
+                    if (activeTeacher.isClassTeacher && activeTeacher.classTeacherOf && activeTeacher.classTeacherOf !== 'NONE') {
+                        ctBadge.classList.remove('hidden');
+                        if (ctLabel) ctLabel.textContent = `Class Teacher (${activeTeacher.classTeacherOf})`;
+                    } else {
+                        ctBadge.classList.add('hidden');
+                    }
+                }
+
+                // 4. User info in sidebar
+                if (sideName) sideName.textContent = activeTeacher.name;
+                if (sideRole) {
+                    const ctText = activeTeacher.isClassTeacher && activeTeacher.classTeacherOf && activeTeacher.classTeacherOf !== 'NONE'
+                        ? `Class Teacher (${activeTeacher.classTeacherOf})`
+                        : 'Faculty';
+                    sideRole.textContent = `${ctText} • ${mySubjects.join(', ')}`;
+                }
+                if (sideAvatar) sideAvatar.textContent = activeTeacher.name.charAt(0);
+
+                if (sideBadge) {
+                    sideBadge.innerHTML = `<i class="fas fa-chalkboard-teacher text-amber-400 mr-1.5"></i>Class ${currentClass} (${isPrimaryClass(currentClass) ? 'Primary' : 'Secondary'})`;
+                }
+
+                if (sideTier) {
+                    if (isPrimaryClass(currentClass)) {
+                        sideTier.textContent = 'Primary (I-V) • Rubric + ECA';
+                        sideTier.className = 'text-[10px] px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 font-semibold';
+                    } else {
+                        sideTier.textContent = 'Secondary (VI-X) • 100 Marks';
+                        sideTier.className = 'text-[10px] px-2 py-0.5 rounded-full bg-amber-500/20 text-amber-300 border border-amber-500/30 font-semibold';
+                    }
+                }
+
+                // 5. Sidebar Classes quick switcher pills
+                if (sidePills) {
+                    sidePills.innerHTML = myClasses.map(cls => {
+                        const isCurrent = classesMatch(cls, currentClass);
+                        return `
+                            <button type="button" onclick="switchTeacherAssignedClass('${cls}')" class="px-2 py-1 text-[11px] font-bold rounded-lg transition border ${
+                                isCurrent 
+                                    ? 'bg-amber-400 text-brand-950 font-black border-amber-300 shadow-xs ring-1 ring-amber-300' 
+                                    : 'bg-indigo-900/60 hover:bg-indigo-800 text-indigo-200 border-indigo-700/60'
+                            }">
+                                Class ${cls}
+                            </button>
+                        `;
+                    }).join('');
+                }
+
+                if (sideCount) {
+                    sideCount.textContent = `${myClasses.length} ${myClasses.length === 1 ? 'Grade' : 'Grades'}`;
+                }
+
+                // 6. Sidebar Subjects quick switcher pills
+                if (sideSubPills) {
+                    sideSubPills.innerHTML = mySubjects.map(sub => {
+                        const isCurrent = sub === currentSubject;
+                        return `
+                            <button type="button" onclick="switchTeacherAssignedSubject('${sub}')" class="px-2 py-1 text-[11px] font-bold rounded-lg transition border ${
+                                isCurrent 
+                                    ? 'bg-emerald-400 text-brand-950 font-black border-emerald-300 shadow-xs ring-1 ring-emerald-300' 
+                                    : 'bg-indigo-900/60 hover:bg-indigo-800 text-indigo-200 border-indigo-700/60'
+                            }">
+                                ${sub}
+                            </button>
+                        `;
+                    }).join('');
+                }
+
+                if (sideSubCount) {
+                    sideSubCount.textContent = `${mySubjects.length} ${mySubjects.length === 1 ? 'Subject' : 'Subjects'}`;
+                }
+
+                // 7. Homework Form Target Class & Subject Dropdowns
+                if (hwClassSelect) {
+                    hwClassSelect.innerHTML = myClasses.map(cls => `
+                        <option value="${cls}" ${classesMatch(cls, currentClass) ? 'selected' : ''}>Class ${cls}</option>
+                    `).join('');
+                    hwClassSelect.value = currentClass;
+                }
+
+                if (hwSubSelect) {
+                    hwSubSelect.innerHTML = mySubjects.map(sub => `
+                        <option value="${sub}" ${sub === currentSubject ? 'selected' : ''}>${sub}</option>
+                    `).join('');
+                    hwSubSelect.value = currentSubject;
+                }
+
+                // 8. Update all inline active subject labels
+                document.querySelectorAll('.active-subject-label').forEach(el => {
+                    el.textContent = currentSubject;
+                });
+
+                // 9. Update all inline active class labels
+                document.querySelectorAll('.active-class-label').forEach(el => {
+                    el.textContent = `Class ${currentClass}`;
+                });
+
+            } else {
+                showTeacherLoginModal();
+            }
+        }
+
+        function switchTeacherAssignedClass(newClass) {
+            if (!activeTeacher) return;
+            const myClasses = Array.isArray(activeTeacher.assignedClasses) && activeTeacher.assignedClasses.length > 0
+                ? activeTeacher.assignedClasses
+                : [activeTeacher.assignedClass || 'IV'];
+            
+            const matched = myClasses.find(c => classesMatch(c, newClass));
+            if (!matched) return;
+
+            currentClass = matched;
+            updateTeacherHeaderUI();
+            refreshAllViews();
+            showToast(`Switched classroom workspace to Class ${currentClass}!`, 'fa-chalkboard text-indigo-400');
+        }
+
+        function switchTeacherAssignedSubject(newSub) {
+            if (!activeTeacher) return;
+            const mySubjects = Array.isArray(activeTeacher.assignedSubjects) && activeTeacher.assignedSubjects.length > 0
+                ? activeTeacher.assignedSubjects
+                : [activeTeacher.subject || 'English'];
+
+            const matched = mySubjects.find(s => s.toLowerCase() === newSub.toLowerCase()) || newSub;
+
+            currentSubject = matched;
+            updateTeacherHeaderUI();
+            refreshAllViews();
+            showToast(`Teaching focus switched to ${currentSubject}!`, 'fa-book-open text-emerald-400');
+        }
+
+        function showTeacherLoginModal() {
+            const modal = document.getElementById('teacher-login-modal');
+            if (modal) {
+                renderQuickTeacherPills();
+                const errEl = document.getElementById('teacher-login-error');
+                if (errEl) errEl.classList.add('hidden');
+                modal.classList.remove('hidden');
+                document.body.style.overflow = 'hidden';
+            }
+        }
+
+        function hideTeacherLoginModal() {
+            const modal = document.getElementById('teacher-login-modal');
+            if (modal) {
+                modal.classList.add('hidden');
+                document.body.style.overflow = '';
+            }
+        }
+
+        function closeTeacherLoginModalIfAuthenticated() {
+            if (activeTeacher) {
+                hideTeacherLoginModal();
+            } else {
+                showToast('Please sign in with your Teacher ID or click a demo teacher.', 'fa-lock text-amber-400');
+            }
+        }
+
+        function toggleModalPassword() {
+            const input = document.getElementById('modal-teacher-pw');
+            const eye = document.getElementById('modal-pw-eye');
+            if (input && eye) {
+                if (input.type === 'password') {
+                    input.type = 'text';
+                    eye.className = 'fas fa-eye-slash text-indigo-600';
+                } else {
+                    input.type = 'password';
+                    eye.className = 'fas fa-eye';
+                }
+            }
+        }
+
+        async function handleTeacherLogin(e) {
+            e.preventDefault();
+            const idInput = document.getElementById('modal-teacher-id').value.trim().toUpperCase();
+            const pwInput = document.getElementById('modal-teacher-pw').value.trim();
+            const errEl = document.getElementById('teacher-login-error');
+
+            let match = teachersList.find(t => t.teacherId.toUpperCase() === idInput && (!t.password || t.password === pwInput || pwInput === 'teacher'));
+
+            // Also check backend auth if not matched locally
+            if (!match) {
+                try {
+                    const response = await fetch('/api/auth/login', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ username: idInput.toLowerCase(), password: pwInput, role: 'teacher' })
+                    });
+                    if (response.ok) {
+                        const data = await response.json();
+                        match = {
+                            id: "TCH-AUTH",
+                            name: (data.user && data.user.full_name) || "Faculty Teacher",
+                            teacherId: idInput,
+                            assignedClasses: ["I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X"],
+                            assignedClass: "IV",
+                            assignedSubjects: ["English", "Mathematics", "Science", "Social Studies", "Nepali", "Computer Science"],
+                            subject: "English",
+                            isClassTeacher: true,
+                            classTeacherOf: "IV",
+                            status: "Active"
+                        };
+                    }
+                } catch (netErr) {}
+            }
+
+            if (match) {
+                activeTeacher = match;
+                const myClasses = Array.isArray(match.assignedClasses) && match.assignedClasses.length > 0
+                    ? match.assignedClasses
+                    : [match.assignedClass || 'IV'];
+                const mySubjects = Array.isArray(match.assignedSubjects) && match.assignedSubjects.length > 0
+                    ? match.assignedSubjects
+                    : [match.subject || 'English'];
+
+                activeTeacher.assignedClasses = myClasses;
+                activeTeacher.assignedSubjects = mySubjects;
+                currentClass = (match.isClassTeacher && myClasses.includes(match.classTeacherOf)) ? match.classTeacherOf : myClasses[0];
+                currentSubject = mySubjects[0] || 'English';
+
+                localStorage.setItem('pegasus_active_teacher', JSON.stringify(match));
+                hideTeacherLoginModal();
+                if (errEl) errEl.classList.add('hidden');
+                updateTeacherHeaderUI();
+                refreshAllViews();
+                showToast(`Welcome, ${match.name}! Unlocked Classes ${myClasses.join(', ')} (${mySubjects.join(', ')}).`, 'fa-check-circle text-emerald-400');
+            } else {
+                if (errEl) {
+                    errEl.classList.remove('hidden');
+                    document.getElementById('teacher-login-error-text').textContent = 'Invalid Teacher ID or Password. Default access is ID: teacher, Password: teacher';
+                }
+            }
+        }
+
+        function quickTeacherLogin(teacherId) {
+            const match = teachersList.find(t => t.teacherId === teacherId);
+            if (match) {
+                activeTeacher = match;
+                const myClasses = Array.isArray(match.assignedClasses) && match.assignedClasses.length > 0
+                    ? match.assignedClasses
+                    : [match.assignedClass || 'IV'];
+                const mySubjects = Array.isArray(match.assignedSubjects) && match.assignedSubjects.length > 0
+                    ? match.assignedSubjects
+                    : [match.subject || 'English'];
+
+                activeTeacher.assignedClasses = myClasses;
+                activeTeacher.assignedSubjects = mySubjects;
+                currentClass = (match.isClassTeacher && myClasses.includes(match.classTeacherOf)) ? match.classTeacherOf : myClasses[0];
+                currentSubject = mySubjects[0] || 'English';
+
+                localStorage.setItem('pegasus_active_teacher', JSON.stringify(match));
+                hideTeacherLoginModal();
+                updateTeacherHeaderUI();
+                refreshAllViews();
+                showToast(`Logged in as ${match.name} (Classes ${myClasses.join(', ')} • ${mySubjects.join(', ')})!`, 'fa-check-circle text-emerald-400');
+            }
+        }
+
+        function logoutTeacher() {
+            activeTeacher = null;
+            localStorage.removeItem('pegasus_active_teacher');
+            showTeacherLoginModal();
+        }
+
+        function renderQuickTeacherPills() {
+            const container = document.getElementById('quick-teacher-pills');
+            if (!container) return;
+            if (teachersList.length === 0) {
+                container.innerHTML = '<p class="text-[11px] text-slate-400">No teachers found in registry.</p>';
+                return;
+            }
+            container.innerHTML = teachersList.map(t => {
+                const classes = Array.isArray(t.assignedClasses) && t.assignedClasses.length > 0 ? t.assignedClasses : [t.assignedClass || 'IV'];
+                const subs = Array.isArray(t.assignedSubjects) && t.assignedSubjects.length > 0 ? t.assignedSubjects : [t.subject || 'English'];
+                return `
+                    <button type="button" onclick="quickTeacherLogin('${t.teacherId}')" class="bg-indigo-50 hover:bg-indigo-100 text-indigo-900 border border-indigo-200/80 rounded-xl px-2.5 py-1.5 text-left text-[11px] font-bold flex items-center justify-between gap-1.5 transition shadow-2xs">
+                        <div class="flex items-center gap-1.5 min-w-0">
+                            <span class="w-5 h-5 rounded-full bg-indigo-700 text-white flex items-center justify-center text-[10px] font-extrabold shrink-0">${t.name.charAt(0)}</span>
+                            <span class="truncate max-w-[110px]">${escapeHTML(t.name)}</span>
+                        </div>
+                        <div class="flex items-center gap-1 shrink-0">
+                            <span class="bg-indigo-200/70 text-indigo-900 text-[10px] px-1.5 py-0.2 rounded font-extrabold">Cls ${classes.join(',')}</span>
+                            <span class="bg-emerald-100 text-emerald-800 text-[9px] px-1.5 py-0.2 rounded font-extrabold">${subs.join('/')}</span>
+                        </div>
+                    </button>
+                `;
+            }).join('');
+        }
+
+        function clearAllData() {
+            if (confirm("Reset local faculty cache? This clears local temporary grading modifications.")) {
+                students = [];
+                assignments = [];
+                saveToStorage();
+                refreshAllViews();
+                showToast("Faculty workspace cache reset.", "fa-sync-alt text-indigo-400");
+            }
+        }
+
+        // ==========================================
+        // 2. HELPER FUNCTIONS
+        // ==========================================
+        function isPrimaryClass(cls) {
+            const norm = normalizeClass(cls);
+            return primaryClasses.includes(norm) || primaryClasses.includes(cls);
+        }
+
+        function getClassStudents(cls = currentClass) {
+            return students.filter(s => classesMatch(s.classId, cls)).sort((a, b) => (parseInt(a.roll) || 0) - (parseInt(b.roll) || 0));
+        }
+
+        function showToast(msg, iconClass = 'fa-check-circle text-emerald-400') {
+            if (window.PegasusToast) {
+                if (iconClass.includes('times') || iconClass.includes('rose') || iconClass.includes('error')) {
+                    PegasusToast.error(msg);
+                } else if (iconClass.includes('info') || iconClass.includes('blue')) {
+                    PegasusToast.info(msg);
+                } else {
+                    PegasusToast.success(msg);
+                }
+                return;
+            }
+            const toast = document.getElementById('toast');
+            document.getElementById('toast-msg').textContent = msg;
+            document.getElementById('toast-icon').className = `fas ${iconClass}`;
+            toast.classList.remove('translate-y-20', 'opacity-0');
+            setTimeout(() => {
+                toast.classList.add('translate-y-20', 'opacity-0');
+            }, 3000);
+        }
+
+        function toggleMobileSidebar() {
+            const sb = document.getElementById('sidebar');
+            const overlay = document.getElementById('sidebar-overlay');
+            sb.classList.toggle('-translate-x-full');
+            overlay.classList.toggle('hidden');
+        }
+
+        function getHwBadgeHtml(status) {
+            const styles = {
+                'Complete': 'bg-emerald-100 text-emerald-800 border-emerald-200',
+                'Incomplete': 'bg-rose-100 text-rose-800 border-rose-200',
+                'Late Submission': 'bg-amber-100 text-amber-800 border-amber-200',
+                'Absent': 'bg-slate-200 text-slate-700 border-slate-300'
+            };
+            const icons = {
+                'Complete': 'fa-check-circle text-emerald-600',
+                'Incomplete': 'fa-times-circle text-rose-600',
+                'Late Submission': 'fa-clock text-amber-600',
+                'Absent': 'fa-user-slash text-slate-500'
+            };
+            return `<span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-bold border ${styles[status] || styles['Incomplete']}">
+                <i class="fas ${icons[status] || 'fa-circle'} mr-1.5 text-[11px]"></i>${status}
+            </span>`;
+        }
+
+        function computeRubricStanding(r) {
+            if (!r) return { label: 'Not Evaluated', color: 'bg-slate-100 text-slate-600', avg: '0.0' };
+            const avg = (r.participation + r.neatness + r.clarity + r.regularity) / 4;
+            if (avg >= 4.5) return { label: 'A+ (Outstanding)', color: 'bg-emerald-100 text-emerald-800 border border-emerald-200', avg: avg.toFixed(1) };
+            if (avg >= 3.8) return { label: 'A (Very Good)', color: 'bg-indigo-100 text-indigo-800 border border-indigo-200', avg: avg.toFixed(1) };
+            if (avg >= 3.0) return { label: 'B+ (Good Effort)', color: 'bg-blue-100 text-blue-800 border border-blue-200', avg: avg.toFixed(1) };
+            if (avg > 0) return { label: 'B (Needs Support)', color: 'bg-amber-100 text-amber-800 border border-amber-200', avg: avg.toFixed(1) };
+            return { label: 'Not Evaluated', color: 'bg-slate-100 text-slate-600 border border-slate-200', avg: '0.0' };
+        }
+
+        function computeSecondaryGrade(m) {
+            if (!m) return { total: 0, grade: 'N/A', color: 'bg-slate-100 text-slate-600' };
+            const total = Number(m.unit) + Number(m.practical) + Number(m.term);
+            let grade = 'C';
+            let color = 'bg-amber-100 text-amber-800';
+            if (total >= 90) { grade = 'A+'; color = 'bg-emerald-100 text-emerald-800'; }
+            else if (total >= 80) { grade = 'A'; color = 'bg-indigo-100 text-indigo-800'; }
+            else if (total >= 70) { grade = 'B+'; color = 'bg-blue-100 text-blue-800'; }
+            else if (total >= 60) { grade = 'B'; color = 'bg-sky-100 text-sky-800'; }
+            else if (total === 0) { grade = 'N/A'; color = 'bg-slate-100 text-slate-600'; }
+            return { total, grade, color };
+        }
+
+        function computeEcaStanding(eca) {
+            if (!eca) return { avg: '0.0', badge: 'Participant' };
+            const avg = ((eca.sports + eca.music + eca.art + eca.teamwork) / 4).toFixed(1);
+            let badge = 'Participant';
+            if (avg >= 4.5) badge = 'Star All-Rounder';
+            else if (avg >= 3.8) badge = 'Creative Achiever';
+            else if (avg >= 3.0) badge = 'Active Explorer';
+            else if (avg == 0) badge = 'Not Evaluated';
+            return { avg, badge };
+        }
+
+        function renderInteractiveStars(studentId, category, field, currentVal) {
+            let html = `<div class="inline-flex items-center space-x-1">`;
+            for (let i = 1; i <= 5; i++) {
+                const active = i <= currentVal ? 'text-amber-400' : 'text-slate-200 hover:text-amber-300';
+                html += `<button type="button" onclick="updateStarRating(${studentId}, '${category}', '${field}', ${i})" class="star-btn focus:outline-none p-0.5">
+                    <i class="fas fa-star ${active} text-base drop-shadow-xs"></i>
+                </button>`;
+            }
+            html += `</div>`;
+            return html;
+        }
+
+        // ==========================================
+        // 3. NAVIGATION & GLOBAL CONTEXT SWITCHING
+        // ==========================================
+        const navButtons = document.querySelectorAll('.nav-btn');
+        const views = document.querySelectorAll('.view-section');
+        const pageTitle = document.getElementById('page-title');
+
+        function switchTab(targetId) {
+            navButtons.forEach(b => {
+                const isMatch = b.getAttribute('data-target') === targetId;
+                if (isMatch) {
+                    b.classList.add('bg-indigo-600', 'text-white', 'shadow-sm');
+                    b.classList.remove('hover:bg-indigo-900/60', 'text-indigo-100');
+                    pageTitle.textContent = b.querySelector('span').textContent;
+                } else {
+                    b.classList.remove('bg-indigo-600', 'text-white', 'shadow-sm');
+                    b.classList.add('hover:bg-indigo-900/60', 'text-indigo-100');
+                }
+            });
+
+            views.forEach(v => v.classList.add('hidden'));
+            document.getElementById(targetId).classList.remove('hidden');
+            refreshAllViews();
+        }
+
+        navButtons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                switchTab(btn.getAttribute('data-target'));
+                if (window.innerWidth < 1024) toggleMobileSidebar();
+            });
+        });
+
+        function handleClassChange(newClass) {
+            switchTeacherAssignedClass(newClass);
+        }
+
+        function handleSubjectChange(newSub) {
+            switchTeacherAssignedSubject(newSub);
+        }
+
+        // ==========================================
+        // 4. RENDERING VIEWS
+        // ==========================================
+        function refreshAllViews() {
+            renderDashboard();
+            renderHomeworkView();
+            renderAcademicGradingView();
+            renderEcaCompartmentView();
+            renderRosterDirectory();
+            renderTeacherCalendarGrid();
+            renderTeacherCalendarEventsList();
+        }
+
+        // --- A. Dashboard Render ---
+        function renderDashboard() {
+            const classRoster = getClassStudents();
+            const doneCount = classRoster.filter(s => s.hwStatus === 'Complete').length;
+            const notDoneCount = classRoster.filter(s => s.hwStatus === 'Incomplete' || s.hwStatus === 'Late Submission').length;
+            const isPrim = isPrimaryClass(currentClass);
+
+            document.getElementById('dash-class-count').textContent = `${classRoster.length} Students`;
+            document.getElementById('dash-total-school').textContent = `Total school roster: ${students.length} enrolled`;
+            document.getElementById('dash-hw-done').textContent = `${doneCount} / ${classRoster.length || 0}`;
+            document.getElementById('dash-hw-defaulters').textContent = `${notDoneCount} Students`;
+
+            document.getElementById('dash-eval-mode').textContent = isPrim ? 'Formative Rubric (I–V)' : 'Term Marks (VI–X)';
+            document.getElementById('dash-eval-sub').textContent = isPrim ? 'Includes separate ECA Compartment' : 'Unit + Practical + Term Exam';
+
+            const tbody = document.getElementById('dash-student-tbody');
+            if (classRoster.length === 0) {
+                tbody.innerHTML = `<tr><td colspan="5" class="py-10 text-center text-slate-400"><i class="fas fa-user-clock text-3xl text-indigo-200 mb-2.5 block"></i>No students registered in Class ${currentClass} yet.<br><span class="text-xs text-slate-400">Student rosters are officially provisioned and synchronized via the Principal Portal.</span></td></tr>`;
+            } else {
+                tbody.innerHTML = classRoster.map(s => {
+                    const standing = isPrim
+                        ? computeRubricStanding(s.rubric)
+                        : { label: `${computeSecondaryGrade(s.marks).grade} (${computeSecondaryGrade(s.marks).total}%)`, color: computeSecondaryGrade(s.marks).color };
+                    return `<tr class="hover:bg-slate-50/80 transition">
+                        <td class="py-3 px-4 font-bold text-slate-500">#${s.roll}</td>
+                        <td class="py-3 px-4">
+                            <div class="font-bold text-slate-800">${s.name}</div>
+                            <div class="text-xs text-slate-400">Section ${s.section}</div>
+                        </td>
+                        <td class="py-3 px-4">${getHwBadgeHtml(s.hwStatus)}</td>
+                        <td class="py-3 px-4">
+                            <span class="text-xs font-bold px-2.5 py-1 rounded-full ${standing.color}">${standing.label}</span>
+                        </td>
+                        <td class="py-3 px-4 text-right">
+                            <button onclick="openStudentModal(${s.id})" class="text-xs bg-indigo-50 hover:bg-indigo-100 text-indigo-700 font-bold px-3 py-1.5 rounded-xl border border-indigo-200 transition">
+                                <i class="fas fa-external-link-alt mr-1"></i> Card
+                            </button>
+                        </td>
+                    </tr>`;
+                }).join('');
+            }
+
+            // Render active assignments on dashboard
+            const classHw = assignments.filter(a => a.classId === currentClass);
+            const hwContainer = document.getElementById('dash-assignments-list');
+            if (classHw.length === 0) {
+                hwContainer.innerHTML = `<p class="text-xs text-slate-400 py-4 text-center">No homework assigned for Class ${currentClass} yet.</p>`;
+            } else {
+                hwContainer.innerHTML = classHw.map(a => `
+                    <div class="p-3.5 rounded-xl bg-slate-50 border border-slate-200/80">
+                        <div class="flex items-center justify-between text-xs mb-1">
+                            <span class="font-bold text-indigo-600">${a.subject}</span>
+                            <span class="text-slate-400"><i class="far fa-calendar-alt mr-1"></i>Due: ${a.dueDate}</span>
+                        </div>
+                        <p class="font-bold text-slate-800 text-xs sm:text-sm">${a.title}</p>
+                        <p class="text-xs text-slate-500 mt-1">${a.desc}</p>
+                    </div>
+                `).join('');
+            }
+        }
+
+        // --- B. Homework & Defaulters Render ---
+        function filterHomeworkTable(filterType) {
+            currentHwFilter = filterType;
+            document.querySelectorAll('.hw-filter-btn').forEach(btn => {
+                btn.classList.remove('bg-indigo-600', 'text-white', 'border-indigo-600');
+                btn.classList.add('bg-white', 'text-slate-800', 'border-slate-200');
+            });
+            const activeBtn = document.getElementById(`hw-filter-${filterType}`);
+            if (activeBtn) {
+                activeBtn.classList.remove('bg-white', 'text-slate-800', 'border-slate-200');
+                activeBtn.classList.add('bg-indigo-600', 'text-white', 'border-indigo-600');
+            }
+            renderHomeworkView();
+        }
+
+        function renderHomeworkView() {
+            const classRoster = getClassStudents();
+            const completeCount = classRoster.filter(s => s.hwStatus === 'Complete').length;
+            const notDoneCount = classRoster.filter(s => s.hwStatus === 'Incomplete' || s.hwStatus === 'Late Submission').length;
+            const absentCount = classRoster.filter(s => s.hwStatus === 'Absent').length;
+
+            document.getElementById('hw-count-all').textContent = classRoster.length;
+            document.getElementById('hw-count-complete').textContent = completeCount;
+            document.getElementById('hw-count-notdone').textContent = notDoneCount;
+            document.getElementById('hw-count-absent').textContent = absentCount;
+
+            let filtered = classRoster;
+            if (currentHwFilter === 'Complete') filtered = classRoster.filter(s => s.hwStatus === 'Complete');
+            else if (currentHwFilter === 'not-done') filtered = classRoster.filter(s => s.hwStatus === 'Incomplete' || s.hwStatus === 'Late Submission');
+            else if (currentHwFilter === 'Absent') filtered = classRoster.filter(s => s.hwStatus === 'Absent');
+
+            const tbody = document.getElementById('hw-student-tbody');
+            if (filtered.length === 0) {
+                tbody.innerHTML = `<tr><td colspan="5" class="py-8 text-center text-slate-400">No students found matching this status in Class ${currentClass}.</td></tr>`;
+            } else {
+                tbody.innerHTML = filtered.map(s => `
+                    <tr class="hover:bg-slate-50/80 transition">
+                        <td class="py-3.5 px-4 font-bold text-slate-500">#${s.roll}</td>
+                        <td class="py-3.5 px-4">
+                            <div class="font-bold text-slate-800">${s.name}</div>
+                            <div class="text-xs text-slate-400">Class ${s.classId} - Sec ${s.section}</div>
+                        </td>
+                        <td class="py-3.5 px-4">
+                            <select onchange="updateStudentHwStatus(${s.id}, this.value)" class="w-full text-xs font-bold rounded-xl px-3 py-2 border border-slate-200 focus:ring-2 focus:ring-indigo-500 outline-none cursor-pointer ${
+                                s.hwStatus === 'Complete' ? 'bg-emerald-50 text-emerald-800 border-emerald-200' :
+                                s.hwStatus === 'Incomplete' ? 'bg-rose-50 text-rose-800 border-rose-200' :
+                                s.hwStatus === 'Late Submission' ? 'bg-amber-50 text-amber-800 border-amber-200' :
+                                'bg-slate-100 text-slate-700 border-slate-300'
+                            }">
+                                <option value="Complete" ${s.hwStatus === 'Complete' ? 'selected' : ''}>✓ Complete (Done)</option>
+                                <option value="Incomplete" ${s.hwStatus === 'Incomplete' ? 'selected' : ''}>✗ Incomplete (Not Done)</option>
+                                <option value="Late Submission" ${s.hwStatus === 'Late Submission' ? 'selected' : ''}>⏳ Late Submission</option>
+                                <option value="Absent" ${s.hwStatus === 'Absent' ? 'selected' : ''}>⊘ Absent</option>
+                            </select>
+                        </td>
+                        <td class="py-3.5 px-4">
+                            <input type="text" value="${s.hwNote || ''}" oninput="updateStudentHwNote(${s.id}, this.value)" placeholder="Add note..." class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-1.5 text-xs focus:bg-white focus:ring-2 focus:ring-indigo-500 outline-none">
+                        </td>
+                        <td class="py-3.5 px-4 text-right">
+                            <button onclick="openStudentModal(${s.id})" class="text-xs text-indigo-600 hover:text-indigo-800 font-bold">
+                                View Card
+                            </button>
+                        </td>
+                    </tr>
+                `).join('');
+            }
+
+            // Published Assignments List
+            const classHw = assignments.filter(a => a.classId === currentClass);
+            const pubList = document.getElementById('hw-published-list');
+            if (classHw.length === 0) {
+                pubList.innerHTML = `<p class="text-xs text-slate-400 text-center py-4">No assignments for Class ${currentClass}.</p>`;
+            } else {
+                pubList.innerHTML = classHw.map(a => `
+                    <div class="p-3.5 rounded-xl bg-slate-50 border border-slate-200 flex items-start justify-between gap-2">
+                        <div>
+                            <span class="text-[11px] font-bold text-indigo-600 uppercase">${a.subject} • Due ${a.dueDate}</span>
+                            <h5 class="text-xs font-bold text-slate-800 mt-0.5">${a.title}</h5>
+                            <p class="text-xs text-slate-500 mt-1">${a.desc}</p>
+                        </div>
+                        <button onclick="deleteAssignment(${a.id})" class="text-slate-400 hover:text-rose-600 text-xs p-1" title="Delete Assignment">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </div>
+                `).join('');
+            }
+        }
+
+        function updateStudentHwStatus(id, newStatus) {
+            const stu = students.find(s => s.id === id);
+            if (stu) {
+                stu.hwStatus = newStatus;
+                saveToStorage();
+                renderHomeworkView();
+                renderDashboard();
+                showToast(`${stu.name}'s homework marked as ${newStatus}`);
+            }
+        }
+
+        function updateStudentHwNote(id, note) {
+            const stu = students.find(s => s.id === id);
+            if (stu) {
+                stu.hwNote = note;
+                saveToStorage();
+            }
+        }
+
+        function saveHomeworkChanges() {
+            saveToStorage();
+            showToast(`Homework status saved for Class ${currentClass}!`);
+        }
+
+        function handleCreateAssignment(e) {
+            e.preventDefault();
+            const targetClass = document.getElementById('hw-form-class')?.value || currentClass;
+            const subject = document.getElementById('hw-form-subject').value.trim();
+            const title = document.getElementById('hw-form-title').value.trim();
+            const dueDate = document.getElementById('hw-form-due').value;
+            const desc = document.getElementById('hw-form-desc').value.trim();
+
+            assignments.unshift({
+                id: Date.now(),
+                classId: targetClass,
+                subject,
+                title,
+                dueDate,
+                desc
+            });
+
+            saveToStorage();
+            document.getElementById('hw-form-title').value = '';
+            document.getElementById('hw-form-desc').value = '';
+            refreshAllViews();
+            showToast(`New ${subject} homework assigned to Class ${targetClass}!`);
+        }
+
+        function deleteAssignment(id) {
+            assignments = assignments.filter(a => a.id !== id);
+            saveToStorage();
+            refreshAllViews();
+            showToast('Assignment removed', 'fa-trash text-rose-400');
+        }
+
+        function openDefaulterNoticeModal() {
+            const defaulters = getClassStudents().filter(s => s.hwStatus === 'Incomplete' || s.hwStatus === 'Late Submission');
+            const textarea = document.getElementById('defaulter-notice-text');
+            if (defaulters.length === 0) {
+                textarea.value = `Great news! All present students in Class ${currentClass} have completed their ${currentSubject} homework today.\n\n- Pegasus English School Administration`;
+            } else {
+                const lines = defaulters.map((s, idx) => `${idx + 1}. ${s.name} (Roll #${s.roll}) - Status: ${s.hwStatus} [Note: ${s.hwNote || 'Pending homework'}]`);
+                textarea.value = `Dear Parents (Pegasus English School, Class ${currentClass} - ${currentSubject}),\n\nPlease be informed regarding today's homework submission status:\n\n${lines.join('\n')}\n\nKindly ensure the pending homework copy is completed and checked by tomorrow morning.\n\nWarm regards,\nClass Coordinator, Pegasus English School`;
+            }
+            document.getElementById('defaulter-notice-modal').classList.remove('hidden');
+        }
+
+        function closeDefaulterNoticeModal() {
+            document.getElementById('defaulter-notice-modal').classList.add('hidden');
+        }
+
+        function copyDefaulterNotice() {
+            const textarea = document.getElementById('defaulter-notice-text');
+            textarea.select();
+            document.execCommand('copy');
+            closeDefaulterNoticeModal();
+            showToast('Parent notice copied to clipboard!');
+        }
+
+        // --- C. Academic Grading Render (Primary I-V vs Secondary VI-X) ---
+        function renderAcademicGradingView() {
+            const isPrim = isPrimaryClass(currentClass);
+            const classRoster = getClassStudents();
+
+            const primBox = document.getElementById('primary-grading-container');
+            const secBox = document.getElementById('secondary-grading-container');
+
+            if (isPrim) {
+                primBox.classList.remove('hidden');
+                secBox.classList.add('hidden');
+                document.getElementById('grading-banner-title').textContent = `Class ${currentClass} (Primary I–V) — Multi-Basis Formative Grading`;
+                document.getElementById('grading-banner-pill').textContent = 'Continuous Assessment Rubric';
+                document.getElementById('grading-banner-desc').textContent = 'Click stars across Participation, Neatness, Concept Clarity, and Homework Regularity to compute overall standing.';
+
+                const tbody = document.getElementById('primary-grading-tbody');
+                if (classRoster.length === 0) {
+                    tbody.innerHTML = `<tr><td colspan="6" class="py-8 text-center text-slate-400">No students registered in Class ${currentClass}. Rosters are provisioned via the Principal Portal.</td></tr>`;
+                } else {
+                    tbody.innerHTML = classRoster.map(s => {
+                        const st = computeRubricStanding(s.rubric);
+                        return `<tr class="hover:bg-slate-50/80 transition">
+                            <td class="py-3.5 px-4">
+                                <div class="font-bold text-slate-800">#${s.roll} ${s.name}</div>
+                                <div class="text-xs text-slate-400">Class ${s.classId} (${currentSubject})</div>
+                            </td>
+                            <td class="py-3.5 px-4 text-center">${renderInteractiveStars(s.id, 'rubric', 'participation', s.rubric ? s.rubric.participation : 0)}</td>
+                            <td class="py-3.5 px-4 text-center">${renderInteractiveStars(s.id, 'rubric', 'neatness', s.rubric ? s.rubric.neatness : 0)}</td>
+                            <td class="py-3.5 px-4 text-center">${renderInteractiveStars(s.id, 'rubric', 'clarity', s.rubric ? s.rubric.clarity : 0)}</td>
+                            <td class="py-3.5 px-4 text-center">${renderInteractiveStars(s.id, 'rubric', 'regularity', s.rubric ? s.rubric.regularity : 0)}</td>
+                            <td class="py-3.5 px-4 text-center">
+                                <span class="text-xs font-bold px-3 py-1 rounded-full ${st.color}">${st.label} (${st.avg}★)</span>
+                            </td>
+                        </tr>`;
+                    }).join('');
+                }
+            } else {
+                primBox.classList.add('hidden');
+                secBox.classList.remove('hidden');
+                document.getElementById('grading-banner-title').textContent = `Class ${currentClass} (Secondary VI–X) — Standard Academic Evaluation`;
+                document.getElementById('grading-banner-pill').textContent = '100 Marks Breakdown';
+                document.getElementById('grading-banner-desc').textContent = 'Enter numeric scores for Unit Test (20), Practical/Project (20), and Term Exam (60).';
+
+                const tbody = document.getElementById('secondary-grading-tbody');
+                if (classRoster.length === 0) {
+                    tbody.innerHTML = `<tr><td colspan="6" class="py-8 text-center text-slate-400">No students registered in Class ${currentClass}. Rosters are provisioned via the Principal Portal.</td></tr>`;
+                } else {
+                    tbody.innerHTML = classRoster.map(s => {
+                        const marks = s.marks || { unit: 0, practical: 0, term: 0 };
+                        const calc = computeSecondaryGrade(marks);
+                        return `<tr class="hover:bg-slate-50/80 transition">
+                            <td class="py-3.5 px-4">
+                                <div class="font-bold text-slate-800">#${s.roll} ${s.name}</div>
+                                <div class="text-xs text-slate-400">Section ${s.section} • ${currentSubject}</div>
+                            </td>
+                            <td class="py-3.5 px-4 text-center">
+                                <input type="number" min="0" max="20" value="${marks.unit}" oninput="updateSecondaryMark(${s.id}, 'unit', this.value)" class="w-20 text-center bg-slate-50 border border-slate-200 rounded-lg py-1.5 text-sm font-bold focus:bg-white focus:ring-2 focus:ring-indigo-500 outline-none">
+                            </td>
+                            <td class="py-3.5 px-4 text-center">
+                                <input type="number" min="0" max="20" value="${marks.practical}" oninput="updateSecondaryMark(${s.id}, 'practical', this.value)" class="w-20 text-center bg-slate-50 border border-slate-200 rounded-lg py-1.5 text-sm font-bold focus:bg-white focus:ring-2 focus:ring-indigo-500 outline-none">
+                            </td>
+                            <td class="py-3.5 px-4 text-center">
+                                <input type="number" min="0" max="60" value="${marks.term}" oninput="updateSecondaryMark(${s.id}, 'term', this.value)" class="w-20 text-center bg-slate-50 border border-slate-200 rounded-lg py-1.5 text-sm font-bold focus:bg-white focus:ring-2 focus:ring-indigo-500 outline-none">
+                            </td>
+                            <td class="py-3.5 px-4 text-center font-bold text-slate-800">${calc.total} / 100</td>
+                            <td class="py-3.5 px-4 text-center">
+                                <span class="text-xs font-bold px-3 py-1 rounded-full ${calc.color}">${calc.grade}</span>
+                            </td>
+                        </tr>`;
+                    }).join('');
+                }
+            }
+        }
+
+        function updateStarRating(studentId, category, field, val) {
+            const stu = students.find(s => s.id === studentId);
+            if (stu) {
+                if (!stu[category]) stu[category] = {};
+                stu[category][field] = val;
+                saveToStorage();
+                renderAcademicGradingView();
+                renderEcaCompartmentView();
+                renderDashboard();
+            }
+        }
+
+        function updateSecondaryMark(studentId, field, val) {
+            const stu = students.find(s => s.id === studentId);
+            if (stu) {
+                if (!stu.marks) stu.marks = { unit: 0, practical: 0, term: 0 };
+                const maxVal = field === 'term' ? 60 : 20;
+                stu.marks[field] = Math.min(maxVal, Math.max(0, Number(val) || 0));
+                saveToStorage();
+                renderAcademicGradingView();
+                renderDashboard();
+            }
+        }
+
+        function saveAcademicGrading() {
+            saveToStorage();
+            showToast(`Academic evaluation saved for Class ${currentClass} (${currentSubject})!`);
+        }
+
+        // --- D. Separate ECA Compartment Render (Grades I to V) ---
+        function renderEcaCompartmentView() {
+            const isPrim = isPrimaryClass(currentClass);
+            const warningEl = document.getElementById('eca-secondary-warning');
+            const compartmentEl = document.getElementById('eca-compartment-box');
+
+            if (!isPrim) {
+                warningEl.classList.remove('hidden');
+            } else {
+                warningEl.classList.add('hidden');
+            }
+
+            const classRoster = getClassStudents();
+            const tbody = document.getElementById('eca-student-tbody');
+            
+            if (classRoster.length === 0) {
+                tbody.innerHTML = `<tr><td colspan="7" class="py-8 text-center text-slate-400">No students registered in Class ${currentClass}. Rosters are provisioned via the Principal Portal.</td></tr>`;
+            } else {
+                tbody.innerHTML = classRoster.map(s => {
+                    const eca = s.eca || { sports: 0, music: 0, art: 0, teamwork: 0, remark: '' };
+                    const ecaStat = computeEcaStanding(eca);
+                    return `<tr class="hover:bg-slate-50/80 transition">
+                        <td class="py-3.5 px-4">
+                            <div class="font-bold text-slate-800">#${s.roll} ${s.name}</div>
+                            <div class="text-xs text-slate-400">Class ${s.classId} - Sec ${s.section}</div>
+                        </td>
+                        <td class="py-3.5 px-3 text-center">${renderInteractiveStars(s.id, 'eca', 'sports', eca.sports)}</td>
+                        <td class="py-3.5 px-3 text-center">${renderInteractiveStars(s.id, 'eca', 'music', eca.music)}</td>
+                        <td class="py-3.5 px-3 text-center">${renderInteractiveStars(s.id, 'eca', 'art', eca.art)}</td>
+                        <td class="py-3.5 px-3 text-center">${renderInteractiveStars(s.id, 'eca', 'teamwork', eca.teamwork)}</td>
+                        <td class="py-3.5 px-3 text-center">
+                            <span class="inline-block text-xs font-bold bg-amber-100 text-amber-800 border border-amber-200 px-2.5 py-1 rounded-full">
+                                ${ecaStat.avg} ★ ${ecaStat.badge}
+                            </span>
+                        </td>
+                        <td class="py-3.5 px-4">
+                            <input type="text" value="${eca.remark || ''}" oninput="updateEcaRemark(${s.id}, this.value)" placeholder="Add remark..." class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-1.5 text-xs focus:bg-white focus:ring-2 focus:ring-indigo-500 outline-none">
+                        </td>
+                    </tr>`;
+                }).join('');
+            }
+        }
+
+        function updateEcaRemark(studentId, val) {
+            const stu = students.find(s => s.id === studentId);
+            if (stu) {
+                if (!stu.eca) stu.eca = { sports: 0, music: 0, art: 0, teamwork: 0 };
+                stu.eca.remark = val;
+                saveToStorage();
+            }
+        }
+
+        function saveEcaMarkings() {
+            saveToStorage();
+            showToast(`ECA Compartment markings saved for Class ${currentClass}!`);
+        }
+
+        // --- E. Student Roster Directory (Principal-Synced, View-Only) ---
+        function renderRosterDirectory() {
+            const searchQ = (document.getElementById('roster-search')?.value || '').toLowerCase();
+            const scope = document.getElementById('roster-class-filter')?.value || 'ACTIVE';
+
+            let list = scope === 'ALL' ? [...students] : getClassStudents(currentClass);
+            if (searchQ) {
+                list = list.filter(s => s.name.toLowerCase().includes(searchQ) || s.classId.toLowerCase().includes(searchQ));
+            }
+
+            const tbody = document.getElementById('roster-directory-tbody');
+            if (!tbody) return;
+
+            if (list.length === 0) {
+                tbody.innerHTML = `
+                    <tr>
+                        <td colspan="6" class="py-12 text-center text-slate-400">
+                            <i class="fas fa-user-clock text-3xl text-indigo-200 mb-2.5 block"></i>
+                            <h4 class="font-bold text-slate-700 text-sm">No Students Registered in Class ${currentClass}</h4>
+                            <p class="text-xs text-slate-400 max-w-md mx-auto mt-1">Official student enrollments and roll numbers are provisioned directly by the Principal Portal. Enrolled scholars will appear here automatically for evaluation.</p>
+                        </td>
+                    </tr>
+                `;
+                return;
+            }
+
+            tbody.innerHTML = list.map(s => `
+                <tr class="hover:bg-slate-50/80 transition">
+                    <td class="py-3.5 px-4 font-bold text-slate-500">#${s.roll}</td>
+                    <td class="py-3.5 px-4 font-bold text-slate-800">${escapeHTML(s.name)}</td>
+                    <td class="py-3.5 px-4">
+                        <span class="text-xs font-bold bg-indigo-50 text-indigo-700 px-2.5 py-1 rounded-lg border border-indigo-100">
+                            Class ${s.classId} - Sec ${s.section || 'A'}
+                        </span>
+                    </td>
+                    <td class="py-3.5 px-4 text-xs text-slate-600"><i class="fas fa-phone-alt text-slate-400 mr-1.5"></i>${escapeHTML(s.phone || 'Contact on file')}</td>
+                    <td class="py-3.5 px-4">${getHwBadgeHtml(s.hwStatus || 'Complete')}</td>
+                    <td class="py-3.5 px-4 text-right">
+                        <button onclick="openStudentModal(${s.id})" class="text-xs bg-indigo-50 hover:bg-indigo-100 text-indigo-700 font-bold px-3 py-1.5 rounded-xl border border-indigo-200 transition flex items-center gap-1.5 ml-auto">
+                            <i class="fas fa-id-card text-indigo-600"></i> View Card
+                        </button>
+                    </td>
+                </tr>
+            `).join('');
+        }
+
+        // ==========================================
+        // 5. STUDENT PORTAL PREVIEW MODAL
+        // ==========================================
+        function openCurrentFirstStudentPreview() {
+            const list = getClassStudents();
+            if (list.length > 0) {
+                openStudentModal(list[0].id);
+            } else if (students.length > 0) {
+                openStudentModal(students[0].id);
+            } else {
+                showToast('No students available to preview. Add a student first!', 'fa-exclamation-circle text-amber-400');
+            }
+        }
+
+        function openStudentModal(studentId) {
+            const s = students.find(stu => stu.id === studentId);
+            if (!s) return;
+
+            const isPrim = isPrimaryClass(s.classId);
+            const initials = s.name.split(' ').map(n => n[0]).join('').substring(0, 2).toUpperCase();
+
+            const stuAvatar = document.getElementById('modal-stu-avatar');
+            if (stuAvatar) stuAvatar.textContent = initials;
+            document.getElementById('modal-stu-name').textContent = s.name;
+            document.getElementById('modal-stu-class-pill').textContent = `Class ${s.classId} • Section ${s.section} • Roll #${s.roll}`;
+
+            // Homework status
+            document.getElementById('modal-stu-hw-badge').outerHTML = `<span id="modal-stu-hw-badge">${getHwBadgeHtml(s.hwStatus)}</span>`;
+            document.getElementById('modal-stu-hw-note').innerHTML = `<strong>Teacher's Daily Homework Note:</strong> ${s.hwNote || 'No specific remarks today. Keep up the good work!'}`;
+
+            const classHw = assignments.filter(a => a.classId === s.classId);
+            const hwFeed = document.getElementById('modal-stu-assignments');
+            hwFeed.innerHTML = classHw.length === 0
+                ? `<p class="text-xs text-slate-400">No active assignments due for Class ${s.classId}.</p>`
+                : classHw.map(a => `
+                    <div class="p-3 rounded-xl bg-slate-50 border border-slate-200 flex items-center justify-between">
+                        <div>
+                            <span class="text-[10px] font-bold uppercase text-indigo-600">${a.subject} • Due ${a.dueDate}</span>
+                            <p class="text-xs font-bold text-slate-800">${a.title}</p>
+                        </div>
+                        <span class="text-[11px] bg-indigo-100 text-indigo-700 px-2.5 py-1 rounded-lg font-bold">Assigned</span>
+                    </div>
+                `).join('');
+
+            // Academic Section
+            const acadBox = document.getElementById('modal-stu-academic-content');
+            if (isPrim) {
+                const rubric = s.rubric || { participation: 0, neatness: 0, clarity: 0, regularity: 0 };
+                const st = computeRubricStanding(rubric);
+                acadBox.innerHTML = `
+                    <div class="flex items-center justify-between mb-3 bg-slate-50 p-3 rounded-xl border border-slate-100">
+                        <span class="text-xs font-bold text-slate-600">Continuous Formative Standing (Class I–V Holistic Framework)</span>
+                        <span class="text-xs font-bold px-3 py-1 rounded-full ${st.color}">${st.label} (${st.avg} ★)</span>
+                    </div>
+                    <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 text-center">
+                        <div class="p-3 rounded-xl border border-slate-100 bg-slate-50/60">
+                            <p class="text-[11px] text-slate-500 font-bold">Participation</p>
+                            <p class="text-sm font-bold text-amber-500 mt-1">${'★'.repeat(rubric.participation)}${'☆'.repeat(5 - rubric.participation)}</p>
+                        </div>
+                        <div class="p-3 rounded-xl border border-slate-100 bg-slate-50/60">
+                            <p class="text-[11px] text-slate-500 font-bold">Neatness</p>
+                            <p class="text-sm font-bold text-amber-500 mt-1">${'★'.repeat(rubric.neatness)}${'☆'.repeat(5 - rubric.neatness)}</p>
+                        </div>
+                        <div class="p-3 rounded-xl border border-slate-100 bg-slate-50/60">
+                            <p class="text-[11px] text-slate-500 font-bold">Concept Clarity</p>
+                            <p class="text-sm font-bold text-amber-500 mt-1">${'★'.repeat(rubric.clarity)}${'☆'.repeat(5 - rubric.clarity)}</p>
+                        </div>
+                        <div class="p-3 rounded-xl border border-slate-100 bg-slate-50/60">
+                            <p class="text-[11px] text-slate-500 font-bold">HW Regularity</p>
+                            <p class="text-sm font-bold text-amber-500 mt-1">${'★'.repeat(rubric.regularity)}${'☆'.repeat(5 - rubric.regularity)}</p>
+                        </div>
+                    </div>
+                `;
+            } else {
+                const marks = s.marks || { unit: 0, practical: 0, term: 0 };
+                const calc = computeSecondaryGrade(marks);
+                acadBox.innerHTML = `
+                    <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 text-center">
+                        <div class="p-3 rounded-xl bg-slate-50 border border-slate-200">
+                            <p class="text-xs text-slate-500 font-semibold">Unit Test</p>
+                            <p class="text-base font-black text-slate-800 mt-1">${marks.unit} / 20</p>
+                        </div>
+                        <div class="p-3 rounded-xl bg-slate-50 border border-slate-200">
+                            <p class="text-xs text-slate-500 font-semibold">Practical</p>
+                            <p class="text-base font-black text-slate-800 mt-1">${marks.practical} / 20</p>
+                        </div>
+                        <div class="p-3 rounded-xl bg-slate-50 border border-slate-200">
+                            <p class="text-xs text-slate-500 font-semibold">Term Exam</p>
+                            <p class="text-base font-black text-slate-800 mt-1">${marks.term} / 60</p>
+                        </div>
+                        <div class="p-3 rounded-xl bg-indigo-50 border border-indigo-200">
+                            <p class="text-xs text-indigo-600 font-bold">Final Grade</p>
+                            <p class="text-base font-black text-indigo-900 mt-1">${calc.grade} (${calc.total}%)</p>
+                        </div>
+                    </div>
+                `;
+            }
+
+            // ECA Card (Shown prominently for Primary I-V)
+            const ecaCard = document.getElementById('modal-stu-eca-card');
+            if (isPrim) {
+                ecaCard.classList.remove('hidden');
+                const eca = s.eca || { sports: 0, music: 0, art: 0, teamwork: 0, remark: '' };
+                const ecaStat = computeEcaStanding(eca);
+                document.getElementById('modal-stu-eca-badge').textContent = `${ecaStat.avg} ★ ${ecaStat.badge}`;
+                document.getElementById('modal-stu-eca-remark').textContent = eca.remark || 'Awaiting teacher remarks.';
+                document.getElementById('modal-stu-eca-grid').innerHTML = `
+                    <div class="bg-white/90 p-2.5 rounded-xl border border-amber-200 text-center">
+                        <p class="text-[11px] font-bold text-slate-600"><i class="fas fa-running text-emerald-500 mr-1"></i>Sports</p>
+                        <p class="text-amber-500 font-black text-sm mt-0.5">${'★'.repeat(eca.sports)}${'☆'.repeat(5 - eca.sports)}</p>
+                    </div>
+                    <div class="bg-white/90 p-2.5 rounded-xl border border-amber-200 text-center">
+                        <p class="text-[11px] font-bold text-slate-600"><i class="fas fa-music text-brand-600 mr-1"></i>Music</p>
+                        <p class="text-amber-500 font-black text-sm mt-0.5">${'★'.repeat(eca.music)}${'☆'.repeat(5 - eca.music)}</p>
+                    </div>
+                    <div class="bg-white/90 p-2.5 rounded-xl border border-amber-200 text-center">
+                        <p class="text-[11px] font-bold text-slate-600"><i class="fas fa-paint-brush text-pink-500 mr-1"></i>Art & Craft</p>
+                        <p class="text-amber-500 font-black text-sm mt-0.5">${'★'.repeat(eca.art)}${'☆'.repeat(5 - eca.art)}</p>
+                    </div>
+                    <div class="bg-white/90 p-2.5 rounded-xl border border-amber-200 text-center">
+                        <p class="text-[11px] font-bold text-slate-600"><i class="fas fa-hands-helping text-blue-500 mr-1"></i>Teamwork</p>
+                        <p class="text-amber-500 font-black text-sm mt-0.5">${'★'.repeat(eca.teamwork)}${'☆'.repeat(5 - eca.teamwork)}</p>
+                    </div>
+                `;
+            } else {
+                ecaCard.classList.add('hidden');
+            }
+
+            document.getElementById('student-portal-modal').classList.remove('hidden');
+        }
+
+        function closeStudentModal() {
+            document.getElementById('student-portal-modal').classList.add('hidden');
+        }
+
+        // ==========================================
+        // BIKRAM SAMBAT (वि.सं.) CALENDAR ENGINE (TEACHER VIEW)
+        // ==========================================
+        function changeTeacherCalMonth(delta) {
+            teacherCalMonth += delta;
+            if (teacherCalMonth < 0) {
+                teacherCalMonth = 11;
+                teacherCalYear--;
+            } else if (teacherCalMonth > 11) {
+                teacherCalMonth = 0;
+                teacherCalYear++;
+            }
+            renderTeacherCalendarGrid();
+        }
+
+        function jumpTeacherCalToday() {
+            teacherCalYear = 2083;
+            teacherCalMonth = 6; // कार्तिक २०८३
+            renderTeacherCalendarGrid();
+        }
+
+        function filterTeacherCal(cat) {
+            teacherCalFilter = cat;
+            document.querySelectorAll('.tcal-filter-btn').forEach(btn => {
+                if (btn.textContent.trim().toUpperCase().includes(cat.toUpperCase()) || (cat === 'ALL' && btn.textContent.trim() === 'All')) {
+                    btn.className = 'tcal-filter-btn active text-[11px] font-bold px-2.5 py-1 rounded-lg bg-indigo-600 text-white transition';
+                } else {
+                    btn.className = 'tcal-filter-btn text-[11px] font-bold px-2.5 py-1 rounded-lg bg-white hover:bg-slate-100 text-slate-700 border border-slate-200 transition';
+                }
+            });
+            renderTeacherCalendarGrid();
+            renderTeacherCalendarEventsList();
+        }
+
+        function getCalendarChipStyle(cat) {
+            switch(cat) {
+                case 'Exam': return 'bg-amber-100 text-amber-900 border-amber-300';
+                case 'Holiday': return 'bg-emerald-100 text-emerald-900 border-emerald-300';
+                case 'ECA': return 'bg-indigo-100 text-indigo-900 border-indigo-300';
+                case 'Meeting': return 'bg-brand-100 text-brand-900 border-brand-300';
+                default: return 'bg-sky-100 text-sky-900 border-sky-300';
+            }
+        }
+
+        function renderTeacherCalendarGrid() {
+            const grid = document.getElementById('teacher-calendar-days-grid');
+            const label = document.getElementById('teacher-cal-month-year');
+            if (!grid || !label) return;
+
+            const mInfo = NEPALI_MONTHS[teacherCalMonth];
+            label.innerHTML = `<span class="text-indigo-900 font-black">${mInfo.bsName} ${teacherCalYear}</span> <span class="text-xs text-slate-500 font-semibold block sm:inline">(${mInfo.enName} वि.सं. • ${mInfo.approxEng})</span>`;
+
+            const firstDay = getNepaliMonthFirstDay(teacherCalYear, teacherCalMonth);
+            const daysInMonth = mInfo.days;
+            const prevMonthIdx = (teacherCalMonth === 0) ? 11 : teacherCalMonth - 1;
+            const prevDaysInMonth = NEPALI_MONTHS[prevMonthIdx].days;
+
+            let cellsHtml = '';
+
+            // Trailing days from previous Nepali month
+            for (let i = firstDay - 1; i >= 0; i--) {
+                const d = prevDaysInMonth - i;
+                cellsHtml += `
+                    <div class="bg-slate-50/70 p-2 min-h-[70px] sm:min-h-[80px] border-r border-b border-slate-100 text-slate-300 font-bold text-xs select-none">
+                        <span>${d}</span>
+                    </div>
+                `;
+            }
+
+            // Active days in Nepali month
+            for (let day = 1; day <= daysInMonth; day++) {
+                const colIndex = (firstDay + day - 1) % 7;
+                const isSaturday = (colIndex === 6);
+                const dateStr = `${teacherCalYear}-${String(teacherCalMonth + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
+                
+                let dayEvents = calendarEvents.filter(ev => {
+                    const start = ev.startDate;
+                    const end = ev.endDate || ev.startDate;
+                    return dateStr >= start && dateStr <= end;
+                });
+
+                if (teacherCalFilter !== 'ALL') {
+                    dayEvents = dayEvents.filter(ev => ev.category === teacherCalFilter);
+                }
+
+                const isToday = teacherCalYear === 2083 && teacherCalMonth === 6 && day === 2;
+
+                cellsHtml += `
+                    <div class="${isSaturday ? 'bg-rose-50/35 border-rose-100/70 hover:bg-rose-50/70' : 'bg-white hover:bg-slate-50'} p-1.5 sm:p-2 min-h-[70px] sm:min-h-[80px] border-r border-b border-slate-100 transition flex flex-col justify-between group cursor-pointer" onclick="handleTeacherCalendarDateClick('${dateStr}')">
+                        <div class="flex items-center justify-between mb-1">
+                            <div class="flex items-center gap-1">
+                                <span class="text-xs font-black ${isToday ? 'w-6 h-6 rounded-full bg-indigo-600 text-white flex items-center justify-center shadow-xs' : isSaturday ? 'text-rose-600 font-black' : 'text-slate-700'}">
+                                    ${day}
+                                </span>
+                                ${isSaturday ? '<span class="text-[8px] font-extrabold text-rose-500 bg-rose-100/80 border border-rose-200 px-1 py-0.2 rounded hidden sm:inline">बिदा</span>' : ''}
+                            </div>
+                            ${dayEvents.length > 0 ? `<span class="text-[9px] font-extrabold text-slate-400 group-hover:text-indigo-600">${dayEvents.length}</span>` : ''}
+                        </div>
+                        <div class="space-y-1 overflow-hidden flex-1">
+                            ${dayEvents.slice(0, 2).map(ev => `
+                                <div onclick="event.stopPropagation(); openCalendarDetailModal('${ev.id}')" class="text-[10px] truncate px-1.5 py-0.5 rounded border font-bold ${getCalendarChipStyle(ev.category)} shadow-2xs hover:opacity-90" title="${escapeHTML(ev.title)}">
+                                    ${escapeHTML(ev.title)}
+                                </div>
+                            `).join('')}
+                            ${dayEvents.length > 2 ? `<div class="text-[9px] text-slate-400 font-bold pl-1">+${dayEvents.length - 2} more</div>` : ''}
+                        </div>
+                    </div>
+                `;
+            }
+
+            // Next month leading days
+            const totalCells = firstDay + daysInMonth;
+            const remaining = (7 - (totalCells % 7)) % 7;
+            for (let d = 1; d <= remaining; d++) {
+                cellsHtml += `
+                    <div class="bg-slate-50/70 p-2 min-h-[70px] sm:min-h-[80px] border-r border-b border-slate-100 text-slate-300 font-bold text-xs select-none">
+                        <span>${d}</span>
+                    </div>
+                `;
+            }
+
+            grid.innerHTML = cellsHtml;
+        }
+
+        function renderTeacherCalendarEventsList() {
+            const listEl = document.getElementById('teacher-calendar-events-list');
+            const badgeEl = document.getElementById('teacher-cal-count-badge');
+            if (!listEl) return;
+
+            let list = [...calendarEvents];
+            if (teacherCalFilter !== 'ALL') {
+                list = list.filter(ev => ev.category === teacherCalFilter);
+            }
+
+            list.sort((a, b) => (a.startDate || '').localeCompare(b.startDate || ''));
+
+            if (badgeEl) badgeEl.textContent = `${list.length} Events`;
+
+            if (list.length === 0) {
+                listEl.innerHTML = `
+                    <div class="py-8 text-center text-slate-400">
+                        <i class="fas fa-calendar-times text-2xl text-slate-300 mb-2 block"></i>
+                        <p class="font-bold text-xs">No academic events found in this category.</p>
+                    </div>
+                `;
+                return;
+            }
+
+            listEl.innerHTML = list.map(ev => {
+                const isRange = ev.endDate && ev.endDate !== ev.startDate;
+                const dateDisplay = isRange ? `${ev.startDate} to ${ev.endDate}` : ev.startDate;
+                return `
+                    <div onclick="openCalendarDetailModal('${ev.id}')" class="bg-slate-50 hover:bg-slate-100/80 p-3.5 rounded-2xl border border-slate-200 transition space-y-2 cursor-pointer shadow-2xs">
+                        <div class="flex items-start justify-between gap-2">
+                            <div>
+                                <span class="inline-block px-2 py-0.5 rounded text-[10px] font-black border mb-1 ${getCalendarChipStyle(ev.category)}">
+                                    ${ev.category}
+                                </span>
+                                <h5 class="font-bold text-xs text-slate-900 leading-snug">${escapeHTML(ev.title)}</h5>
+                            </div>
+                            <span class="text-[10px] bg-white border border-slate-200 text-indigo-900 font-bold px-1.5 py-0.5 rounded shrink-0">
+                                ${escapeHTML(ev.classTarget || 'All Classes')}
+                            </span>
+                        </div>
+                        <div class="flex items-center text-[10px] font-mono text-slate-500 gap-1.5">
+                            <i class="fas fa-calendar-alt text-indigo-600"></i>
+                            <span>${dateDisplay}</span>
+                        </div>
+                        ${ev.description ? `<p class="text-[11px] text-slate-500 line-clamp-2">${escapeHTML(ev.description)}</p>` : ''}
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function handleTeacherCalendarDateClick(dateStr) {
+            const found = calendarEvents.find(ev => {
+                const start = ev.startDate;
+                const end = ev.endDate || ev.startDate;
+                return dateStr >= start && dateStr <= end;
+            });
+            if (found) {
+                openCalendarDetailModal(found.id);
+            } else {
+                showToast(`Selected date: ${dateStr}. No scheduled school exams or holidays on this day.`, 'fa-info-circle text-sky-400');
+            }
+        }
+
+        function openCalendarDetailModal(id) {
+            const item = calendarEvents.find(e => String(e.id) === String(id));
+            if (!item) return;
+
+            const modal = document.getElementById('calendar-detail-modal');
+            if (!modal) return;
+
+            document.getElementById('cal-detail-badge').className = `inline-block px-2.5 py-0.5 rounded-full text-xs font-black border mb-1.5 ${getCalendarChipStyle(item.category)}`;
+            document.getElementById('cal-detail-badge').textContent = item.category;
+            document.getElementById('cal-detail-title').textContent = item.title;
+            
+            const isRange = item.endDate && item.endDate !== item.startDate;
+            document.getElementById('cal-detail-date').textContent = isRange ? `${item.startDate} to ${item.endDate}` : item.startDate;
+            document.getElementById('cal-detail-target').textContent = item.classTarget || 'All Classes (I - X)';
+            document.getElementById('cal-detail-desc').textContent = item.description || 'Official academic milestone scheduled per Pegasus calendar.';
+
+            modal.classList.remove('hidden');
+        }
+
+        function closeCalendarDetailModal() {
+            const modal = document.getElementById('calendar-detail-modal');
+            if (modal) modal.classList.add('hidden');
+        }
+
+        // Set default date for homework form & initialize app
+        window.addEventListener('DOMContentLoaded', function () {
+            loadFromStorage();
+            const tomorrow = new Date();
+            tomorrow.setDate(tomorrow.getDate() + 1);
+            const dueInput = document.getElementById('hw-form-due');
+            if (dueInput) dueInput.value = tomorrow.toISOString().split('T')[0];
+            updateTeacherHeaderUI();
+            refreshAllViews();
+        });
+
+        // Live cross-tab synchronization with Principal Portal
+        window.addEventListener('storage', function (e) {
+            if (e.key === 'pegasus_students_data' || e.key === 'pegasus_teachers_data' || e.key === 'pegasus_active_teacher' || e.key === 'pegasus_calendar_events') {
+                loadFromStorage();
+                updateTeacherHeaderUI();
+                refreshAllViews();
+            }
+        });
+    </script>
+</body>
+</html>

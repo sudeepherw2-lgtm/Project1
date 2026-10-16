@@ -1,0 +1,1203 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pegasus English School | Gokarneshwor-6, Nayabasti, Kathmandu</title>
+    <link rel="icon" type="image/jpeg" href="logo.jpg">
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#f0f5fc',
+                            100: '#e1ecf8',
+                            200: '#c3daf1',
+                            300: '#95bee7',
+                            400: '#609ddb',
+                            500: '#3b80ce',
+                            600: '#2764b4',
+                            700: '#1f4e91',
+                            800: '#1b4175',
+                            900: '#103570', /* Pegasus Official Royal Blue */
+                            950: '#0a234d',
+                        },
+                        gold: {
+                            300: '#fde68a',
+                            400: '#fbbf24',
+                            500: '#c59b27', /* Pegasus Official Seal Gold */
+                            600: '#a37c18',
+                            700: '#856312',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- FontAwesome & Google Fonts -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Cinzel:wght@600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', 'Inter', sans-serif;
+        }
+        .font-motto {
+            font-family: 'Cinzel', serif;
+        }
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f5f9;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 9999px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 antialiased selection:bg-brand-900 selection:text-white flex flex-col min-h-screen">
+
+    <!-- Top Announcement & Quick Contact Strip -->
+    <div class="bg-brand-950 text-slate-300 text-xs py-2 px-4 border-b border-brand-900/80">
+        <div class="max-w-7xl mx-auto flex flex-wrap justify-between items-center gap-3">
+            <div class="flex items-center space-x-4">
+                <span class="flex items-center"><i class="fas fa-map-marker-alt text-gold-400 mr-1.5"></i> Gokarneshwor-6, Nayabasti, Kathmandu, Nepal</span>
+                <span class="hidden sm:flex items-center"><i class="fas fa-phone-alt text-gold-400 mr-1.5"></i> 01-4913939</span>
+                <span class="hidden md:flex items-center"><i class="fas fa-envelope text-gold-400 mr-1.5"></i> pegasusengschool@gmail.com</span>
+            </div>
+            <div class="flex items-center space-x-3">
+                <a href="https://www.facebook.com/profile.php?id=100063491716430" target="_blank" rel="noopener noreferrer" class="hidden lg:flex items-center text-sky-400 hover:text-white transition">
+                    <i class="fab fa-facebook mr-1"></i> @pegasusenglishschool
+                </a>
+                <span class="text-gold-300 font-bold hidden sm:inline">•</span>
+                <a href="student-portal.html" class="bg-gold-500 hover:bg-gold-400 text-brand-950 font-black px-2.5 py-0.5 rounded text-[11px] transition shadow-xs flex items-center">
+                    <i class="fas fa-user-graduate mr-1"></i> Student Portal
+                </a>
+                <a href="teacher.html" class="bg-brand-800 hover:bg-brand-700 text-white font-bold px-2.5 py-0.5 rounded text-[11px] transition shadow-xs flex items-center border border-brand-700">
+                    <i class="fas fa-chalkboard-teacher mr-1 text-gold-400"></i> Teacher Panel
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Navigation Bar -->
+    <header class="bg-white/95 backdrop-blur-md sticky top-0 z-30 border-b border-slate-200/90 shadow-xs">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-20">
+            <!-- Brand Logo & School Identity -->
+            <a href="index.html" class="flex items-center group">
+                <img src="logo.jpg" alt="Pegasus English School Emblem" style="width: 48px; height: 48px; object-fit: contain;" class="w-12 h-12 rounded-xl mr-3 shadow-xs group-hover:scale-105 transition-transform duration-200">
+                <div>
+                    <h1 class="text-xl sm:text-2xl font-black tracking-tight text-brand-900 leading-none">
+                        Pegasus <span class="text-gold-500 font-black">English</span> School
+                    </h1>
+                    <span class="text-[11px] text-slate-500 font-bold tracking-wider uppercase block mt-1">
+                        Estd. 1999 • Nayabasti, Kathmandu
+                    </span>
+                </div>
+            </a>
+
+            <!-- Desktop Navigation Links -->
+            <nav class="hidden xl:flex items-center space-x-7 text-sm font-bold text-slate-600">
+                <a href="index.html" class="text-brand-900 font-black border-b-2 border-brand-900 pb-0.5">Home</a>
+                <a href="#about" class="hover:text-brand-900 transition">About Us</a>
+                <a href="academics.html" class="hover:text-brand-900 transition">Academics & Fees</a>
+                <a href="#eca" class="hover:text-brand-900 transition">ECA Moments</a>
+                <a href="file-manager.html" class="hover:text-brand-900 transition flex items-center">
+                    <span>Resource Center</span>
+                    <span class="ml-1.5 px-1.5 py-0.2 bg-brand-100 text-brand-800 text-[10px] rounded-full font-black">Files</span>
+                </a>
+                <a href="contact.html" class="hover:text-brand-900 transition">Contact Us</a>
+            </nav>
+
+            <!-- Header Quick Actions -->
+            <div class="hidden sm:flex items-center space-x-3">
+                <a href="student-portal.html" class="bg-slate-100 hover:bg-slate-200 text-brand-900 text-xs sm:text-sm font-bold px-3.5 py-2.5 rounded-xl transition flex items-center border border-slate-200">
+                    <i class="fas fa-search-plus mr-1.5 text-gold-600"></i>
+                    Results Portal
+                </a>
+                <a href="academics.html#admissions" class="bg-gold-500 hover:bg-gold-400 text-brand-950 text-xs sm:text-sm font-black px-4 py-2.5 rounded-xl shadow-xs transition flex items-center">
+                    <i class="fas fa-file-signature mr-1.5"></i>
+                    Apply Now
+                </a>
+            </div>
+
+            <!-- Mobile Menu Toggle Button -->
+            <button onclick="toggleMobileNav()" class="xl:hidden p-2 rounded-xl border border-slate-200 text-slate-600 hover:text-brand-900 focus:outline-none">
+                <i class="fas fa-bars text-lg"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Navigation Drawer -->
+        <div id="mobile-nav" class="hidden xl:hidden bg-white border-b border-slate-200 px-4 py-4 space-y-3">
+            <a href="index.html" onclick="toggleMobileNav()" class="block text-sm font-bold text-brand-900">Home</a>
+            <a href="#about" onclick="toggleMobileNav()" class="block text-sm font-bold text-slate-700 hover:text-brand-900">About Us (Estd. 1999)</a>
+            <a href="academics.html" onclick="toggleMobileNav()" class="block text-sm font-bold text-slate-700 hover:text-brand-900">Academics & Fee Schedule</a>
+            <a href="#eca" onclick="toggleMobileNav()" class="block text-sm font-bold text-slate-700 hover:text-brand-900">ECA & Photo Moments</a>
+            <a href="file-manager.html" onclick="toggleMobileNav()" class="block text-sm font-bold text-slate-700 hover:text-brand-900">Local File Directory (Resources)</a>
+            <a href="student-portal.html" onclick="toggleMobileNav()" class="block text-sm font-bold text-slate-700 hover:text-brand-900">Student Evaluation Portal</a>
+            <a href="contact.html" onclick="toggleMobileNav()" class="block text-sm font-bold text-slate-700 hover:text-brand-900">Contact & Location</a>
+            <div class="pt-3 border-t border-slate-100 flex flex-col gap-2">
+                <a href="academics.html#admissions" onclick="toggleMobileNav()" class="bg-gold-500 text-brand-950 text-center text-xs font-black py-2.5 rounded-xl">
+                    <i class="fas fa-file-signature mr-1"></i> Apply For Admission 2026
+                </a>
+                <a href="teacher.html" class="bg-brand-900 text-white text-center text-xs font-bold py-2.5 rounded-xl">
+                    <i class="fas fa-chalkboard-teacher mr-1"></i> Teacher Panel Login
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- ========================================== -->
+    <!-- 1. HOMEPAGE: HERO SECTION                  -->
+    <!-- ========================================== -->
+    <section class="relative bg-gradient-to-b from-brand-950 via-brand-900 to-brand-950 text-white py-16 sm:py-24 overflow-hidden">
+        <div class="absolute top-0 right-0 w-96 h-96 bg-brand-500/15 rounded-full blur-3xl pointer-events-none -mr-20 -mt-20"></div>
+        <div class="absolute bottom-0 left-0 w-96 h-96 bg-gold-500/15 rounded-full blur-3xl pointer-events-none -ml-20 -mb-20"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                
+                <!-- Left Hero Information Column -->
+                <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+                    
+                    <!-- Motto Tagline Pill -->
+                    <div class="inline-flex items-center gap-2 bg-brand-900/90 border border-gold-500/40 px-4 py-1.5 rounded-full text-xs font-bold text-gold-300 shadow-md">
+                        <i class="fas fa-feather-alt text-gold-400"></i>
+                        <span class="tracking-wide uppercase font-motto">"To teach is to touch a life forever!"</span>
+                    </div>
+
+                    <h1 class="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight leading-tight sm:leading-none">
+                        Inspiring Minds, <br class="hidden sm:inline">
+                        <span class="text-transparent bg-clip-text bg-gradient-to-r from-gold-300 via-amber-200 to-yellow-100">
+                            Unlocking Potential.
+                        </span>
+                    </h1>
+
+                    <p class="text-sm sm:text-base text-slate-200/95 leading-relaxed max-w-2xl mx-auto lg:mx-0">
+                        Welcome to <strong>Pegasus English School</strong>, established in 1999 in Nayabasti, Gokarneshwor-6, Kathmandu. We provide an empowering foundation from Class I to X blending progressive formative evaluation, moral integrity, science innovation, and rich co-curricular athletics.
+                    </p>
+
+                    <!-- Main Call To Action Buttons -->
+                    <div class="flex flex-wrap justify-center lg:justify-start gap-3.5 pt-2">
+                        <a href="academics.html#admissions" class="bg-gold-500 hover:bg-gold-400 text-brand-950 text-sm font-black px-6 py-3.5 rounded-2xl shadow-xl transition flex items-center group">
+                            <i class="fas fa-edit mr-2 text-xs"></i>
+                            <span>Apply for Admission</span>
+                            <i class="fas fa-arrow-right ml-2 group-hover:translate-x-1 transition text-xs"></i>
+                        </a>
+                        <a href="student-portal.html" class="bg-brand-800/80 hover:bg-brand-700 text-white text-sm font-bold px-5 py-3.5 rounded-2xl border border-brand-700/80 transition flex items-center">
+                            <i class="fas fa-chart-line mr-2 text-gold-400"></i>
+                            <span>Student Result Portal</span>
+                        </a>
+                        <a href="contact.html" class="bg-white/10 hover:bg-white/20 text-white text-sm font-bold px-5 py-3.5 rounded-2xl border border-white/10 transition flex items-center">
+                            <i class="fas fa-envelope-open-text mr-2 text-slate-300"></i>
+                            <span>Contact Us</span>
+                        </a>
+                    </div>
+
+                    <!-- Trust Stats Counter -->
+                    <div class="pt-8 border-t border-brand-800/80 grid grid-cols-2 sm:grid-cols-4 gap-4 text-center">
+                        <div class="p-3.5 rounded-2xl bg-white/5 border border-white/10">
+                            <p class="text-2xl sm:text-3xl font-black text-gold-400">1999</p>
+                            <p class="text-xs text-slate-300 font-medium mt-0.5">Estd. Heritage</p>
+                        </div>
+                        <div class="p-3.5 rounded-2xl bg-white/5 border border-white/10">
+                            <p class="text-2xl sm:text-3xl font-black text-white">Class I–X</p>
+                            <p class="text-xs text-slate-300 font-medium mt-0.5">Academic Wings</p>
+                        </div>
+                        <div class="p-3.5 rounded-2xl bg-white/5 border border-white/10">
+                            <p class="text-2xl sm:text-3xl font-black text-emerald-400">100%</p>
+                            <p class="text-xs text-slate-300 font-medium mt-0.5">SEE Pass Rate</p>
+                        </div>
+                        <div class="p-3.5 rounded-2xl bg-white/5 border border-white/10">
+                            <p class="text-2xl sm:text-3xl font-black text-gold-400">1 : 16</p>
+                            <p class="text-xs text-slate-300 font-medium mt-0.5">Teacher Ratio</p>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Right Hero Visual Card with Verified Logo Dimensions -->
+                <div class="lg:col-span-5">
+                    <div class="bg-white rounded-3xl p-6 sm:p-7 shadow-2xl border border-slate-200 text-slate-800 space-y-6 relative overflow-hidden">
+                        
+                        <!-- Top Official Badge Header -->
+                        <div class="flex items-center justify-between pb-4 border-b border-slate-100">
+                            <div class="flex items-center space-x-3">
+                                <img src="logo.jpg" alt="Pegasus Logo" style="width: 56px; height: 56px; object-fit: contain;" class="w-14 h-14 rounded-xl border border-slate-100 p-0.5 shadow-xs">
+                                <div>
+                                    <h3 class="font-black text-base text-brand-900 leading-tight">Pegasus English School</h3>
+                                    <p class="text-xs text-gold-600 font-bold">Gokarneshwor-6, Nayabasti</p>
+                                </div>
+                            </div>
+                            <span class="text-[11px] bg-emerald-50 text-emerald-700 font-bold px-2.5 py-1 rounded-full border border-emerald-200 flex items-center">
+                                <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 mr-1.5 animate-ping"></span>
+                                Admissions Open
+                            </span>
+                        </div>
+
+                        <!-- Campus Photography Banner -->
+                        <div class="relative rounded-2xl overflow-hidden aspect-[16/10] bg-slate-900 group">
+                            <img src="https://images.unsplash.com/photo-1577896851231-70ef18881754?auto=format&fit=crop&w=800&q=80" alt="Students in Classroom" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-90">
+                            <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent flex items-end p-4">
+                                <p class="text-white text-xs font-bold flex items-center">
+                                    <i class="fas fa-graduation-cap text-gold-400 mr-1.5"></i>
+                                    Nurturing Leaders for Nepal & Beyond
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Highlights Quick List -->
+                        <div class="space-y-2.5 text-xs text-slate-600">
+                            <div class="flex items-center justify-between p-2.5 rounded-xl bg-slate-50 border border-slate-100">
+                                <span class="font-bold text-slate-800 flex items-center"><i class="fas fa-check-circle text-emerald-500 mr-2"></i> Primary Wing (I–V):</span>
+                                <span class="text-slate-500 font-medium">Formative Rubric + Dedicated ECA</span>
+                            </div>
+                            <div class="flex items-center justify-between p-2.5 rounded-xl bg-slate-50 border border-slate-100">
+                                <span class="font-bold text-slate-800 flex items-center"><i class="fas fa-check-circle text-emerald-500 mr-2"></i> Secondary Wing (VI–X):</span>
+                                <span class="text-slate-500 font-medium">100-Mark SEE Board Curriculum</span>
+                            </div>
+                            <div class="flex items-center justify-between p-2.5 rounded-xl bg-slate-50 border border-slate-100">
+                                <span class="font-bold text-slate-800 flex items-center"><i class="fas fa-check-circle text-emerald-500 mr-2"></i> Digital Portals:</span>
+                                <span class="text-brand-700 font-bold">Online Result Card & Homework Tracker</span>
+                            </div>
+                        </div>
+
+                        <!-- Instant Action Footer -->
+                        <div class="pt-2 flex gap-2">
+                            <a href="student-portal.html" class="flex-1 bg-brand-900 hover:bg-brand-800 text-white text-center text-xs font-bold py-3 rounded-xl transition flex items-center justify-center shadow-xs">
+                                <i class="fas fa-search mr-1.5"></i> Check Student Result
+                            </a>
+                            <a href="contact.html" class="bg-slate-100 hover:bg-slate-200 text-slate-800 text-center text-xs font-bold py-3 px-4 rounded-xl transition flex items-center justify-center">
+                                <i class="fas fa-map-marker-alt text-brand-900 mr-1.5"></i> Location & Map
+                            </a>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- 2. ABOUT US & PRINCIPAL'S MESSAGE          -->
+    <!-- ========================================== -->
+    <section id="about" class="py-20 bg-white border-b border-slate-200/80">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                
+                <!-- Left Column: School History & Mission -->
+                <div class="lg:col-span-6 space-y-6">
+                    <div class="inline-flex items-center gap-2 bg-brand-50 border border-brand-200 px-3.5 py-1.5 rounded-full text-xs font-bold text-brand-900">
+                        <i class="fas fa-landmark text-gold-500"></i>
+                        <span>Rooted in Excellence Since 1999</span>
+                    </div>
+
+                    <h2 class="text-3xl sm:text-4xl font-black text-slate-900 tracking-tight leading-tight">
+                        A Legacy of Holistic Schooling in Nayabasti, Kathmandu
+                    </h2>
+
+                    <p class="text-slate-600 text-sm sm:text-base leading-relaxed">
+                        Pegasus English School was founded with an unyielding conviction: that education should touch both the intellect and the heart. Over two and a half decades, our campus in Gokarneshwor-6 has guided thousands of young learners into capable, disciplined, and visionary citizens.
+                    </p>
+
+                    <!-- Core School Pillars -->
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
+                        <div class="p-4 rounded-2xl bg-slate-50 border border-slate-200/80 space-y-2">
+                            <div class="w-9 h-9 rounded-xl bg-brand-100 text-brand-900 flex items-center justify-center font-bold text-base">
+                                <i class="fas fa-book-reader"></i>
+                            </div>
+                            <h4 class="font-black text-slate-900 text-sm">Academic Rigor</h4>
+                            <p class="text-xs text-slate-500 leading-relaxed">Conceptual learning, science laboratories, and intensive SEE preparation.</p>
+                        </div>
+
+                        <div class="p-4 rounded-2xl bg-slate-50 border border-slate-200/80 space-y-2">
+                            <div class="w-9 h-9 rounded-xl bg-gold-100 text-gold-700 flex items-center justify-center font-bold text-base">
+                                <i class="fas fa-heart"></i>
+                            </div>
+                            <h4 class="font-black text-slate-900 text-sm">Character & Values</h4>
+                            <p class="text-xs text-slate-500 leading-relaxed">Emphasizing empathy, civic duty, self-discipline, and traditional Nepalese values.</p>
+                        </div>
+
+                        <div class="p-4 rounded-2xl bg-slate-50 border border-slate-200/80 space-y-2">
+                            <div class="w-9 h-9 rounded-xl bg-emerald-100 text-emerald-800 flex items-center justify-center font-bold text-base">
+                                <i class="fas fa-running"></i>
+                            </div>
+                            <h4 class="font-black text-slate-900 text-sm">Athletic Vitality</h4>
+                            <p class="text-xs text-slate-500 leading-relaxed">Taekwondo martial discipline, football, basketball, and inter-house cups.</p>
+                        </div>
+
+                        <div class="p-4 rounded-2xl bg-slate-50 border border-slate-200/80 space-y-2">
+                            <div class="w-9 h-9 rounded-xl bg-purple-100 text-purple-800 flex items-center justify-center font-bold text-base">
+                                <i class="fas fa-palette"></i>
+                            </div>
+                            <h4 class="font-black text-slate-900 text-sm">Creative Arts</h4>
+                            <p class="text-xs text-slate-500 leading-relaxed">Classical folk dance, choir music, clay modeling, and public speaking.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Column: Principal's Message & Official Seal Showcase -->
+                <div class="lg:col-span-6 space-y-6">
+                    <div class="bg-gradient-to-br from-brand-950 via-slate-900 to-brand-950 text-white p-8 sm:p-10 rounded-3xl shadow-xl relative overflow-hidden border border-brand-900">
+                        <i class="fas fa-quote-left text-gold-500/20 text-6xl absolute top-6 right-6"></i>
+                        <div class="relative z-10 space-y-4">
+                            <div class="flex items-center gap-2">
+                                <span class="text-xs uppercase tracking-wider text-gold-400 font-black">Principal's Address</span>
+                                <span class="text-slate-500">•</span>
+                                <span class="text-xs text-slate-400">Pegasus English School</span>
+                            </div>
+                            
+                            <blockquote class="text-sm sm:text-base text-slate-200 leading-relaxed italic">
+                                "Our mission is encapsulated in our sacred motto: <strong class="text-gold-300">To teach is to touch a life forever!</strong> Education is not mere mechanical recitation; it is the spark that awakens imagination, builds character, and develops compassionate young minds who lead with confidence."
+                            </blockquote>
+
+                            <div class="pt-6 border-t border-brand-900 flex items-center justify-between">
+                                <div class="flex items-center gap-3.5">
+                                    <img src="logo.jpg" alt="Pegasus Logo" style="width: 48px; height: 48px; object-fit: contain;" class="w-12 h-12 rounded-full bg-white p-1 border-2 border-gold-500 shadow-sm">
+                                    <div>
+                                        <h4 class="font-bold text-sm text-white">Office of the Principal</h4>
+                                        <p class="text-xs text-slate-400">Nayabasti, Gokarneshwor-6</p>
+                                    </div>
+                                </div>
+                                <span class="text-xs text-gold-400 font-bold bg-white/10 px-3 py-1 rounded-full border border-white/10">
+                                    Estd. 1999
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Campus Features Snapshot Card -->
+                    <div class="bg-slate-50 rounded-2xl p-6 border border-slate-200 flex flex-wrap items-center justify-between gap-4">
+                        <div class="flex items-center space-x-3">
+                            <div class="w-10 h-10 rounded-xl bg-brand-900 text-gold-400 flex items-center justify-center text-lg">
+                                <i class="fas fa-shield-alt"></i>
+                            </div>
+                            <div>
+                                <h5 class="font-bold text-slate-900 text-sm">Safe, Disciplined & Welcoming</h5>
+                                <p class="text-xs text-slate-500">CCTV secured premises, clean sanitization & caring mentorship.</p>
+                            </div>
+                        </div>
+                        <a href="contact.html" class="text-xs font-bold text-brand-900 hover:text-brand-700 flex items-center">
+                            <span>Campus Tour</span>
+                            <i class="fas fa-arrow-right ml-1 text-[10px]"></i>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- 3. LATEST NEWS & ANNOUNCEMENTS             -->
+    <!-- ========================================== -->
+    <section class="py-16 bg-slate-100/70 border-b border-slate-200/80">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-wrap items-end justify-between gap-4 mb-10">
+                <div>
+                    <span class="text-xs font-bold uppercase tracking-wider text-brand-900 bg-brand-100 border border-brand-200 px-3 py-1 rounded-full">
+                        Circulars & Notices
+                    </span>
+                    <h2 class="text-3xl font-black text-slate-900 tracking-tight mt-2">
+                        Latest Campus News & Announcements
+                    </h2>
+                </div>
+                <a href="file-manager.html" class="text-xs font-bold text-brand-900 hover:underline flex items-center">
+                    <span>View All Circulars in Resource Center</span>
+                    <i class="fas fa-arrow-right ml-1 text-[10px]"></i>
+                </a>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-xs space-y-3 hover:shadow-md transition">
+                    <div class="flex items-center justify-between text-xs">
+                        <span class="font-bold text-brand-900 uppercase bg-brand-50 px-2.5 py-0.5 rounded">Examination</span>
+                        <span class="text-slate-400">Oct 2026</span>
+                    </div>
+                    <h4 class="font-bold text-slate-800 text-sm">First Terminal Evaluation Timetable Dispatched</h4>
+                    <p class="text-xs text-slate-500 leading-relaxed">
+                        Classes I to V formative routines and Classes VI to X terminal timetable are published in the Local Resource Center and dispatched via homework diaries.
+                    </p>
+                    <a href="file-manager.html" class="inline-block text-xs font-bold text-brand-900 hover:underline">Download Routine PDF →</a>
+                </div>
+
+                <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-xs space-y-3 hover:shadow-md transition">
+                    <div class="flex items-center justify-between text-xs">
+                        <span class="font-bold text-gold-700 uppercase bg-gold-50 px-2.5 py-0.5 rounded">Admissions</span>
+                        <span class="text-slate-400">Session 2026/27</span>
+                    </div>
+                    <h4 class="font-bold text-slate-800 text-sm">New Session Admissions Open for Classes I to IX</h4>
+                    <p class="text-xs text-slate-500 leading-relaxed">
+                        Prospective parents can review our complete fee structure, download the registration form, or apply online through our admissions portal.
+                    </p>
+                    <a href="academics.html#admissions" class="inline-block text-xs font-bold text-gold-700 hover:underline">Review Admission Criteria →</a>
+                </div>
+
+                <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-xs space-y-3 hover:shadow-md transition">
+                    <div class="flex items-center justify-between text-xs">
+                        <span class="font-bold text-emerald-700 uppercase bg-emerald-50 px-2.5 py-0.5 rounded">ECA Event</span>
+                        <span class="text-slate-400">Nov 2026</span>
+                    </div>
+                    <h4 class="font-bold text-slate-800 text-sm">Annual Taekwondo Belt Promotion & Sports Trials</h4>
+                    <p class="text-xs text-slate-500 leading-relaxed">
+                        House registration for athletics and martial arts promotion exams begins next Monday. Review previous event highlights in our photo gallery below.
+                    </p>
+                    <a href="#eca" class="inline-block text-xs font-bold text-emerald-700 hover:underline">Explore ECA Moments →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- 4. ECA & STUDENT MOMENTS PHOTO GALLERY     -->
+    <!-- ========================================== -->
+    <section id="eca" class="py-20 bg-white border-b border-slate-200/80">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto space-y-3 mb-10">
+                <div class="inline-flex items-center gap-2 bg-amber-50 border border-amber-200/80 px-3.5 py-1.5 rounded-full text-xs font-bold text-amber-800 shadow-xs">
+                    <i class="fas fa-camera text-amber-500"></i>
+                    <span>Campus Life & Latest ECA Moments</span>
+                </div>
+                <h2 class="text-3xl sm:text-4xl font-black text-slate-900 tracking-tight">
+                    Beyond The Classroom: Photo Gallery & Achievements
+                </h2>
+                <p class="text-sm text-slate-600 leading-relaxed">
+                    Explore our latest athletic victories, creative art displays, taekwondo grading ceremonies, and cultural performances with student reflections below.
+                </p>
+            </div>
+
+            <!-- Interactive Category Filter Tabs -->
+            <div class="flex flex-wrap items-center justify-center gap-2 mb-10">
+                <button onclick="filterEcaGallery('all')" class="eca-tab-btn active bg-brand-900 text-white font-bold text-xs sm:text-sm px-4 py-2 rounded-xl shadow-xs transition" data-category="all">
+                    All Moments (6)
+                </button>
+                <button onclick="filterEcaGallery('sports')" class="eca-tab-btn bg-white hover:bg-slate-100 text-slate-700 font-bold text-xs sm:text-sm px-4 py-2 rounded-xl border border-slate-200 transition" data-category="sports">
+                    <i class="fas fa-running text-emerald-500 mr-1.5"></i> Sports & Athletics
+                </button>
+                <button onclick="filterEcaGallery('martial-arts')" class="eca-tab-btn bg-white hover:bg-slate-100 text-slate-700 font-bold text-xs sm:text-sm px-4 py-2 rounded-xl border border-slate-200 transition" data-category="martial-arts">
+                    <i class="fas fa-fist-raised text-amber-500 mr-1.5"></i> Taekwondo
+                </button>
+                <button onclick="filterEcaGallery('art')" class="eca-tab-btn bg-white hover:bg-slate-100 text-slate-700 font-bold text-xs sm:text-sm px-4 py-2 rounded-xl border border-slate-200 transition" data-category="art">
+                    <i class="fas fa-palette text-pink-500 mr-1.5"></i> Art & Clay
+                </button>
+                <button onclick="filterEcaGallery('music')" class="eca-tab-btn bg-white hover:bg-slate-100 text-slate-700 font-bold text-xs sm:text-sm px-4 py-2 rounded-xl border border-slate-200 transition" data-category="music">
+                    <i class="fas fa-music text-purple-500 mr-1.5"></i> Dance & Music
+                </button>
+                <button onclick="filterEcaGallery('debate')" class="eca-tab-btn bg-white hover:bg-slate-100 text-slate-700 font-bold text-xs sm:text-sm px-4 py-2 rounded-xl border border-slate-200 transition" data-category="debate">
+                    <i class="fas fa-microphone-alt text-sky-500 mr-1.5"></i> Debate & Speech
+                </button>
+                <button onclick="filterEcaGallery('stem')" class="eca-tab-btn bg-white hover:bg-slate-100 text-slate-700 font-bold text-xs sm:text-sm px-4 py-2 rounded-xl border border-slate-200 transition" data-category="stem">
+                    <i class="fas fa-robot text-brand-900 mr-1.5"></i> STEM & Science
+                </button>
+            </div>
+
+            <!-- Cards Grid: Separated Images with Captions Below -->
+            <div id="eca-gallery-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                
+                <!-- Card 1: Sports Meet -->
+                <div class="eca-item-card group bg-white rounded-3xl border border-slate-200/90 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col overflow-hidden" data-category="sports">
+                    <div class="relative aspect-[16/10] overflow-hidden bg-slate-100 cursor-pointer" onclick="openEcaLightbox(0)">
+                        <img src="https://images.unsplash.com/photo-1461896836934-ffe607ba8211?auto=format&fit=crop&w=800&q=80" alt="Sports Meet" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        <div class="absolute top-3.5 left-3.5 z-10">
+                            <span class="bg-emerald-600/90 backdrop-blur-md text-white text-[11px] font-extrabold px-3 py-1 rounded-full shadow-xs flex items-center">
+                                <i class="fas fa-trophy mr-1.5 text-gold-300"></i> Athletics & Sports
+                            </span>
+                        </div>
+                        <button onclick="toggleEcaLike(0, event)" class="absolute top-3.5 right-3.5 z-10 bg-white/90 backdrop-blur-md text-slate-700 p-2 rounded-full shadow-md transition flex items-center gap-1.5 text-xs font-bold active:scale-95">
+                            <i id="like-icon-0" class="far fa-heart text-rose-500"></i>
+                            <span id="like-count-0">142</span>
+                        </button>
+                        <div class="absolute inset-0 bg-slate-950/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                            <span class="bg-white text-slate-900 text-xs font-bold px-3.5 py-1.5 rounded-full shadow-lg flex items-center gap-1.5">
+                                <i class="fas fa-expand-alt text-brand-900"></i> Click to Enlarge
+                            </span>
+                        </div>
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col justify-between space-y-4">
+                        <div class="space-y-2">
+                            <div class="flex items-center justify-between text-xs text-slate-400 font-semibold">
+                                <span><i class="far fa-calendar-alt text-brand-900 mr-1.5"></i> Annual Sports Meet</span>
+                                <span class="bg-brand-50 text-brand-900 px-2 py-0.5 rounded-md font-bold">Class I to X</span>
+                            </div>
+                            <h3 class="text-lg font-black text-slate-900 group-hover:text-brand-900 transition leading-snug">
+                                Annual Inter-House Athletics & 100m Sprint Championship
+                            </h3>
+                            <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                                Our young athletes demonstrated outstanding speed and sportsmanship during the 100m sprint, 4x100m relay, long jump, and house tug-of-war. Blue House lifted the Overall Champion Shield.
+                            </p>
+                        </div>
+                        <div class="pt-3 border-t border-slate-100 flex items-center justify-between">
+                            <div class="flex items-center gap-1.5 text-[11px] font-bold text-slate-500">
+                                <span class="bg-slate-100 px-2 py-0.5 rounded-md">#TrackAndField</span>
+                                <span class="bg-slate-100 px-2 py-0.5 rounded-md">#Relay</span>
+                            </div>
+                            <button onclick="openEcaLightbox(0)" class="text-xs font-bold text-brand-900 hover:text-brand-700 flex items-center">
+                                <span>Full Story</span> <i class="fas fa-arrow-right ml-1 text-[10px]"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 2: Taekwondo -->
+                <div class="eca-item-card group bg-white rounded-3xl border border-slate-200/90 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col overflow-hidden" data-category="martial-arts">
+                    <div class="relative aspect-[16/10] overflow-hidden bg-slate-100 cursor-pointer" onclick="openEcaLightbox(1)">
+                        <img src="https://images.unsplash.com/photo-1555597673-b21d5c935865?auto=format&fit=crop&w=800&q=80" alt="Taekwondo" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        <div class="absolute top-3.5 left-3.5 z-10">
+                            <span class="bg-amber-600/90 backdrop-blur-md text-white text-[11px] font-extrabold px-3 py-1 rounded-full shadow-xs flex items-center">
+                                <i class="fas fa-fist-raised mr-1.5 text-amber-200"></i> Taekwondo
+                            </span>
+                        </div>
+                        <button onclick="toggleEcaLike(1, event)" class="absolute top-3.5 right-3.5 z-10 bg-white/90 backdrop-blur-md text-slate-700 p-2 rounded-full shadow-md transition flex items-center gap-1.5 text-xs font-bold active:scale-95">
+                            <i id="like-icon-1" class="far fa-heart text-rose-500"></i>
+                            <span id="like-count-1">98</span>
+                        </button>
+                        <div class="absolute inset-0 bg-slate-950/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                            <span class="bg-white text-slate-900 text-xs font-bold px-3.5 py-1.5 rounded-full shadow-lg flex items-center gap-1.5">
+                                <i class="fas fa-expand-alt text-brand-900"></i> Click to Enlarge
+                            </span>
+                        </div>
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col justify-between space-y-4">
+                        <div class="space-y-2">
+                            <div class="flex items-center justify-between text-xs text-slate-400 font-semibold">
+                                <span><i class="far fa-calendar-alt text-amber-500 mr-1.5"></i> Martial Arts Grading</span>
+                                <span class="bg-amber-50 text-amber-800 px-2 py-0.5 rounded-md font-bold">Class II to VIII</span>
+                            </div>
+                            <h3 class="text-lg font-black text-slate-900 group-hover:text-amber-600 transition leading-snug">
+                                National Taekwondo Belt Promotion & Forms Showcase
+                            </h3>
+                            <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                                Discipline, mental focus, and martial poise in practice! 45 Pegasus scholars successfully cleared their evaluation to advance to Yellow, Green, and Blue belt ranks under our chief master.
+                            </p>
+                        </div>
+                        <div class="pt-3 border-t border-slate-100 flex items-center justify-between">
+                            <div class="flex items-center gap-1.5 text-[11px] font-bold text-slate-500">
+                                <span class="bg-slate-100 px-2 py-0.5 rounded-md">#Taekwondo</span>
+                                <span class="bg-slate-100 px-2 py-0.5 rounded-md">#Discipline</span>
+                            </div>
+                            <button onclick="openEcaLightbox(1)" class="text-xs font-bold text-brand-900 hover:text-brand-700 flex items-center">
+                                <span>Full Story</span> <i class="fas fa-arrow-right ml-1 text-[10px]"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 3: Art & Clay -->
+                <div class="eca-item-card group bg-white rounded-3xl border border-slate-200/90 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col overflow-hidden" data-category="art">
+                    <div class="relative aspect-[16/10] overflow-hidden bg-slate-100 cursor-pointer" onclick="openEcaLightbox(2)">
+                        <img src="https://images.unsplash.com/photo-1513364776144-60967b0f800f?auto=format&fit=crop&w=800&q=80" alt="Art & Clay" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        <div class="absolute top-3.5 left-3.5 z-10">
+                            <span class="bg-pink-600/90 backdrop-blur-md text-white text-[11px] font-extrabold px-3 py-1 rounded-full shadow-xs flex items-center">
+                                <i class="fas fa-palette mr-1.5 text-pink-200"></i> Visual Art & Craft
+                            </span>
+                        </div>
+                        <button onclick="toggleEcaLike(2, event)" class="absolute top-3.5 right-3.5 z-10 bg-white/90 backdrop-blur-md text-slate-700 p-2 rounded-full shadow-md transition flex items-center gap-1.5 text-xs font-bold active:scale-95">
+                            <i id="like-icon-2" class="far fa-heart text-rose-500"></i>
+                            <span id="like-count-2">116</span>
+                        </button>
+                        <div class="absolute inset-0 bg-slate-950/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                            <span class="bg-white text-slate-900 text-xs font-bold px-3.5 py-1.5 rounded-full shadow-lg flex items-center gap-1.5">
+                                <i class="fas fa-expand-alt text-brand-900"></i> Click to Enlarge
+                            </span>
+                        </div>
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col justify-between space-y-4">
+                        <div class="space-y-2">
+                            <div class="flex items-center justify-between text-xs text-slate-400 font-semibold">
+                                <span><i class="far fa-calendar-alt text-pink-500 mr-1.5"></i> Annual Art Gallery</span>
+                                <span class="bg-pink-50 text-pink-700 px-2 py-0.5 rounded-md font-bold">Primary (I–V)</span>
+                            </div>
+                            <h3 class="text-lg font-black text-slate-900 group-hover:text-pink-600 transition leading-snug">
+                                Primary Wing Clay Modeling & Watercolor Exhibition
+                            </h3>
+                            <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                                A vivid explosion of young imagination! Students crafted traditional clay animal pottery, watercolor mountain landscapes, and origami floral displays for parents.
+                            </p>
+                        </div>
+                        <div class="pt-3 border-t border-slate-100 flex items-center justify-between">
+                            <div class="flex items-center gap-1.5 text-[11px] font-bold text-slate-500">
+                                <span class="bg-slate-100 px-2 py-0.5 rounded-md">#Handicraft</span>
+                                <span class="bg-slate-100 px-2 py-0.5 rounded-md">#Painting</span>
+                            </div>
+                            <button onclick="openEcaLightbox(2)" class="text-xs font-bold text-brand-900 hover:text-brand-700 flex items-center">
+                                <span>Full Story</span> <i class="fas fa-arrow-right ml-1 text-[10px]"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 4: Music & Dance -->
+                <div class="eca-item-card group bg-white rounded-3xl border border-slate-200/90 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col overflow-hidden" data-category="music">
+                    <div class="relative aspect-[16/10] overflow-hidden bg-slate-100 cursor-pointer" onclick="openEcaLightbox(3)">
+                        <img src="https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&w=800&q=80" alt="Cultural Dance" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        <div class="absolute top-3.5 left-3.5 z-10">
+                            <span class="bg-purple-600/90 backdrop-blur-md text-white text-[11px] font-extrabold px-3 py-1 rounded-full shadow-xs flex items-center">
+                                <i class="fas fa-music mr-1.5 text-purple-200"></i> Dance & Music
+                            </span>
+                        </div>
+                        <button onclick="toggleEcaLike(3, event)" class="absolute top-3.5 right-3.5 z-10 bg-white/90 backdrop-blur-md text-slate-700 p-2 rounded-full shadow-md transition flex items-center gap-1.5 text-xs font-bold active:scale-95">
+                            <i id="like-icon-3" class="far fa-heart text-rose-500"></i>
+                            <span id="like-count-3">156</span>
+                        </button>
+                        <div class="absolute inset-0 bg-slate-950/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                            <span class="bg-white text-slate-900 text-xs font-bold px-3.5 py-1.5 rounded-full shadow-lg flex items-center gap-1.5">
+                                <i class="fas fa-expand-alt text-brand-900"></i> Click to Enlarge
+                            </span>
+                        </div>
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col justify-between space-y-4">
+                        <div class="space-y-2">
+                            <div class="flex items-center justify-between text-xs text-slate-400 font-semibold">
+                                <span><i class="far fa-calendar-alt text-purple-500 mr-1.5"></i> Festival Recital</span>
+                                <span class="bg-purple-50 text-purple-700 px-2 py-0.5 rounded-md font-bold">Campus Wide</span>
+                            </div>
+                            <h3 class="text-lg font-black text-slate-900 group-hover:text-purple-600 transition leading-snug">
+                                Saraswati Puja Cultural Dance & Musical Recital
+                            </h3>
+                            <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                                A vibrant celebration of arts, music, and wisdom. The Pegasus school choir performed classical morning devotional hymns, followed by classical Nepali folk dance performances by our senior dance ensemble.
+                            </p>
+                        </div>
+                        <div class="pt-3 border-t border-slate-100 flex items-center justify-between">
+                            <div class="flex items-center gap-1.5 text-[11px] font-bold text-slate-500">
+                                <span class="bg-slate-100 px-2 py-0.5 rounded-md">#NepaliCulture</span>
+                                <span class="bg-slate-100 px-2 py-0.5 rounded-md">#MusicClub</span>
+                            </div>
+                            <button onclick="openEcaLightbox(3)" class="text-xs font-bold text-brand-900 hover:text-brand-700 flex items-center">
+                                <span>Full Story</span> <i class="fas fa-arrow-right ml-1 text-[10px]"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 5: Debate -->
+                <div class="eca-item-card group bg-white rounded-3xl border border-slate-200/90 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col overflow-hidden" data-category="debate">
+                    <div class="relative aspect-[16/10] overflow-hidden bg-slate-100 cursor-pointer" onclick="openEcaLightbox(4)">
+                        <img src="https://images.unsplash.com/photo-1475721027785-f74eccf877e2?auto=format&fit=crop&w=800&q=80" alt="Debate Finals" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        <div class="absolute top-3.5 left-3.5 z-10">
+                            <span class="bg-sky-600/90 backdrop-blur-md text-white text-[11px] font-extrabold px-3 py-1 rounded-full shadow-xs flex items-center">
+                                <i class="fas fa-microphone-alt mr-1.5 text-sky-200"></i> Debate & Speech
+                            </span>
+                        </div>
+                        <button onclick="toggleEcaLike(4, event)" class="absolute top-3.5 right-3.5 z-10 bg-white/90 backdrop-blur-md text-slate-700 p-2 rounded-full shadow-md transition flex items-center gap-1.5 text-xs font-bold active:scale-95">
+                            <i id="like-icon-4" class="far fa-heart text-rose-500"></i>
+                            <span id="like-count-4">84</span>
+                        </button>
+                        <div class="absolute inset-0 bg-slate-950/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                            <span class="bg-white text-slate-900 text-xs font-bold px-3.5 py-1.5 rounded-full shadow-lg flex items-center gap-1.5">
+                                <i class="fas fa-expand-alt text-brand-900"></i> Click to Enlarge
+                            </span>
+                        </div>
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col justify-between space-y-4">
+                        <div class="space-y-2">
+                            <div class="flex items-center justify-between text-xs text-slate-400 font-semibold">
+                                <span><i class="far fa-calendar-alt text-sky-500 mr-1.5"></i> Regional Cup</span>
+                                <span class="bg-sky-50 text-sky-700 px-2 py-0.5 rounded-md font-bold">Secondary (VI–X)</span>
+                            </div>
+                            <h3 class="text-lg font-black text-slate-900 group-hover:text-sky-600 transition leading-snug">
+                                Inter-School English Parliamentary Debate & Elocution
+                            </h3>
+                            <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                                Articulate thinking under pressure! The Pegasus senior debate team secured First Runner-Up honors debating sustainable education policies, receiving individual Best Speaker citations.
+                            </p>
+                        </div>
+                        <div class="pt-3 border-t border-slate-100 flex items-center justify-between">
+                            <div class="flex items-center gap-1.5 text-[11px] font-bold text-slate-500">
+                                <span class="bg-slate-100 px-2 py-0.5 rounded-md">#Oratory</span>
+                                <span class="bg-slate-100 px-2 py-0.5 rounded-md">#Leadership</span>
+                            </div>
+                            <button onclick="openEcaLightbox(4)" class="text-xs font-bold text-brand-900 hover:text-brand-700 flex items-center">
+                                <span>Full Story</span> <i class="fas fa-arrow-right ml-1 text-[10px]"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 6: STEM & Science -->
+                <div class="eca-item-card group bg-white rounded-3xl border border-slate-200/90 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col overflow-hidden" data-category="stem">
+                    <div class="relative aspect-[16/10] overflow-hidden bg-slate-100 cursor-pointer" onclick="openEcaLightbox(5)">
+                        <img src="https://images.unsplash.com/photo-1581092921461-eab62e97a780?auto=format&fit=crop&w=800&q=80" alt="Robotics Fair" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        <div class="absolute top-3.5 left-3.5 z-10">
+                            <span class="bg-brand-900/90 backdrop-blur-md text-white text-[11px] font-extrabold px-3 py-1 rounded-full shadow-xs flex items-center">
+                                <i class="fas fa-robot mr-1.5 text-brand-200"></i> STEM & Science
+                            </span>
+                        </div>
+                        <button onclick="toggleEcaLike(5, event)" class="absolute top-3.5 right-3.5 z-10 bg-white/90 backdrop-blur-md text-slate-700 p-2 rounded-full shadow-md transition flex items-center gap-1.5 text-xs font-bold active:scale-95">
+                            <i id="like-icon-5" class="far fa-heart text-rose-500"></i>
+                            <span id="like-count-5">109</span>
+                        </button>
+                        <div class="absolute inset-0 bg-slate-950/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                            <span class="bg-white text-slate-900 text-xs font-bold px-3.5 py-1.5 rounded-full shadow-lg flex items-center gap-1.5">
+                                <i class="fas fa-expand-alt text-brand-900"></i> Click to Enlarge
+                            </span>
+                        </div>
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col justify-between space-y-4">
+                        <div class="space-y-2">
+                            <div class="flex items-center justify-between text-xs text-slate-400 font-semibold">
+                                <span><i class="far fa-calendar-alt text-brand-900 mr-1.5"></i> Annual Science Expo</span>
+                                <span class="bg-brand-50 text-brand-900 px-2 py-0.5 rounded-md font-bold">Class VI to X</span>
+                            </div>
+                            <h3 class="text-lg font-black text-slate-900 group-hover:text-brand-900 transition leading-snug">
+                                Science Discovery Fair & Smart Robotics Demonstrations
+                            </h3>
+                            <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                                Future innovators in action! Secondary students showcased working hydraulic robotic arms, solar tracking cells, human biology models, and smart obstacle-sensing buggies.
+                            </p>
+                        </div>
+                        <div class="pt-3 border-t border-slate-100 flex items-center justify-between">
+                            <div class="flex items-center gap-1.5 text-[11px] font-bold text-slate-500">
+                                <span class="bg-slate-100 px-2 py-0.5 rounded-md">#Robotics</span>
+                                <span class="bg-slate-100 px-2 py-0.5 rounded-md">#STEM</span>
+                            </div>
+                            <button onclick="openEcaLightbox(5)" class="text-xs font-bold text-brand-900 hover:text-brand-700 flex items-center">
+                                <span>Full Story</span> <i class="fas fa-arrow-right ml-1 text-[10px]"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Social Media Album Ribbon -->
+            <div class="mt-14 bg-slate-50 rounded-3xl p-6 sm:p-8 border border-slate-200/90 shadow-sm flex flex-wrap items-center justify-between gap-6">
+                <div class="flex items-center space-x-4">
+                    <div class="w-12 h-12 rounded-2xl bg-brand-50 text-brand-900 flex items-center justify-center text-xl shrink-0">
+                        <i class="fas fa-images"></i>
+                    </div>
+                    <div>
+                        <h4 class="font-black text-slate-900 text-base">Want to view full photo archives?</h4>
+                        <p class="text-xs text-slate-500 mt-0.5">High-resolution ceremony albums, sports day clips, and prize distributions are posted regularly on our official Facebook.</p>
+                    </div>
+                </div>
+
+                <a href="https://www.facebook.com/profile.php?id=100063491716430" target="_blank" rel="noopener noreferrer" class="bg-slate-900 hover:bg-brand-900 text-white font-bold text-xs sm:text-sm px-5 py-3 rounded-2xl shadow-md transition flex items-center gap-2 group">
+                    <i class="fab fa-facebook-f text-sky-400 group-hover:scale-110 transition"></i>
+                    <span>Follow @pegasusenglishschool on Facebook</span>
+                    <i class="fas fa-external-link-alt text-[10px] text-slate-400 group-hover:text-white transition ml-1"></i>
+                </a>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- 5. PORTALS & SYSTEM SHORTCUTS STRIP        -->
+    <!-- ========================================== -->
+    <section class="py-16 bg-brand-950 text-white border-b border-brand-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto space-y-2 mb-10">
+                <span class="text-xs uppercase tracking-wider text-gold-400 font-bold">Pegasus Connected Campus</span>
+                <h2 class="text-2xl sm:text-3xl font-black">Dedicated School Portals & Systems</h2>
+                <p class="text-xs sm:text-sm text-slate-400">Direct access to student evaluation tracking, teacher grading workspace, and server resources.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Portal Card 1: Student Evaluation Tracking -->
+                <div class="bg-brand-900/60 p-6 rounded-3xl border border-brand-800 space-y-4 hover:border-gold-500/50 transition flex flex-col justify-between">
+                    <div class="space-y-3">
+                        <div class="w-12 h-12 rounded-2xl bg-gold-500 text-brand-950 flex items-center justify-center text-xl font-bold">
+                            <i class="fas fa-user-graduate"></i>
+                        </div>
+                        <h3 class="text-lg font-black text-white">Student Evaluation Portal</h3>
+                        <p class="text-xs text-slate-300 leading-relaxed">
+                            Lookup term-wise marks, progress reports, CDC grade point averages, attendance standing, and download printable report cards.
+                        </p>
+                    </div>
+                    <a href="student-portal.html" class="bg-white/10 hover:bg-white text-white hover:text-brand-950 text-xs font-bold py-2.5 px-4 rounded-xl transition text-center block">
+                        Open Evaluation Portal →
+                    </a>
+                </div>
+
+                <!-- Portal Card 2: Teacher Panel -->
+                <div class="bg-brand-900/60 p-6 rounded-3xl border border-brand-800 space-y-4 hover:border-gold-500/50 transition flex flex-col justify-between">
+                    <div class="space-y-3">
+                        <div class="w-12 h-12 rounded-2xl bg-brand-700 text-white flex items-center justify-center text-xl font-bold">
+                            <i class="fas fa-chalkboard-teacher text-gold-400"></i>
+                        </div>
+                        <h3 class="text-lg font-black text-white">Teacher Panel Dashboard</h3>
+                        <p class="text-xs text-slate-300 leading-relaxed">
+                            Input student marks, update formative rubrics, manage class rosters, check daily homework, and notify defaulter parents in one click.
+                        </p>
+                    </div>
+                    <a href="teacher.html" class="bg-gold-500 hover:bg-gold-400 text-brand-950 text-xs font-black py-2.5 px-4 rounded-xl transition text-center block">
+                        Open Teacher Panel →
+                    </a>
+                </div>
+
+                <!-- Portal Card 3: Local File Management -->
+                <div class="bg-brand-900/60 p-6 rounded-3xl border border-brand-800 space-y-4 hover:border-gold-500/50 transition flex flex-col justify-between">
+                    <div class="space-y-3">
+                        <div class="w-12 h-12 rounded-2xl bg-emerald-600 text-white flex items-center justify-center text-xl font-bold">
+                            <i class="fas fa-folder-open"></i>
+                        </div>
+                        <h3 class="text-lg font-black text-white">Local File Directory System</h3>
+                        <p class="text-xs text-slate-300 leading-relaxed">
+                            Link to local server repositories to browse, upload, organize, and download curriculum syllabi, notices, and exam routines securely.
+                        </p>
+                    </div>
+                    <a href="file-manager.html" class="bg-white/10 hover:bg-white text-white hover:text-brand-950 text-xs font-bold py-2.5 px-4 rounded-xl transition text-center block">
+                        Open File Directory →
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- 6. FOOTER                                  -->
+    <!-- ========================================== -->
+    <footer class="bg-brand-950 text-slate-300 py-14 border-t border-brand-900 mt-auto">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
+                
+                <!-- School Info & Logo -->
+                <div class="space-y-4 md:col-span-1">
+                    <div class="flex items-center space-x-3">
+                        <img src="logo.jpg" alt="Pegasus Logo" style="width: 48px; height: 48px; object-fit: contain;" class="w-12 h-12 rounded-xl bg-white p-0.5">
+                        <div>
+                            <span class="text-base font-black text-white leading-tight block">Pegasus English School</span>
+                            <span class="text-[11px] text-gold-400 font-bold">Estd. 1999 • Nayabasti</span>
+                        </div>
+                    </div>
+                    <p class="text-xs text-slate-400 leading-relaxed font-motto italic">
+                        "To teach is to touch a life forever!"
+                    </p>
+                    <p class="text-xs text-slate-400 leading-relaxed">
+                        Nurturing leadership, academic capability, and ethical awareness in young minds from Class I through Class X.
+                    </p>
+                    <div class="flex items-center space-x-3 pt-1">
+                        <a href="https://www.facebook.com/profile.php?id=100063491716430" target="_blank" rel="noopener noreferrer" class="w-8 h-8 rounded-lg bg-white/10 hover:bg-sky-600 text-white flex items-center justify-center transition">
+                            <i class="fab fa-facebook-f text-xs"></i>
+                        </a>
+                        <a href="mailto:pegasusengschool@gmail.com" class="w-8 h-8 rounded-lg bg-white/10 hover:bg-brand-600 text-white flex items-center justify-center transition">
+                            <i class="fas fa-envelope text-xs"></i>
+                        </a>
+                        <a href="tel:014913939" class="w-8 h-8 rounded-lg bg-white/10 hover:bg-emerald-600 text-white flex items-center justify-center transition">
+                            <i class="fas fa-phone-alt text-xs"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Academic Pathways -->
+                <div>
+                    <h4 class="text-xs font-black uppercase tracking-wider text-gold-400 mb-3">Academic Wings</h4>
+                    <ul class="space-y-2 text-xs">
+                        <li><a href="academics.html" class="hover:text-white transition">Primary Wing (Classes I–V)</a></li>
+                        <li><a href="academics.html" class="hover:text-white transition">Secondary Wing (Classes VI–X)</a></li>
+                        <li><a href="academics.html" class="hover:text-white transition">SEE Board Examination Mentorship</a></li>
+                        <li><a href="#eca" class="hover:text-white transition">ECA Evaluation Compartment</a></li>
+                        <li><a href="academics.html#admissions" class="hover:text-white transition">Fee Structure & Scholarship</a></li>
+                    </ul>
+                </div>
+
+                <!-- Digital Portals & Resources -->
+                <div>
+                    <h4 class="text-xs font-black uppercase tracking-wider text-gold-400 mb-3">Portals & Resources</h4>
+                    <ul class="space-y-2 text-xs">
+                        <li>
+                            <a href="student-portal.html" class="text-gold-300 hover:text-gold-200 font-bold flex items-center">
+                                <i class="fas fa-user-graduate mr-1.5"></i> Student Evaluation Portal
+                            </a>
+                        </li>
+                        <li>
+                            <a href="teacher.html" class="text-white hover:text-gold-300 font-bold flex items-center">
+                                <i class="fas fa-chalkboard-teacher mr-1.5 text-brand-300"></i> Teacher Panel Dashboard
+                            </a>
+                        </li>
+                        <li><a href="file-manager.html" class="hover:text-white transition">Curriculum Syllabi Directory</a></li>
+                        <li><a href="file-manager.html" class="hover:text-white transition">Exam Timetables & Routines</a></li>
+                        <li><a href="academics.html#admissions" class="hover:text-white transition">Admission Forms & Prospectus</a></li>
+                    </ul>
+                </div>
+
+                <!-- Campus Contact -->
+                <div>
+                    <h4 class="text-xs font-black uppercase tracking-wider text-gold-400 mb-3">Campus Contact</h4>
+                    <ul class="space-y-2 text-xs text-slate-400">
+                        <li class="flex items-start"><i class="fas fa-map-marker-alt text-gold-400 w-5 mt-0.5"></i> Gokarneshwor-6, Nayabasti, Kathmandu, Nepal</li>
+                        <li class="flex items-center"><i class="fas fa-phone text-gold-400 w-5"></i> 01-4913939</li>
+                        <li class="flex items-center"><i class="fas fa-envelope text-gold-400 w-5"></i> pegasusengschool@gmail.com</li>
+                        <li class="flex items-center"><i class="fab fa-facebook text-gold-400 w-5"></i> @pegasusenglishschool</li>
+                        <li class="flex items-center"><i class="fas fa-clock text-gold-400 w-5"></i> Sun–Fri: 8:30 AM – 4:30 PM</li>
+                    </ul>
+                </div>
+
+            </div>
+
+            <div class="pt-8 border-t border-brand-900 flex flex-wrap justify-between items-center text-xs text-slate-500 gap-3">
+                <p>© 2026 Pegasus English School • "To teach is to touch a life forever!" • Estd. 1999. All rights reserved.</p>
+                <div class="flex items-center space-x-4">
+                    <a href="index.html" class="hover:text-slate-300 transition">Home</a>
+                    <span>•</span>
+                    <a href="academics.html" class="hover:text-slate-300 transition">Academics</a>
+                    <span>•</span>
+                    <a href="contact.html" class="hover:text-slate-300 transition">Contact</a>
+                    <span>•</span>
+                    <a href="teacher.html" class="hover:text-gold-400 transition">Teacher Login</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Lightbox Modal for ECA Photo Gallery -->
+    <div id="eca-lightbox-modal" class="fixed inset-0 bg-slate-950/85 backdrop-blur-md z-50 hidden flex items-center justify-center p-4 sm:p-6 transition-all duration-300" onclick="handleLightboxBackdropClick(event)">
+        <div class="bg-white rounded-3xl max-w-4xl w-full overflow-hidden shadow-2xl border border-slate-200 relative flex flex-col md:flex-row max-h-[90vh]" onclick="event.stopPropagation()">
+            <button onclick="closeEcaLightbox()" class="absolute top-4 right-4 z-20 w-10 h-10 rounded-full bg-slate-900/70 hover:bg-slate-900 text-white flex items-center justify-center transition shadow-md" title="Close Modal (Esc)">
+                <i class="fas fa-times text-sm"></i>
+            </button>
+            <div class="md:w-3/5 bg-slate-950 flex items-center justify-center relative overflow-hidden min-h-[300px] md:min-h-[480px]">
+                <img id="lightbox-img" src="" alt="ECA Moment" class="w-full h-full object-cover">
+                <button onclick="navigateEcaLightbox(-1)" class="absolute left-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-slate-900/70 hover:bg-slate-900 text-white flex items-center justify-center transition shadow-md" title="Previous (Left Arrow)">
+                    <i class="fas fa-chevron-left text-sm"></i>
+                </button>
+                <button onclick="navigateEcaLightbox(1)" class="absolute right-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-slate-900/70 hover:bg-slate-900 text-white flex items-center justify-center transition shadow-md" title="Next (Right Arrow)">
+                    <i class="fas fa-chevron-right text-sm"></i>
+                </button>
+            </div>
+            <div class="md:w-2/5 p-6 sm:p-8 flex flex-col justify-between overflow-y-auto space-y-5 bg-white">
+                <div class="space-y-4">
+                    <div class="flex items-center justify-between">
+                        <span id="lightbox-badge" class="bg-brand-50 text-brand-900 text-xs font-bold px-3 py-1 rounded-full">Category</span>
+                        <span id="lightbox-counter" class="text-xs text-slate-400 font-bold">1 / 6</span>
+                    </div>
+                    <h3 id="lightbox-title" class="text-xl font-black text-slate-900 leading-snug">Event Title</h3>
+                    <div class="flex items-center text-xs text-slate-500 gap-3 pb-2 border-b border-slate-100">
+                        <span id="lightbox-date"><i class="far fa-calendar-alt text-amber-500 mr-1.5"></i> Date</span>
+                        <span id="lightbox-wing"><i class="fas fa-graduation-cap text-brand-900 mr-1.5"></i> Wing</span>
+                    </div>
+                    <p id="lightbox-caption" class="text-xs sm:text-sm text-slate-600 leading-relaxed">Detailed event caption.</p>
+                    <div id="lightbox-tags" class="flex flex-wrap gap-1.5 pt-2"></div>
+                </div>
+                <div class="pt-4 border-t border-slate-100 flex items-center justify-between">
+                    <button id="lightbox-like-btn" onclick="toggleLightboxCurrentLike()" class="flex items-center gap-2 text-xs font-bold bg-rose-50 text-rose-600 px-3.5 py-2 rounded-xl hover:bg-rose-100 transition active:scale-95">
+                        <i class="far fa-heart"></i>
+                        <span id="lightbox-like-count">0 Likes</span>
+                    </button>
+                    <a id="lightbox-fb-link" href="https://www.facebook.com/profile.php?id=100063491716430" target="_blank" rel="noopener noreferrer" class="text-xs font-bold text-sky-600 hover:text-sky-700 flex items-center">
+                        <i class="fab fa-facebook mr-1.5 text-sm"></i>
+                        <span>Facebook Album</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Script for Navigation & ECA Gallery -->
+    <script>
+        function toggleMobileNav() {
+            const menu = document.getElementById('mobile-nav');
+            menu.classList.toggle('hidden');
+        }
+
+        // ECA Gallery Data
+        const ecaData = [
+            {
+                id: 0,
+                title: "Annual Inter-House Athletics & 100m Sprint Championship",
+                category: "sports",
+                categoryLabel: "Athletics & Sports",
+                badgeClass: "bg-emerald-50 text-emerald-700",
+                date: "Oct 2026 • Campus Grounds",
+                wing: "Classes I to X",
+                image: "https://images.unsplash.com/photo-1461896836934-ffe607ba8211?auto=format&fit=crop&w=1200&q=85",
+                caption: "Our young athletes demonstrated outstanding speed and sportsmanship during the 100m sprint, 4x100m relay, long jump, and house tug-of-war. Blue House lifted the Overall Champion Shield for best athletic performance.",
+                tags: ["#TrackAndField", "#Relay", "#BlueHouseChampions"],
+                likes: 142,
+                liked: false
+            },
+            {
+                id: 1,
+                title: "National Taekwondo Belt Promotion & Forms Showcase",
+                category: "martial-arts",
+                categoryLabel: "Taekwondo & Martial Arts",
+                badgeClass: "bg-amber-50 text-amber-800",
+                date: "Nov 2026 • Indoor Hall",
+                wing: "Class II to VIII",
+                image: "https://images.unsplash.com/photo-1555597673-b21d5c935865?auto=format&fit=crop&w=1200&q=85",
+                caption: "Discipline, mental focus, and martial poise in practice! 45 Pegasus scholars successfully cleared their rigorous forms and sparring evaluation to advance to Yellow, Green, and Blue belt ranks under our chief black-belt master.",
+                tags: ["#Taekwondo", "#Discipline", "#MartialArts"],
+                likes: 98,
+                liked: false
+            },
+            {
+                id: 2,
+                title: "Primary Wing Clay Modeling & Watercolor Exhibition",
+                category: "art",
+                categoryLabel: "Visual Art & Craft",
+                badgeClass: "bg-pink-50 text-pink-700",
+                date: "Recent Term • Junior Art Lab",
+                wing: "Primary (Grades I–V)",
+                image: "https://images.unsplash.com/photo-1513364776144-60967b0f800f?auto=format&fit=crop&w=1200&q=85",
+                caption: "A vivid explosion of young imagination! Students crafted traditional clay animal pottery, watercolor mountain landscapes, and intricate origami floral displays presented to visiting parents.",
+                tags: ["#Handicraft", "#Painting", "#ClayArt"],
+                likes: 116,
+                liked: false
+            },
+            {
+                id: 3,
+                title: "Saraswati Puja Cultural Dance & Musical Recital",
+                category: "music",
+                categoryLabel: "Cultural Dance & Music",
+                badgeClass: "bg-purple-50 text-purple-700",
+                date: "Campus Festival • Main Stage",
+                wing: "Campus Wide",
+                image: "https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&w=1200&q=85",
+                caption: "A vibrant celebration of arts, music, and wisdom. The Pegasus school choir performed classical morning devotional hymns, followed by classical Nepali folk dance performances by our senior dance ensemble.",
+                tags: ["#NepaliCulture", "#MusicClub", "#TraditionalDance"],
+                likes: 156,
+                liked: false
+            },
+            {
+                id: 4,
+                title: "Inter-School English Parliamentary Debate & Elocution",
+                category: "debate",
+                categoryLabel: "Debate & Public Speaking",
+                badgeClass: "bg-sky-50 text-sky-700",
+                date: "Inter-School Series • Auditorium",
+                wing: "Secondary (Grades VI–X)",
+                image: "https://images.unsplash.com/photo-1475721027785-f74eccf877e2?auto=format&fit=crop&w=1200&q=85",
+                caption: "Articulate thinking under pressure! The Pegasus senior debate team secured First Runner-Up honors debating sustainable education policies, receiving individual Best Speaker citations.",
+                tags: ["#Oratory", "#Debate", "#Leadership"],
+                likes: 84,
+                liked: false
+            },
+            {
+                id: 5,
+                title: "Science Discovery Fair & Smart Robotics Demonstrations",
+                category: "stem",
+                categoryLabel: "STEM & Science Expo",
+                badgeClass: "bg-brand-50 text-brand-900",
+                date: "Science Week • Tech Lab",
+                wing: "Class VI to X",
+                image: "https://images.unsplash.com/photo-1581092921461-eab62e97a780?auto=format&fit=crop&w=1200&q=85",
+                caption: "Future innovators in action! Secondary students showcased working hydraulic robotic arms, solar tracking cells, human biology models, and automated obstacle-sensing buggies engineered in our computer lab.",
+                tags: ["#Robotics", "#STEM", "#ScienceFair"],
+                likes: 109,
+                liked: false
+            }
+        ];
+
+        let currentLightboxIndex = 0;
+
+        function filterEcaGallery(category) {
+            const tabs = document.querySelectorAll('.eca-tab-btn');
+            tabs.forEach(btn => {
+                if (btn.getAttribute('data-category') === category) {
+                    btn.classList.add('bg-brand-900', 'text-white', 'shadow-xs');
+                    btn.classList.remove('bg-white', 'text-slate-700');
+                } else {
+                    btn.classList.remove('bg-brand-900', 'text-white', 'shadow-xs');
+                    btn.classList.add('bg-white', 'text-slate-700');
+                }
+            });
+
+            const cards = document.querySelectorAll('.eca-item-card');
+            cards.forEach(card => {
+                const cardCat = card.getAttribute('data-category');
+                if (category === 'all' || cardCat === category) {
+                    card.classList.remove('hidden');
+                    card.classList.add('flex');
+                } else {
+                    card.classList.add('hidden');
+                    card.classList.remove('flex');
+                }
+            });
+        }
+
+        function toggleEcaLike(id, event) {
+            if (event) event.stopPropagation();
+            const item = ecaData.find(x => x.id === id);
+            if (!item) return;
+
+            const icon = document.getElementById(`like-icon-${id}`);
+            const count = document.getElementById(`like-count-${id}`);
+
+            if (!item.liked) {
+                item.liked = true;
+                item.likes += 1;
+                if (icon) {
+                    icon.className = 'fas fa-heart text-rose-500 scale-125 transition-transform duration-200';
+                    setTimeout(() => icon.classList.remove('scale-125'), 200);
+                }
+            } else {
+                item.liked = false;
+                item.likes -= 1;
+                if (icon) icon.className = 'far fa-heart text-rose-500 transition-colors';
+            }
+
+            if (count) count.textContent = item.likes;
+            if (currentLightboxIndex === id) updateLightboxContent(id);
+        }
+
+        function openEcaLightbox(index) {
+            currentLightboxIndex = index;
+            updateLightboxContent(index);
+            const modal = document.getElementById('eca-lightbox-modal');
+            modal.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeEcaLightbox() {
+            const modal = document.getElementById('eca-lightbox-modal');
+            modal.classList.add('hidden');
+            document.body.style.overflow = '';
+        }
+
+        function handleLightboxBackdropClick(e) {
+            if (e.target.id === 'eca-lightbox-modal') closeEcaLightbox();
+        }
+
+        function navigateEcaLightbox(direction) {
+            currentLightboxIndex = (currentLightboxIndex + direction + ecaData.length) % ecaData.length;
+            updateLightboxContent(currentLightboxIndex);
+        }
+
+        function updateLightboxContent(index) {
+            const item = ecaData[index];
+            if (!item) return;
+
+            document.getElementById('lightbox-img').src = item.image;
+            document.getElementById('lightbox-badge').textContent = item.categoryLabel;
+            document.getElementById('lightbox-badge').className = item.badgeClass + ' text-xs font-bold px-3 py-1 rounded-full';
+            document.getElementById('lightbox-counter').textContent = `${index + 1} / ${ecaData.length}`;
+            document.getElementById('lightbox-title').textContent = item.title;
+            document.getElementById('lightbox-date').innerHTML = `<i class="far fa-calendar-alt text-amber-500 mr-1.5"></i> ${item.date}`;
+            document.getElementById('lightbox-wing').innerHTML = `<i class="fas fa-graduation-cap text-brand-900 mr-1.5"></i> ${item.wing}`;
+            document.getElementById('lightbox-caption').textContent = item.caption;
+
+            const tagsContainer = document.getElementById('lightbox-tags');
+            tagsContainer.innerHTML = item.tags.map(t => `<span class="bg-slate-100 text-slate-600 text-xs font-semibold px-2.5 py-1 rounded-lg">${t}</span>`).join('');
+
+            const likeBtn = document.getElementById('lightbox-like-btn');
+            likeBtn.innerHTML = `<i class="${item.liked ? 'fas' : 'far'} fa-heart text-rose-500"></i> <span>${item.likes} Likes</span>`;
+        }
+
+        function toggleLightboxCurrentLike() {
+            toggleEcaLike(currentLightboxIndex);
+        }
+
+        document.addEventListener('keydown', (e) => {
+            const modal = document.getElementById('eca-lightbox-modal');
+            if (modal && !modal.classList.contains('hidden')) {
+                if (e.key === 'Escape') closeEcaLightbox();
+                if (e.key === 'ArrowRight') navigateEcaLightbox(1);
+                if (e.key === 'ArrowLeft') navigateEcaLightbox(-1);
+            }
+        });
+    </script>
+</body>
+</html>

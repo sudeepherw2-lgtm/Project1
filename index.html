@@ -1,0 +1,2971 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pegasus English School | Gokarneshwor-6, Nayabasti, Kathmandu</title>
+    <meta name="description" content="Pegasus English School in Nayabasti, Gokarneshwor-6, Kathmandu. Excellence in progressive education since 1999 with structured academics, Taekwondo martial arts, sports, and holistic learning.">
+    <link rel="icon" type="image/jpeg" href="logo.jpg">
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#f0f5fc',
+                            100: '#e1ecf8',
+                            200: '#c3daf1',
+                            300: '#95bee7',
+                            400: '#609ddb',
+                            500: '#3b80ce',
+                            600: '#2764b4',
+                            700: '#1f4e91',
+                            800: '#1b4175',
+                            900: '#103570', /* Pegasus Official Royal Blue */
+                            950: '#0a234d',
+                        },
+                        gold: {
+                            300: '#fde68a',
+                            400: '#fbbf24',
+                            500: '#c59b27', /* Pegasus Official Seal Gold */
+                            600: '#a37c18',
+                            700: '#856312',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- FontAwesome & Google Fonts -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Cinzel:wght@600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Core Database & Toast Modules -->
+    <script src="js/core/pegasus-db.js"></script>
+    <script src="js/components/pegasus-toast.js"></script>
+
+    <style>
+        html, body {
+            overflow-x: hidden;
+            max-width: 100vw;
+        }
+        body {
+            font-family: 'Plus Jakarta Sans', 'Inter', sans-serif;
+        }
+        .font-motto {
+            font-family: 'Cinzel', serif;
+        }
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f5f9;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 9999px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+    
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 antialiased selection:bg-brand-900 selection:text-white flex flex-col min-h-screen">
+
+    <!-- Top Announcement & Quick Contact Strip -->
+    <div class="bg-brand-950 text-slate-300 text-xs py-2 px-4 border-b border-brand-900/80">
+        <div class="max-w-7xl mx-auto flex flex-wrap justify-between items-center gap-3">
+            <div class="flex items-center space-x-4">
+                <span class="flex items-center"><i class="fas fa-map-marker-alt text-gold-400 mr-1.5"></i> Gokarneshwor-6, Nayabasti, Kathmandu, Nepal</span>
+                <a href="tel:014913939" class="hidden sm:flex items-center hover:text-white transition"><i class="fas fa-phone-alt text-gold-400 mr-1.5"></i> 01-4913939</a>
+                <a href="mailto:pegasusengschool@gmail.com" class="hidden md:flex items-center hover:text-white transition"><i class="fas fa-envelope text-gold-400 mr-1.5"></i> pegasusengschool@gmail.com</a>
+            </div>
+            <div class="flex items-center space-x-3">
+                <button type="button" onclick="openNoticePopup()" class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-brand-900/90 hover:bg-brand-800 text-gold-300 hover:text-white border border-brand-700/80 transition text-[11px] font-bold shadow-2xs" title="View Latest Official Notice">
+                    <i class="fas fa-bullhorn text-gold-400"></i>
+                    <span>Notice &amp; Circulars</span>
+                </button>
+                <span class="text-gold-300 font-bold hidden sm:inline">•</span>
+                <a href="https://www.facebook.com/profile.php?id=100063491716430" target="_blank" rel="noopener noreferrer" class="hidden lg:flex items-center text-sky-400 hover:text-white transition">
+                    <i class="fab fa-facebook mr-1"></i> @pegasusenglishschool
+                </a>
+                <span class="text-gold-300 font-bold hidden sm:inline">•</span>
+                <a href="student-portal.html" class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/5 hover:bg-white/10 text-slate-300 hover:text-white transition text-[11px] font-medium border border-white/10">
+                    <i class="fas fa-user-graduate text-gold-400"></i>
+                    <span>Student Portal</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Navigation Bar -->
+    <header class="bg-white/95 backdrop-blur-md sticky top-0 z-30 border-b border-slate-200/90 shadow-xs">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-20">
+            <!-- Brand Logo & School Identity -->
+            <a href="index.html" class="flex items-center group">
+                <img src="logo.jpg" alt="Pegasus English School Emblem" decoding="async" style="width: 48px; height: 48px; object-fit: contain;" class="w-12 h-12 rounded-xl mr-3 shadow-xs group-hover:scale-105 transition-transform duration-200">
+                <div>
+                    <h1 class="text-xl sm:text-2xl font-black tracking-tight text-brand-900 leading-none">
+                        Pegasus <span class="text-gold-500 font-black">English</span> School
+                    </h1>
+                    <span class="text-[11px] text-slate-500 font-bold tracking-wider uppercase block mt-1">
+                        Estd. 1999 • Nayabasti, Kathmandu
+                    </span>
+                </div>
+            </a>
+
+            <!-- Desktop Navigation Links -->
+            <nav class="hidden xl:flex items-center space-x-7 text-sm font-bold text-slate-600">
+                <a href="index.html" class="text-brand-900 font-black border-b-2 border-brand-900 pb-0.5">Home</a>
+                <a href="#about" class="hover:text-brand-900 transition">About Us</a>
+                <a href="academics.html" class="hover:text-brand-900 transition">Academics</a>
+                <a href="#events" class="hover:text-brand-900 transition">Events & Feed</a>
+                <a href="file-manager.html" class="hover:text-brand-900 transition">Downloads</a>
+                <a href="contact.html" class="hover:text-brand-900 transition">Contact Us</a>
+            </nav>
+
+            <!-- Header Quick Actions -->
+            <div class="hidden sm:flex items-center space-x-3">
+                <a href="student-portal.html" class="bg-slate-100 hover:bg-brand-50 hover:text-brand-900 text-slate-700 text-xs sm:text-sm font-bold px-3.5 py-2.5 rounded-xl border border-slate-200 transition flex items-center shadow-2xs">
+                    <i class="fas fa-user-graduate text-brand-700 mr-1.5"></i>
+                    <span>Student Portal</span>
+                </a>
+                <a href="admissions.html" class="bg-gold-500 hover:bg-gold-400 text-brand-950 text-xs sm:text-sm font-black px-4 py-2.5 rounded-xl shadow-xs transition flex items-center">
+                    <i class="fas fa-file-signature mr-1.5"></i>
+                    <span>Apply Now</span>
+                </a>
+            </div>
+
+            <!-- Mobile Menu Toggle Button -->
+            <button onclick="toggleMobileNav()" class="xl:hidden p-2 rounded-xl border border-slate-200 text-slate-600 hover:text-brand-900 focus:outline-none">
+                <i class="fas fa-bars text-lg"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Navigation Drawer -->
+        <div id="mobile-nav" class="hidden xl:hidden bg-white border-b border-slate-200 px-4 py-4 space-y-3">
+            <a href="index.html" onclick="toggleMobileNav()" class="block text-sm font-bold text-brand-900">Home</a>
+            <a href="about.html" onclick="toggleMobileNav()" class="block text-sm font-bold text-slate-700 hover:text-brand-900">About Us (Estd. 1999)</a>
+            <a href="academics.html" onclick="toggleMobileNav()" class="block text-sm font-bold text-slate-700 hover:text-brand-900">Academics</a>
+            <a href="#events" onclick="toggleMobileNav()" class="block text-sm font-bold text-slate-700 hover:text-brand-900">Events & Announcements</a>
+            <a href="file-manager.html" onclick="toggleMobileNav()" class="block text-sm font-bold text-slate-700 hover:text-brand-900">Downloads &amp; Resources</a>
+            <a href="contact.html" onclick="toggleMobileNav()" class="block text-sm font-bold text-slate-700 hover:text-brand-900">Contact & Location</a>
+            <div class="pt-3 border-t border-slate-100 flex flex-col gap-2">
+                <a href="student-portal.html" onclick="toggleMobileNav()" class="bg-slate-100 hover:bg-slate-200 text-brand-900 text-center text-xs font-bold py-2.5 rounded-xl flex items-center justify-center gap-1.5 border border-slate-200">
+                    <i class="fas fa-user-graduate text-gold-500"></i> Student Evaluation Portal
+                </a>
+                <a href="admissions.html" onclick="toggleMobileNav()" class="bg-gold-500 text-brand-950 text-center text-xs font-black py-2.5 rounded-xl">
+                    <i class="fas fa-file-signature mr-1"></i> Apply For Admission 2026
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- ========================================== -->
+    <!-- 1. HOMEPAGE: FULL-SCREEN HERO SECTION      -->
+    <!-- ========================================== -->
+    <section class="relative min-h-[90vh] lg:min-h-screen flex items-center bg-slate-950 text-white overflow-hidden">
+        
+        <!-- Full-Screen School Campus Photography Background -->
+        <div class="absolute inset-0 z-0">
+            <img src="e626d275-d2a5-4e82-a6ff-016f6d43c6ad.jpg" alt="Pegasus English School Campus Courtyard" fetchpriority="high" decoding="async" class="w-full h-full object-cover object-center scale-100">
+            <!-- Gentle Transparent Shade: No Blue Shade, Allows Photo to be Clearly Seen -->
+            <div class="absolute inset-0 bg-gradient-to-r from-black/60 via-black/30 to-black/10"></div>
+            <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-black/20"></div>
+        </div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 py-16 sm:py-24 w-full">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+                
+                <!-- Left Hero Information Column (8 cols) -->
+                <div class="lg:col-span-8 space-y-6 text-center lg:text-left">
+                    
+                    <!-- Badges Row: Motto & Admissions Open -->
+                    <div class="flex flex-wrap items-center justify-center lg:justify-start gap-2.5">
+                        <div class="inline-flex items-center gap-2 bg-black/40 border border-gold-400/50 px-4 py-1.5 rounded-full text-xs font-bold text-gold-300 shadow-md backdrop-blur-md">
+                            <i class="fas fa-feather-alt text-gold-400"></i>
+                            <span class="tracking-wide uppercase font-motto">"To teach is to touch a life forever!"</span>
+                        </div>
+                        <span class="text-[11px] bg-emerald-950/50 text-emerald-300 font-bold px-3 py-1.5 rounded-full border border-emerald-400/40 flex items-center backdrop-blur-md">
+                            <span class="w-2 h-2 rounded-full bg-emerald-400 mr-2 animate-ping"></span>
+                            Admissions Open 2026
+                        </span>
+                    </div>
+
+                    <h1 class="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight leading-tight sm:leading-none drop-shadow-lg">
+                        Inspiring Minds, <br class="hidden sm:inline">
+                        <span class="text-transparent bg-clip-text bg-gradient-to-r from-gold-300 via-amber-200 to-yellow-100">
+                            Unlocking Potential.
+                        </span>
+                    </h1>
+
+                    <p class="text-sm sm:text-base text-slate-100 leading-relaxed max-w-2xl mx-auto lg:mx-0 drop-shadow-md font-medium">
+                        Welcome to <strong>Pegasus English School</strong>, established in 1999 in Nayabasti, Gokarneshwor-6, Kathmandu. We provide an empowering foundation from Class I to X blending progressive formative evaluation, moral integrity, science innovation, and rich co-curricular athletics.
+                    </p>
+
+                    <!-- Main Call To Action Buttons (Including Transparent Visit Map Button) -->
+                    <div class="flex flex-wrap justify-center lg:justify-start gap-3.5 pt-2">
+                        <a href="academics.html#admissions" class="bg-gold-500 hover:bg-gold-400 text-slate-950 text-sm font-black px-6 py-3.5 rounded-2xl shadow-xl transition flex items-center group">
+                            <i class="fas fa-edit mr-2 text-xs"></i>
+                            <span>Apply for Admission</span>
+                            <i class="fas fa-arrow-right ml-2 group-hover:translate-x-1 transition text-xs"></i>
+                        </a>
+
+                        <!-- Transparent Visit Map Button -->
+                        <a href="contact.html" class="bg-black/35 hover:bg-black/55 text-white text-sm font-bold px-5 py-3.5 rounded-2xl border border-white/30 backdrop-blur-md transition-all duration-200 flex items-center group shadow-lg">
+                            <i class="fas fa-map-marker-alt text-gold-400 mr-2 group-hover:scale-110 transition-transform"></i>
+                            <span>Visit Campus Location &amp; Map</span>
+                            <i class="fas fa-arrow-right text-xs ml-2 text-gold-300 group-hover:translate-x-1 transition-transform"></i>
+                        </a>
+
+                        <a href="contact.html" class="bg-black/30 hover:bg-black/50 text-slate-100 hover:text-white text-sm font-semibold px-5 py-3.5 rounded-2xl border border-white/20 backdrop-blur-md transition flex items-center">
+                            <i class="fas fa-envelope-open-text mr-2 text-slate-300"></i>
+                            <span>Contact Us</span>
+                        </a>
+                    </div>
+
+                    <!-- Trust Stats Counter -->
+                    <div class="pt-8 border-t border-white/20 grid grid-cols-3 gap-4 text-center max-w-xl mx-auto lg:mx-0">
+                        <div class="p-3.5 rounded-2xl bg-black/45 border border-white/15 backdrop-blur-md">
+                            <p class="text-2xl sm:text-3xl font-black text-gold-400">1999</p>
+                            <p class="text-xs text-slate-200 font-medium mt-0.5">Estd. Heritage</p>
+                        </div>
+                        <div class="p-3.5 rounded-2xl bg-black/45 border border-white/15 backdrop-blur-md">
+                            <p class="text-2xl sm:text-3xl font-black text-white">Class I–X</p>
+                            <p class="text-xs text-slate-200 font-medium mt-0.5">Academic Wings</p>
+                        </div>
+                        <div class="p-3.5 rounded-2xl bg-black/45 border border-white/15 backdrop-blur-md">
+                            <p class="text-2xl sm:text-3xl font-black text-emerald-400">100%</p>
+                            <p class="text-xs text-slate-200 font-medium mt-0.5">SEE Pass Rate</p>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Right Hero Column: Subtle Campus Tag (Clear View of School Photo) -->
+                <div class="lg:col-span-4 hidden lg:flex flex-col justify-end items-end h-full">
+                    <div class="bg-black/40 backdrop-blur-md border border-white/20 p-4 rounded-2xl shadow-2xl space-y-1.5 text-right max-w-xs">
+                        <div class="flex items-center justify-end space-x-2 text-gold-400 text-xs font-bold">
+                            <i class="fas fa-map-pin"></i>
+                            <span>Nayabasti, Kathmandu</span>
+                        </div>
+                        <p class="text-white text-xs font-black">Pegasus English School Campus</p>
+                        <p class="text-[11px] text-slate-200 leading-tight">Serving students with purpose and character since 1999</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- 2. ABOUT US & PRINCIPAL'S MESSAGE          -->
+    <!-- ========================================== -->
+    <section id="about" class="py-20 bg-white border-b border-slate-200/80">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                
+                <!-- Left Column: School History & Mission -->
+                <div class="lg:col-span-6 space-y-6">
+                    <div class="inline-flex items-center gap-2 bg-brand-50 border border-brand-200 px-3.5 py-1.5 rounded-full text-xs font-bold text-brand-900">
+                        <i class="fas fa-landmark text-gold-500"></i>
+                        <span>Rooted in Excellence Since 1999</span>
+                    </div>
+
+                    <h2 class="text-3xl sm:text-4xl font-black text-slate-900 tracking-tight leading-tight">
+                        A Legacy of Holistic Schooling in Nayabasti, Kathmandu
+                    </h2>
+
+                    <p class="text-slate-600 text-sm sm:text-base leading-relaxed">
+                        Pegasus English School was founded with an unyielding conviction: that education should touch both the intellect and the heart. Over two and a half decades, our campus in Gokarneshwor-6 has guided thousands of young learners into capable, disciplined, and visionary citizens.
+                    </p>
+
+                    <!-- Core School Pillars -->
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
+                        <div class="p-4 rounded-2xl bg-slate-50 border border-slate-200/80 space-y-2">
+                            <div class="w-9 h-9 rounded-xl bg-brand-100 text-brand-900 flex items-center justify-center font-bold text-base">
+                                <i class="fas fa-book-reader"></i>
+                            </div>
+                            <h4 class="font-black text-slate-900 text-sm">Academic Rigor</h4>
+                            <p class="text-xs text-slate-500 leading-relaxed">Conceptual learning, science laboratories, and intensive SEE preparation.</p>
+                        </div>
+
+                        <div class="p-4 rounded-2xl bg-slate-50 border border-slate-200/80 space-y-2">
+                            <div class="w-9 h-9 rounded-xl bg-gold-100 text-gold-700 flex items-center justify-center font-bold text-base">
+                                <i class="fas fa-heart"></i>
+                            </div>
+                            <h4 class="font-black text-slate-900 text-sm">Character & Values</h4>
+                            <p class="text-xs text-slate-500 leading-relaxed">Emphasizing empathy, civic duty, self-discipline, and traditional Nepalese values.</p>
+                        </div>
+
+                        <div class="p-4 rounded-2xl bg-slate-50 border border-slate-200/80 space-y-2">
+                            <div class="w-9 h-9 rounded-xl bg-emerald-100 text-emerald-800 flex items-center justify-center font-bold text-base">
+                                <i class="fas fa-running"></i>
+                            </div>
+                            <h4 class="font-black text-slate-900 text-sm">Athletic Vitality</h4>
+                            <p class="text-xs text-slate-500 leading-relaxed">Taekwondo martial discipline, football, basketball, and inter-house cups.</p>
+                        </div>
+
+                        <div class="p-4 rounded-2xl bg-slate-50 border border-slate-200/80 space-y-2">
+                            <div class="w-9 h-9 rounded-xl bg-brand-100 text-brand-900 flex items-center justify-center font-bold text-base">
+                                <i class="fas fa-palette"></i>
+                            </div>
+                            <h4 class="font-black text-slate-900 text-sm">Creative Arts</h4>
+                            <p class="text-xs text-slate-500 leading-relaxed">Classical folk dance, choir music, clay modeling, and public speaking.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Column: Principal's Message & Official Seal Showcase -->
+                <div class="lg:col-span-6 space-y-6">
+                    <div class="bg-gradient-to-br from-brand-950 via-slate-900 to-brand-950 text-white p-8 sm:p-10 rounded-3xl shadow-xl relative overflow-hidden border border-brand-900">
+                        <i class="fas fa-quote-left text-gold-500/20 text-6xl absolute top-6 right-6"></i>
+                        <div class="relative z-10 space-y-4">
+                            <div class="flex items-center gap-2">
+                                <span class="text-xs uppercase tracking-wider text-gold-400 font-black">Principal's Address</span>
+                                <span class="text-slate-500">•</span>
+                                <span class="text-xs text-slate-400">Pegasus English School</span>
+                            </div>
+                            
+                            <blockquote class="text-sm sm:text-base text-slate-200 leading-relaxed italic">
+                                "Our mission is encapsulated in our sacred motto: <strong class="text-gold-300">To teach is to touch a life forever!</strong> Education is not mere mechanical recitation; it is the spark that awakens imagination, builds character, and develops compassionate young minds who lead with confidence."
+                            </blockquote>
+
+                            <div class="pt-6 border-t border-brand-900 flex items-center justify-between">
+                                <div class="flex items-center gap-3.5">
+                                    <img src="logo.jpg" alt="Pegasus Logo" loading="lazy" decoding="async" style="width: 48px; height: 48px; object-fit: contain;" class="w-12 h-12 rounded-full bg-white p-1 border-2 border-gold-500 shadow-sm">
+                                    <div>
+                                        <h4 class="font-bold text-sm text-white">Office of the Principal</h4>
+                                        <p class="text-xs text-slate-400">Nayabasti, Gokarneshwor-6</p>
+                                    </div>
+                                </div>
+                                <span class="text-xs text-gold-400 font-bold bg-white/10 px-3 py-1 rounded-full border border-white/10">
+                                    Estd. 1999
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Campus Features Snapshot Card -->
+                    <div class="bg-slate-50 rounded-2xl p-6 border border-slate-200 flex flex-wrap items-center justify-between gap-4">
+                        <div class="flex items-center space-x-3">
+                            <div class="w-10 h-10 rounded-xl bg-brand-900 text-gold-400 flex items-center justify-center text-lg">
+                                <i class="fas fa-shield-alt"></i>
+                            </div>
+                            <div>
+                                <h5 class="font-bold text-slate-900 text-sm">Safe, Disciplined & Welcoming</h5>
+                                <p class="text-xs text-slate-500">CCTV secured premises, clean sanitization & caring mentorship.</p>
+                            </div>
+                        </div>
+                        <a href="contact.html" class="text-xs font-bold text-brand-900 hover:text-brand-700 flex items-center">
+                            <span>Campus Tour</span>
+                            <i class="fas fa-arrow-right ml-1 text-[10px]"></i>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- 3. CAMPUS EVENTS & FACEBOOK-STYLE FEED     -->
+    <!-- ========================================== -->
+    <section id="events" class="py-16 bg-slate-100/80 border-b border-slate-200/80">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <!-- Section Header -->
+            <div class="flex flex-wrap items-end justify-between gap-4 mb-10 pb-6 border-b border-slate-200">
+                <div>
+                    <span class="text-xs font-bold uppercase tracking-wider text-brand-900 bg-brand-100 border border-brand-200 px-3 py-1 rounded-full inline-flex items-center gap-1.5">
+                        <span class="w-2 h-2 rounded-full bg-rose-600 animate-ping"></span>
+                        <i class="fas fa-bullhorn text-rose-600"></i>
+                        <span>Live Campus Feed</span>
+                    </span>
+                    <h2 class="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight mt-2.5">
+                        Campus Events & Live Announcements
+                    </h2>
+                    <p class="text-xs sm:text-sm text-slate-500 mt-1">Real-time school activities, sports highlights, ECA achievements, and official circulars.</p>
+                </div>
+                <div class="flex items-center gap-2">
+                    <a href="https://www.facebook.com/profile.php?id=100063491716430" target="_blank" rel="noopener noreferrer" class="bg-sky-600 hover:bg-sky-700 text-white font-bold text-xs px-3.5 py-2 rounded-xl transition flex items-center gap-1.5 shadow-2xs">
+                        <i class="fab fa-facebook-f"></i> Facebook Live
+                    </a>
+                    <button type="button" onclick="openPublicCalendarModal()" class="bg-brand-900 hover:bg-brand-800 text-white font-bold text-xs px-3.5 py-2 rounded-xl transition flex items-center gap-1.5 shadow-2xs">
+                        <i class="fas fa-calendar-alt text-gold-400"></i> Calendar (वि.सं.)
+                    </button>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+                
+                <!-- Left Feed Column (8 cols): Facebook-Style Live School Feed -->
+                <div class="lg:col-span-8 space-y-6">
+
+                    <!-- Facebook-Style Live Posts Feed Container -->
+                    <div id="facebook-event-feed-container" class="space-y-6">
+                        <!-- Posts rendered dynamically by renderFacebookFeed() -->
+                    </div>
+
+                </div>
+
+                <!-- Right Sidebar Column (4 cols): Information & Category Filters -->
+                <div class="lg:col-span-4 space-y-6">
+                    
+                    <!-- Facebook Official Page Highlight Card -->
+                    <div class="bg-white rounded-2xl border border-slate-200 shadow-sm p-5 space-y-4">
+                        <div class="flex items-center space-x-3">
+                            <div class="w-11 h-11 rounded-xl bg-sky-600 text-white flex items-center justify-center text-xl font-bold shadow-xs">
+                                <i class="fab fa-facebook-f"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-extrabold text-sm text-slate-900 leading-tight">Official Facebook Channel</h4>
+                                <p class="text-xs text-sky-600 font-bold">@pegasusenglishschool</p>
+                            </div>
+                        </div>
+                        <p class="text-xs text-slate-600 leading-relaxed">
+                            Stay connected with daily photo highlights, ECA video clips, martial arts grading results, and urgent weather notices.
+                        </p>
+                        <div class="space-y-2">
+                            <a href="https://www.facebook.com/profile.php?id=100063491716430" target="_blank" rel="noopener noreferrer" class="w-full bg-sky-50 hover:bg-sky-100 text-sky-700 border border-sky-200 text-center text-xs font-bold py-2.5 px-4 rounded-xl transition flex items-center justify-center gap-2">
+                                <i class="fab fa-facebook text-sky-600"></i>
+                                <span>Follow Us on Facebook</span>
+                                <i class="fas fa-external-link-alt text-[10px]"></i>
+                            </a>
+                            <button type="button" onclick="openNoticePopup()" class="w-full bg-slate-900 hover:bg-brand-900 text-white text-center text-xs font-bold py-2.5 px-4 rounded-xl transition flex items-center justify-center gap-2 shadow-2xs">
+                                <i class="fas fa-bullhorn text-gold-400"></i>
+                                <span>View Official School Notices</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Category Quick Filter Pills -->
+                    <div class="bg-white rounded-2xl border border-slate-200 shadow-sm p-5 space-y-3">
+                        <div class="flex items-center justify-between pb-2 border-b border-slate-100">
+                            <h4 class="font-extrabold text-xs uppercase tracking-wider text-slate-500">Filter Event Feed</h4>
+                            <span id="active-filter-indicator" class="text-[11px] font-bold text-brand-900 bg-brand-50 px-2 py-0.5 rounded-full">All Posts</span>
+                        </div>
+                        <div class="flex flex-wrap gap-1.5" id="feed-filter-buttons">
+                            <button onclick="filterEventPosts('All')" class="feed-filter-btn active text-xs font-bold px-3 py-1.5 rounded-lg bg-brand-900 text-white transition">All Feed</button>
+                            <button onclick="filterEventPosts('Martial Arts')" class="feed-filter-btn text-xs font-bold px-3 py-1.5 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-700 transition"><i class="fas fa-fist-raised mr-1 text-amber-600"></i> Martial Arts</button>
+                            <button onclick="filterEventPosts('Sports & Athletics')" class="feed-filter-btn text-xs font-bold px-3 py-1.5 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-700 transition"><i class="fas fa-running mr-1 text-emerald-600"></i> Sports</button>
+                            <button onclick="filterEventPosts('Academic Notice')" class="feed-filter-btn text-xs font-bold px-3 py-1.5 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-700 transition"><i class="fas fa-clipboard-list mr-1 text-brand-700"></i> Circulars</button>
+                            <button onclick="filterEventPosts('STEM & Science')" class="feed-filter-btn text-xs font-bold px-3 py-1.5 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-700 transition"><i class="fas fa-robot mr-1 text-sky-600"></i> STEM</button>
+                        </div>
+                    </div>
+
+                    <!-- Academic Calendar & Key Dates Card -->
+                    <div id="calendar" class="bg-white rounded-2xl border border-slate-200 shadow-sm p-5 space-y-3.5">
+                        <div class="flex items-center justify-between pb-2 border-b border-slate-100">
+                            <div class="flex items-center space-x-2 text-brand-900 text-xs font-bold uppercase tracking-wider">
+                                <i class="fas fa-calendar-alt text-sky-600"></i>
+                                <span>Academic Calendar 2026–27</span>
+                            </div>
+                            <span class="bg-sky-50 text-sky-700 text-[10px] font-extrabold px-2 py-0.5 rounded-full border border-sky-200">Official</span>
+                        </div>
+
+                        <!-- Category Filter Pills for Calendar -->
+                        <div class="flex flex-wrap gap-1">
+                            <button type="button" onclick="filterPublicCalendar('ALL')" class="pub-cal-btn active text-[10px] font-bold px-2 py-1 rounded-md bg-brand-900 text-white transition">All</button>
+                            <button type="button" onclick="filterPublicCalendar('Exam')" class="pub-cal-btn text-[10px] font-bold px-2 py-1 rounded-md bg-slate-100 hover:bg-slate-200 text-slate-700 transition">Exams</button>
+                            <button type="button" onclick="filterPublicCalendar('Holiday')" class="pub-cal-btn text-[10px] font-bold px-2 py-1 rounded-md bg-slate-100 hover:bg-slate-200 text-slate-700 transition">Holidays</button>
+                            <button type="button" onclick="filterPublicCalendar('ECA')" class="pub-cal-btn text-[10px] font-bold px-2 py-1 rounded-md bg-slate-100 hover:bg-slate-200 text-slate-700 transition">ECA</button>
+                        </div>
+
+                        <!-- Calendar Upcoming Items Container -->
+                        <div id="index-calendar-upcoming-container" class="space-y-2 max-h-64 overflow-y-auto pr-0.5">
+                            <!-- Populated dynamically by renderIndexCalendar() -->
+                        </div>
+
+                        <div class="pt-2 border-t border-slate-100">
+                            <button type="button" onclick="openPublicCalendarModal()" class="w-full bg-slate-900 hover:bg-brand-900 text-white font-bold text-xs py-2.5 px-3 rounded-xl transition flex items-center justify-center gap-1.5 shadow-2xs">
+                                <i class="fas fa-calendar-check text-gold-400"></i>
+                                <span>Open Full Monthly Calendar</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Official Examination Routines Dynamic Card -->
+                    <div class="bg-brand-950 text-white rounded-2xl p-5 space-y-3.5 shadow-md border border-brand-900">
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center space-x-2 text-gold-400 text-xs font-bold uppercase tracking-wider">
+                                <i class="fas fa-calendar-alt"></i>
+                                <span>Official Examination Routines</span>
+                            </div>
+                            <span id="exam-routines-count-badge" class="bg-gold-500/20 text-gold-400 text-[10px] font-extrabold px-2 py-0.5 rounded-full border border-gold-500/30">Active</span>
+                        </div>
+                        <h4 class="font-black text-sm text-white">Examination Routines & Schedules</h4>
+                        
+                        <!-- Dynamic Examination Routines Container -->
+                        <div id="sidebar-exam-routines-container" class="space-y-2">
+                            <!-- Populated dynamically by renderSidebarExamRoutines() -->
+                        </div>
+
+                        <div class="pt-2 flex items-center justify-between gap-2 border-t border-brand-900/80">
+                            <a href="file-manager.html" class="inline-block bg-gold-500 hover:bg-gold-400 text-brand-950 font-black text-xs py-2 px-3 rounded-xl transition shadow-xs">
+                                All File Directory →
+                            </a>
+                            <a href="file-manager.html" class="text-[11px] text-slate-400 hover:text-gold-300 transition flex items-center gap-1" title="Download Exam Timetables">
+                                <i class="fas fa-file-pdf text-[10px]"></i> View All Routines
+                            </a>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- 4. ECA & STUDENT MOMENTS PHOTO GALLERY     -->
+    <!-- ========================================== -->
+    <section id="eca" class="py-20 bg-white border-b border-slate-200/80">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto space-y-3 mb-10">
+                <div class="inline-flex items-center gap-2 bg-amber-50 border border-amber-200/80 px-3.5 py-1.5 rounded-full text-xs font-bold text-amber-800 shadow-xs">
+                    <i class="fas fa-camera text-amber-500"></i>
+                    <span>Campus Life & Latest ECA Moments</span>
+                </div>
+                <h2 class="text-3xl sm:text-4xl font-black text-slate-900 tracking-tight">
+                    Beyond The Classroom: Photo Gallery & Achievements
+                </h2>
+                <p class="text-sm text-slate-600 leading-relaxed">
+                    Explore our latest athletic victories, creative art displays, taekwondo grading ceremonies, and cultural performances with student reflections below.
+                </p>
+            </div>
+
+            <!-- Interactive Category Filter Tabs -->
+            <div class="flex flex-wrap items-center justify-center gap-2 mb-10">
+                <button onclick="filterEcaGallery('all')" class="eca-tab-btn active bg-brand-900 text-white font-bold text-xs sm:text-sm px-4 py-2 rounded-xl shadow-xs transition" data-category="all">
+                    All Moments <span id="eca-count-all">(0)</span>
+                </button>
+                <button onclick="filterEcaGallery('sports')" class="eca-tab-btn bg-white hover:bg-slate-100 text-slate-700 font-bold text-xs sm:text-sm px-4 py-2 rounded-xl border border-slate-200 transition" data-category="sports">
+                    <i class="fas fa-running text-emerald-500 mr-1.5"></i> Sports & Athletics
+                </button>
+                <button onclick="filterEcaGallery('martial-arts')" class="eca-tab-btn bg-white hover:bg-slate-100 text-slate-700 font-bold text-xs sm:text-sm px-4 py-2 rounded-xl border border-slate-200 transition" data-category="martial-arts">
+                    <i class="fas fa-fist-raised text-amber-500 mr-1.5"></i> Taekwondo
+                </button>
+                <button onclick="filterEcaGallery('art')" class="eca-tab-btn bg-white hover:bg-slate-100 text-slate-700 font-bold text-xs sm:text-sm px-4 py-2 rounded-xl border border-slate-200 transition" data-category="art">
+                    <i class="fas fa-palette text-pink-500 mr-1.5"></i> Art & Clay
+                </button>
+                <button onclick="filterEcaGallery('music')" class="eca-tab-btn bg-white hover:bg-slate-100 text-slate-700 font-bold text-xs sm:text-sm px-4 py-2 rounded-xl border border-slate-200 transition" data-category="music">
+                    <i class="fas fa-music text-brand-600 mr-1.5"></i> Dance & Music
+                </button>
+                <button onclick="filterEcaGallery('debate')" class="eca-tab-btn bg-white hover:bg-slate-100 text-slate-700 font-bold text-xs sm:text-sm px-4 py-2 rounded-xl border border-slate-200 transition" data-category="debate">
+                    <i class="fas fa-microphone-alt text-sky-500 mr-1.5"></i> Debate & Speech
+                </button>
+                <button onclick="filterEcaGallery('stem')" class="eca-tab-btn bg-white hover:bg-slate-100 text-slate-700 font-bold text-xs sm:text-sm px-4 py-2 rounded-xl border border-slate-200 transition" data-category="stem">
+                    <i class="fas fa-robot text-brand-900 mr-1.5"></i> STEM & Science
+                </button>
+            </div>
+
+            <!-- Cards Grid: Dynamically Rendered from localStorage (pegasus_eca_moments) -->
+            <div id="eca-gallery-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Populated dynamically by renderEcaGallery() -->
+            </div>
+
+            <!-- Social Media Album Ribbon -->
+            <div class="mt-14 bg-slate-50 rounded-3xl p-6 sm:p-8 border border-slate-200/90 shadow-sm flex flex-wrap items-center justify-between gap-6">
+                <div class="flex items-center space-x-4">
+                    <div class="w-12 h-12 rounded-2xl bg-brand-50 text-brand-900 flex items-center justify-center text-xl shrink-0">
+                        <i class="fas fa-images"></i>
+                    </div>
+                    <div>
+                        <h4 class="font-black text-slate-900 text-base">Want to view full photo archives?</h4>
+                        <p class="text-xs text-slate-500 mt-0.5">High-resolution ceremony albums, sports day clips, and prize distributions are posted regularly on our official Facebook.</p>
+                    </div>
+                </div>
+
+                <a href="https://www.facebook.com/profile.php?id=100063491716430" target="_blank" rel="noopener noreferrer" class="bg-slate-900 hover:bg-brand-900 text-white font-bold text-xs sm:text-sm px-5 py-3 rounded-2xl shadow-md transition flex items-center gap-2 group">
+                    <i class="fab fa-facebook-f text-sky-400 group-hover:scale-110 transition"></i>
+                    <span>Follow @pegasusenglishschool on Facebook</span>
+                    <i class="fas fa-external-link-alt text-[10px] text-slate-400 group-hover:text-white transition ml-1"></i>
+                </a>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- 5. FOOTER                                  -->
+    <!-- ========================================== -->
+    <footer class="bg-brand-950 text-slate-300 py-14 border-t border-brand-900 mt-auto">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
+                
+                <!-- School Info & Logo -->
+                <div class="space-y-4 md:col-span-1">
+                    <a href="index.html" class="inline-flex items-center space-x-3 group hover:opacity-95 transition">
+                        <img src="logo.jpg" alt="Pegasus Logo" style="width: 48px; height: 48px; object-fit: contain;" class="w-12 h-12 rounded-xl bg-white p-0.5 group-hover:scale-105 transition" loading="lazy" decoding="async">
+                        <div>
+                            <span class="text-base font-black text-white leading-tight block">Pegasus English School</span>
+                            <span class="text-[11px] text-gold-400 font-bold">Estd. 1999 • Nayabasti</span>
+                        </div>
+                    </a>
+                    <p class="text-xs text-slate-400 leading-relaxed font-motto italic">
+                        "To teach is to touch a life forever!"
+                    </p>
+                    <p class="text-xs text-slate-400 leading-relaxed">
+                        Nurturing leadership, academic capability, and ethical awareness in young minds from Class I through Class X.
+                    </p>
+                    <div class="flex items-center space-x-3 pt-1">
+                        <a href="https://www.facebook.com/profile.php?id=100063491716430" target="_blank" rel="noopener noreferrer" class="w-8 h-8 rounded-lg bg-white/10 hover:bg-sky-600 text-white flex items-center justify-center transition">
+                            <i class="fab fa-facebook-f text-xs"></i>
+                        </a>
+                        <a href="mailto:pegasusengschool@gmail.com" class="w-8 h-8 rounded-lg bg-white/10 hover:bg-brand-600 text-white flex items-center justify-center transition">
+                            <i class="fas fa-envelope text-xs"></i>
+                        </a>
+                        <a href="tel:014913939" class="w-8 h-8 rounded-lg bg-white/10 hover:bg-emerald-600 text-white flex items-center justify-center transition">
+                            <i class="fas fa-phone-alt text-xs"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Academic Pathways -->
+                <div>
+                    <h4 class="text-xs font-black uppercase tracking-wider text-gold-400 mb-3">Academic Wings</h4>
+                    <ul class="space-y-2 text-xs">
+                        <li><a href="academics.html" class="hover:text-white transition">Primary Wing (Classes I–V)</a></li>
+                        <li><a href="academics.html" class="hover:text-white transition">Secondary Wing (Classes VI–X)</a></li>
+                        <li><a href="academics.html" class="hover:text-white transition">SEE Board Examination Mentorship</a></li>
+                        <li><a href="#events" class="hover:text-white transition">Campus Events & Announcements</a></li>
+                        <li><a href="academics.html#admissions" class="hover:text-white transition">Admissions & Enrollment</a></li>
+                    </ul>
+                </div>
+
+                <!-- Digital Portals & Resources -->
+                <div>
+                    <h4 class="text-xs font-black uppercase tracking-wider text-gold-400 mb-3">Student &amp; Parent Resources</h4>
+                    <ul class="space-y-2 text-xs">
+                        <li>
+                            <a href="student-portal.html" class="text-white hover:text-gold-300 font-bold flex items-center">
+                                <i class="fas fa-user-graduate mr-1.5 text-gold-400"></i> Student Evaluation Portal
+                            </a>
+                        </li>
+                        <li><a href="file-manager.html" class="hover:text-white transition">Curriculum Syllabi Directory</a></li>
+                        <li><a href="file-manager.html" class="hover:text-white transition">Exam Timetables &amp; Routines</a></li>
+                        <li><a href="admissions.html" class="hover:text-white transition">Admissions &amp; Prospectus (2026)</a></li>
+                        <li><a href="javascript:void(0)" onclick="openPublicCalendarModal()" class="hover:text-white transition">Academic Calendar (वि.सं.)</a></li>
+                        <li><a href="javascript:void(0)" onclick="openNoticePopup()" class="hover:text-white transition">Official Circulars &amp; Notices</a></li>
+                    </ul>
+                </div>
+
+                <!-- Campus Contact -->
+                <div>
+                    <h4 class="text-xs font-black uppercase tracking-wider text-gold-400 mb-3">Campus Contact</h4>
+                    <ul class="space-y-2 text-xs text-slate-400">
+                        <li class="flex items-start"><i class="fas fa-map-marker-alt text-gold-400 w-5 mt-0.5"></i> Gokarneshwor-6, Nayabasti, Kathmandu, Nepal</li>
+                        <li class="flex items-center"><i class="fas fa-phone text-gold-400 w-5"></i> <a href="tel:014913939" class="hover:text-gold-300 transition">01-4913939</a></li>
+                        <li class="flex items-center"><i class="fas fa-envelope text-gold-400 w-5"></i> <a href="mailto:pegasusengschool@gmail.com" class="hover:text-gold-300 transition">pegasusengschool@gmail.com</a></li>
+                        <li class="flex items-center"><i class="fab fa-facebook text-gold-400 w-5"></i> <a href="https://www.facebook.com/profile.php?id=100063491716430" target="_blank" rel="noopener noreferrer" class="hover:text-gold-300 transition">@pegasusenglishschool</a></li>
+                        <li class="flex items-center"><i class="fas fa-clock text-gold-400 w-5"></i> Sun–Fri: 8:30 AM – 4:30 PM</li>
+                    </ul>
+                </div>
+
+            </div>
+
+            <div class="pt-8 border-t border-brand-900 flex flex-wrap justify-between items-center text-xs text-slate-500 gap-3">
+                <p>© 2026 Pegasus English School • "To teach is to touch a life forever!" • Estd. 1999. All rights reserved.</p>
+                <div class="flex items-center space-x-4">
+                    <a href="index.html" class="hover:text-slate-300 transition">Home</a>
+                    <span>•</span>
+                    <a href="about.html" class="hover:text-slate-300 transition">About Us</a>
+                    <span>•</span>
+                    <a href="academics.html" class="hover:text-slate-300 transition">Academics</a>
+                    <span>•</span>
+                    <a href="contact.html" class="hover:text-slate-300 transition">Contact</a>
+                    <span>•</span>
+                    <!-- Discreet Faculty & Staff Access Down Button -->
+                    <div class="relative inline-block text-left" id="staff-dropup-container">
+                        <button type="button" onclick="toggleStaffDropup(event)" class="inline-flex items-center gap-1.5 text-[11px] font-bold text-slate-300 hover:text-white bg-brand-900/90 hover:bg-brand-900 border border-brand-800 hover:border-gold-500/50 px-3 py-1.5 rounded-xl transition shadow-xs focus:outline-none" id="staff-dropup-btn" aria-haspopup="true" aria-expanded="false" title="Faculty & Staff Internal Portals">
+                            <i class="fas fa-user-shield text-gold-400 text-xs"></i>
+                            <span>Staff Access</span>
+                            <i class="fas fa-chevron-up text-[9px] text-slate-400 transition-transform duration-200" id="staff-dropup-chevron"></i>
+                        </button>
+                        <div id="staff-dropup-menu" class="hidden absolute bottom-full right-0 mb-2 w-64 bg-brand-950 border border-brand-800 rounded-2xl shadow-2xl p-2.5 z-40 text-left transition-all duration-200">
+                            <div class="text-[10px] uppercase font-black tracking-wider text-gold-400 px-3 py-1.5 border-b border-brand-900 mb-1 flex items-center justify-between">
+                                <span>Staff &amp; Governance</span>
+                                <i class="fas fa-lock text-gold-400 text-[10px]"></i>
+                            </div>
+                            <a href="teacher.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-xs font-bold text-slate-200 hover:text-white hover:bg-brand-900 transition">
+                                <i class="fas fa-chalkboard-teacher text-gold-400 w-4 text-center"></i>
+                                <div>
+                                    <div class="leading-tight">Teacher Assessment Panel</div>
+                                    <div class="text-[10px] text-slate-400 font-normal">Marks, grades, rubrics</div>
+                                </div>
+                            </a>
+                            <a href="admin.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-xs font-bold text-slate-200 hover:text-white hover:bg-brand-900 transition">
+                                <i class="fas fa-shield-alt text-sky-400 w-4 text-center"></i>
+                                <div>
+                                    <div class="leading-tight">Central Admin CMS</div>
+                                    <div class="text-[10px] text-slate-400 font-normal">Events, files, notices</div>
+                                </div>
+                            </a>
+                            <a href="principal.html" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-xs font-bold text-slate-200 hover:text-white hover:bg-brand-900 transition">
+                                <i class="fas fa-crown text-amber-400 w-4 text-center"></i>
+                                <div>
+                                    <div class="leading-tight">Principal Office Suite</div>
+                                    <div class="text-[10px] text-slate-400 font-normal">Academic governance</div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Lightbox Modal for ECA Photo Gallery -->
+    <div id="eca-lightbox-modal" class="fixed inset-0 bg-slate-950/85 backdrop-blur-md z-50 hidden flex items-center justify-center p-4 sm:p-6 transition-all duration-300" onclick="handleLightboxBackdropClick(event)">
+        <div class="bg-white rounded-3xl max-w-4xl w-full overflow-hidden shadow-2xl border border-slate-200 relative flex flex-col md:flex-row max-h-[90vh]" onclick="event.stopPropagation()">
+            <button onclick="closeEcaLightbox()" class="absolute top-4 right-4 z-20 w-10 h-10 rounded-full bg-slate-900/70 hover:bg-slate-900 text-white flex items-center justify-center transition shadow-md" title="Close Modal (Esc)">
+                <i class="fas fa-times text-sm"></i>
+            </button>
+            <div class="md:w-3/5 bg-slate-950 flex items-center justify-center relative overflow-hidden min-h-[300px] md:min-h-[480px]">
+                <img id="lightbox-img" src="" alt="ECA Moment" decoding="async" class="w-full h-full object-cover">
+                <button onclick="navigateEcaLightbox(-1)" class="absolute left-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-slate-900/70 hover:bg-slate-900 text-white flex items-center justify-center transition shadow-md" title="Previous (Left Arrow)">
+                    <i class="fas fa-chevron-left text-sm"></i>
+                </button>
+                <button onclick="navigateEcaLightbox(1)" class="absolute right-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-slate-900/70 hover:bg-slate-900 text-white flex items-center justify-center transition shadow-md" title="Next (Right Arrow)">
+                    <i class="fas fa-chevron-right text-sm"></i>
+                </button>
+            </div>
+            <div class="md:w-2/5 p-6 sm:p-8 flex flex-col justify-between overflow-y-auto space-y-5 bg-white">
+                <div class="space-y-4">
+                    <div class="flex items-center justify-between">
+                        <span id="lightbox-badge" class="bg-brand-50 text-brand-900 text-xs font-bold px-3 py-1 rounded-full">Category</span>
+                        <span id="lightbox-counter" class="text-xs text-slate-400 font-bold">1 / 6</span>
+                    </div>
+                    <h3 id="lightbox-title" class="text-xl font-black text-slate-900 leading-snug">Event Title</h3>
+                    <div class="flex items-center text-xs text-slate-500 gap-3 pb-2 border-b border-slate-100">
+                        <span id="lightbox-date"><i class="far fa-calendar-alt text-amber-500 mr-1.5"></i> Date</span>
+                        <span id="lightbox-wing"><i class="fas fa-graduation-cap text-brand-900 mr-1.5"></i> Wing</span>
+                    </div>
+                    <p id="lightbox-caption" class="text-xs sm:text-sm text-slate-600 leading-relaxed">Detailed event caption.</p>
+                    <div id="lightbox-tags" class="flex flex-wrap gap-1.5 pt-2"></div>
+                </div>
+                <div class="pt-4 border-t border-slate-100 flex items-center justify-between">
+                    <span class="text-xs text-slate-400 font-medium">Pegasus English School Official Media</span>
+                    <a id="lightbox-fb-link" href="https://www.facebook.com/profile.php?id=100063491716430" target="_blank" rel="noopener noreferrer" class="text-xs font-bold text-sky-600 hover:text-sky-700 flex items-center">
+                        <i class="fab fa-facebook mr-1.5 text-sm"></i>
+                        <span>Visit Facebook Page</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ========================================== -->
+    <!-- PUBLIC ACADEMIC CALENDAR MODAL             -->
+    <!-- ========================================== -->
+    <div id="public-calendar-modal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-3 sm:p-5 overflow-y-auto" onclick="handlePublicCalBackdropClick(event)">
+        <div class="bg-white rounded-3xl max-w-5xl w-full max-h-[92vh] flex flex-col overflow-hidden shadow-2xl border border-slate-200" onclick="event.stopPropagation()">
+            <!-- Modal Header -->
+            <div class="bg-gradient-to-r from-brand-950 via-slate-900 to-brand-900 p-5 sm:p-6 text-white flex items-center justify-between border-b border-brand-800 shrink-0">
+                <div class="space-y-1">
+                    <div class="flex items-center gap-2">
+                        <span class="bg-gold-500/20 text-gold-300 border border-gold-500/30 text-[10px] uppercase tracking-wider font-black px-2.5 py-0.5 rounded-full">
+                            Official Academic Year 2026–27
+                        </span>
+                        <span class="text-xs text-slate-300 hidden sm:inline">• CDC Curriculum Milestones</span>
+                    </div>
+                    <h3 class="text-lg sm:text-2xl font-black text-white flex items-center gap-2">
+                        <i class="fas fa-calendar-alt text-gold-400"></i>
+                        <span>Pegasus Academic &amp; Events Calendar</span>
+                    </h3>
+                    <p class="text-xs text-slate-300">Terminal examinations, gazetted school holidays, ECA championship trials, and assembly routines</p>
+                </div>
+                <button type="button" onclick="closePublicCalendarModal()" class="w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center transition shrink-0 ml-4" title="Close (Esc)">
+                    <i class="fas fa-times text-sm"></i>
+                </button>
+            </div>
+
+            <!-- Toolbar: Month Navigator & Category Filters -->
+            <div class="bg-slate-50 border-b border-slate-200 p-3 sm:p-4 flex flex-col sm:flex-row items-center justify-between gap-3 shrink-0">
+                <!-- Month Switcher -->
+                <div class="flex items-center gap-2 w-full sm:w-auto justify-between sm:justify-start">
+                    <button type="button" onclick="changePublicCalMonth(-1)" class="w-8 h-8 rounded-lg bg-white border border-slate-200 hover:bg-slate-100 text-slate-700 flex items-center justify-center transition shadow-2xs font-bold" title="Previous Month">
+                        <i class="fas fa-chevron-left text-xs"></i>
+                    </button>
+                    <h4 id="public-cal-month-title" class="font-black text-sm sm:text-base text-slate-900 min-w-[150px] text-center">October 2026</h4>
+                    <button type="button" onclick="changePublicCalMonth(1)" class="w-8 h-8 rounded-lg bg-white border border-slate-200 hover:bg-slate-100 text-slate-700 flex items-center justify-center transition shadow-2xs font-bold" title="Next Month">
+                        <i class="fas fa-chevron-right text-xs"></i>
+                    </button>
+                    <button type="button" onclick="goToPublicCalToday()" class="text-xs font-bold text-brand-900 hover:text-gold-600 bg-white border border-slate-200 hover:border-gold-400 px-3 py-1.5 rounded-lg transition ml-1 shadow-2xs">
+                        Today
+                    </button>
+                </div>
+
+                <!-- Category Filters inside modal -->
+                <div class="flex flex-wrap gap-1.5 items-center w-full sm:w-auto justify-start sm:justify-end" id="public-cal-modal-filters">
+                    <button type="button" onclick="filterPublicCalendar('ALL')" data-cat="ALL" class="pub-modal-filter active text-xs font-bold px-3 py-1 rounded-lg bg-brand-900 text-white transition">All</button>
+                    <button type="button" onclick="filterPublicCalendar('Exam')" data-cat="Exam" class="pub-modal-filter text-xs font-bold px-3 py-1 rounded-lg bg-white border border-slate-200 text-slate-700 hover:bg-slate-100 transition"><i class="fas fa-pen-to-square mr-1 text-amber-600"></i> Exams</button>
+                    <button type="button" onclick="filterPublicCalendar('Holiday')" data-cat="Holiday" class="pub-modal-filter text-xs font-bold px-3 py-1 rounded-lg bg-white border border-slate-200 text-slate-700 hover:bg-slate-100 transition"><i class="fas fa-umbrella-beach mr-1 text-emerald-600"></i> Holidays</button>
+                    <button type="button" onclick="filterPublicCalendar('ECA')" data-cat="ECA" class="pub-modal-filter text-xs font-bold px-3 py-1 rounded-lg bg-white border border-slate-200 text-slate-700 hover:bg-slate-100 transition"><i class="fas fa-running mr-1 text-indigo-600"></i> ECA</button>
+                    <button type="button" onclick="filterPublicCalendar('Academic')" data-cat="Academic" class="pub-modal-filter text-xs font-bold px-3 py-1 rounded-lg bg-white border border-slate-200 text-slate-700 hover:bg-slate-100 transition"><i class="fas fa-book-open mr-1 text-sky-600"></i> Academic</button>
+                    <button type="button" onclick="filterPublicCalendar('Meeting')" data-cat="Meeting" class="pub-modal-filter text-xs font-bold px-3 py-1 rounded-lg bg-white border border-slate-200 text-slate-700 hover:bg-slate-100 transition"><i class="fas fa-users mr-1 text-brand-700"></i> PTM</button>
+                </div>
+            </div>
+
+            <!-- Modal Content (Grid & Upcoming Split) -->
+            <div class="flex-1 overflow-y-auto p-4 sm:p-6 grid grid-cols-1 lg:grid-cols-12 gap-6">
+                <!-- Monthly Calendar Grid (8 cols) -->
+                <div class="lg:col-span-8 bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-xs">
+                    <!-- Day Headers -->
+                    <div class="grid grid-cols-7 bg-slate-100 border-b border-slate-200 text-center font-bold text-[11px] text-slate-600 py-2">
+                        <span class="text-rose-600">Sun</span>
+                        <span>Mon</span>
+                        <span>Tue</span>
+                        <span>Wed</span>
+                        <span>Thu</span>
+                        <span>Fri</span>
+                        <span class="text-amber-600">Sat</span>
+                    </div>
+                    <!-- Calendar Days Grid -->
+                    <div id="public-calendar-grid" class="grid grid-cols-7 bg-white">
+                        <!-- Populated dynamically -->
+                    </div>
+                </div>
+
+                <!-- Right Side: Monthly Agenda / Events List (4 cols) -->
+                <div class="lg:col-span-4 flex flex-col space-y-3">
+                    <div class="flex items-center justify-between pb-1">
+                        <h4 class="font-bold text-xs uppercase tracking-wider text-slate-500">Scheduled Milestones</h4>
+                        <span id="public-cal-event-count" class="text-[11px] font-extrabold bg-brand-50 text-brand-900 border border-brand-200 px-2 py-0.5 rounded-full">0 Events</span>
+                    </div>
+
+                    <div id="public-cal-modal-events-list" class="space-y-2.5 overflow-y-auto max-h-[380px] pr-1">
+                        <!-- Populated dynamically -->
+                    </div>
+
+                    <!-- Category Legend -->
+                    <div class="pt-3 border-t border-slate-200/80">
+                        <p class="text-[11px] font-bold text-slate-400 uppercase tracking-wider mb-2">Category Guide</p>
+                        <div class="grid grid-cols-2 gap-1.5 text-[11px]">
+                            <span class="inline-flex items-center gap-1.5 text-amber-800 font-semibold"><span class="w-2.5 h-2.5 rounded bg-amber-400"></span> Exam &amp; Tests</span>
+                            <span class="inline-flex items-center gap-1.5 text-emerald-800 font-semibold"><span class="w-2.5 h-2.5 rounded bg-emerald-400"></span> School Holiday</span>
+                            <span class="inline-flex items-center gap-1.5 text-indigo-800 font-semibold"><span class="w-2.5 h-2.5 rounded bg-indigo-400"></span> Martial Arts &amp; ECA</span>
+                            <span class="inline-flex items-center gap-1.5 text-sky-800 font-semibold"><span class="w-2.5 h-2.5 rounded bg-sky-400"></span> Assembly &amp; Routine</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal Footer -->
+            <div class="bg-slate-50 px-6 py-3 border-t border-slate-200 flex flex-wrap items-center justify-between text-xs text-slate-500 shrink-0">
+                <div class="flex items-center gap-1.5">
+                    <i class="fas fa-shield-alt text-brand-900"></i>
+                    <span>Synchronized with Central Principal Academic Office</span>
+                </div>
+                <div class="flex items-center gap-3">
+                    
+                    <button type="button" onclick="closePublicCalendarModal()" class="bg-slate-200 hover:bg-slate-300 text-slate-800 font-bold px-4 py-1.5 rounded-xl transition">
+                        Close
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Event Detail Sub-Modal -->
+    <div id="public-cal-detail-modal" class="fixed inset-0 bg-slate-950/70 backdrop-blur-xs z-60 hidden flex items-center justify-center p-4" onclick="closePublicCalDetailModal()">
+        <div class="bg-white rounded-3xl max-w-md w-full p-6 shadow-2xl border border-slate-200 space-y-4" onclick="event.stopPropagation()">
+            <div class="flex items-start justify-between">
+                <span id="pub-detail-badge" class="px-2.5 py-0.5 rounded-full text-xs font-black border">Exam</span>
+                <button type="button" onclick="closePublicCalDetailModal()" class="text-slate-400 hover:text-slate-600 p-1">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div>
+                <h4 id="pub-detail-title" class="text-lg font-black text-slate-900 leading-snug">Event Title</h4>
+                <div class="flex items-center gap-2 text-xs text-slate-500 font-mono mt-1">
+                    <i class="fas fa-calendar-day text-brand-900"></i>
+                    <span id="pub-detail-date">2026-10-20</span>
+                </div>
+            </div>
+            <div class="bg-slate-50 rounded-xl p-3 border border-slate-100 space-y-1">
+                <span class="text-[10px] font-bold uppercase tracking-wider text-slate-400">Target Group</span>
+                <p id="pub-detail-target" class="text-xs font-bold text-slate-800">All Classes (I - X)</p>
+            </div>
+            <div>
+                <span class="text-[10px] font-bold uppercase tracking-wider text-slate-400">Event Overview</span>
+                <p id="pub-detail-desc" class="text-xs text-slate-600 mt-1 leading-relaxed">Description here</p>
+            </div>
+            <div class="pt-2 flex justify-end">
+                <button type="button" onclick="closePublicCalDetailModal()" class="bg-brand-900 hover:bg-slate-900 text-white font-bold text-xs px-5 py-2 rounded-xl transition shadow-xs">
+                    Dismiss
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Script for Navigation & ECA Gallery -->
+    <script>
+        function toggleMobileNav() {
+            const menu = document.getElementById('mobile-nav');
+            menu.classList.toggle('hidden');
+        }
+
+        // ==========================================
+        // DYNAMIC ECA & MOMENTS GALLERY SYSTEM
+        // ==========================================
+        let ecaData = [];
+        let currentEcaFilter = 'all';
+
+        function loadEcaData() {
+            try {
+                const saved = localStorage.getItem('pegasus_eca_moments');
+                if (saved) {
+                    const parsed = JSON.parse(saved);
+                    if (Array.isArray(parsed)) {
+                        ecaData = parsed;
+                    } else {
+                        ecaData = [];
+                    }
+                } else {
+                    ecaData = [];
+                }
+            } catch(e) {
+                ecaData = [];
+            }
+            renderEcaGallery(currentEcaFilter || 'all');
+        }
+
+        function saveEcaData() {
+            try {
+                localStorage.setItem('pegasus_eca_moments', JSON.stringify(ecaData));
+            } catch(e) {
+                console.error('Error saving ECA moments:', e);
+            }
+        }
+
+        function filterEcaGallery(category) {
+            currentEcaFilter = category;
+            renderEcaGallery(category);
+        }
+
+        function renderEcaGallery(category = 'all') {
+            currentEcaFilter = category;
+            const grid = document.getElementById('eca-gallery-grid');
+            const countAllEl = document.getElementById('eca-count-all');
+
+            if (countAllEl) {
+                countAllEl.textContent = `(${ecaData.length})`;
+            }
+
+            // Update tab styles
+            const tabs = document.querySelectorAll('.eca-tab-btn');
+            tabs.forEach(btn => {
+                if (btn.getAttribute('data-category') === category) {
+                    btn.classList.add('bg-brand-900', 'text-white', 'shadow-xs');
+                    btn.classList.remove('bg-white', 'text-slate-700');
+                } else {
+                    btn.classList.remove('bg-brand-900', 'text-white', 'shadow-xs');
+                    btn.classList.add('bg-white', 'text-slate-700');
+                }
+            });
+
+            if (!grid) return;
+
+            const filtered = category === 'all' 
+                ? ecaData 
+                : ecaData.filter(x => x.category === category);
+
+            if (filtered.length === 0) {
+                grid.innerHTML = `
+                    <div class="col-span-full py-16 px-6 text-center bg-slate-50 border-2 border-dashed border-slate-200 rounded-3xl max-w-2xl mx-auto space-y-4">
+                        <div class="w-14 h-14 rounded-2xl bg-amber-50 text-amber-600 flex items-center justify-center mx-auto text-2xl shadow-xs">
+                            <i class="fas fa-camera"></i>
+                        </div>
+                        <div class="space-y-1.5">
+                            <h3 class="font-black text-slate-800 text-lg sm:text-xl">No ECA Photo Moments Published</h3>
+                            <p class="text-xs sm:text-sm text-slate-500 max-w-md mx-auto leading-relaxed">
+                                Photos and achievements from athletic tournaments, taekwondo gradings, arts, and performances will be showcased here once published.
+                            </p>
+                        </div>
+                        <div class="pt-2">
+                            <a href="https://www.facebook.com/profile.php?id=100063491716430" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 bg-brand-900 hover:bg-brand-800 text-white font-bold text-xs px-4 py-2.5 rounded-xl transition shadow-xs">
+                                <i class="fab fa-facebook text-sky-400"></i>
+                                <span>View Photos on Facebook</span>
+                            </a>
+                        </div>
+                    </div>
+                `;
+                return;
+            }
+
+            grid.innerHTML = filtered.map((item, index) => {
+                const itemIdx = ecaData.findIndex(x => x.id === item.id);
+                const actualIdx = itemIdx >= 0 ? itemIdx : index;
+                return `
+                    <div class="eca-item-card group bg-white rounded-3xl border border-slate-200/90 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col overflow-hidden" data-category="${escapeHTML(item.category)}">
+                        ${renderEcaMedia(item, actualIdx)}
+                        <div class="p-6 flex-1 flex flex-col justify-between space-y-4">
+                            <div class="space-y-2">
+                                <div class="flex items-center justify-between text-xs text-slate-400 font-semibold">
+                                    <span><i class="far fa-calendar-alt text-brand-900 mr-1.5"></i> ${escapeHTML(item.date || 'Campus Event')}</span>
+                                    <span class="bg-brand-50 text-brand-900 px-2 py-0.5 rounded-md font-bold">${escapeHTML(item.wing || 'All Classes')}</span>
+                                </div>
+                                <h3 class="text-lg font-black text-slate-900 group-hover:text-brand-900 transition leading-snug">
+                                    ${escapeHTML(item.title)}
+                                </h3>
+                                <p class="text-xs sm:text-sm text-slate-600 leading-relaxed line-clamp-3">
+                                    ${escapeHTML(item.caption || '')}
+                                </p>
+                            </div>
+                            <div class="pt-3 border-t border-slate-100 flex items-center justify-between">
+                                <div class="flex items-center gap-1.5 text-[11px] font-bold text-slate-500 flex-wrap">
+                                    ${(item.tags || []).map(t => `<span class="bg-slate-100 px-2 py-0.5 rounded-md">${escapeHTML(t)}</span>`).join('')}
+                                </div>
+                                <button onclick="openEcaLightbox(${actualIdx}, 0)" class="text-xs font-bold text-brand-900 hover:text-brand-700 flex items-center shrink-0">
+                                    <span>Full Story</span> <i class="fas fa-arrow-right ml-1 text-[10px]"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+
+            // Automatically initialize and start animated slideshows for all multi-photo ECA moments!
+            initEcaSliders();
+        }
+
+        function getEcaImages(item) {
+            if (!item) return [];
+            if (Array.isArray(item.images) && item.images.length > 0) {
+                return item.images.filter(Boolean);
+            }
+            if (item.image) {
+                return [item.image];
+            }
+            return [];
+        }
+
+        // Render ECA media container: single static photo or interactive auto-sliding carousel
+        function renderEcaMedia(item, actualIdx) {
+            const images = getEcaImages(item);
+            const count = images.length;
+            const itemId = item.id;
+            const fallbackImg = 'https://images.unsplash.com/photo-1546410531-bb4caa6b424d?auto=format&fit=crop&w=800&q=80';
+
+            // Single Photo Display
+            if (count <= 1) {
+                const imgSrc = images[0] || fallbackImg;
+                return `
+                    <div class="relative aspect-[16/10] overflow-hidden bg-slate-900 cursor-pointer group" onclick="openEcaLightbox(${actualIdx}, 0)">
+                        <img src="${escapeHTML(imgSrc)}" alt="${escapeHTML(item.title)}" loading="lazy" decoding="async" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.src='${fallbackImg}'">
+                        <div class="absolute top-3.5 left-3.5 z-10 pointer-events-none">
+                            <span class="${item.badgeClass || 'bg-brand-900/90 text-white'} backdrop-blur-md text-[11px] font-extrabold px-3 py-1 rounded-full shadow-xs flex items-center">
+                                <i class="fas fa-award mr-1.5 text-gold-300"></i> ${escapeHTML(item.categoryLabel || item.category)}
+                            </span>
+                        </div>
+                        <div class="absolute inset-0 bg-slate-950/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center pointer-events-none">
+                            <span class="bg-white text-slate-900 text-xs font-bold px-3.5 py-1.5 rounded-full shadow-lg flex items-center gap-1.5">
+                                <i class="fas fa-expand-alt text-brand-900"></i> Click to Enlarge
+                            </span>
+                        </div>
+                    </div>
+                `;
+            }
+
+            // Multiple Photos Display: Animated Auto-Slideshow Carousel
+            return `
+                <div class="relative aspect-[16/10] overflow-hidden bg-slate-900 group select-none"
+                     id="eca-slider-${itemId}"
+                     onmouseenter="pauseEcaSlider(${itemId})"
+                     onmouseleave="resumeEcaSlider(${itemId})">
+                    
+                    <!-- Sliding Track Container -->
+                    <div id="eca-slider-track-${itemId}" class="flex h-full w-full transition-transform duration-500 ease-in-out">
+                        ${images.map((src, idx) => `
+                            <div class="min-w-full w-full h-full relative cursor-pointer shrink-0 flex items-center justify-center bg-slate-950" onclick="openEcaLightbox(${actualIdx}, ${idx})">
+                                <img src="${escapeHTML(src)}" alt="${escapeHTML(item.title)} - Photo ${idx + 1}" loading="lazy" decoding="async" class="w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-300" onerror="this.src='${fallbackImg}'">
+                            </div>
+                        `).join('')}
+                    </div>
+
+                    <!-- Top Left: Category Badge & Auto-Slideshow Indicator -->
+                    <div class="absolute top-3.5 left-3.5 z-10 flex flex-col gap-1.5 pointer-events-none">
+                        <span class="${item.badgeClass || 'bg-brand-900/90 text-white'} backdrop-blur-md text-[11px] font-extrabold px-3 py-1 rounded-full shadow-xs flex items-center w-max">
+                            <i class="fas fa-award mr-1.5 text-gold-300"></i> ${escapeHTML(item.categoryLabel || item.category)}
+                        </span>
+                        <span class="bg-slate-950/80 backdrop-blur-md text-amber-300 text-[10px] font-bold px-2 py-0.5 rounded-full border border-amber-400/30 flex items-center gap-1.5 shadow-md w-max">
+                            <span class="w-1.5 h-1.5 rounded-full bg-amber-400 animate-pulse"></span>
+                            <span>Auto-Slideshow</span>
+                        </span>
+                    </div>
+
+                    <!-- Top Right: Photo Counter Badge -->
+                    <div class="absolute top-3.5 right-3.5 z-10 pointer-events-none">
+                        <span id="eca-slider-counter-${itemId}" class="bg-slate-950/80 backdrop-blur-md text-white text-[11px] font-bold px-2.5 py-1 rounded-full border border-white/20 shadow-md">
+                            1 / ${count} Photos
+                        </span>
+                    </div>
+
+                    <!-- Manual Navigation Arrows (Left & Right) -->
+                    <button type="button" onclick="event.stopPropagation(); slideEcaItem(${itemId}, -1)" 
+                            class="absolute left-2.5 top-1/2 -translate-y-1/2 z-20 w-8 h-8 rounded-full bg-slate-950/70 hover:bg-slate-950 text-white flex items-center justify-center backdrop-blur-md border border-white/20 transition-all duration-200 hover:scale-110 shadow-lg active:scale-95" 
+                            title="Previous Photo">
+                        <i class="fas fa-chevron-left text-xs"></i>
+                    </button>
+                    <button type="button" onclick="event.stopPropagation(); slideEcaItem(${itemId}, 1)" 
+                            class="absolute right-2.5 top-1/2 -translate-y-1/2 z-20 w-8 h-8 rounded-full bg-slate-950/70 hover:bg-slate-950 text-white flex items-center justify-center backdrop-blur-md border border-white/20 transition-all duration-200 hover:scale-110 shadow-lg active:scale-95" 
+                            title="Next Photo">
+                        <i class="fas fa-chevron-right text-xs"></i>
+                    </button>
+
+                    <!-- Bottom Bar: Indicators & Expand Tip -->
+                    <div class="absolute bottom-2.5 inset-x-3 z-20 flex items-center justify-between pointer-events-none">
+                        <!-- Clickable Indicator Dots -->
+                        <div id="eca-slider-dots-${itemId}" class="pointer-events-auto flex items-center gap-1.5 bg-slate-950/70 backdrop-blur-md px-2.5 py-1 rounded-full border border-white/10 max-w-[70%] overflow-x-auto">
+                            ${images.map((_, idx) => `
+                                <button type="button" onclick="event.stopPropagation(); goToEcaSlide(${itemId}, ${idx})" 
+                                        class="slider-dot transition-all duration-300 rounded-full ${idx === 0 ? 'w-4 h-1.5 bg-amber-400' : 'w-1.5 h-1.5 bg-white/50 hover:bg-white'}" 
+                                        title="Jump to Photo ${idx + 1}">
+                                </button>
+                            `).join('')}
+                        </div>
+
+                        <!-- Fullscreen Hint -->
+                        <div class="hidden sm:flex items-center gap-1 text-[10px] font-medium text-white/90 bg-slate-950/70 backdrop-blur-md px-2 py-0.5 rounded-full border border-white/10">
+                            <i class="fas fa-expand text-[9px] text-amber-300"></i> Enlarge
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        // ==========================================
+        // ECA MULTI-PHOTO SLIDESHOW CONTROLLER
+        // ==========================================
+        const ecaSliders = {};
+
+        function initEcaSliders() {
+            // Clear existing intervals
+            Object.keys(ecaSliders).forEach(id => {
+                if (ecaSliders[id] && ecaSliders[id].intervalId) {
+                    clearInterval(ecaSliders[id].intervalId);
+                }
+            });
+
+            const filtered = currentEcaFilter === 'all' 
+                ? ecaData 
+                : ecaData.filter(x => x.category === currentEcaFilter);
+
+            filtered.forEach(item => {
+                const images = getEcaImages(item);
+                if (images && images.length > 1) {
+                    ecaSliders[item.id] = {
+                        currentIndex: 0,
+                        total: images.length,
+                        intervalId: null,
+                        isPaused: false
+                    };
+                    startEcaAutoSlide(item.id);
+
+                    // Attach mobile touch swipe gestures
+                    const sliderEl = document.getElementById(`eca-slider-${item.id}`);
+                    if (sliderEl) {
+                        attachEcaSliderTouch(sliderEl, item.id);
+                    }
+                }
+            });
+        }
+
+        function startEcaAutoSlide(itemId) {
+            const slider = ecaSliders[itemId];
+            if (!slider || slider.total <= 1) return;
+            if (slider.intervalId) clearInterval(slider.intervalId);
+
+            // Automatically slides every 3.5 seconds
+            slider.intervalId = setInterval(() => {
+                if (!slider.isPaused) {
+                    slideEcaItem(itemId, 1);
+                }
+            }, 3500);
+        }
+
+        function slideEcaItem(itemId, direction) {
+            const slider = ecaSliders[itemId];
+            if (!slider || slider.total <= 1) return;
+            slider.currentIndex = (slider.currentIndex + direction + slider.total) % slider.total;
+            updateEcaSliderDOM(itemId);
+        }
+
+        function goToEcaSlide(itemId, index) {
+            const slider = ecaSliders[itemId];
+            if (!slider || index < 0 || index >= slider.total) return;
+            slider.currentIndex = index;
+            updateEcaSliderDOM(itemId);
+        }
+
+        function pauseEcaSlider(itemId) {
+            if (ecaSliders[itemId]) {
+                ecaSliders[itemId].isPaused = true;
+            }
+        }
+
+        function resumeEcaSlider(itemId) {
+            if (ecaSliders[itemId]) {
+                ecaSliders[itemId].isPaused = false;
+            }
+        }
+
+        function updateEcaSliderDOM(itemId) {
+            const slider = ecaSliders[itemId];
+            if (!slider) return;
+
+            const track = document.getElementById(`eca-slider-track-${itemId}`);
+            const counter = document.getElementById(`eca-slider-counter-${itemId}`);
+            const dotsContainer = document.getElementById(`eca-slider-dots-${itemId}`);
+
+            if (track) {
+                track.style.transform = `translateX(-${slider.currentIndex * 100}%)`;
+            }
+
+            if (counter) {
+                counter.textContent = `${slider.currentIndex + 1} / ${slider.total} Photos`;
+            }
+
+            if (dotsContainer) {
+                const dots = dotsContainer.querySelectorAll('.slider-dot');
+                dots.forEach((dot, idx) => {
+                    if (idx === slider.currentIndex) {
+                        dot.className = 'slider-dot transition-all duration-300 rounded-full w-4 h-1.5 bg-amber-400';
+                    } else {
+                        dot.className = 'slider-dot transition-all duration-300 rounded-full w-1.5 h-1.5 bg-white/50 hover:bg-white';
+                    }
+                });
+            }
+        }
+
+        function attachEcaSliderTouch(element, itemId) {
+            let startX = 0;
+            let endX = 0;
+
+            element.addEventListener('touchstart', (e) => {
+                if (e.touches && e.touches.length > 0) {
+                    startX = e.touches[0].clientX;
+                    pauseEcaSlider(itemId);
+                }
+            }, { passive: true });
+
+            element.addEventListener('touchend', (e) => {
+                if (e.changedTouches && e.changedTouches.length > 0) {
+                    endX = e.changedTouches[0].clientX;
+                    resumeEcaSlider(itemId);
+                    const diffX = startX - endX;
+                    if (Math.abs(diffX) > 40) {
+                        if (diffX > 0) {
+                            slideEcaItem(itemId, 1);
+                        } else {
+                            slideEcaItem(itemId, -1);
+                        }
+                    }
+                }
+            }, { passive: true });
+        }
+
+        function toggleEcaLike() {}
+
+        // ==========================================
+        // ECA GALLERY LIGHTBOX CONTROLLER
+        // ==========================================
+        let currentEcaPhotos = [];
+        let currentEcaPhotoIndex = 0;
+        let currentEcaItemIndex = 0;
+
+        function openEcaLightbox(index, photoIndex = 0) {
+            if (!ecaData[index]) return;
+            currentLightboxMode = 'eca';
+            currentEcaItemIndex = index;
+            const item = ecaData[index];
+            currentEcaPhotos = getEcaImages(item);
+            currentEcaPhotoIndex = (photoIndex >= 0 && photoIndex < currentEcaPhotos.length) ? photoIndex : 0;
+            
+            updateEcaLightboxContent();
+            const modal = document.getElementById('eca-lightbox-modal');
+            if (modal) {
+                modal.classList.remove('hidden');
+                document.body.style.overflow = 'hidden';
+            }
+        }
+
+        function closeEcaLightbox() {
+            const modal = document.getElementById('eca-lightbox-modal');
+            if (modal) modal.classList.add('hidden');
+            document.body.style.overflow = '';
+        }
+
+        function handleLightboxBackdropClick(e) {
+            if (e.target.id === 'eca-lightbox-modal') closeEcaLightbox();
+        }
+
+        function navigateEcaLightbox(direction) {
+            if (currentLightboxMode === 'post') {
+                navigatePostGallery(direction);
+                return;
+            }
+            if (currentEcaPhotos && currentEcaPhotos.length > 1) {
+                currentEcaPhotoIndex = (currentEcaPhotoIndex + direction + currentEcaPhotos.length) % currentEcaPhotos.length;
+                updateEcaLightboxContent();
+            } else if (ecaData.length > 1) {
+                currentEcaItemIndex = (currentEcaItemIndex + direction + ecaData.length) % ecaData.length;
+                const nextItem = ecaData[currentEcaItemIndex];
+                currentEcaPhotos = getEcaImages(nextItem);
+                currentEcaPhotoIndex = 0;
+                updateEcaLightboxContent();
+            }
+        }
+
+        function updateEcaLightboxContent() {
+            const item = ecaData[currentEcaItemIndex];
+            if (!item) return;
+
+            const images = currentEcaPhotos && currentEcaPhotos.length > 0 ? currentEcaPhotos : [item.image];
+            const currentImg = images[currentEcaPhotoIndex] || item.image;
+
+            const imgEl = document.getElementById('lightbox-img');
+            if (imgEl) imgEl.src = currentImg;
+
+            const badgeEl = document.getElementById('lightbox-badge');
+            if (badgeEl) {
+                badgeEl.textContent = item.categoryLabel || item.category;
+                badgeEl.className = (item.badgeClass || 'bg-brand-50 text-brand-900') + ' text-xs font-bold px-3 py-1 rounded-full';
+            }
+
+            const counterEl = document.getElementById('lightbox-counter');
+            if (counterEl) {
+                if (images.length > 1) {
+                    counterEl.textContent = `Photo ${currentEcaPhotoIndex + 1} of ${images.length}`;
+                } else {
+                    counterEl.textContent = `${currentEcaItemIndex + 1} / ${ecaData.length}`;
+                }
+            }
+
+            const titleEl = document.getElementById('lightbox-title');
+            if (titleEl) {
+                titleEl.textContent = item.title;
+            }
+
+            const dateEl = document.getElementById('lightbox-date');
+            if (dateEl) {
+                dateEl.innerHTML = `<i class="far fa-calendar-alt text-amber-500 mr-1.5"></i> ${escapeHTML(item.date || '')}`;
+            }
+
+            const wingEl = document.getElementById('lightbox-wing');
+            if (wingEl) {
+                wingEl.innerHTML = `<i class="fas fa-graduation-cap text-brand-900 mr-1.5"></i> ${escapeHTML(item.wing || '')}`;
+            }
+
+            const captionEl = document.getElementById('lightbox-caption');
+            if (captionEl) {
+                captionEl.textContent = item.caption || '';
+            }
+
+            const tagsContainer = document.getElementById('lightbox-tags');
+            if (tagsContainer) {
+                tagsContainer.innerHTML = (item.tags || []).map(t => `<span class="bg-slate-100 text-slate-600 text-xs font-semibold px-2.5 py-1 rounded-lg">${escapeHTML(t)}</span>`).join('');
+            }
+        }
+
+        // Backwards compatibility alias
+        function updateLightboxContent(index) {
+            if (typeof index === 'number') currentEcaItemIndex = index;
+            updateEcaLightboxContent();
+        }
+
+        function toggleLightboxCurrentLike() {}
+
+        document.addEventListener('keydown', (e) => {
+            const ecaModal = document.getElementById('eca-lightbox-modal');
+            if (ecaModal && !ecaModal.classList.contains('hidden')) {
+                if (e.key === 'Escape') closeEcaLightbox();
+                if (e.key === 'ArrowRight') navigateEcaLightbox(1);
+                if (e.key === 'ArrowLeft') navigateEcaLightbox(-1);
+                return;
+            }
+
+            const calDetail = document.getElementById('public-cal-detail-modal');
+            const calModal = document.getElementById('public-calendar-modal');
+            if (e.key === 'Escape') {
+                if (calDetail && !calDetail.classList.contains('hidden')) {
+                    closePublicCalDetailModal();
+                } else if (calModal && !calModal.classList.contains('hidden')) {
+                    closePublicCalendarModal();
+                }
+            } else if (calModal && !calModal.classList.contains('hidden') && (!calDetail || calDetail.classList.contains('hidden'))) {
+                if (e.key === 'ArrowLeft') changePublicCalMonth(-1);
+                if (e.key === 'ArrowRight') changePublicCalMonth(1);
+            }
+        });
+
+        // ==========================================
+        // DYNAMIC SIDEBAR EXAMINATION ROUTINES
+        // ==========================================
+        let examRoutinesData = [];
+
+        function loadSidebarExamRoutines() {
+            try {
+                const saved = localStorage.getItem('pegasus_exam_routines');
+                if (saved) {
+                    const parsed = JSON.parse(saved);
+                    if (Array.isArray(parsed)) {
+                        examRoutinesData = parsed;
+                    } else {
+                        examRoutinesData = [];
+                    }
+                } else {
+                    examRoutinesData = [];
+                }
+            } catch(e) {
+                examRoutinesData = [];
+            }
+            renderSidebarExamRoutines();
+        }
+
+        function renderSidebarExamRoutines() {
+            const container = document.getElementById('sidebar-exam-routines-container');
+            const countBadge = document.getElementById('exam-routines-count-badge');
+            if (!container) return;
+
+            if (countBadge) {
+                countBadge.textContent = `${examRoutinesData.length} Active`;
+            }
+
+            if (examRoutinesData.length === 0) {
+                container.innerHTML = `
+                    <div class="bg-brand-900/40 rounded-xl p-3 border border-brand-800/80 text-center space-y-1.5">
+                        <p class="text-xs text-slate-300 font-semibold">No Examination Routines Published</p>
+                        <p class="text-[11px] text-slate-400 leading-tight">Official timetables and seating plans will be published here before upcoming terminal evaluations.</p>
+                    </div>
+                `;
+                return;
+            }
+
+            container.innerHTML = examRoutinesData.map(r => `
+                <div class="bg-brand-900/60 hover:bg-brand-900/90 rounded-xl p-3 border border-brand-800 transition flex items-start justify-between gap-3">
+                    <div class="space-y-1">
+                        <div class="flex items-center gap-1.5 flex-wrap">
+                            <span class="bg-gold-500/20 text-gold-300 border border-gold-500/30 text-[10px] font-bold px-2 py-0.5 rounded-md">${escapeHTML(r.examTerm || 'Term Exam')}</span>
+                            <span class="bg-white/10 text-slate-300 text-[10px] font-medium px-1.5 py-0.5 rounded-md">${escapeHTML(r.classWing || 'All Classes')}</span>
+                        </div>
+                        <h5 class="text-xs font-bold text-white leading-snug">${escapeHTML(r.title)}</h5>
+                        <p class="text-[10px] text-slate-400"><i class="far fa-calendar-alt mr-1"></i> ${escapeHTML(r.date || 'Published')}</p>
+                    </div>
+                    <div class="shrink-0 pt-1">
+                        ${r.fileUrl ? `
+                            <a href="${escapeHTML(r.fileUrl)}" target="_blank" download="${escapeHTML(r.fileName || 'Routine.pdf')}" class="w-8 h-8 rounded-lg bg-gold-500 hover:bg-gold-400 text-brand-950 flex items-center justify-center text-xs transition shadow-xs" title="Download / View Routine">
+                                <i class="fas fa-file-download"></i>
+                            </a>
+                        ` : `
+                            <span class="w-8 h-8 rounded-lg bg-white/10 text-slate-400 flex items-center justify-center text-xs" title="Notice Only">
+                                <i class="fas fa-file-alt"></i>
+                            </span>
+                        `}
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // ==========================================
+        // FACEBOOK-STYLE EVENT FEED & ADMIN PORTAL
+        // MULTI-PHOTO COLLAGE & INTERACTIVE VIEWER
+        // ==========================================
+        const DEFAULT_EVENT_POSTS = [
+            {
+                id: 101,
+                author: "Pegasus English School",
+                verified: true,
+                category: "Martial Arts",
+                date: "Yesterday at 2:30 PM",
+                timestamp: Date.now() - 86400000,
+                content: "🥋 Congratulations to all our primary and secondary scholars who successfully cleared their National Taekwondo Belt Promotion Examinations today! Under the rigorous testing of our Chief Master, students demonstrated poise, forms accuracy, and sparring discipline.\n\nWell done, champions! Keep the Pegasus spirit flying high.",
+                images: [
+                    "https://images.unsplash.com/photo-1555597673-b21d5c935865?auto=format&fit=crop&w=1200&q=80",
+                    "https://images.unsplash.com/photo-1517649763962-0c623266ddc0?auto=format&fit=crop&w=1200&q=80"
+                ],
+                likes: 48,
+                liked: false,
+                comments: []
+            },
+            {
+                id: 102,
+                author: "Pegasus English School",
+                verified: true,
+                category: "Academic Notice",
+                date: "Oct 14 at 10:00 AM",
+                timestamp: Date.now() - 172800000,
+                content: "📋 Official Circular: First Terminal Evaluation Timetables Dispatched\n\nRespected Parents & Guardians,\nThe First Terminal Assessment schedules for Class I to X have been published. Formative continuous assessment rubrics apply for Primary grades (I–V), and formal 100-mark CDC framework routines for Secondary grades (VI–X).\n\nPlease check homework diaries or download the digital syllabus copy directly from our Local Resource Center.",
+                images: [
+                    "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?auto=format&fit=crop&w=1200&q=80"
+                ],
+                likes: 35,
+                liked: false,
+                comments: []
+            },
+            {
+                id: 103,
+                author: "Pegasus English School",
+                verified: true,
+                category: "Sports & Athletics",
+                date: "Oct 10 at 4:15 PM",
+                timestamp: Date.now() - 345600000,
+                content: "🏆 Annual Inter-House Athletics & 100m Sprint Championship Highlights!\n\nImmense vigor and house loyalty on display today across the campus sprint track and relay lines. Blue House and Green House are tied at the top of the house trophy board. Thank you to all our physical education coaches and student referees!",
+                images: [
+                    "https://images.unsplash.com/photo-1461896836934-ffe607ba8211?auto=format&fit=crop&w=1200&q=80",
+                    "https://images.unsplash.com/photo-1517649763962-0c623266ddc0?auto=format&fit=crop&w=1200&q=80",
+                    "https://images.unsplash.com/photo-1526676037777-05a232554f77?auto=format&fit=crop&w=1200&q=80",
+                    "https://images.unsplash.com/photo-1574629810360-7efbbe195018?auto=format&fit=crop&w=1200&q=80"
+                ],
+                likes: 62,
+                liked: false,
+                comments: []
+            }
+        ];
+
+        let eventPostsData = [];
+        let currentEventFilter = 'All';
+        let attachedEventPhotos = [];
+
+        // Lightbox state variables for Post Gallery
+        let currentLightboxMode = 'eca';
+        let currentPostGalleryPhotos = [];
+        let currentPostGalleryIndex = 0;
+        let currentPostGalleryPost = null;
+
+        function getPostImages(post) {
+            if (Array.isArray(post.images) && post.images.length > 0) {
+                return post.images;
+            }
+            if (post.image) {
+                return [post.image];
+            }
+            return [];
+        }
+
+        function loadEventPosts() {
+            try {
+                const saved = localStorage.getItem('pegasus_events_feed');
+                if (saved) {
+                    const parsed = JSON.parse(saved);
+                    if (Array.isArray(parsed) && parsed.length > 0) {
+                        eventPostsData = parsed;
+                    } else {
+                        eventPostsData = [...DEFAULT_EVENT_POSTS];
+                        saveEventPosts();
+                    }
+                } else {
+                    eventPostsData = [...DEFAULT_EVENT_POSTS];
+                    saveEventPosts();
+                }
+            } catch(e) {
+                eventPostsData = [...DEFAULT_EVENT_POSTS];
+            }
+
+            // Ensure each post has valid images array
+            eventPostsData = eventPostsData.map(p => {
+                if (!p.images && p.image) {
+                    p.images = [p.image];
+                } else if (!p.images) {
+                    p.images = [];
+                }
+                return p;
+            });
+
+            renderFacebookFeed();
+        }
+
+        function saveEventPosts() {
+            try {
+                localStorage.setItem('pegasus_events_feed', JSON.stringify(eventPostsData));
+            } catch(e) {
+                console.error('Error saving events:', e);
+            }
+        }
+
+        function toggleEventAdminComposer() {
+            openNoticePopup();
+        }
+
+        // Multi-File upload handler
+        function handleEventFilesSelect(e) {
+            const files = Array.from(e.target.files || []);
+            if (!files.length) return;
+
+            let loaded = 0;
+            files.forEach(file => {
+                const reader = new FileReader();
+                reader.onload = function(evt) {
+                    attachedEventPhotos.push(evt.target.result);
+                    loaded++;
+                    if (loaded === files.length) {
+                        renderComposerImagePreviews();
+                        e.target.value = '';
+                    }
+                };
+                reader.readAsDataURL(file);
+            });
+        }
+
+        // Add photo via direct URL input
+        function handleAddPhotoUrl() {
+            const urlInput = document.getElementById('new-post-url');
+            if (!urlInput) return;
+            const url = urlInput.value.trim();
+            if (url && (url.startsWith('http://') || url.startsWith('https://') || url.startsWith('data:image/'))) {
+                attachedEventPhotos.push(url);
+                urlInput.value = '';
+                renderComposerImagePreviews();
+            } else if (url) {
+                alert('Please enter a valid image URL (e.g. https://images.unsplash.com/...)');
+            }
+        }
+
+        // Remove single photo from composer queue
+        function removeAttachedPhoto(index) {
+            if (index >= 0 && index < attachedEventPhotos.length) {
+                attachedEventPhotos.splice(index, 1);
+                renderComposerImagePreviews();
+            }
+        }
+
+        // Clear all attached photos in composer
+        function clearEventPhotos() {
+            attachedEventPhotos = [];
+            renderComposerImagePreviews();
+            const fileInput = document.getElementById('new-post-files');
+            const urlInput = document.getElementById('new-post-url');
+            if (fileInput) fileInput.value = '';
+            if (urlInput) urlInput.value = '';
+        }
+
+        // Render preview thumbnails in composer
+        function renderComposerImagePreviews() {
+            const grid = document.getElementById('post-images-preview-grid');
+            const counter = document.getElementById('attached-photos-count');
+            const label = document.getElementById('file-chosen-label');
+            const clearBtn = document.getElementById('clear-all-photos-btn');
+
+            if (counter) {
+                counter.textContent = attachedEventPhotos.length === 1 
+                    ? '1 photo selected' 
+                    : `${attachedEventPhotos.length} photos selected`;
+            }
+
+            if (clearBtn) {
+                if (attachedEventPhotos.length > 0) {
+                    clearBtn.classList.remove('hidden');
+                } else {
+                    clearBtn.classList.add('hidden');
+                }
+            }
+
+            if (label) {
+                label.textContent = attachedEventPhotos.length > 0 
+                    ? `Add More Photos (${attachedEventPhotos.length})` 
+                    : 'Add Photos from Device';
+            }
+
+            if (!grid) return;
+
+            if (attachedEventPhotos.length === 0) {
+                grid.innerHTML = '';
+                grid.classList.add('hidden');
+                return;
+            }
+
+            grid.classList.remove('hidden');
+            grid.innerHTML = attachedEventPhotos.map((src, idx) => `
+                <div class="relative group aspect-square rounded-xl overflow-hidden border border-slate-200 bg-slate-900 shadow-2xs">
+                    <img src="${src}" alt="Attached Thumbnail ${idx + 1}" loading="lazy" decoding="async" class="w-full h-full object-cover">
+                    <button type="button" onclick="removeAttachedPhoto(${idx})" class="absolute top-1.5 right-1.5 w-6 h-6 rounded-full bg-slate-950/80 hover:bg-rose-600 text-white flex items-center justify-center text-xs transition shadow-md" title="Remove photo">
+                        <i class="fas fa-times"></i>
+                    </button>
+                    <span class="absolute bottom-1.5 left-1.5 bg-black/70 backdrop-blur-xs text-white text-[10px] font-bold px-1.5 py-0.5 rounded-md">#${idx + 1}</span>
+                </div>
+            `).join('');
+        }
+
+        function handleCreateEventPost(e) {
+            e.preventDefault();
+            const content = document.getElementById('new-post-content').value.trim();
+            if (!content) return;
+
+            const category = document.getElementById('new-post-category').value;
+            const customDate = document.getElementById('new-post-date').value.trim();
+
+            const photosCopy = [...attachedEventPhotos];
+
+            const newPost = {
+                id: Date.now(),
+                author: "Pegasus English School",
+                verified: true,
+                category: category,
+                date: customDate || "Just now • Today",
+                timestamp: Date.now(),
+                content: content,
+                images: photosCopy,
+                image: photosCopy.length > 0 ? photosCopy[0] : null,
+                likes: 0,
+                liked: false,
+                comments: []
+            };
+
+            eventPostsData.unshift(newPost);
+            saveEventPosts();
+            renderFacebookFeed();
+
+            // Reset form and photo queue
+            e.target.reset();
+            clearEventPhotos();
+
+            // Toast feedback
+            showEventFeedToast("Event announcement published live to the feed!");
+        }
+
+        // [Facebook-like interaction removed]
+
+        function deleteEventPost(id) {
+            if (confirm("Are you sure you want to delete this event post from the feed?")) {
+                eventPostsData = eventPostsData.filter(p => p.id !== id);
+                saveEventPosts();
+                renderFacebookFeed();
+                showEventFeedToast("Post removed from the feed.");
+            }
+        }
+
+        // [Comments interaction removed]
+
+        function handleAddComment(e, id) {
+            e.preventDefault();
+            const input = document.getElementById(`comment-input-${id}`);
+            if (!input || !input.value.trim()) return;
+
+            const post = eventPostsData.find(p => p.id === id);
+            if (post) {
+                post.comments.push({
+                    author: "Visitor / Parent",
+                    text: input.value.trim(),
+                    time: "Just now"
+                });
+                saveEventPosts();
+                renderFacebookFeed();
+                setTimeout(() => {
+                    const box = document.getElementById(`comments-drawer-${id}`);
+                    if (box) box.classList.remove('hidden');
+                }, 50);
+            }
+        }
+
+        function shareEventPost(id) {
+            const shareUrl = window.location.origin + window.location.pathname + '#events';
+            if (navigator.clipboard) {
+                navigator.clipboard.writeText(shareUrl).then(() => {
+                    showEventFeedToast("Event feed link copied to clipboard!");
+                });
+            } else {
+                showEventFeedToast("Event feed link: " + shareUrl);
+            }
+        }
+
+        function filterEventPosts(category) {
+            currentEventFilter = category;
+            const buttons = document.querySelectorAll('.feed-filter-btn');
+            buttons.forEach(b => {
+                if (b.textContent.includes(category) || (category === 'All' && b.textContent.includes('All'))) {
+                    b.className = 'feed-filter-btn active text-xs font-bold px-3 py-1.5 rounded-lg bg-brand-900 text-white transition';
+                } else {
+                    b.className = 'feed-filter-btn text-xs font-bold px-3 py-1.5 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-700 transition';
+                }
+            });
+            const indicator = document.getElementById('active-filter-indicator');
+            if (indicator) indicator.textContent = category === 'All' ? 'All Posts' : category;
+            renderFacebookFeed();
+        }
+
+        function getCategoryBadge(cat) {
+            switch(cat) {
+                case 'Martial Arts': return '<span class="bg-amber-50 text-amber-800 border border-amber-200 font-bold px-2 py-0.5 rounded-md text-[11px]"><i class="fas fa-fist-raised mr-1"></i>Taekwondo</span>';
+                case 'Sports & Athletics': return '<span class="bg-emerald-50 text-emerald-700 border border-emerald-200 font-bold px-2 py-0.5 rounded-md text-[11px]"><i class="fas fa-running mr-1"></i>Sports</span>';
+                case 'Academic Notice': return '<span class="bg-brand-50 text-brand-900 border border-brand-200 font-bold px-2 py-0.5 rounded-md text-[11px]"><i class="fas fa-clipboard-list mr-1"></i>Notice</span>';
+                case 'STEM & Science': return '<span class="bg-brand-50 text-brand-900 border border-brand-200 font-bold px-2 py-0.5 rounded-md text-[11px]"><i class="fas fa-robot mr-1"></i>STEM</span>';
+                case 'Culture & Music': return '<span class="bg-pink-50 text-pink-700 border border-pink-200 font-bold px-2 py-0.5 rounded-md text-[11px]"><i class="fas fa-music mr-1"></i>Culture</span>';
+                default: return '<span class="bg-slate-100 text-slate-700 border border-slate-200 font-bold px-2 py-0.5 rounded-md text-[11px]"><i class="fas fa-bullhorn mr-1"></i>Announcement</span>';
+            }
+        }
+
+        function escapeHTML(str) {
+            if (!str) return '';
+            return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+        }
+
+        // ==========================================
+        // AUTO-SLIDESHOW & MEDIA RENDERER FOR EVENT POSTS
+        // ==========================================
+        const postSliders = {};
+
+        // Render photo container: single photo or animated auto-slideshow carousel
+        function renderPostMediaGallery(post) {
+            const images = getPostImages(post);
+            if (!images || images.length === 0) return '';
+
+            const count = images.length;
+            const postId = post.id;
+
+            // Single Photo: Crisp edge-to-edge banner with lightbox click
+            if (count === 1) {
+                return `
+                    <div class="relative bg-slate-950 overflow-hidden max-h-[460px] flex items-center justify-center cursor-pointer group mx-4 sm:mx-5 mb-3 rounded-2xl shadow-xs" onclick="openPostGallery(${postId}, 0)">
+                        <img src="${images[0]}" alt="Event Media" loading="lazy" decoding="async" class="w-full h-full object-cover max-h-[460px] group-hover:scale-[1.015] transition-transform duration-300">
+                        <div class="absolute bottom-3 right-3 bg-slate-950/75 backdrop-blur-md text-white text-[11px] font-semibold px-2.5 py-1 rounded-full border border-white/20 flex items-center gap-1.5 opacity-0 group-hover:opacity-100 transition-opacity">
+                            <i class="fas fa-expand-alt text-[10px] text-amber-300"></i> Full View
+                        </div>
+                    </div>
+                `;
+            }
+
+            // Multiple Photos (2, 3, 4, 5, 10+): Full-featured Animated Auto-Slideshow Carousel
+            return `
+                <div class="relative mx-4 sm:mx-5 mb-3 rounded-2xl overflow-hidden bg-slate-950 shadow-sm group select-none"
+                     id="event-slider-${postId}"
+                     onmouseenter="pausePostSlider(${postId})"
+                     onmouseleave="resumePostSlider(${postId})">
+                    
+                    <!-- Sliding Track Container -->
+                    <div class="relative w-full aspect-[16/10] sm:aspect-[16/9] max-h-[460px] overflow-hidden bg-slate-950">
+                        <div id="post-slider-track-${postId}" class="flex h-full w-full transition-transform duration-500 ease-in-out">
+                            ${images.map((src, idx) => `
+                                <div class="min-w-full w-full h-full relative cursor-pointer shrink-0 flex items-center justify-center bg-slate-950" onclick="openPostGallery(${postId}, ${idx})">
+                                    <img src="${src}" alt="Event Photo ${idx + 1}" loading="lazy" decoding="async" class="w-full h-full object-cover group-hover:scale-[1.01] transition-transform duration-300">
+                                </div>
+                            `).join('')}
+                        </div>
+                    </div>
+
+                    <!-- Top Left: Live Auto-Slideshow Indicator Badge -->
+                    <div class="absolute top-3 left-3 z-10 pointer-events-none">
+                        <span class="bg-slate-950/80 backdrop-blur-md text-amber-300 text-[11px] font-bold px-2.5 py-1 rounded-full border border-amber-400/30 flex items-center gap-1.5 shadow-md">
+                            <span class="w-2 h-2 rounded-full bg-amber-400 animate-pulse"></span>
+                            <span>Auto-Slideshow</span>
+                        </span>
+                    </div>
+
+                    <!-- Top Right: Photo Counter Badge -->
+                    <div class="absolute top-3 right-3 z-10 pointer-events-none">
+                        <span id="post-slider-counter-${postId}" class="bg-slate-950/80 backdrop-blur-md text-white text-[11px] font-bold px-3 py-1 rounded-full border border-white/20 shadow-md">
+                            1 / ${count} Photos
+                        </span>
+                    </div>
+
+                    <!-- Manual Navigation Arrows (Left & Right) -->
+                    <button type="button" onclick="event.stopPropagation(); slideEventPost(${postId}, -1)" 
+                            class="absolute left-3 top-1/2 -translate-y-1/2 z-20 w-9 h-9 rounded-full bg-slate-950/70 hover:bg-slate-950 text-white flex items-center justify-center backdrop-blur-md border border-white/20 transition-all duration-200 hover:scale-110 shadow-lg active:scale-95" 
+                            title="Previous Photo">
+                        <i class="fas fa-chevron-left text-xs"></i>
+                    </button>
+                    <button type="button" onclick="event.stopPropagation(); slideEventPost(${postId}, 1)" 
+                            class="absolute right-3 top-1/2 -translate-y-1/2 z-20 w-9 h-9 rounded-full bg-slate-950/70 hover:bg-slate-950 text-white flex items-center justify-center backdrop-blur-md border border-white/20 transition-all duration-200 hover:scale-110 shadow-lg active:scale-95" 
+                            title="Next Photo">
+                        <i class="fas fa-chevron-right text-xs"></i>
+                    </button>
+
+                    <!-- Bottom Bar: Indicators & Expand Tip -->
+                    <div class="absolute bottom-3 inset-x-3 z-20 flex items-center justify-between pointer-events-none">
+                        <!-- Clickable Indicator Dots -->
+                        <div id="post-slider-dots-${postId}" class="pointer-events-auto flex items-center gap-1.5 bg-slate-950/70 backdrop-blur-md px-3 py-1.5 rounded-full border border-white/10 max-w-[70%] overflow-x-auto">
+                            ${images.map((_, idx) => `
+                                <button type="button" onclick="event.stopPropagation(); goToPostSlide(${postId}, ${idx})" 
+                                        class="slider-dot transition-all duration-300 rounded-full ${idx === 0 ? 'w-5 h-2 bg-amber-400' : 'w-2 h-2 bg-white/50 hover:bg-white'}" 
+                                        title="Jump to Photo ${idx + 1}">
+                                </button>
+                            `).join('')}
+                        </div>
+
+                        <!-- Fullscreen Hint -->
+                        <div class="hidden sm:flex items-center gap-1.5 text-[10px] font-medium text-white/90 bg-slate-950/70 backdrop-blur-md px-2.5 py-1 rounded-full border border-white/10">
+                            <i class="fas fa-expand text-[9px] text-amber-300"></i> Click to enlarge
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        // Initialize and start auto-sliding for all posts with multiple photos
+        function initPostSliders() {
+            // Clear existing intervals
+            Object.keys(postSliders).forEach(id => {
+                if (postSliders[id] && postSliders[id].intervalId) {
+                    clearInterval(postSliders[id].intervalId);
+                }
+            });
+
+            const filtered = currentEventFilter === 'All' 
+                ? eventPostsData 
+                : eventPostsData.filter(p => p.category === currentEventFilter);
+
+            filtered.forEach(post => {
+                const images = getPostImages(post);
+                if (images && images.length > 1) {
+                    postSliders[post.id] = {
+                        currentIndex: 0,
+                        total: images.length,
+                        intervalId: null,
+                        isPaused: false
+                    };
+                    startPostAutoSlide(post.id);
+                    
+                    // Attach mobile touch swipe gestures
+                    const sliderEl = document.getElementById(`event-slider-${post.id}`);
+                    if (sliderEl) {
+                        attachSliderTouch(sliderEl, post.id);
+                    }
+                }
+            });
+        }
+
+        function startPostAutoSlide(postId) {
+            const slider = postSliders[postId];
+            if (!slider || slider.total <= 1) return;
+            if (slider.intervalId) clearInterval(slider.intervalId);
+
+            // Automatically slides every 3.5 seconds
+            slider.intervalId = setInterval(() => {
+                if (!slider.isPaused) {
+                    slideEventPost(postId, 1);
+                }
+            }, 3500);
+        }
+
+        function slideEventPost(postId, direction) {
+            const slider = postSliders[postId];
+            if (!slider || slider.total <= 1) return;
+            slider.currentIndex = (slider.currentIndex + direction + slider.total) % slider.total;
+            updatePostSliderDOM(postId);
+        }
+
+        function goToPostSlide(postId, index) {
+            const slider = postSliders[postId];
+            if (!slider || index < 0 || index >= slider.total) return;
+            slider.currentIndex = index;
+            updatePostSliderDOM(postId);
+        }
+
+        function pausePostSlider(postId) {
+            if (postSliders[postId]) {
+                postSliders[postId].isPaused = true;
+            }
+        }
+
+        function resumePostSlider(postId) {
+            if (postSliders[postId]) {
+                postSliders[postId].isPaused = false;
+            }
+        }
+
+        function updatePostSliderDOM(postId) {
+            const slider = postSliders[postId];
+            if (!slider) return;
+
+            const track = document.getElementById(`post-slider-track-${postId}`);
+            const counter = document.getElementById(`post-slider-counter-${postId}`);
+            const dotsContainer = document.getElementById(`post-slider-dots-${postId}`);
+
+            if (track) {
+                track.style.transform = `translateX(-${slider.currentIndex * 100}%)`;
+            }
+
+            if (counter) {
+                counter.textContent = `${slider.currentIndex + 1} / ${slider.total} Photos`;
+            }
+
+            if (dotsContainer) {
+                const dots = dotsContainer.querySelectorAll('.slider-dot');
+                dots.forEach((dot, idx) => {
+                    if (idx === slider.currentIndex) {
+                        dot.className = 'slider-dot transition-all duration-300 rounded-full w-5 h-2 bg-amber-400';
+                    } else {
+                        dot.className = 'slider-dot transition-all duration-300 rounded-full w-2 h-2 bg-white/50 hover:bg-white';
+                    }
+                });
+            }
+        }
+
+        // Mobile touch swipe gestures support
+        function attachSliderTouch(element, postId) {
+            let startX = 0;
+            let endX = 0;
+
+            element.addEventListener('touchstart', (e) => {
+                if (e.touches && e.touches.length > 0) {
+                    startX = e.touches[0].clientX;
+                    pausePostSlider(postId);
+                }
+            }, { passive: true });
+
+            element.addEventListener('touchend', (e) => {
+                if (e.changedTouches && e.changedTouches.length > 0) {
+                    endX = e.changedTouches[0].clientX;
+                    resumePostSlider(postId);
+                    const diffX = startX - endX;
+                    if (Math.abs(diffX) > 40) {
+                        if (diffX > 0) {
+                            slideEventPost(postId, 1);
+                        } else {
+                            slideEventPost(postId, -1);
+                        }
+                    }
+                }
+            }, { passive: true });
+        }
+
+        // Lightbox integration for Event Post Multi-Photo Gallery
+        function openPostGallery(postId, photoIndex = 0) {
+            const post = eventPostsData.find(p => p.id === postId);
+            if (!post) return;
+            const images = getPostImages(post);
+            if (!images || images.length === 0) return;
+
+            currentLightboxMode = 'post';
+            currentPostGalleryPhotos = images;
+            currentPostGalleryIndex = photoIndex;
+            currentPostGalleryPost = post;
+
+            updatePostLightboxContent();
+            const modal = document.getElementById('eca-lightbox-modal');
+            if (modal) {
+                modal.classList.remove('hidden');
+                document.body.style.overflow = 'hidden';
+            }
+        }
+
+        function updatePostLightboxContent() {
+            const images = currentPostGalleryPhotos;
+            const index = currentPostGalleryIndex;
+            const post = currentPostGalleryPost;
+            if (!images || !images[index]) return;
+
+            const imgEl = document.getElementById('lightbox-img');
+            if (imgEl) imgEl.src = images[index];
+
+            const badgeEl = document.getElementById('lightbox-badge');
+            if (badgeEl) {
+                badgeEl.textContent = post.category || 'Event Update';
+                badgeEl.className = 'bg-brand-50 text-brand-900 text-xs font-bold px-3 py-1 rounded-full';
+            }
+
+            const counterEl = document.getElementById('lightbox-counter');
+            if (counterEl) {
+                counterEl.textContent = `${index + 1} / ${images.length}`;
+            }
+
+            const titleEl = document.getElementById('lightbox-title');
+            if (titleEl) {
+                titleEl.textContent = post.category ? `Pegasus Event: ${post.category}` : 'Pegasus Event Announcement';
+            }
+
+            const dateEl = document.getElementById('lightbox-date');
+            if (dateEl) {
+                dateEl.innerHTML = `<i class="far fa-calendar-alt text-amber-500 mr-1.5"></i> ${escapeHTML(post.date)}`;
+            }
+
+            const wingEl = document.getElementById('lightbox-wing');
+            if (wingEl) {
+                wingEl.innerHTML = `<i class="fas fa-bullhorn text-brand-900 mr-1.5"></i> Campus Live Feed`;
+            }
+
+            const captionEl = document.getElementById('lightbox-caption');
+            if (captionEl) {
+                captionEl.textContent = post.content;
+            }
+
+            const tagsEl = document.getElementById('lightbox-tags');
+            if (tagsEl) {
+                tagsEl.innerHTML = `<span class="bg-brand-50 text-brand-900 text-xs font-semibold px-2.5 py-1 rounded-lg">#${escapeHTML(post.category || 'PegasusEvent')}</span> <span class="bg-slate-100 text-slate-600 text-xs font-semibold px-2.5 py-1 rounded-lg">#CampusLife</span>`;
+            }
+
+
+        }
+
+        function navigatePostGallery(direction) {
+            if (!currentPostGalleryPhotos || currentPostGalleryPhotos.length <= 1) return;
+            currentPostGalleryIndex = (currentPostGalleryIndex + direction + currentPostGalleryPhotos.length) % currentPostGalleryPhotos.length;
+            updatePostLightboxContent();
+        }
+
+        function openPhotoModal(src) {
+            currentLightboxMode = 'post';
+            currentPostGalleryPhotos = [src];
+            currentPostGalleryIndex = 0;
+            currentPostGalleryPost = {
+                category: "Campus Moment",
+                date: "Today",
+                content: "Campus event media captured live at Pegasus English School.",
+                likes: 0,
+                liked: false
+            };
+            updatePostLightboxContent();
+            const modal = document.getElementById('eca-lightbox-modal');
+            if (modal) {
+                modal.classList.remove('hidden');
+                document.body.style.overflow = 'hidden';
+            }
+        }
+
+        function renderFacebookFeed() {
+            const container = document.getElementById('facebook-event-feed-container');
+            if (!container) return;
+
+            const filtered = currentEventFilter === 'All' 
+                ? eventPostsData 
+                : eventPostsData.filter(p => p.category === currentEventFilter);
+
+            if (filtered.length === 0) {
+                container.innerHTML = `
+                    <div class="bg-white rounded-2xl border border-slate-200 p-10 text-center space-y-3">
+                        <div class="w-12 h-12 rounded-full bg-slate-100 text-slate-400 flex items-center justify-center mx-auto text-xl">
+                            <i class="fas fa-folder-open"></i>
+                        </div>
+                        <h4 class="font-bold text-slate-700 text-sm">No Events in this Category</h4>
+                        <p class="text-xs text-slate-400 max-w-sm mx-auto">No announcements in this category yet. Switch to All Feed to explore all campus updates.</p>
+                        <button onclick="filterEventPosts('All')" class="text-xs font-bold bg-brand-900 text-white px-4 py-2 rounded-xl">View All Posts</button>
+                    </div>
+                `;
+                return;
+            }
+
+            container.innerHTML = filtered.map(post => `
+                <article class="bg-white rounded-2xl border border-slate-200/90 shadow-sm overflow-hidden hover:shadow-md transition">
+                    <!-- Post Header -->
+                    <div class="p-4 sm:p-5 pb-3 flex items-start justify-between">
+                        <div class="flex items-center space-x-3">
+                            <img src="logo.jpg" alt="Pegasus Emblem" loading="lazy" decoding="async" class="w-11 h-11 rounded-full border border-slate-200 object-contain p-0.5 bg-white shadow-2xs">
+                            <div>
+                                <div class="flex items-center space-x-1.5 flex-wrap">
+                                    <h3 class="font-extrabold text-sm text-slate-900 leading-tight">${post.author}</h3>
+                                    ${post.verified ? '<i class="fas fa-check-circle text-sky-500 text-xs" title="Verified Campus Channel"></i>' : ''}
+                                    ${getCategoryBadge(post.category)}
+                                </div>
+                                <p class="text-[11px] text-slate-400 mt-0.5 flex items-center gap-1.5">
+                                    <i class="far fa-calendar-alt text-amber-500 text-[10px]"></i>
+                                    <span>${escapeHTML(post.date)}</span>
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Right Side: Official Badge & Edit in Admin Link -->
+                        <div class="flex items-center gap-2">
+                            <div class="text-[11px] font-bold text-slate-600 flex items-center gap-1.5 bg-slate-100 px-2.5 py-1 rounded-full border border-slate-200">
+                                <i class="fas fa-bullhorn text-brand-900 text-[10px]"></i>
+                                <span>Official Post</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Post Body Text with Line Breaks Preserved -->
+                    <div class="px-4 sm:px-5 pb-4">
+                        <p class="text-xs sm:text-sm text-slate-800 leading-relaxed whitespace-pre-line">${escapeHTML(post.content)}</p>
+                    </div>
+
+                    <!-- Post Photo Attachment (Automatic Slideshow / Single Photo) -->
+                    ${renderPostMediaGallery(post)}
+                </article>
+            `).join('');
+
+            // Automatically initialize and start animated slideshows for all multi-photo posts!
+            initPostSliders();
+        }
+
+        function showEventFeedToast(msg) {
+            let toast = document.getElementById('event-feed-toast');
+            if (!toast) {
+                toast = document.createElement('div');
+                toast.id = 'event-feed-toast';
+                toast.className = 'fixed bottom-5 right-5 z-50 bg-brand-950 text-white text-xs font-bold px-4 py-3 rounded-2xl shadow-2xl border border-gold-500/40 flex items-center space-x-2 transition-all duration-300';
+                document.body.appendChild(toast);
+            }
+            toast.innerHTML = msg;
+            toast.style.opacity = '1';
+            toast.style.transform = 'translateY(0)';
+            setTimeout(() => {
+                toast.style.opacity = '0';
+                toast.style.transform = 'translateY(10px)';
+            }, 3000);
+        }
+
+        // ==========================================
+        // ACADEMIC CALENDAR SYSTEM (PUBLIC VIEW)
+        // ==========================================
+        const DEFAULT_CALENDAR_EVENTS = [
+            {
+                id: "CAL-001",
+                title: "First Terminal Assessment Week",
+                category: "Exam",
+                startDate: "2026-10-20",
+                endDate: "2026-10-26",
+                classTarget: "All Classes",
+                description: "Official continuous assessment and written examinations for Grades I to X.",
+                color: "amber"
+            },
+            {
+                id: "CAL-002",
+                title: "Vijaya Dashami & Deepawali (Tihar) Vacation",
+                category: "Holiday",
+                startDate: "2026-10-28",
+                endDate: "2026-11-12",
+                classTarget: "All Classes",
+                description: "School closed for auspicious Dashain, Tihar, and Chhath Parva celebrations.",
+                color: "emerald"
+            },
+            {
+                id: "CAL-003",
+                title: "School Reopens Post-Dashain Vacation",
+                category: "Academic",
+                startDate: "2026-11-13",
+                endDate: "2026-11-13",
+                classTarget: "All Classes",
+                description: "Regular morning and day classes resume. Attendance mandatory.",
+                color: "sky"
+            },
+            {
+                id: "CAL-004",
+                title: "Inter-House Taekwondo & Wushu Championship Trials",
+                category: "ECA",
+                startDate: "2026-11-18",
+                endDate: "2026-11-19",
+                classTarget: "All Classes",
+                description: "Martial arts belt grading trials and sparring competition at school dojang.",
+                color: "indigo"
+            },
+            {
+                id: "CAL-005",
+                title: "Inter-School Spelling Bee & Creative Writing Contest",
+                category: "ECA",
+                startDate: "2026-11-24",
+                endDate: "2026-11-24",
+                classTarget: "Primary & Secondary",
+                description: "Annual literary competition hosted in the main school auditorium.",
+                color: "indigo"
+            },
+            {
+                id: "CAL-006",
+                title: "Parents-Teacher Meeting (PTM) & CAS Report Distribution",
+                category: "Meeting",
+                startDate: "2026-11-28",
+                endDate: "2026-11-28",
+                classTarget: "All Classes",
+                description: "Review academic and ECA performance with class teachers and subject faculty.",
+                color: "purple"
+            },
+            {
+                id: "CAL-007",
+                title: "Second Terminal Assessment Week",
+                category: "Exam",
+                startDate: "2026-12-15",
+                endDate: "2026-12-22",
+                classTarget: "All Classes",
+                description: "Summative paper examinations and continuous formative rubric submissions.",
+                color: "amber"
+            },
+            {
+                id: "CAL-008",
+                title: "Winter Recess & Secondary Educational Field Excursion",
+                category: "Holiday",
+                startDate: "2027-01-02",
+                endDate: "2027-01-15",
+                classTarget: "All Classes",
+                description: "Winter break for scholars; guided heritage & science excursion for secondary wing.",
+                color: "emerald"
+            },
+            {
+                id: "CAL-009",
+                title: "Annual Sports Meet & Athletic Championship",
+                category: "ECA",
+                startDate: "2027-01-28",
+                endDate: "2027-01-29",
+                classTarget: "All Classes",
+                description: "Track and field events, relay races, tug of war, and gymnastics display.",
+                color: "indigo"
+            },
+            {
+                id: "CAL-010",
+                title: "Saraswati Puja (Shree Panchami) Special Assembly",
+                category: "Academic",
+                startDate: "2027-02-04",
+                endDate: "2027-02-04",
+                classTarget: "All Classes",
+                description: "Worship of the Goddess of Wisdom, Akshararambha for kindergarten scholars, and cultural programs.",
+                color: "sky"
+            },
+            {
+                id: "CAL-011",
+                title: "Annual Board / SEE Pre-Board Examinations",
+                category: "Exam",
+                startDate: "2027-02-22",
+                endDate: "2027-03-05",
+                classTarget: "Secondary Wing (VIII-X)",
+                description: "Comprehensive model examinations simulating SEE national board protocols.",
+                color: "amber"
+            },
+            {
+                id: "CAL-012",
+                title: "Pegasus Annual Day & Grand Cultural Gala",
+                category: "ECA",
+                startDate: "2027-03-28",
+                endDate: "2027-03-28",
+                classTarget: "All Classes",
+                description: "Annual prize distribution, drama performance, and student graduation ceremony.",
+                color: "indigo"
+            }
+        ];
+
+        let publicCalendarEvents = [];
+        let publicCalCurrentYear = 2026;
+        let publicCalCurrentMonth = 9; // October (0-indexed: 9 = October)
+        let publicCalFilter = 'ALL';
+
+        function getPublicCalChipStyle(cat) {
+            switch (cat) {
+                case 'Exam': return 'bg-amber-100 text-amber-800 border-amber-300';
+                case 'Holiday': return 'bg-emerald-100 text-emerald-800 border-emerald-300';
+                case 'ECA': return 'bg-indigo-100 text-indigo-800 border-indigo-300';
+                case 'Academic': return 'bg-sky-100 text-sky-800 border-sky-300';
+                case 'Meeting': return 'bg-brand-100 text-brand-900 border-brand-300';
+                default: return 'bg-slate-100 text-slate-800 border-slate-300';
+            }
+        }
+
+        function getPublicCalEventBadge(cat) {
+            switch (cat) {
+                case 'Exam': return 'bg-amber-500 text-white';
+                case 'Holiday': return 'bg-emerald-600 text-white';
+                case 'ECA': return 'bg-indigo-600 text-white';
+                case 'Academic': return 'bg-sky-600 text-white';
+                case 'Meeting': return 'bg-brand-800 text-white';
+                default: return 'bg-slate-600 text-white';
+            }
+        }
+
+        function loadPublicCalendar() {
+            try {
+                const stored = localStorage.getItem('pegasus_nepali_calendar_events') || localStorage.getItem('pegasus_calendar_events_v2') || localStorage.getItem('pegasus_calendar_events');
+                if (stored) {
+                    const parsed = JSON.parse(stored);
+                    publicCalendarEvents = Array.isArray(parsed) && parsed.length > 0 ? parsed : [...DEFAULT_CALENDAR_EVENTS];
+                } else {
+                    publicCalendarEvents = [...DEFAULT_CALENDAR_EVENTS];
+                    localStorage.setItem('pegasus_calendar_events', JSON.stringify(publicCalendarEvents));
+                }
+            } catch(e) {
+                publicCalendarEvents = [...DEFAULT_CALENDAR_EVENTS];
+            }
+            renderIndexCalendarUpcoming();
+            renderPublicCalendarGrid();
+        }
+
+        function filterPublicCalendar(cat) {
+            publicCalFilter = cat;
+            // Update sidebar buttons
+            document.querySelectorAll('.pub-cal-btn').forEach(btn => {
+                const isMatch = (btn.getAttribute('onclick') || '').includes(`'${cat}'`);
+                if (isMatch) {
+                    btn.classList.add('bg-brand-900', 'text-white', 'active');
+                    btn.classList.remove('bg-slate-100', 'text-slate-700');
+                } else {
+                    btn.classList.remove('bg-brand-900', 'text-white', 'active');
+                    btn.classList.add('bg-slate-100', 'text-slate-700');
+                }
+            });
+            // Update modal buttons
+            document.querySelectorAll('.pub-modal-filter').forEach(btn => {
+                if (btn.getAttribute('data-cat') === cat) {
+                    btn.classList.add('bg-brand-900', 'text-white', 'active');
+                    btn.classList.remove('bg-white', 'text-slate-700', 'border');
+                } else {
+                    btn.classList.remove('bg-brand-900', 'text-white', 'active');
+                    btn.classList.add('bg-white', 'text-slate-700', 'border');
+                }
+            });
+            renderIndexCalendarUpcoming();
+            renderPublicCalendarGrid();
+        }
+
+        function renderIndexCalendarUpcoming() {
+            const container = document.getElementById('index-calendar-upcoming-container');
+            if (!container) return;
+
+            let list = [...publicCalendarEvents];
+            if (publicCalFilter !== 'ALL') {
+                list = list.filter(e => e.category === publicCalFilter);
+            }
+            list.sort((a, b) => (a.startDate || '').localeCompare(b.startDate || ''));
+
+            if (list.length === 0) {
+                container.innerHTML = `
+                    <div class="p-4 text-center text-slate-400">
+                        <i class="far fa-calendar-times text-xl mb-1 text-slate-300 block"></i>
+                        <p class="text-xs font-semibold">No scheduled events in this category.</p>
+                    </div>
+                `;
+                return;
+            }
+
+            container.innerHTML = list.slice(0, 5).map(ev => {
+                const isRange = ev.endDate && ev.endDate !== ev.startDate;
+                const dateDisplay = isRange ? `${ev.startDate} to ${ev.endDate}` : ev.startDate;
+                return `
+                    <div onclick="openPublicCalDetailModal('${ev.id}')" class="p-2.5 rounded-xl border border-slate-100 bg-slate-50/70 hover:bg-slate-100/80 transition cursor-pointer group">
+                        <div class="flex items-center justify-between gap-1 mb-1">
+                            <span class="text-[9px] font-extrabold px-1.5 py-0.5 rounded border ${getPublicCalChipStyle(ev.category)}">
+                                ${ev.category}
+                            </span>
+                            <span class="text-[9px] text-slate-400 font-mono">
+                                <i class="far fa-calendar-alt text-sky-600 mr-0.5"></i> ${dateDisplay}
+                            </span>
+                        </div>
+                        <h5 class="text-xs font-bold text-slate-900 group-hover:text-brand-900 leading-snug line-clamp-1">
+                            ${escapeHTML(ev.title)}
+                        </h5>
+                        <p class="text-[10px] text-slate-500 mt-0.5">
+                            Target: <span class="font-medium text-slate-700">${escapeHTML(ev.classTarget || 'All Classes')}</span>
+                        </p>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        const MONTH_NAMES = [
+            "January", "February", "March", "April", "May", "June",
+            "July", "August", "September", "October", "November", "December"
+        ];
+
+        function changePublicCalMonth(delta) {
+            publicCalCurrentMonth += delta;
+            if (publicCalCurrentMonth > 11) {
+                publicCalCurrentMonth = 0;
+                publicCalCurrentYear++;
+            } else if (publicCalCurrentMonth < 0) {
+                publicCalCurrentMonth = 11;
+                publicCalCurrentYear--;
+            }
+            renderPublicCalendarGrid();
+        }
+
+        function goToPublicCalToday() {
+            const today = new Date();
+            publicCalCurrentYear = today.getFullYear();
+            publicCalCurrentMonth = today.getMonth();
+            renderPublicCalendarGrid();
+        }
+
+        function renderPublicCalendarGrid() {
+            const grid = document.getElementById('public-calendar-grid');
+            const titleEl = document.getElementById('public-cal-month-title');
+            if (!grid) return;
+
+            if (titleEl) {
+                titleEl.textContent = `${MONTH_NAMES[publicCalCurrentMonth]} ${publicCalCurrentYear}`;
+            }
+
+            const firstDay = new Date(publicCalCurrentYear, publicCalCurrentMonth, 1).getDay();
+            const daysInMonth = new Date(publicCalCurrentYear, publicCalCurrentMonth + 1, 0).getDate();
+            const prevMonthDays = new Date(publicCalCurrentYear, publicCalCurrentMonth, 0).getDate();
+
+            let cellsHtml = '';
+
+            // Previous month padding
+            for (let i = firstDay - 1; i >= 0; i--) {
+                const dayNum = prevMonthDays - i;
+                cellsHtml += `
+                    <div class="bg-slate-50/70 p-1.5 sm:p-2 min-h-[60px] sm:min-h-[75px] border-r border-b border-slate-100 text-slate-300 font-bold text-xs select-none">
+                        <span>${dayNum}</span>
+                    </div>
+                `;
+            }
+
+            // Current month days
+            const today = new Date();
+            const isThisMonth = (today.getFullYear() === publicCalCurrentYear && today.getMonth() === publicCalCurrentMonth);
+
+            for (let d = 1; d <= daysInMonth; d++) {
+                const dateStr = `${publicCalCurrentYear}-${String(publicCalCurrentMonth + 1).padStart(2, '0')}-${String(d).padStart(2, '0')}`;
+                const isToday = isThisMonth && today.getDate() === d;
+
+                let dayEvents = publicCalendarEvents.filter(ev => {
+                    const s = ev.startDate;
+                    const e = ev.endDate || ev.startDate;
+                    return dateStr >= s && dateStr <= e;
+                });
+
+                if (publicCalFilter !== 'ALL') {
+                    dayEvents = dayEvents.filter(ev => ev.category === publicCalFilter);
+                }
+
+                cellsHtml += `
+                    <div onclick="handlePublicCalDateClick('${dateStr}')" class="p-1 sm:p-2 min-h-[60px] sm:min-h-[75px] border-r border-b border-slate-100 hover:bg-slate-50 transition cursor-pointer relative flex flex-col justify-between ${isToday ? 'bg-amber-50/60' : 'bg-white'}">
+                        <div class="flex items-center justify-between">
+                            <span class="text-xs font-black ${isToday ? 'w-6 h-6 rounded-full bg-brand-900 text-white flex items-center justify-center' : 'text-slate-800'}">
+                                ${d}
+                            </span>
+                            ${dayEvents.length > 0 ? `<span class="w-1.5 h-1.5 rounded-full bg-brand-900"></span>` : ''}
+                        </div>
+                        <div class="mt-1 space-y-1 overflow-hidden">
+                            ${dayEvents.slice(0, 2).map(ev => `
+                                <div onclick="event.stopPropagation(); openPublicCalDetailModal('${ev.id}')" class="text-[9px] font-bold px-1 py-0.5 rounded truncate shadow-2xs leading-tight ${getPublicCalEventBadge(ev.category)}" title="${escapeHTML(ev.title)}">
+                                    ${escapeHTML(ev.title)}
+                                </div>
+                            `).join('')}
+                            ${dayEvents.length > 2 ? `<div class="text-[9px] text-slate-400 font-bold pl-0.5">+${dayEvents.length - 2} more</div>` : ''}
+                        </div>
+                    </div>
+                `;
+            }
+
+            // Next month padding
+            const totalCells = firstDay + daysInMonth;
+            const remaining = (7 - (totalCells % 7)) % 7;
+            for (let d = 1; d <= remaining; d++) {
+                cellsHtml += `
+                    <div class="bg-slate-50/70 p-1.5 sm:p-2 min-h-[60px] sm:min-h-[75px] border-r border-b border-slate-100 text-slate-300 font-bold text-xs select-none">
+                        <span>${d}</span>
+                    </div>
+                `;
+            }
+
+            grid.innerHTML = cellsHtml;
+            renderPublicCalModalEventsList();
+        }
+
+        function renderPublicCalModalEventsList() {
+            const listEl = document.getElementById('public-cal-modal-events-list');
+            const badgeEl = document.getElementById('public-cal-event-count');
+            if (!listEl) return;
+
+            let list = [...publicCalendarEvents];
+            if (publicCalFilter !== 'ALL') {
+                list = list.filter(e => e.category === publicCalFilter);
+            }
+            list.sort((a, b) => (a.startDate || '').localeCompare(b.startDate || ''));
+
+            if (badgeEl) badgeEl.textContent = `${list.length} Events`;
+
+            if (list.length === 0) {
+                listEl.innerHTML = `
+                    <div class="p-6 text-center text-slate-400">
+                        <i class="far fa-calendar-times text-2xl text-slate-300 mb-2 block"></i>
+                        <p class="font-bold text-xs">No scheduled milestones found.</p>
+                    </div>
+                `;
+                return;
+            }
+
+            listEl.innerHTML = list.map(ev => {
+                const isRange = ev.endDate && ev.endDate !== ev.startDate;
+                const dateDisplay = isRange ? `${ev.startDate} to ${ev.endDate}` : ev.startDate;
+                return `
+                    <div onclick="openPublicCalDetailModal('${ev.id}')" class="bg-slate-50 hover:bg-slate-100 p-3 rounded-2xl border border-slate-200 transition cursor-pointer space-y-1.5 shadow-2xs">
+                        <div class="flex items-center justify-between gap-1">
+                            <span class="text-[10px] font-black px-2 py-0.5 rounded border ${getPublicCalChipStyle(ev.category)}">
+                                ${ev.category}
+                            </span>
+                            <span class="text-[10px] bg-white border border-slate-200 text-slate-700 font-bold px-1.5 py-0.5 rounded">
+                                ${escapeHTML(ev.classTarget || 'All Classes')}
+                            </span>
+                        </div>
+                        <h5 class="text-xs font-bold text-slate-900 leading-snug">${escapeHTML(ev.title)}</h5>
+                        <div class="flex items-center text-[10px] font-mono text-slate-500 gap-1.5">
+                            <i class="far fa-calendar-alt text-brand-900"></i>
+                            <span>${dateDisplay}</span>
+                        </div>
+                        ${ev.description ? `<p class="text-[11px] text-slate-500 line-clamp-2">${escapeHTML(ev.description)}</p>` : ''}
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function handlePublicCalDateClick(dateStr) {
+            const found = publicCalendarEvents.find(ev => {
+                const s = ev.startDate;
+                const e = ev.endDate || ev.startDate;
+                return dateStr >= s && dateStr <= e;
+            });
+            if (found) {
+                openPublicCalDetailModal(found.id);
+            } else {
+                showEventFeedToast(`Date: ${dateStr} • Regular School Day (No exams/holidays)`);
+            }
+        }
+
+        function openPublicCalendarModal() {
+            const modal = document.getElementById('public-calendar-modal');
+            if (modal) {
+                modal.classList.remove('hidden');
+                document.body.classList.add('overflow-hidden');
+                renderPublicCalendarGrid();
+            }
+        }
+
+        function closePublicCalendarModal() {
+            const modal = document.getElementById('public-calendar-modal');
+            if (modal) {
+                modal.classList.add('hidden');
+                document.body.classList.remove('overflow-hidden');
+            }
+        }
+
+        function handlePublicCalBackdropClick(e) {
+            if (e.target && e.target.id === 'public-calendar-modal') {
+                closePublicCalendarModal();
+            }
+        }
+
+        function openPublicCalDetailModal(id) {
+            const item = publicCalendarEvents.find(e => String(e.id) === String(id));
+            if (!item) return;
+
+            const modal = document.getElementById('public-cal-detail-modal');
+            if (!modal) return;
+
+            document.getElementById('pub-detail-badge').className = `px-2.5 py-0.5 rounded-full text-xs font-black border ${getPublicCalChipStyle(item.category)}`;
+            document.getElementById('pub-detail-badge').textContent = item.category;
+            document.getElementById('pub-detail-title').textContent = item.title;
+
+            const isRange = item.endDate && item.endDate !== item.startDate;
+            document.getElementById('pub-detail-date').textContent = isRange ? `${item.startDate} to ${item.endDate}` : item.startDate;
+            document.getElementById('pub-detail-target').textContent = item.classTarget || 'All Classes (I - X)';
+            document.getElementById('pub-detail-desc').textContent = item.description || 'Official academic milestone scheduled per Pegasus calendar.';
+
+            modal.classList.remove('hidden');
+        }
+
+        function closePublicCalDetailModal() {
+            const modal = document.getElementById('public-cal-detail-modal');
+            if (modal) {
+                modal.classList.add('hidden');
+            }
+        }
+
+        // Initialize Feed, ECA Moments, Exam Routines, and Calendar on DOM load
+        document.addEventListener('DOMContentLoaded', () => {
+            loadEventPosts();
+            loadEcaData();
+            loadSidebarExamRoutines();
+            loadPublicCalendar();
+        });
+        // Also run immediately in case DOM is already ready
+        if (document.readyState === 'complete' || document.readyState === 'interactive') {
+            loadEventPosts();
+            loadEcaData();
+            loadSidebarExamRoutines();
+            loadPublicCalendar();
+        }
+
+        // Live cross-tab synchronization with Admin & Principal Portals
+        window.addEventListener('storage', (e) => {
+            if (e.key === 'pegasus_events_feed') {
+                loadEventPosts();
+            } else if (e.key === 'pegasus_eca_moments') {
+                loadEcaData();
+            } else if (e.key === 'pegasus_exam_routines') {
+                loadSidebarExamRoutines();
+            } else if (e.key === 'pegasus_calendar_events') {
+                loadPublicCalendar();
+            }
+        });
+
+        // ========================================================
+        // OFFICIAL NOTICE POPUP LOGIC
+        // ========================================================
+        const DEFAULT_POPUP_NOTICE = {
+            enabled: true,
+            title: "शुभ दिपावली, तिहार तथा छठ पर्वको बिदा एवं त्रैमासिक परीक्षा सम्बन्धी जरूरी सूचना",
+            category: "Urgent Official Notice",
+            bsDate: "कार्तिक २, २०८३ (वि.सं.)",
+            authority: "Office of the Principal",
+            refNumber: "PES/CIR-2083/07",
+            bodyHtml: `
+                <p>आदरणीय अभिभावक तथा प्यारा विद्यार्थी भाइबहिनीहरू,</p>
+                <div class="bg-amber-50/70 border border-amber-200/80 rounded-2xl p-3.5 space-y-2 text-xs text-amber-950">
+                    <div class="flex items-start gap-2">
+                        <i class="fas fa-check-circle text-amber-600 mt-0.5 shrink-0"></i>
+                        <span><strong>प्रथम त्रैमासिक नतिजा वितरण:</strong> कक्षागत मूल्याङ्कन तथा ग्रेडसिट तयार भइसकेकोले अभिभावकज्यूहरूलाई कक्षा शिक्षकसँग सम्पर्क गरी प्रगति विवरण बुझ्न अनुरोध गरिन्छ।</span>
+                    </div>
+                    <div class="flex items-start gap-2">
+                        <i class="fas fa-calendar-times text-rose-600 mt-0.5 shrink-0"></i>
+                        <span><strong>तिहार तथा छठ बिदा (Vacation):</strong> मिति <strong>२०८३ कार्तिक २२ गतेदेखि २८ गतेसम्म</strong> विद्यालयको पठनपाठन पूर्ण रूपमा बन्द रहनेछ।</span>
+                    </div>
+                    <div class="flex items-start gap-2">
+                        <i class="fas fa-school text-emerald-600 mt-0.5 shrink-0"></i>
+                        <span><strong>विद्यालय पुनः सञ्चालन:</strong> मिति <strong>२०८३ कार्तिक २९ गते आइतबार</strong> बिहान ९:०० बजेदेखि नियमित कक्षाहरू सञ्चालन हुनेछन्।</span>
+                    </div>
+                    <div class="flex items-start gap-2">
+                        <i class="fas fa-graduation-cap text-indigo-600 mt-0.5 shrink-0"></i>
+                        <span><strong>नयाँ शैक्षिक भर्ना तथा छात्रवृत्ति:</strong> शैक्षिक सत्र २०८३ का लागि नर्सरीदेखि कक्षा ९ सम्म सीमित सिटमा प्रवेश परीक्षा फारम खुला गरिएको छ।</span>
+                    </div>
+                </div>
+                <p class="text-[11px] text-slate-500 italic">समस्त अभिभावक, शिक्षक, तथा विद्यार्थीहरूमा सुख, शान्ति, समृद्धि एवं सुस्वास्थ्यको हार्दिक मङ्गलमय शुभकामना व्यक्त गर्दछौं।</p>
+            `,
+            actionLabel: "View Calendar (वि.सं.)",
+            actionTarget: "calendar"
+        };
+
+        // Check notice popup on initial page load if active
+        if (document.readyState === 'complete' || document.readyState === 'interactive') {
+            checkAndShowNoticePopup();
+        } else {
+            document.addEventListener('DOMContentLoaded', () => {
+                checkAndShowNoticePopup();
+            });
+        }
+
+        function loadActiveNoticeData() {
+            try {
+                const stored = localStorage.getItem('pegasus_active_popup_notice');
+                return stored ? JSON.parse(stored) : DEFAULT_POPUP_NOTICE;
+            } catch(e) {
+                return DEFAULT_POPUP_NOTICE;
+            }
+        }
+
+        function checkAndShowNoticePopup() {
+            const notice = loadActiveNoticeData();
+            if (!notice || notice.enabled === false) return;
+
+            // Check if user chose "Do not show again today"
+            const todayStr = new Date().toISOString().split('T')[0];
+            const dismissedDate = localStorage.getItem('pegasus_notice_dismissed_date');
+            if (dismissedDate === todayStr) {
+                return; // User dismissed for today
+            }
+
+            openNoticePopup();
+        }
+
+        function openNoticePopup() {
+            const modal = document.getElementById('school-notice-popup-modal');
+            const card = document.getElementById('notice-popup-card');
+            if (!modal || !card) return;
+
+            const notice = loadActiveNoticeData();
+            if (notice) {
+                const titleEl = document.getElementById('notice-popup-title');
+                const catEl = document.getElementById('notice-popup-category-badge');
+                const dateEl = document.getElementById('notice-popup-date-badge');
+                const authEl = document.getElementById('notice-popup-authority');
+                const bodyEl = document.getElementById('notice-popup-body');
+                const actionBtn = document.getElementById('notice-action-btn');
+
+                if (titleEl && notice.title) titleEl.textContent = notice.title;
+                if (catEl && notice.category) catEl.innerHTML = `<i class="fas fa-bullhorn text-amber-300"></i> ${escapeHTML(notice.category)}`;
+                if (dateEl && notice.bsDate) dateEl.textContent = notice.bsDate;
+                if (authEl && notice.authority) authEl.innerHTML = `<i class="fas fa-stamp text-amber-500"></i> ${escapeHTML(notice.authority)}`;
+                if (bodyEl && notice.bodyHtml) bodyEl.innerHTML = notice.bodyHtml;
+                if (actionBtn && notice.actionLabel) {
+                    actionBtn.innerHTML = `<i class="fas fa-calendar-alt text-gold-300"></i> ${escapeHTML(notice.actionLabel)}`;
+                }
+            }
+
+            modal.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+
+            // Smooth scale-in animation
+            requestAnimationFrame(() => {
+                card.classList.remove('scale-95', 'opacity-0');
+                card.classList.add('scale-100', 'opacity-100');
+            });
+        }
+
+        function closeNoticePopup() {
+            const modal = document.getElementById('school-notice-popup-modal');
+            const card = document.getElementById('notice-popup-card');
+            const dontShowCb = document.getElementById('notice-dont-show-today');
+
+            if (dontShowCb && dontShowCb.checked) {
+                const todayStr = new Date().toISOString().split('T')[0];
+                localStorage.setItem('pegasus_notice_dismissed_date', todayStr);
+            }
+
+            if (card) {
+                card.classList.remove('scale-100', 'opacity-100');
+                card.classList.add('scale-95', 'opacity-0');
+            }
+
+            setTimeout(() => {
+                if (modal) modal.classList.add('hidden');
+                document.body.style.overflow = '';
+            }, 250);
+        }
+
+        function openNoticeActionCalendar() {
+            closeNoticePopup();
+            const calSection = document.getElementById('calendar');
+            if (calSection) {
+                calSection.scrollIntoView({ behavior: 'smooth' });
+            } else if (typeof openPublicCalendarModal === 'function') {
+                openPublicCalendarModal();
+            }
+        }
+
+        // Backdrop click to dismiss notice popup
+        document.addEventListener('DOMContentLoaded', () => {
+            const noticeModal = document.getElementById('school-notice-popup-modal');
+            if (noticeModal) {
+                noticeModal.addEventListener('click', (e) => {
+                    if (e.target === noticeModal) {
+                        closeNoticePopup();
+                    }
+                });
+            }
+        });
+
+        // ESC key to dismiss notice popup
+        window.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closeNoticePopup();
+            }
+        });
+    </script>
+
+    <!-- ======================================================== -->
+    <!-- OFFICIAL SCHOOL NOTICE POPUP MODAL                       -->
+    <!-- ======================================================== -->
+    <div id="school-notice-popup-modal" class="fixed inset-0 z-[99990] bg-slate-950/75 backdrop-blur-sm hidden flex items-center justify-center p-3.5 sm:p-5 transition-opacity duration-300" role="dialog" aria-modal="true" aria-labelledby="notice-popup-title">
+        <div class="relative w-full max-w-xl bg-white rounded-3xl shadow-2xl border border-slate-200/90 overflow-hidden transform transition-all duration-300 scale-95 opacity-0" id="notice-popup-card">
+            
+            <!-- Header Strip with School Crest & Urgent Badge -->
+            <div class="bg-gradient-to-r from-brand-950 via-brand-900 to-indigo-950 text-white p-5 sm:p-6 relative overflow-hidden">
+                <div class="absolute -right-6 -bottom-6 w-32 h-32 bg-amber-400/10 rounded-full blur-2xl pointer-events-none"></div>
+                
+                <div class="flex items-start justify-between gap-3 relative z-10">
+                    <div class="flex items-center space-x-3">
+                        <div class="w-12 h-12 rounded-2xl bg-white/10 backdrop-blur-md p-1.5 border border-white/20 flex items-center justify-center shrink-0 shadow-inner">
+                            <img src="logo.jpg" alt="Pegasus Emblem" loading="lazy" decoding="async" class="w-full h-full object-contain">
+                        </div>
+                        <div>
+                            <div class="flex flex-wrap items-center gap-2 mb-1">
+                                <span id="notice-popup-category-badge" class="bg-rose-600 text-white font-extrabold text-[10px] uppercase tracking-wider px-2.5 py-0.5 rounded-full shadow-xs flex items-center gap-1">
+                                    <i class="fas fa-bullhorn text-amber-300"></i>
+                                    <span>Urgent Official Notice</span>
+                                </span>
+                                <span id="notice-popup-date-badge" class="text-[11px] font-mono font-bold text-amber-300 bg-black/30 px-2 py-0.5 rounded border border-amber-400/30">
+                                    कार्तिक २, २०८३ (वि.सं.)
+                                </span>
+                            </div>
+                            <h4 class="text-xs font-semibold text-slate-300 tracking-wide uppercase">
+                                Pegasus English School • Kathmandu
+                            </h4>
+                        </div>
+                    </div>
+
+                    <!-- Close Icon Button -->
+                    <button type="button" onclick="closeNoticePopup()" class="w-8 h-8 rounded-full bg-white/10 hover:bg-white/20 text-slate-300 hover:text-white flex items-center justify-center transition shadow-2xs text-sm shrink-0" aria-label="Close Notice">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+
+                <!-- Notice Main Title -->
+                <h3 id="notice-popup-title" class="text-base sm:text-lg font-black text-white mt-3.5 leading-snug drop-shadow-xs">
+                    शुभ दिपावली, तिहार तथा छठ पर्वको बिदा एवं त्रैमासिक परीक्षा सम्बन्धी जरूरी सूचना
+                </h3>
+            </div>
+
+            <!-- Notice Content Body -->
+            <div class="p-5 sm:p-6 space-y-4 max-h-[60vh] overflow-y-auto">
+                
+                <div class="flex items-center justify-between text-[11px] text-slate-500 pb-2 border-b border-slate-100">
+                    <span id="notice-popup-authority" class="font-bold text-brand-900 flex items-center gap-1">
+                        <i class="fas fa-stamp text-amber-500"></i>
+                        <span>Office of the Principal</span>
+                    </span>
+                    <span class="text-slate-400 font-mono">Ref: PES/CIR-2083/07</span>
+                </div>
+
+                <!-- Dynamic Content Description -->
+                <div id="notice-popup-body" class="text-xs sm:text-sm text-slate-700 leading-relaxed space-y-3 font-medium">
+                    <p>
+                        आदरणीय अभिभावक तथा प्यारा विद्यार्थी भाइबहिनीहरू,
+                    </p>
+                    <div class="bg-amber-50/70 border border-amber-200/80 rounded-2xl p-3.5 space-y-2 text-xs text-amber-950">
+                        <div class="flex items-start gap-2">
+                            <i class="fas fa-check-circle text-amber-600 mt-0.5 shrink-0"></i>
+                            <span><strong>प्रथम त्रैमासिक नतिजा वितरण:</strong> कक्षागत मूल्याङ्कन तथा ग्रेडसिट तयार भइसकेकोले अभिभावकज्यूहरूलाई कक्षा शिक्षकसँग सम्पर्क गरी प्रगति विवरण बुझ्न अनुरोध गरिन्छ।</span>
+                        </div>
+                        <div class="flex items-start gap-2">
+                            <i class="fas fa-calendar-times text-rose-600 mt-0.5 shrink-0"></i>
+                            <span><strong>तिहार तथा छठ बिदा (Vacation):</strong> मिति <strong>२०८३ कार्तिक २२ गतेदेखि २८ गतेसम्म</strong> विद्यालयको पठनपाठन पूर्ण रूपमा बन्द रहनेछ।</span>
+                        </div>
+                        <div class="flex items-start gap-2">
+                            <i class="fas fa-school text-emerald-600 mt-0.5 shrink-0"></i>
+                            <span><strong>विद्यालय पुनः सञ्चालन:</strong> मिति <strong>२०८३ कार्तिक २९ गते आइतबार</strong> बिहान ९:०० बजेदेखि नियमित कक्षाहरू सञ्चालन हुनेछन्।</span>
+                        </div>
+                        <div class="flex items-start gap-2">
+                            <i class="fas fa-graduation-cap text-indigo-600 mt-0.5 shrink-0"></i>
+                            <span><strong>नयाँ शैक्षिक भर्ना तथा छात्रवृत्ति:</strong> शैक्षिक सत्र २०८३ का लागि नर्सरीदेखि कक्षा ९ सम्म सीमित सिटमा प्रवेश परीक्षा फारम खुला गरिएको छ।</span>
+                        </div>
+                    </div>
+                    <p class="text-[11px] text-slate-500 italic">
+                        समस्त अभिभावक, शिक्षक, तथा विद्यार्थीहरूमा सुख, शान्ति, समृद्धि एवं सुस्वास्थ्यको हार्दिक मङ्गलमय शुभकामना व्यक्त गर्दछौं।
+                    </p>
+                </div>
+
+            </div>
+
+            <!-- Footer Actions -->
+            <div class="bg-slate-50 px-5 sm:px-6 py-3.5 border-t border-slate-100 flex flex-col sm:flex-row items-center justify-between gap-3">
+                <label class="flex items-center gap-2 cursor-pointer select-none text-[11px] text-slate-600 font-semibold">
+                    <input type="checkbox" id="notice-dont-show-today" class="rounded text-brand-900 focus:ring-brand-900 border-slate-300 w-3.5 h-3.5">
+                    <span>Do not pop up this notice again today</span>
+                </label>
+
+                <div class="flex items-center space-x-2 w-full sm:w-auto justify-end">
+                    <button type="button" onclick="openNoticeActionCalendar()" id="notice-action-btn" class="bg-brand-900 hover:bg-brand-800 text-white font-extrabold text-xs px-4 py-2 rounded-xl shadow-xs transition flex items-center gap-1.5 shrink-0">
+                        <i class="fas fa-calendar-alt text-gold-300"></i>
+                        <span>View Calendar (वि.सं.)</span>
+                    </button>
+                    <button type="button" onclick="closeNoticePopup()" class="bg-white hover:bg-slate-100 border border-slate-200 text-slate-700 font-bold text-xs px-3.5 py-2 rounded-xl transition shadow-2xs shrink-0">
+                        Close Notice
+                    </button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+<script>
+        function toggleStaffDropup(e) {
+            if (e) e.stopPropagation();
+            const menu = document.getElementById('staff-dropup-menu');
+            const chevron = document.getElementById('staff-dropup-chevron');
+            const btn = document.getElementById('staff-dropup-btn');
+            if (!menu) return;
+            const isHidden = menu.classList.contains('hidden');
+            if (isHidden) {
+                menu.classList.remove('hidden');
+                if (chevron) chevron.classList.add('rotate-180');
+                if (btn) btn.setAttribute('aria-expanded', 'true');
+            } else {
+                menu.classList.add('hidden');
+                if (chevron) chevron.classList.remove('rotate-180');
+                if (btn) btn.setAttribute('aria-expanded', 'false');
+            }
+        }
+        document.addEventListener('click', (e) => {
+            const container = document.getElementById('staff-dropup-container');
+            const menu = document.getElementById('staff-dropup-menu');
+            const chevron = document.getElementById('staff-dropup-chevron');
+            const btn = document.getElementById('staff-dropup-btn');
+            if (container && !container.contains(e.target) && menu && !menu.classList.contains('hidden')) {
+                menu.classList.add('hidden');
+                if (chevron) chevron.classList.remove('rotate-180');
+                if (btn) btn.setAttribute('aria-expanded', 'false');
+            }
+        });</script>
+</body>
+</html>

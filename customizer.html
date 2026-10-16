@@ -1,0 +1,1130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Visual Theme &amp; Identity Customizer | Pegasus English School</title>
+  <meta name="description" content="Visual Theme & School Identity Customizer Studio for Pegasus English School. Customize branding, color schemes, and media assets.">
+  <link rel="icon" type="image/jpeg" href="logo.jpg">
+
+  <!-- Core Stylesheets -->
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <style>
+    html, body {
+      overflow-x: hidden;
+      max-width: 100vw;
+    }
+    :root {
+      --customizer-navy: #103570;
+      --customizer-accent: #c59b27;
+      --customizer-bg: #F8FAFC;
+    }
+    body {
+      background-color: var(--customizer-bg);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      color: #1E293B;
+      min-height: 100vh;
+    }
+    .customizer-nav {
+      background: linear-gradient(135deg, #02111d 0%, #002B49 100%);
+      border-bottom: 3px solid var(--customizer-accent);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.18);
+    }
+    .customizer-card {
+      background: #FFFFFF;
+      border: 1px solid #E2E8F0;
+      border-radius: 16px;
+      padding: 24px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+      margin-bottom: 24px;
+      transition: all 0.2s ease;
+    }
+    .nav-tabs-customizer {
+      border-bottom: 2px solid #E2E8F0;
+      gap: 6px;
+      overflow-x: auto;
+      flex-wrap: nowrap;
+    }
+    .nav-tabs-customizer .nav-link {
+      border: none;
+      color: #64748B;
+      font-weight: 600;
+      font-size: 14px;
+      padding: 12px 18px;
+      border-radius: 10px 10px 0 0;
+      white-space: nowrap;
+      transition: all 0.2s ease;
+      background: transparent;
+    }
+    .nav-tabs-customizer .nav-link:hover {
+      color: #002B49;
+      background: rgba(0, 43, 73, 0.05);
+    }
+    .nav-tabs-customizer .nav-link.active {
+      color: #002B49;
+      background: #FFFFFF;
+      border-bottom: 3px solid var(--customizer-accent);
+      font-weight: 700;
+    }
+    .btn-create {
+      background: linear-gradient(135deg, #F272AD 0%, #D81B60 100%);
+      border: none;
+      color: white;
+      font-weight: 700;
+      padding: 10px 22px;
+      border-radius: 10px;
+      box-shadow: 0 4px 14px rgba(242, 114, 173, 0.35);
+      transition: all 0.2s ease;
+    }
+    .btn-create:hover {
+      opacity: 0.95;
+      transform: translateY(-1px);
+      color: white;
+      box-shadow: 0 6px 18px rgba(242, 114, 173, 0.45);
+    }
+    .btn-gemini {
+      background: linear-gradient(135deg, #4F46E5 0%, #7C3AED 50%, #EC4899 100%);
+      border: none;
+      color: white;
+      font-weight: 700;
+      padding: 10px 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 14px rgba(124, 58, 237, 0.35);
+      transition: all 0.2s ease;
+    }
+    .btn-gemini:hover {
+      opacity: 0.95;
+      transform: translateY(-1px);
+      color: white;
+      box-shadow: 0 6px 20px rgba(124, 58, 237, 0.5);
+    }
+    .preset-pill {
+      cursor: pointer;
+      border: 1px solid #CBD5E1;
+      border-radius: 12px;
+      padding: 12px 14px;
+      background: #FFFFFF;
+      transition: all 0.2s ease;
+      text-align: left;
+      height: 100%;
+    }
+    .preset-pill:hover {
+      border-color: #002B49;
+      box-shadow: 0 6px 16px rgba(0,0,0,0.08);
+      transform: translateY(-2px);
+    }
+    .preset-pill.active {
+      border-color: var(--customizer-accent);
+      background: #FFF1F7;
+      box-shadow: 0 4px 14px rgba(242, 114, 173, 0.2);
+    }
+    .color-swatch-box {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      display: inline-block;
+      vertical-align: middle;
+      border: 2px solid #FFFFFF;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    }
+    .svg-preview-stage {
+      min-height: 220px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+      transition: background 0.2s ease;
+      background: #F1F5F9;
+      border: 2px dashed #CBD5E1;
+      padding: 20px;
+    }
+    .svg-preview-stage.bg-dark-stage {
+      background: #02111d;
+      border-color: #334155;
+    }
+    .svg-preview-stage.bg-light-stage {
+      background: #FFFFFF;
+      border-color: #E2E8F0;
+    }
+    .svg-preview-stage svg {
+      max-width: 170px;
+      max-height: 170px;
+      filter: drop-shadow(0 6px 12px rgba(0,0,0,0.15));
+    }
+    /* Simulation Splash Screen Modal */
+    #simulatedSplashModal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 99999;
+      background: #ffffff;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+    }
+    .splash-progress-track {
+      width: 240px;
+      height: 4px;
+      background: rgba(0,0,0,0.08);
+      border-radius: 4px;
+      overflow: hidden;
+      margin-top: 18px;
+    }
+    .splash-progress-fill {
+      height: 100%;
+      width: 0%;
+      background: var(--customizer-accent);
+      animation: progressFill 1.8s ease-in-out infinite;
+    }
+    @keyframes progressFill {
+      0% { width: 0%; transform: translateX(-100%); }
+      50% { width: 100%; transform: translateX(0%); }
+      100% { width: 100%; transform: translateX(100%); }
+    }
+    .ai-badge {
+      background: linear-gradient(135deg, #6366F1 0%, #A855F7 100%);
+      color: white;
+      font-size: 11px;
+      padding: 3px 8px;
+      border-radius: 20px;
+      font-weight: 700;
+      letter-spacing: 0.4px;
+    }
+    .tab-content-pane {
+      display: none;
+    }
+    .tab-content-pane.active {
+      display: block;
+    }
+  </style>
+</head>
+<body>
+
+<!-- Navigation Header -->
+<nav class="navbar navbar-expand-lg customizer-nav py-3 sticky-top">
+  <div class="container-fluid px-lg-5">
+    <a class="navbar-brand text-white fw-bold d-flex align-items-center gap-3" href="customizer.html">
+      <img id="customizerNavLogo" src="logo.jpg" alt="Logo" width="46" height="46" class="rounded bg-white p-1 school-brand-logo" loading="lazy" decoding="async">
+      <div>
+        <div class="d-flex align-items-center gap-2">
+          <span class="d-block school-brand-name" style="font-size: 18px; letter-spacing: -0.3px;">Pegasus English School</span>
+          <span class="ai-badge"><i class="fa fa-sparkles me-1"></i> Pegasus Customizer Studio</span>
+        </div>
+        <small class="text-white-50" style="font-size: 11px;">
+          <i class="fa fa-palette text-warning me-1"></i> Site &amp; Visual Theme Customizer Portal
+        </small>
+      </div>
+    </a>
+
+    <!-- Top Action Links -->
+    <div class="ms-auto d-flex align-items-center gap-2 flex-wrap">
+      <a href="index.html" target="_blank" class="btn btn-sm btn-light rounded-pill px-3" title="View Frontend Public Website">
+        <i class="fa fa-external-link-alt me-1"></i> View Website
+      </a>
+      <a href="admin.html" class="btn btn-sm btn-outline-light rounded-pill px-3" title="Open Admin CMS">
+        <i class="fa fa-shield-alt me-1"></i> Admin CMS
+      </a>
+      <button type="button" class="btn btn-sm btn-outline-info rounded-pill px-3" onclick="exportThemeConfig()" title="Export configuration as JSON">
+        <i class="fa fa-download me-1"></i> Export Theme
+      </button>
+      <label class="btn btn-sm btn-outline-secondary rounded-pill px-3 text-white mb-0" style="cursor: pointer;" title="Import configuration from JSON">
+        <i class="fa fa-upload me-1"></i> Import
+        <input type="file" id="themeConfigFile" accept=".json" style="display: none;" onchange="importThemeConfig(this)">
+      </label>
+      <button type="button" class="btn btn-sm btn-outline-danger rounded-pill px-3" onclick="resetToDefaults()" title="Revert to original Pegasus defaults">
+        <i class="fa fa-undo me-1"></i> Reset
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- Main Container -->
+<div class="container-fluid px-lg-5 py-4">
+
+  <!-- Feedback Banner -->
+  <div id="customizerAlert" class="alert d-none py-2 px-3 mb-4 rounded-3 shadow-sm d-flex align-items-center justify-content-between" role="alert"></div>
+
+  <!-- 1-Click Client Commercial Demo Presets Bar -->
+  <div class="customizer-card mb-4" style="border-left: 4px solid #F272AD;">
+    <div class="d-flex justify-content-between align-items-center mb-2 flex-wrap gap-2">
+      <div>
+        <h6 class="fw-bold text-dark mb-0 d-flex align-items-center gap-2">
+          <i class="fa fa-magic text-danger"></i>
+          <span>1-Click Commercial Client Presets (Instant White-Label Switcher)</span>
+        </h6>
+        <small class="text-muted">Pitching to different school or college buyers? Click any card to rebrand the entire portal suite in under 3 seconds:</small>
+      </div>
+      <span class="badge bg-danger-subtle text-danger border px-3 py-1 fw-bold" style="font-size: 11px;">Sales &amp; Demos Ready</span>
+    </div>
+
+    <div class="row g-3">
+      <div class="col-lg-2 col-md-4 col-6">
+        <div class="preset-pill active" onclick="selectPreset('pegasus')">
+          <div class="d-flex align-items-center gap-2 mb-1">
+            <span class="color-swatch-box" style="background: #103570; border-color: #c59b27;"></span>
+            <b class="small text-dark">Pegasus School</b>
+          </div>
+          <small class="text-muted d-block" style="font-size: 11px;">Navy &amp; Gold • School</small>
+        </div>
+      </div>
+      <div class="col-lg-2 col-md-4 col-6">
+        <div class="preset-pill" onclick="selectPreset('kmc')">
+          <div class="d-flex align-items-center gap-2 mb-1">
+            <span class="color-swatch-box" style="background: #0F2B5C; border-color: #F59E0B;"></span>
+            <b class="small text-dark">Kathmandu Model</b>
+          </div>
+          <small class="text-muted d-block" style="font-size: 11px;">Blue &amp; Gold • College</small>
+        </div>
+      </div>
+      <div class="col-lg-2 col-md-4 col-6">
+        <div class="preset-pill" onclick="selectPreset('apex')">
+          <div class="d-flex align-items-center gap-2 mb-1">
+            <span class="color-swatch-box" style="background: #064E3B; border-color: #10B981;"></span>
+            <b class="small text-dark">Apex Academy</b>
+          </div>
+          <small class="text-muted d-block" style="font-size: 11px;">Emerald &amp; Jade • Academy</small>
+        </div>
+      </div>
+      <div class="col-lg-2 col-md-4 col-6">
+        <div class="preset-pill" onclick="selectPreset('himalayan')">
+          <div class="d-flex align-items-center gap-2 mb-1">
+            <span class="color-swatch-box" style="background: #7F1D1D; border-color: #EF4444;"></span>
+            <b class="small text-dark">Himalayan Public</b>
+          </div>
+          <small class="text-muted d-block" style="font-size: 11px;">Crimson &amp; Red • School</small>
+        </div>
+      </div>
+      <div class="col-lg-2 col-md-4 col-6">
+        <div class="preset-pill" onclick="selectPreset('everest')">
+          <div class="d-flex align-items-center gap-2 mb-1">
+            <span class="color-swatch-box" style="background: #0A2540; border-color: #00D4B2;"></span>
+            <b class="small text-dark">Everest Apex</b>
+          </div>
+          <small class="text-muted d-block" style="font-size: 11px;">Midnight &amp; Cyan • College</small>
+        </div>
+      </div>
+      <div class="col-lg-2 col-md-4 col-6">
+        <div class="preset-pill" onclick="selectPreset('oxford')">
+          <div class="d-flex align-items-center gap-2 mb-1">
+            <span class="color-swatch-box" style="background: #1E293B; border-color: #38BDF8;"></span>
+            <b class="small text-dark">Oxford Global</b>
+          </div>
+          <small class="text-muted d-block" style="font-size: 11px;">Slate &amp; Sky • Academy</small>
+        </div>
+      </div>
+      <div class="col-lg-2 col-md-4 col-6">
+        <div class="preset-pill" onclick="selectPreset('retro')" style="border: 1px solid #00F0FF; background: #0A0D1A;">
+          <div class="d-flex align-items-center gap-2 mb-1">
+            <span class="color-swatch-box" style="background: #00F0FF; border-color: #FF2A85;"></span>
+            <b class="small text-white">Retro-Future ⚡</b>
+          </div>
+          <small class="text-cyan d-block" style="font-size: 11px; color: #00F0FF;">Neon &amp; Magenta • 1980s</small>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Tabs Navigation -->
+  <ul class="nav nav-tabs nav-tabs-customizer mb-4" id="customizerTabs" role="tablist">
+    <li class="nav-item">
+      <button class="nav-link active d-flex align-items-center gap-2" data-tab="tab-identity" onclick="switchCustomizerTab('tab-identity')">
+        <i class="fa fa-id-card text-danger"></i>
+        <span>1. Institutional Identity &amp; AI</span>
+      </button>
+    </li>
+    <li class="nav-item">
+      <button class="nav-link d-flex align-items-center gap-2" data-tab="tab-loader-video" onclick="switchCustomizerTab('tab-loader-video')">
+        <i class="fa fa-video text-primary"></i>
+        <span>2. Intro Loader &amp; Hero Video</span>
+      </button>
+    </li>
+    <li class="nav-item">
+      <button class="nav-link d-flex align-items-center gap-2" data-tab="tab-theme-colors" onclick="switchCustomizerTab('tab-theme-colors')">
+        <i class="fa fa-palette text-warning"></i>
+        <span>3. Theme Colors &amp; Styling</span>
+      </button>
+    </li>
+    <li class="nav-item">
+      <button class="nav-link d-flex align-items-center gap-2" data-tab="tab-welcome-wings" onclick="switchCustomizerTab('tab-welcome-wings')">
+        <i class="fa fa-graduation-cap text-success"></i>
+        <span>4. Welcome Speech &amp; Wings</span>
+      </button>
+    </li>
+    <li class="nav-item">
+      <button class="nav-link d-flex align-items-center gap-2" data-tab="tab-contact-social" onclick="switchCustomizerTab('tab-contact-social')">
+        <i class="fa fa-map-marked-alt text-info"></i>
+        <span>5. Down Location, Maps &amp; Contact</span>
+      </button>
+    </li>
+    <li class="nav-item">
+      <button class="nav-link d-flex align-items-center gap-2" data-tab="tab-gemini-settings" onclick="switchCustomizerTab('tab-gemini-settings')">
+        <i class="fa fa-brain text-purple" style="color: #8B5CF6;"></i>
+        <span>6. Gemini AI Config</span>
+      </button>
+    </li>
+  </ul>
+
+  <!-- ====================================================================== -->
+  <!-- TAB 1: INSTITUTION IDENTITY & GEMINI AI REBRANDING                     -->
+  <!-- ====================================================================== -->
+  <div id="tab-identity" class="tab-content-pane active">
+    <div class="row g-4">
+      
+      <!-- Left: Gemini AI Generator Prompt Box -->
+      <div class="col-lg-5">
+        <div class="customizer-card h-100" style="background: linear-gradient(180deg, #FDF4FF 0%, #FFFFFF 100%); border-color: #E9D5FF;">
+          <div class="d-flex align-items-center justify-content-between mb-3">
+            <h5 class="fw-bold text-dark mb-0 d-flex align-items-center gap-2">
+              <i class="fa fa-sparkles text-purple" style="color: #9333EA;"></i>
+              <span>Gemini AI Brand Assistant</span>
+            </h5>
+            <span class="badge bg-purple text-white px-2 py-1" style="background: #9333EA; font-size: 11px;">Trained AI</span>
+          </div>
+          <p class="text-muted small mb-3">
+            Ask Google Gemini to invent high-prestige educational institution names, catchy taglines, matching color schemes, and logos tailored to your target client.
+          </p>
+
+          <form id="aiPromptForm" onsubmit="handleGenerateAiIdentities(event)">
+            <div class="mb-3">
+              <label class="form-label small fw-bold">Institution Category</label>
+              <select id="aiInstitutionType" class="form-select form-select-sm">
+                <option value="school">School (Pre-School to Grade 10 / SEE)</option>
+                <option value="college">High School (+2) &amp; Higher Education College</option>
+                <option value="academy">International Academy / STEM Institute</option>
+                <option value="preschool">Montessori &amp; Early Learning Pre-School</option>
+              </select>
+            </div>
+
+            <div class="row g-2 mb-3">
+              <div class="col-6">
+                <label class="form-label small fw-bold">Brand Philosophy / Vibe</label>
+                <select id="aiVibe" class="form-select form-select-sm">
+                  <option value="prestigious">Prestigious &amp; Heritage</option>
+                  <option value="modern">Modern STEM &amp; Digital</option>
+                  <option value="holistic">Progressive &amp; Holistic</option>
+                  <option value="himalayan">Himalayan &amp; Cultural Values</option>
+                </select>
+              </div>
+              <div class="col-6">
+                <label class="form-label small fw-bold">Campus Location</label>
+                <input type="text" id="aiLocation" class="form-control form-control-sm" value="Kathmandu, Nepal" placeholder="e.g. Lalitpur, Pokhara">
+              </div>
+            </div>
+
+            <div class="mb-3">
+              <label class="form-label small fw-bold">Focus Keywords / Specialty</label>
+              <input type="text" id="aiKeywords" class="form-control form-control-sm" placeholder="e.g. robotics, global citizenship, sports, arts">
+            </div>
+
+            <button type="submit" class="btn btn-gemini w-100 d-flex align-items-center justify-content-center gap-2 shadow" id="btnAiGenerate">
+              <i class="fa fa-magic"></i>
+              <span>Generate 4 Identities with Gemini AI</span>
+            </button>
+          </form>
+
+          <!-- Generated AI Suggestions Container -->
+          <div id="aiSuggestionsContainer" class="mt-4 pt-3 border-top" style="display: none;">
+            <label class="form-label small fw-bold text-dark d-flex justify-content-between align-items-center mb-2">
+              <span><i class="fa fa-lightbulb text-warning me-1"></i> Generated Options (Click to Apply)</span>
+              <span class="badge bg-success-subtle text-success" style="font-size: 10px;">Select One</span>
+            </label>
+            <div id="aiSuggestionsList" class="d-flex flex-column gap-2">
+              <!-- Rendered via JS -->
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: Main Institution Identity Form & SVG Logo Creator -->
+      <div class="col-lg-7">
+        <div class="customizer-card">
+          <h5 class="fw-bold text-dark mb-3 d-flex align-items-center gap-2">
+            <i class="fa fa-id-card text-primary"></i>
+            <span>Institutional Identity &amp; Logo Assets</span>
+          </h5>
+
+          <form id="institutionForm" onsubmit="handleSaveIdentity(event)">
+            <div class="row g-3 mb-3">
+              <div class="col-md-8">
+                <label class="form-label small fw-bold">Official School / College Name *</label>
+                <input type="text" id="brandSchoolName" class="form-control" placeholder="e.g. Kathmandu Model College" required oninput="previewIdentity()">
+              </div>
+              <div class="col-md-4">
+                <label class="form-label small fw-bold">Short Acronym</label>
+                <input type="text" id="brandShortName" class="form-control" placeholder="e.g. KMC" oninput="previewIdentity()">
+              </div>
+            </div>
+
+            <div class="row g-3 mb-3">
+              <div class="col-md-8">
+                <label class="form-label small fw-bold">Official Motto / Tagline / Subtitle</label>
+                <input type="text" id="brandSchoolTagline" class="form-control" placeholder="e.g. Inspiring Excellence, Elevating Character" oninput="previewIdentity()">
+              </div>
+              <div class="col-md-4">
+                <label class="form-label small fw-bold">Institution Category</label>
+                <select id="brandInstitutionType" class="form-select" onchange="previewIdentity()">
+                  <option value="school">School (K-10)</option>
+                  <option value="college">College (+2 / Degree)</option>
+                  <option value="academy">Academy / Institute</option>
+                  <option value="preschool">Montessori Pre-School</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- Dynamic SVG Logo Crest Studio -->
+            <div class="p-3 rounded-3 bg-light border mb-4">
+              <div class="d-flex justify-content-between align-items-center mb-2 flex-wrap gap-2">
+                <label class="form-label small fw-bold text-dark mb-0">
+                  <i class="fa fa-shield-alt text-primary me-1"></i> Dynamic SVG Logo Crest Studio
+                </label>
+                <div class="btn-group btn-group-sm">
+                  <button type="button" class="btn btn-outline-secondary" onclick="toggleSvgStageBg('dark')" title="Dark Background">Dark</button>
+                  <button type="button" class="btn btn-outline-secondary active" onclick="toggleSvgStageBg('light')" title="Light Background">Light</button>
+                </div>
+              </div>
+
+              <div class="row g-3 align-items-center">
+                <div class="col-md-5 text-center">
+                  <div class="svg-preview-stage bg-light-stage" id="svgPreviewStage">
+                    <img id="brandLogoPreviewImg" src="logo.jpg" alt="Logo Preview" style="max-height: 140px; max-width: 140px; object-fit: contain;" loading="lazy" decoding="async">
+                  </div>
+                </div>
+                <div class="col-md-7">
+                  <div class="mb-2">
+                    <label class="form-label small fw-semibold">Generate AI Crest Style:</label>
+                    <div class="d-flex gap-2">
+                      <select id="svgLogoStyle" class="form-select form-select-sm">
+                        <option value="shield">Academic Shield &amp; Torch</option>
+                        <option value="himalaya">Himalayan Peak Emblem</option>
+                        <option value="modern">Modern Tech Hexagon</option>
+                      </select>
+                      <button type="button" class="btn btn-sm btn-gemini text-nowrap" onclick="handleGenerateSvgCrest()">
+                        <i class="fa fa-wand-magic-sparkles me-1"></i> Make SVG
+                      </button>
+                    </div>
+                  </div>
+
+                  <div class="mb-2">
+                    <label class="form-label small fw-semibold">Or Image File / Path:</label>
+                    <div class="input-group input-group-sm">
+                      <input type="text" id="brandLogoPath" class="form-control" placeholder="logo.jpg" oninput="previewIdentity()">
+                      <input type="file" id="brandLogoFile" class="d-none" accept="image/*,.svg" onchange="handleLogoFileUpload(this)">
+                      <button type="button" class="btn btn-outline-primary" onclick="document.getElementById('brandLogoFile').click()">
+                        <i class="fa fa-folder-open me-1"></i> Browse
+                      </button>
+                    </div>
+                  </div>
+
+                  <div class="d-flex gap-2 mt-2">
+                    <button type="button" class="btn btn-sm btn-success" id="btnApplySvgLogo" onclick="applyCurrentSvgAsLogo()" style="display: none;">
+                      <i class="fa fa-check me-1"></i> Apply SVG as School Logo
+                    </button>
+                    <button type="button" class="btn btn-sm btn-outline-secondary" id="btnDownloadSvg" onclick="downloadCurrentSvg()" style="display: none;">
+                      <i class="fa fa-download me-1"></i> Download SVG
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Save Identity Button -->
+            <button type="submit" class="btn btn-create px-4 py-2 fw-bold">
+              <i class="fa fa-save me-1"></i> Save Identity &amp; Update System
+            </button>
+          </form>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ====================================================================== -->
+  <!-- TAB 2: INTRO LOADING SCREEN & HERO VIDEO MONTAGE                       -->
+  <!-- ====================================================================== -->
+  <div id="tab-loader-video" class="tab-content-pane">
+    <div class="row g-4">
+
+      <!-- Left: Splash Loading Screen Manager -->
+      <div class="col-lg-6">
+        <div class="customizer-card h-100">
+          <div class="d-flex justify-content-between align-items-center mb-3">
+            <h5 class="fw-bold text-dark mb-0 d-flex align-items-center gap-2">
+              <i class="fa fa-spinner text-primary"></i>
+              <span>Intro Splash Loading Screen</span>
+            </h5>
+            <span class="badge bg-primary-subtle text-primary border" style="font-size: 11px;">First Impression</span>
+          </div>
+          <p class="text-muted small mb-4">
+            Customize the animated loading screen that greets parents and visitors when opening the website.
+          </p>
+
+          <form id="splashLoaderForm" onsubmit="handleSaveLoaderSettings(event)">
+            <div class="form-check form-switch mb-4 p-3 bg-light rounded-3 border">
+              <input class="form-check-input ms-0 me-3" type="checkbox" id="loaderEnabled" checked style="width: 44px; height: 22px;">
+              <label class="form-check-label fw-bold text-dark" for="loaderEnabled">
+                Enable Animated Splash Screen on Website Entry
+              </label>
+              <div class="small text-muted">When disabled, the homepage renders instantly without the splash animation.</div>
+            </div>
+
+            <div class="mb-3">
+              <label class="form-label small fw-bold">Splash Logo Image / SVG</label>
+              <div class="input-group input-group-sm">
+                <input type="text" id="loaderLogoPath" class="form-control" placeholder="logo.jpg">
+                <button type="button" class="btn btn-outline-primary" onclick="syncLoaderLogoWithSchool()">
+                  <i class="fa fa-sync-alt me-1"></i> Use School Logo
+                </button>
+              </div>
+            </div>
+
+            <div class="mb-3">
+              <label class="form-label small fw-bold">Splash Screen Headline Title</label>
+              <input type="text" id="loaderTitle" class="form-control" placeholder="Pegasus English School">
+              <small class="text-muted">Defaults to your active School / Institution Name.</small>
+            </div>
+
+            <div class="row g-3 mb-3">
+              <div class="col-6">
+                <label class="form-label small fw-bold">Background Color</label>
+                <div class="input-group input-group-sm">
+                  <input type="color" id="loaderBgColor" class="form-control form-control-color" value="#ffffff">
+                  <input type="text" id="loaderBgColorHex" class="form-control" value="#ffffff" oninput="syncColorInputFromHex('loaderBgColorHex', 'loaderBgColor')">
+                </div>
+              </div>
+              <div class="col-6">
+                <label class="form-label small fw-bold">Splash Duration</label>
+                <div class="d-flex align-items-center gap-2">
+                  <input type="range" class="form-range" id="loaderDuration" min="800" max="4000" step="200" value="1600" oninput="document.getElementById('lblDurationVal').textContent = (this.value / 1000).toFixed(1) + 's'">
+                  <span class="badge bg-secondary" id="lblDurationVal" style="min-width: 44px;">1.6s</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="d-flex gap-2">
+              <button type="submit" class="btn btn-create px-4 py-2 fw-bold">
+                <i class="fa fa-save me-1"></i> Save Splash Screen
+              </button>
+              <button type="button" class="btn btn-outline-warning text-dark px-3 py-2 fw-bold" onclick="previewSplashModal()">
+                <i class="fa fa-play me-1"></i> Test &amp; Preview
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <!-- Right: Hero Video Background Walkthrough Montage -->
+      <div class="col-lg-6">
+        <div class="customizer-card h-100">
+          <div class="d-flex justify-content-between align-items-center mb-2">
+            <h5 class="fw-bold text-dark mb-0 d-flex align-items-center gap-2">
+              <i class="fa fa-video text-danger"></i>
+              <span>Hero Walkthrough Montage Video</span>
+            </h5>
+            <span class="badge bg-danger-subtle text-danger border" style="font-size: 11px;">Main Hero Banner</span>
+          </div>
+          <p class="text-muted small mb-3">
+            Change or upload the background walkthrough video (or static photo) playing at the very top of the homepage.
+          </p>
+
+          <!-- Live Interactive Hero Media Player Preview -->
+          <div class="mb-3 p-2 bg-dark rounded-3 position-relative shadow-sm" style="overflow: hidden; background: #011321 !important;">
+            <div class="d-flex justify-content-between align-items-center px-2 py-1 mb-1 text-white border-bottom border-secondary small">
+              <span><i class="fa fa-play-circle text-danger me-1"></i> <b>Live Video Player Preview</b></span>
+              <span class="badge bg-danger" id="customizerVideoStatus">Default Montage</span>
+            </div>
+            
+            <div style="position: relative; height: 210px; background: #000; border-radius: 6px; overflow: hidden; display: flex; align-items: center; justify-content: center;">
+              <!-- HTML5 Video Player Preview (Direct Source) -->
+              <video id="customizerVideoPreview" autoplay loop muted playsinline controls src="" style="width: 100%; height: 100%; object-fit: cover;"></video>
+              <!-- YouTube Video Preview Iframe -->
+              <iframe id="customizerYouTubePreview" class="d-none" style="width: 100%; height: 100%; border: 0;" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+              <!-- Fallback Image Preview -->
+              <div id="customizerImagePreview" class="d-none" style="width: 100%; height: 100%; background-size: cover; background-position: center;"></div>
+            </div>
+
+            <div class="d-flex justify-content-between align-items-center mt-2 px-1">
+              <div id="lblHeroVideoUploadStatus" class="small text-white-50">
+                <i class="fa fa-info-circle me-1"></i> Supports local MP4/WebM uploads, YouTube links, or direct URLs.
+              </div>
+              <button type="button" class="btn btn-sm btn-outline-warning text-warning py-0 px-2" style="font-size: 11px;" onclick="resetHeroVideoToDefault()" title="Restore factory default video">
+                <i class="fa fa-undo me-1"></i> Revert to Default Video
+              </button>
+            </div>
+          </div>
+
+          <form id="heroMediaForm" onsubmit="handleSaveHeroSettings(event)">
+            <div class="row g-2 mb-3">
+              <div class="col-6">
+                <label class="form-label small fw-bold">Hero Media Format</label>
+                <select id="heroMediaType" class="form-select form-select-sm" onchange="toggleHeroMediaType(this.value)">
+                  <option value="video">Background MP4 / YouTube Video</option>
+                  <option value="image">Static High-Res Hero Banner Image</option>
+                </select>
+              </div>
+              <div class="col-6">
+                <label class="form-label small fw-bold">Video Loop &amp; Mute</label>
+                <div class="d-flex gap-3 pt-1">
+                  <div class="form-check form-check-inline small">
+                    <input class="form-check-input" type="checkbox" id="heroAutoplay" checked>
+                    <label class="form-check-label" for="heroAutoplay">Autoplay</label>
+                  </div>
+                  <div class="form-check form-check-inline small">
+                    <input class="form-check-input" type="checkbox" id="heroMuted" checked>
+                    <label class="form-check-label" for="heroMuted">Muted</label>
+                  </div>
+                  <div class="form-check form-check-inline small">
+                    <input class="form-check-input" type="checkbox" id="heroLoop" checked>
+                    <label class="form-check-label" for="heroLoop">Loop</label>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Video File Path / Upload -->
+            <div class="mb-3" id="groupHeroVideo">
+              <label class="form-label small fw-bold d-flex justify-content-between align-items-center">
+                <span>Video Source (File Upload or YouTube Link)</span>
+                <span class="badge bg-success-subtle text-success" style="font-size: 10px;">IndexedDB Enabled</span>
+              </label>
+              <div class="input-group input-group-sm">
+                <input type="text" id="heroVideoPath" class="form-control" placeholder="media/pegasus_walkthrough.mp4 or https://youtube.com/..." oninput="refreshHeroVideoPreview()">
+                <input type="file" id="heroVideoFileInput" accept="video/mp4,video/webm,video/*" class="d-none" onchange="handleHeroVideoFileUpload(this)">
+                <button type="button" class="btn btn-outline-danger" onclick="document.getElementById('heroVideoFileInput').click()" title="Select a video file from your computer">
+                  <i class="fa fa-file-video me-1"></i> Upload File
+                </button>
+              </div>
+              <small class="text-muted d-block mt-1">
+                Tip: You can select any video file from your computer (persisted in browser) OR paste a YouTube video link.
+              </small>
+            </div>
+
+            <!-- Poster Image Path -->
+            <div class="mb-3">
+              <label class="form-label small fw-bold">Poster / Fallback Image</label>
+              <div class="input-group input-group-sm">
+                <input type="text" id="heroPosterImage" class="form-control" placeholder="images/banner-home.jpg" oninput="refreshHeroVideoPreview()">
+                <input type="file" id="heroPosterFileInput" accept="image/*" class="d-none" onchange="handleHeroPosterFileUpload(this)">
+                <button type="button" class="btn btn-outline-secondary" onclick="document.getElementById('heroPosterFileInput').click()">
+                  <i class="fa fa-image me-1"></i> Choose Image
+                </button>
+              </div>
+            </div>
+
+            <!-- Hero Headlines Copy -->
+            <div class="mb-3">
+              <label class="form-label small fw-bold">Hero Headline Title</label>
+              <input type="text" id="heroTitle" class="form-control" placeholder="Inspiring Excellence, Nurturing Potential">
+            </div>
+
+            <div class="mb-3">
+              <label class="form-label small fw-bold">Hero Subheadline / Caption</label>
+              <textarea id="heroSubtitle" class="form-control" rows="2" placeholder="A vibrant community empowering students with 21st-century skills and holistic education."></textarea>
+            </div>
+
+            <div class="row g-2 mb-3">
+              <div class="col-6">
+                <label class="form-label small fw-bold">Primary Button Label</label>
+                <input type="text" id="heroCtaText" class="form-control form-control-sm" placeholder="Explore Admissions">
+              </div>
+              <div class="col-6">
+                <label class="form-label small fw-bold">Primary Button Link</label>
+                <input type="text" id="heroCtaLink" class="form-control form-control-sm" placeholder="#noticesSection">
+              </div>
+            </div>
+
+            <button type="submit" class="btn btn-create px-4 py-2 fw-bold w-100">
+              <i class="fa fa-save me-1"></i> Save Hero Video &amp; Headlines Universally
+            </button>
+          </form>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ====================================================================== -->
+  <!-- TAB 3: THEME COLORS & VISUAL STYLING                                   -->
+  <!-- ====================================================================== -->
+  <div id="tab-theme-colors" class="tab-content-pane">
+    <div class="row g-4">
+      
+      <!-- Left: Color Controls -->
+      <div class="col-lg-5">
+        <div class="customizer-card">
+          <h5 class="fw-bold text-dark mb-3 d-flex align-items-center gap-2">
+            <i class="fa fa-palette text-warning"></i>
+            <span>Color Palette &amp; CSS Variables</span>
+          </h5>
+          <p class="text-muted small mb-4">
+            Harmonize the entire visual presentation across all portals, headers, pill filters, badges, and action buttons.
+          </p>
+
+          <form id="themeColorsForm" onsubmit="handleSaveColors(event)">
+            <div class="mb-3">
+              <label class="form-label small fw-bold">Primary Brand Color (Navbars &amp; Main Headers)</label>
+              <div class="input-group">
+                <input type="color" id="brandPrimaryColor" class="form-control form-control-color" value="#002B49" oninput="syncColorInput('brandPrimaryColor', 'brandPrimaryColorHex'); previewLiveThemeStyles();">
+                <input type="text" id="brandPrimaryColorHex" class="form-control" value="#002B49" oninput="syncHexInput('brandPrimaryColorHex', 'brandPrimaryColor'); previewLiveThemeStyles();">
+              </div>
+              <small class="text-muted">Applied to navigation headers, footers, table borders, and bold headings.</small>
+            </div>
+
+            <div class="mb-4">
+              <label class="form-label small fw-bold">Accent Highlight Color (Pills, Badges &amp; Active States)</label>
+              <div class="input-group">
+                <input type="color" id="brandAccentColor" class="form-control form-control-color" value="#F272AD" oninput="syncColorInput('brandAccentColor', 'brandAccentColorHex'); previewLiveThemeStyles();">
+                <input type="text" id="brandAccentColorHex" class="form-control" value="#F272AD" oninput="syncHexInput('brandAccentColorHex', 'brandAccentColor'); previewLiveThemeStyles();">
+              </div>
+              <small class="text-muted">Applied to active role pills, active nav-tabs, WhatsApp buttons, and status chips.</small>
+            </div>
+
+            <button type="submit" class="btn btn-create px-4 py-2 fw-bold w-100">
+              <i class="fa fa-save me-1"></i> Apply &amp; Save Color Theme Universally
+            </button>
+          </form>
+        </div>
+      </div>
+
+      <!-- Right: Real-time Live Component Simulation Preview -->
+      <div class="col-lg-7">
+        <div class="customizer-card">
+          <h5 class="fw-bold text-dark mb-3 d-flex align-items-center gap-2">
+            <i class="fa fa-desktop text-info"></i>
+            <span>Live Interactive Component Preview</span>
+          </h5>
+          <p class="text-muted small mb-3">Watch your colors and branding propagate immediately across key UI components:</p>
+
+          <!-- Simulated Navbar Header -->
+          <div id="simulatedNavbar" class="p-3 rounded-3 text-white d-flex align-items-center gap-3 shadow mb-4" style="background: linear-gradient(135deg, #0a234d 0%, #103570 100%); border-bottom: 3px solid #c59b27;">
+            <img id="simLogo" src="logo.jpg" alt="Logo" width="46" height="46" class="rounded bg-white p-1" loading="lazy" decoding="async">
+            <div class="flex-grow-1">
+              <div class="d-flex align-items-center gap-2">
+                <h5 class="fw-bold mb-0 text-white" id="simSchoolName">Pegasus English School</h5>
+                <span class="badge rounded-pill" id="simBadgeType" style="background: #c59b27; color: #0a234d; font-size: 10px;">SCHOOL</span>
+              </div>
+              <small class="text-white-50 d-block" id="simTagline">Excellence in Education • Estd. 1999</small>
+            </div>
+            <div class="d-none d-md-block text-end small text-white-50">
+              <a href="tel:014913939" class="d-block text-white text-decoration-none" id="simPhone"><i class="fa fa-phone me-1 text-warning"></i> 01-4913939</a>
+              <a href="mailto:pegasusengschool@gmail.com" class="d-block text-white text-decoration-none" id="simEmail"><i class="fa fa-envelope me-1 text-warning"></i> pegasusengschool@gmail.com</a>
+              <span class="d-block" id="simAddress"><i class="fa fa-map-marker-alt me-1 text-warning"></i> Nayabasti, Kathmandu</span>
+            </div>
+          </div>
+
+          <!-- Simulated Interactive Buttons & Chips -->
+          <div class="p-3 bg-light rounded-3 border mb-3">
+            <label class="form-label small fw-bold text-muted text-uppercase mb-2">Simulated Interactive UI Controls:</label>
+            <div class="d-flex flex-wrap gap-2 align-items-center">
+              <button class="btn btn-sm text-white" id="simBtnPrimary" style="background: #103570; border-color: #103570;">Primary Action</button>
+              <button class="btn btn-sm text-dark fw-bold" id="simBtnAccent" style="background: linear-gradient(135deg, #fbbf24 0%, #c59b27 100%); border: none;">Accent Button</button>
+              <span class="badge text-white px-3 py-2 rounded-pill" id="simChipActive" style="background: #103570;">Active Filter Tab</span>
+              <span class="badge px-3 py-2 rounded-pill text-dark fw-bold" id="simBadgeAccent" style="background: #c59b27;">Highlight Notice</span>
+              <span class="badge bg-success px-3 py-2 rounded-pill"><i class="fab fa-whatsapp me-1"></i> Notify Parent</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ====================================================================== -->
+  <!-- TAB 4: WELCOME SPEECH & ACADEMIC WINGS                                 -->
+  <!-- ====================================================================== -->
+  <div id="tab-welcome-wings" class="tab-content-pane">
+    <div class="row g-4">
+      <div class="col-lg-6">
+        <div class="customizer-card">
+          <h5 class="fw-bold text-dark mb-3 d-flex align-items-center gap-2">
+            <i class="fa fa-quote-left text-primary"></i>
+            <span>Welcome Section &amp; Leadership Copy</span>
+          </h5>
+
+          <form id="welcomeCopyForm" onsubmit="handleSaveWelcomeCopy(event)">
+            <div class="mb-3">
+              <label class="form-label small fw-bold">Welcome Subtitle</label>
+              <input type="text" id="welcomeSubheading" class="form-control" placeholder="Welcome To">
+            </div>
+            <div class="mb-3">
+              <label class="form-label small fw-bold">Welcome Narrative / School Heritage</label>
+              <textarea id="welcomeBody" class="form-control" rows="5" placeholder="Enter school history and mission..."></textarea>
+            </div>
+            <div class="row g-2 mb-3">
+              <div class="col-6">
+                <label class="form-label small fw-bold">Principal / Director Name</label>
+                <input type="text" id="speakerName" class="form-control form-control-sm" placeholder="Niladri S. Parial">
+              </div>
+              <div class="col-6">
+                <label class="form-label small fw-bold">Designation</label>
+                <input type="text" id="speakerRole" class="form-control form-control-sm" placeholder="Principal / Academic Director">
+              </div>
+            </div>
+            <button type="submit" class="btn btn-create px-4 py-2 fw-bold">
+              <i class="fa fa-save me-1"></i> Save Welcome Copy
+            </button>
+          </form>
+        </div>
+      </div>
+
+      <div class="col-lg-6">
+        <div class="customizer-card">
+          <h5 class="fw-bold text-dark mb-3 d-flex align-items-center gap-2">
+            <i class="fa fa-layer-group text-success"></i>
+            <span>Academic Wings Quick Labels</span>
+          </h5>
+          <p class="text-muted small mb-3">Customize wing descriptions shown on the homepage and modal popups:</p>
+
+          <div class="mb-3">
+            <label class="form-label small fw-bold">1. Pre-School Wing</label>
+            <input type="text" id="wingPreschoolTitle" class="form-control form-control-sm mb-1" placeholder="Pre-School Wing (Playgroup to UKG)">
+            <textarea id="wingPreschoolDesc" class="form-control form-control-sm" rows="2" placeholder="Play-based, child-centred early childhood exploration."></textarea>
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label small fw-bold">2. Junior / Primary Wing</label>
+            <input type="text" id="wingJuniorTitle" class="form-control form-control-sm mb-1" placeholder="Junior Wing (Grades I - IV)">
+            <textarea id="wingJuniorDesc" class="form-control form-control-sm" rows="2" placeholder="Inquiry-based foundational literacy, numeracy & CDC CAS."></textarea>
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label small fw-bold">3. Middle School Wing</label>
+            <input type="text" id="wingMiddleTitle" class="form-control form-control-sm mb-1" placeholder="Middle School Wing (Grades V - VII)">
+            <textarea id="wingMiddleDesc" class="form-control form-control-sm" rows="2" placeholder="STEAM robotics, critical thinking & science exhibitions."></textarea>
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label small fw-bold">4. Senior / High School Wing</label>
+            <input type="text" id="wingSeniorTitle" class="form-control form-control-sm mb-1" placeholder="Senior School Wing (Grades VIII - X / +2)">
+            <textarea id="wingSeniorDesc" class="form-control form-control-sm" rows="2" placeholder="SEE preparation, career counseling and leadership."></textarea>
+          </div>
+
+          <button type="button" class="btn btn-create px-4 py-2 fw-bold" onclick="handleSaveWings()">
+            <i class="fa fa-save me-1"></i> Save Wings Configuration
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ====================================================================== -->
+  <!-- TAB 5: DOWN LOCATION, GOOGLE MAPS & CONTACT                            -->
+  <!-- ====================================================================== -->
+  <div id="tab-contact-social" class="tab-content-pane">
+    <div class="row g-4">
+
+      <!-- Left: Down Location & Contact Information Form -->
+      <div class="col-lg-6">
+        <div class="customizer-card h-100">
+          <div class="d-flex justify-content-between align-items-center mb-3">
+            <h5 class="fw-bold text-dark mb-0 d-flex align-items-center gap-2">
+              <i class="fa fa-map-marked-alt text-danger"></i>
+              <span>Campus Down Location &amp; Contact</span>
+            </h5>
+            <span class="badge bg-danger-subtle text-danger border" style="font-size: 11px;">Footer &amp; Map Sync</span>
+          </div>
+          <p class="text-muted small mb-3">
+            Configure your school campus street location, Google Map pin query, phone, and WhatsApp hotline. Updates across all portals and the website footer.
+          </p>
+
+          <!-- 1-Click Quick City Presets -->
+          <div class="p-2 mb-3 bg-light rounded-3 border">
+            <small class="text-muted fw-bold d-block mb-1"><i class="fa fa-magic text-warning me-1"></i> Quick Demo City Presets (Click to Auto-fill Location):</small>
+            <div class="d-flex flex-wrap gap-1">
+              <button type="button" class="btn btn-xs btn-outline-secondary py-1 px-2" style="font-size: 11px;" onclick="setPresetLocation('Nayabasti, Gokarneshwor-6, Kathmandu, Nepal', 'Pegasus English School Nayabasti')">Kathmandu (Nayabasti - Pegasus)</button>
+              <button type="button" class="btn btn-xs btn-outline-secondary py-1 px-2" style="font-size: 11px;" onclick="setPresetLocation('Balkumari, Lalitpur, Nepal', 'Kathmandu Model College Balkumari')">Lalitpur (Balkumari)</button>
+              <button type="button" class="btn btn-xs btn-outline-secondary py-1 px-2" style="font-size: 11px;" onclick="setPresetLocation('Lakeside, Pokhara, Nepal', 'Himalayan Public School Pokhara')">Pokhara (Gandaki)</button>
+              <button type="button" class="btn btn-xs btn-outline-secondary py-1 px-2" style="font-size: 11px;" onclick="setPresetLocation('New Baneshwor, Kathmandu, Nepal', 'Apex Academy Baneshwor')">Kathmandu (Baneshwor)</button>
+            </div>
+          </div>
+
+          <form id="contactForm" onsubmit="handleSaveContact(event)">
+            <!-- Campus Address -->
+            <div class="mb-3">
+              <label class="form-label small fw-bold"><i class="fa fa-map-marker-alt text-danger me-1"></i> Campus Street Address / Down Location *</label>
+              <input type="text" id="brandAddress" class="form-control" placeholder="Gokarneshwor-6, Nayabasti, Kathmandu, Nepal" required oninput="updateLiveMapPreview()">
+              <small class="text-muted">Displays in the header bar and the footer Campus Location section.</small>
+            </div>
+
+            <!-- Google Map Pin Query -->
+            <div class="mb-3">
+              <label class="form-label small fw-bold"><i class="fa fa-search-location text-primary me-1"></i> Google Maps Pin Query / Landmark</label>
+              <input type="text" id="brandMapQuery" class="form-control" placeholder="Pegasus English School Nayabasti Kathmandu" oninput="updateLiveMapPreview()">
+              <small class="text-muted">Specific landmark or Google Maps place name for high pin accuracy.</small>
+            </div>
+
+            <!-- Phone and WhatsApp -->
+            <div class="row g-3 mb-3">
+              <div class="col-md-6">
+                <label class="form-label small fw-bold"><i class="fa fa-phone text-primary me-1"></i> Official Phone Contact *</label>
+                <input type="text" id="brandPhone" class="form-control" placeholder="01-4913939" required>
+              </div>
+              <div class="col-md-6">
+                <label class="form-label small fw-bold"><i class="fab fa-whatsapp text-success me-1"></i> WhatsApp Parent Hotline</label>
+                <input type="text" id="brandWhatsApp" class="form-control" placeholder="+977-9800000000">
+              </div>
+            </div>
+
+            <!-- Email -->
+            <div class="mb-3">
+              <label class="form-label small fw-bold"><i class="fa fa-envelope text-danger me-1"></i> Official Email *</label>
+              <input type="email" id="brandEmail" class="form-control" placeholder="pegasusengschool@gmail.com" required>
+            </div>
+
+            <!-- Social Links -->
+            <div class="p-3 bg-light rounded-3 border mb-3">
+              <label class="form-label small fw-bold text-dark mb-2"><i class="fa fa-share-alt text-secondary me-1"></i> Social Media Profiles</label>
+              <div class="row g-2">
+                <div class="col-md-6">
+                  <input type="text" id="socialFacebook" class="form-control form-control-sm" placeholder="https://www.facebook.com/your-school">
+                </div>
+                <div class="col-md-6">
+                  <input type="text" id="socialInstagram" class="form-control form-control-sm" placeholder="https://www.instagram.com/your-school">
+                </div>
+                <div class="col-md-6">
+                  <input type="text" id="socialYouTube" class="form-control form-control-sm" placeholder="https://www.youtube.com/c/your-school">
+                </div>
+                <div class="col-md-6">
+                  <input type="text" id="socialTwitter" class="form-control form-control-sm" placeholder="https://twitter.com/your-school">
+                </div>
+              </div>
+            </div>
+
+            <button type="submit" class="btn btn-create px-4 py-2 fw-bold w-100">
+              <i class="fa fa-save me-1"></i> Save Down Location, Map &amp; Contact Universally
+            </button>
+          </form>
+        </div>
+      </div>
+
+      <!-- Right: Live Interactive Google Map Preview Studio -->
+      <div class="col-lg-6">
+        <div class="customizer-card h-100">
+          <div class="d-flex justify-content-between align-items-center mb-2">
+            <h5 class="fw-bold text-dark mb-0 d-flex align-items-center gap-2">
+              <i class="fa fa-globe-asia text-primary"></i>
+              <span>Live Google Maps &amp; Footer Preview</span>
+            </h5>
+            <span class="badge bg-success-subtle text-success border" style="font-size: 11px;">Interactive Map</span>
+          </div>
+          <p class="text-muted small mb-3">
+            Watch the Google Map pan and update in real-time as you modify the address. This exact map renders in the footer of your public website.
+          </p>
+
+          <!-- Current Location Pill -->
+          <div class="p-2 mb-2 bg-light rounded-3 border d-flex align-items-center justify-content-between small">
+            <div>
+              <i class="fa fa-map-marker-alt text-danger me-1"></i>
+              <span class="text-muted">Target Location:</span>
+              <b id="previewMapAddress" class="text-dark ms-1">Nayabasti, Gokarneshwor-6, Kathmandu, Nepal</b>
+            </div>
+            <span class="badge bg-primary" id="previewMapZoomBadge">Zoom 15</span>
+          </div>
+
+          <!-- Live Google Map Iframe Container -->
+          <div class="rounded-3 overflow-hidden border shadow-sm position-relative mb-3" style="height: 290px; background: #E2E8F0;">
+            <iframe id="customizerMapIframe" src="https://maps.google.com/maps?q=Nayabasti%2C%20Kathmandu%2C%20Nepal&t=&z=15&ie=UTF8&iwloc=&output=embed" width="100%" height="100%" style="border: 0;" allowfullscreen="" loading="lazy"></iframe>
+          </div>
+
+          <!-- Directions and Verification -->
+          <div class="d-flex gap-2">
+            <a id="previewDirectionsBtn" href="https://maps.google.com/?q=Nayabasti%2C%20Kathmandu%2C%20Nepal" target="_blank" class="btn btn-sm btn-outline-primary fw-bold flex-grow-1 py-2">
+              <i class="fa fa-directions me-1"></i> Test Directions Link in Google Maps
+            </a>
+            <button type="button" class="btn btn-sm btn-light border py-2" onclick="updateLiveMapPreview()" title="Refresh map embed">
+              <i class="fa fa-sync-alt"></i> Refresh
+            </button>
+          </div>
+
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ====================================================================== -->
+  <!-- TAB 6: GEMINI AI CONFIGURATION & DIAGNOSTICS                           -->
+  <!-- ====================================================================== -->
+  <div id="tab-gemini-settings" class="tab-content-pane">
+    <div class="customizer-card" style="max-width: 900px; margin: 0 auto;">
+      <div class="d-flex justify-content-between align-items-center mb-3 flex-wrap gap-2">
+        <h5 class="fw-bold text-dark mb-0 d-flex align-items-center gap-2">
+          <i class="fa fa-brain text-purple" style="color: #8B5CF6;"></i>
+          <span>Google Gemini API Configuration &amp; Health</span>
+        </h5>
+        <span class="badge bg-success-subtle text-success border px-3 py-1" id="geminiStatusBadge">
+          <i class="fa fa-check-circle me-1"></i> Key Configured
+        </span>
+      </div>
+      <p class="text-muted small mb-4">
+        Your Google Gemini Generative AI Key powers the dynamic brand generator, educational copywriting, and SVG crest creator.
+      </p>
+
+      <form id="geminiConfigForm" onsubmit="handleSaveGeminiKey(event)">
+        <div class="mb-3">
+          <label class="form-label small fw-bold">Gemini API Key *</label>
+          <div class="input-group">
+            <input type="password" id="geminiApiKeyInput" class="form-control font-monospace" placeholder="Enter your Gemini API Key..." required>
+            <button type="button" class="btn btn-outline-secondary" onclick="toggleApiKeyVisibility()">
+              <i class="fa fa-eye" id="iconToggleKey"></i>
+            </button>
+          </div>
+          <small class="text-muted">Enter your secure Google AI Gemini API key to activate AI rebranding services.</small>
+        </div>
+
+        <div class="row g-3 mb-4">
+          <div class="col-md-6">
+            <label class="form-label small fw-bold">Model Engine</label>
+            <select id="geminiModelSelect" class="form-select form-select-sm">
+              <option value="gemini-1.5-flash" selected>gemini-1.5-flash (Fast, Low Latency, Recommended)</option>
+              <option value="gemini-1.5-pro">gemini-1.5-pro (High Reasoning)</option>
+              <option value="gemini-2.0-flash">gemini-2.0-flash (Experimental)</option>
+            </select>
+          </div>
+          <div class="col-md-6 d-flex align-items-end">
+            <button type="button" class="btn btn-outline-primary btn-sm w-100 py-2" onclick="testGeminiConnection()">
+              <i class="fa fa-plug me-1"></i> Test Connection &amp; Latency
+            </button>
+          </div>
+        </div>
+
+        <div id="geminiTestOutput" class="p-3 bg-light rounded-3 border mb-4 d-none">
+          <div class="d-flex align-items-center gap-2 mb-1" id="geminiTestHeader">
+            <span class="spinner-border spinner-border-sm text-primary"></span>
+            <span class="small fw-bold">Testing connection to Google Gemini API...</span>
+          </div>
+          <small class="text-muted d-block font-monospace" id="geminiTestDetails"></small>
+        </div>
+
+        <button type="submit" class="btn btn-create px-4 py-2 fw-bold">
+          <i class="fa fa-save me-1"></i> Save API Configuration
+        </button>
+      </form>
+    </div>
+  </div>
+
+</div>
+
+
+
+<!-- Core Scripts -->
+<script src="js/core/env.js"></script>
+<script src="js/core/seeds.js"></script>
+<script src="js/core/store.js"></script>
+<script src="js/core/mediaStorage.js"></script>
+<script src="js/core/utils.js"></script>
+<script src="js/core/api.js"></script>
+<script src="js/components/branding.js"></script>
+<script src="js/components/toast.js"></script>
+<script src="js/services/geminiService.js"></script>
+<script src="js/pages/customizerPage.js"></script>
+
+</body>
+</html>
